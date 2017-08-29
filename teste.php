@@ -50,64 +50,64 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
- 
-  </head>
-  <script>
-    $(document).ready(function() {
-        $('#dispositivo_select').change(function () {
-            $("#input_form").html("");
-            alert('ok');
-            $.ajax({
-                url: '/disp_form/input.php',
-                method: 'POST',
-                data: {id: this.value()},
-                success : function(response){
-                    ('#input_form').manageConfirmResponseOnUpdateSuccess(response);
-                },
-                error: ('#input_form').manageResponseOnFailure.bind('#input_form');
-            });
-        });
+    <script src="js/jquery.min.js"></script>
+    <script>
+      $(document).ready(function() {
+          $('#dispositivo_select').change(function () {
+              $("#input_form").html("");
+              alert('ok');
+              $.ajax({
+                  url: '/disp_form/input.php',
+                  method: 'POST',
+                  data: {id: this.value()},
+                  success : function(response){
+                      ('#input_form').manageConfirmResponseOnUpdateSuccess(response);
+                  },
+                  error: ('#input_form').manageResponseOnFailure.bind('#input_form');
+              });
+          });
 
-        $('#button_submit').click(function(){
-            var Serialized =  $("#form_dispositivo").serialize();
-                $.ajax({
-                   type: "POST",
-                    url: "/disp_form/answer.php",
-                    data: Serialized,
-                    success: function(data) {
-                        ('#answer_form').manageConfirmResponseOnUpdateSuccess(response);
-                    },
-               error: function(){
-                    alert('error handing here');
-                  }
-                });
-        });
-
-
-    });
-
-    function validateForm(){
-            var member_name = 'dispositivo';
-            var input_form = document.forms["myform"][member_name];
-      if (input_form.value == ""){
-        alert("Name must be filled out");
-        return false;
-      }
-            var aux_x = 0;
-            total = document.forms["myform"].length - 5;
-      while(aux_x < total){
-                    member_name = 'member'+aux_x;
-                    input_form = document.forms["myform"][member_name];
-                    if (input_form.value == ""){
-                            alert("Name must be filled out");
-                            input_form.focus();
-                            return false;
+          $('#button_submit').click(function(){
+              var Serialized =  $("#form_dispositivo").serialize();
+                  $.ajax({
+                     type: "POST",
+                      url: "/disp_form/answer.php",
+                      data: Serialized,
+                      success: function(data) {
+                          ('#answer_form').manageConfirmResponseOnUpdateSuccess(response);
+                      },
+                 error: function(){
+                      alert('error handing here');
                     }
-                    aux_x++;
-            }
-            return true;
-    }
-  </script>
+                  });
+          });
+
+
+      });
+
+      function validateForm(){
+              var member_name = 'dispositivo';
+              var input_form = document.forms["myform"][member_name];
+        if (input_form.value == ""){
+          alert("Name must be filled out");
+          return false;
+        }
+              var aux_x = 0;
+              total = document.forms["myform"].length - 5;
+        while(aux_x < total){
+                      member_name = 'member'+aux_x;
+                      input_form = document.forms["myform"][member_name];
+                      if (input_form.value == ""){
+                              alert("Name must be filled out");
+                              input_form.focus();
+                              return false;
+                      }
+                      aux_x++;
+              }
+              return true;
+      }
+    </script>
+  </head>
   <body>
     <!-- SCROLL TOP BUTTON -->
     <a class="scrollToTop" href="#"></a>
@@ -195,41 +195,41 @@
                 <h2>Available Tools <span class="fa fa-angle-double-right"></span></h2>
                 <select size="15" id="dispositivo_select">
                 	<option disabled selected value> -- Select a Microwave tool -- </option>
-					<?php
-					//Starting connection
-					$mysqli = new mysqli('localhost', 'root', 'input212', 'input');
+          					<?php
+          					//Starting connection
+          					$mysqli = new mysqli('localhost', 'root', 'input212', 'input');
 
-					//If there is any error, then show...
-					if ($mysqli->connect_errno) {
-					    // I do not know what to show yet
-					    echo "<option id='0'>Connection Problem</option>";
-					    exit;
-					}
+          					//If there is any error, then show...
+          					if ($mysqli->connect_errno) {
+          					    // I do not know what to show yet
+          					    echo "<option id='0'>Connection Problem</option>";
+          					    exit;
+          					}
 
-					//If there isnt any error, then lets read the sql content
-					$sql = "SELECT * FROM dispositivo ORDER BY id_dispositivo";
-					if (!$result = $mysqli->query($sql)) {
-						// I do not know what to show yet
-						echo "<option id='0'>Connection Problem</option>";
-					    exit;
-					}
+          					//If there isnt any error, then lets read the sql content
+          					$sql = "SELECT * FROM dispositivo ORDER BY id_dispositivo";
+          					if (!$result = $mysqli->query($sql)) {
+          						// I do not know what to show yet
+          						echo "<option id='0'>Connection Problem</option>";
+          					    exit;
+          					}
 
-					// If there is no result
-					if ($result->num_rows === 0) {
-					    // I do not know what to show yet
-					    echo "<option id='0'>Connection Problem</option>";
-					    exit;
-					}
+          					// If there is no result
+          					if ($result->num_rows === 0) {
+          					    // I do not know what to show yet
+          					    echo "<option id='0'>Connection Problem</option>";
+          					    exit;
+          					}
 
-					//Show the results
-					while ($dispositivo = $result->fetch_assoc()) {
-						//it is exibitig the line.
-						echo "<option id='" . $dispositivo['id_dispositivo'] . "'>".$dispositivo['nome_dispositivo']."</option>";
-					}
+          					//Show the results
+          					while ($dispositivo = $result->fetch_assoc()) {
+          						//it is exibitig the line.
+          						echo "<option id='" . $dispositivo['id_dispositivo'] . "'>".$dispositivo['nome_dispositivo']."</option>";
+          					}
 
-					//we should close the connection
-					$mysqli->close();
-					?>
+          					//we should close the connection
+          					$mysqli->close();
+          					?>
                 </select>
               </div>
               <!-- End single sidebar -->
