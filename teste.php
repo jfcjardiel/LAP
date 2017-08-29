@@ -56,6 +56,7 @@
     $(document).ready(function() {
         $('#dispositivo_select').change(function () {
             $("#input_form").html("");
+            alert('ok');
             $.ajax({
                 url: '/disp_form/input.php',
                 method: 'POST',
@@ -306,8 +307,6 @@
       <!-- End footer bottom area -->
     </footer>
     <!--=========== END FOOTER SECTION ================--> 
-
-  
 
     <!-- Javascript Files
     ================================================== -->  
