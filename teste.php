@@ -53,8 +53,8 @@
     <script src="js/jquery.min.js"></script>
     <script>
       $(document).ready(function() {
-          $('#dispositivo_select').change(function () {
-              $("#input_form").html("");
+          $('.dispositivo_select').change(function () {
+              $(".input_form").html("");
               alert('ok');
               $.ajax({
                   url: '/disp_form/input.php',
@@ -177,7 +177,7 @@
             <div class="courseArchive_content">
               <!-- start blog archive  -->
               <div class="row">
-              	<div id="input_form">
+              	<div id="input_form" class="input_form">
               	</div>
               	<div id="answer_form">
               	</div>
@@ -193,7 +193,7 @@
               <!-- start single sidebar -->
               <div class="single_sidebar">
                 <h2>Available Tools <span class="fa fa-angle-double-right"></span></h2>
-                <select size="15" id="dispositivo_select">
+                <select size="15" id="dispositivo_select" class="dispositivo_select">
                 	<option disabled selected value> -- Select a Microwave tool -- </option>
           					<?php
           					//Starting connection
