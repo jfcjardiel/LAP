@@ -144,7 +144,7 @@
 					//If there is any error, then show...
 					if ($mysqli->connect_errno) {
 					    // I do not know what to show yet
-					    echo "<option id='0'>Connection Problem</option>"
+					    echo "<option id='0'>Connection Problem</option>";
 					    exit;
 					}
 
@@ -152,14 +152,14 @@
 					$sql = "SELECT * FROM dispositivo ORDER BY id_dispositivo";
 					if (!$result = $mysqli->query($sql)) {
 						// I do not know what to show yet
-						echo "<option id='0'>Connection Problem</option>"
+						echo "<option id='0'>Connection Problem</option>";
 					    exit;
 					}
 
 					// If there is no result
 					if ($result->num_rows === 0) {
 					    // I do not know what to show yet
-					    echo "<option id='0'>Connection Problem</option>"
+					    echo "<option id='0'>Connection Problem</option>";
 					    exit;
 					}
 
