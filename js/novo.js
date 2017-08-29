@@ -1,4 +1,4 @@
-$(document).ready(function() {
+//$(document).ready(function() {
     $('#dispositivo_select').change(function () {
         $("#input_form").html("");
         $.ajax({
@@ -28,7 +28,7 @@ $(document).ready(function() {
     });
 
 
-});
+//});
 
 function validateForm(){
         var member_name = 'dispositivo';
