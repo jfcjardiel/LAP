@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Answer:</title>
+</head>
+<body>
+<p>Os valores foram: <br/>
+<?php
+//entrando em conexao com o servidor
+$servername = "localhost";
+$username = "root";
+$password = "input212";
+$dbname = "input";
+//criando conexao com a database
+$conn = mysql_connect($servername, $username, $password);
+//checando a conexao com a database
+if(!$conn){
+        die("Connection failed: " . mysql_error());
+}
+//entrando na database chamada input
+$mydb = mysql_select_db($dbname);
+if(!$mydb){
+        die('Could not connect to database: ' . mysql_error());
+}
+
+//inserindo o dispositivo
+mysql_query("INSERT INTO dispositivo (id_dispositivo, nome_dispositivo) VALUES (NULL, '$_POST['dispositivo']')");
+$id = mysql_query("SELECT id_dispositivo FROM dispositivo ORDER BY id DESC LIMIT 1");
+
+for($i=0;$i<10;$i++){
+	$name = 'member'.$i;
+	if(isset($_POST[$name])){
+		_POST[$name];
+		echo "\n";
+	}
+}
+?>
+
+</p>
+</body>
+</html>

@@ -1,0 +1,163 @@
+<html>
+<head>
+<title>Dynamically add input field using jquery</title>
+<style>
+.container1 input[type=text] {
+padding:5px 0px;
+margin:5px 5px 5px 0px;
+}
+
+
+.add_form_field
+{
+    background-color: #1c97f3;
+    border: none;
+    color: white;
+    padding: 8px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border:1px solid #186dad;
+
+}
+
+.del_form_field
+{
+    background-color: #fd1200;
+    border: none;
+    color: white;
+    padding: 8px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border:1px solid #186dad;
+
+}
+
+
+input{
+    border: 1px solid #1c97f3;
+    width: 260px;
+    height: 40px;
+    margin-bottom:14px;
+}
+
+.final{
+    background-color: #1c97f3;
+    border: none;
+    color: white;
+    padding: 5px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin: 4px 2px;
+    cursor: pointer;
+
+}
+</style>
+<script src="jquery.min.js"></script>
+<script>
+$(document).ready(function() {
+    var max_fields      = 10;
+    var wrapper         = $(".container1"); 
+    var add_button      = $(".add_form_field"); 
+    var del_button      = $(".del_form_field");
+    var elem_id;
+    var member_now      = '';
+    var x = 0; 
+
+    // declarando variaveis para a construção do 
+    var disp_class = document.getElementById("dispositivos_selecionar");
+    var aux = 0;
+    var option;
+
+	var num_row = <?php echo json_encode($num_row); ?>;
+	var dispositivos = <?php json_encode($dispositivo_row); ?>;
+	
+(add_button).click(function(e){ 
+        e.preventDefault();
+        if(x < max_fields){ 
+            x++;
+            $(wrapper).append('<div class="member'+x+'"><input type="text" name="member'+x+'" id="member'+x+'"/></div>');
+        }
+	else{
+		alert('You Reached the limits entrou aqui');
+	}
+    });
+    $(del_button).click(function(e){
+    	e.preventDefault();
+    	if(x > 0){
+                member_now = '.member'+x; //removendo a classe
+                $(member_now).remove();
+                x--;
+	}
+                else
+                {
+                alert('You Reached the limits')
+                }
+    });
+
+});
+
+function validateForm(){
+        var member_name = 'dispositivo';
+        var input_form = document.forms["myform"][member_name];
+	if (input_form.value == ""){
+		alert("Name must be filled out");
+		return false;
+	}
+        var aux_x = 0;
+        total = document.forms["myform"].length - 5;
+	while(aux_x < total){
+                member_name = 'member'+aux_x;
+                input_form = document.forms["myform"][member_name];
+                if (input_form.value == ""){
+                        alert("Name must be filled out");
+                        input_form.focus();
+                        return false;
+                }
+                aux_x++;
+        }
+        return true;
+}
+
+</script>
+</head>
+<body>
+<form method="post" attribute="post" action="disp_form.php" name="myform" enctype="multipart/form-data" onsubmit="return validateForm()">
+<div class="nome_dispositivo">
+	<div><input type="text" name="dispositivo"></div>
+</div>
+<div class="container1">
+	<select id="dispositivos_selecionar" name="dispositivos_selecionar" form="dispositivos_selecionar">
+    <?php
+        $servername = "localhost";
+        $username = "root";
+        $password = "input212";
+        $dbname = "input";
+        $conn = mysql_connect($servername, $username, $password);
+        if(!$conn){
+                die("Connection failed: " . mysql_error());
+        }
+        //entrando na database chamada input
+        $mydb = mysql_select_db($dbname);
+        if(!$mydb){
+                die('Could not connect to database: ' . mysql_error());
+        }
+        $stmt = "SELECT nome_dispositivo FROM dispositivo ORDER BY id_dispositivo";
+        $dispositivo_row = mysql_query($stmt);
+        $num_row = mysql_num_rows($dispositivo_row) + 0;
+    ?>
+
+	</select> 
+</div>
+</form>
+</body>
+</html>

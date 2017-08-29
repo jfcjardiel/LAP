@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html> 
+<head> 
+<meta charset="utf-8">
+<title>Calculator</title>
+</head>
+<body> 
+<form method="post" attribute="post" action="disp_form.php">
+<p>Value:<br/>
+<input type="text" id="first" name="first"></p>
+<input type="radio" name="group1" id="multiplica2" value="multiplica2" checked="true"><p>Multiplica por 2</p><br/>
+<input type="radio" name="group1" id="multiplica4" value="multiplica4"><p>Multiplica por 4</p><br/>
+<p></p>
+<button type="submit" name="answer" id="answer" value="answer">Tomara que pegue</button>
+</form> 
+</body>
+</html>

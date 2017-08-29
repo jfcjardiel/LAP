@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Answer:</title>
+</head>
+<body>
+<p>A razao eh:
+<?php
+$myfile = fopen("test", "w");
+$impedancia = $_POST['impedancia'] + 0;
+$permissividade = $_POST['permissividade'] + 0;
+fwrite($myfile, $impedancia);
+fwrite($myfile, " ");
+fwrite($myfile, $permissividade);
+fclose($myfile);
+if($_POST['group1'] == 'microfita'){
+$output = shell_exec('wolfram -script /home/jardiel/Documents/microfita');
+echo "<pre>$output</pre>";
+}
+else{
+echo "Nao funcionou";
+}
+?>
+</p>
+</body>
+</html>
