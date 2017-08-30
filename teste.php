@@ -50,62 +50,6 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-    <script>
-      $(document).ready(function() {
-          $('.dispositivo_select').change(function () {
-              $(".input_form").html("");
-              alert('ok');
-              $.ajax({
-                  url: '/disp_form/input.php',
-                  method: 'POST',
-                  data: {id: this.value()},
-                  success : function(response){
-                      ('#input_form').manageConfirmResponseOnUpdateSuccess(response);
-                  },
-                  error: ('#input_form').manageResponseOnFailure.bind('#input_form');
-              });
-          });
-
-          $('#button_submit').click(function(){
-              var Serialized =  $("#form_dispositivo").serialize();
-                  $.ajax({
-                     type: "POST",
-                      url: "/disp_form/answer.php",
-                      data: Serialized,
-                      success: function(data) {
-                          ('#answer_form').manageConfirmResponseOnUpdateSuccess(response);
-                      },
-                 error: function(){
-                      alert('error handing here');
-                    }
-                  });
-          });
-
-
-      });
-
-      function validateForm(){
-              var member_name = 'dispositivo';
-              var input_form = document.forms["myform"][member_name];
-        if (input_form.value == ""){
-          alert("Name must be filled out");
-          return false;
-        }
-              var aux_x = 0;
-              total = document.forms["myform"].length - 5;
-        while(aux_x < total){
-                      member_name = 'member'+aux_x;
-                      input_form = document.forms["myform"][member_name];
-                      if (input_form.value == ""){
-                              alert("Name must be filled out");
-                              input_form.focus();
-                              return false;
-                      }
-                      aux_x++;
-              }
-              return true;
-      }
-    </script>
   </head>
   <body>
     <!-- SCROLL TOP BUTTON -->
@@ -192,7 +136,7 @@
               <!-- start single sidebar -->
               <div class="single_sidebar">
                 <h2>Available Tools <span class="fa fa-angle-double-right"></span></h2>
-                <select size="15" id="dispositivo_select" class="dispositivo_select">
+                <select size="15" id="dispositivo_select" class="dispositivo_select" onchange="form_maker()">
                 	<option disabled selected value> -- Select a Microwave tool -- </option>
           					<?php
           					//Starting connection
@@ -310,7 +254,7 @@
     <!-- Javascript Files
     ================================================== -->  
     <!-- initialize jQuery Library -->
-    <script src="js/jquery2.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <!-- Preloader js file -->
     <script src="js/queryloader2.min.js" type="text/javascript"></script>
     <!-- For smooth animatin  -->
@@ -330,6 +274,13 @@
    
     <!-- Custom js-->
     <script src="js/custom.js"></script>
+
+    <-- Add the newst jquery version -->
+    <!-- load jQuery 1.3.2 -->
+    <script type="text/javascript" src="js/jquery2.min.js"></script>
+    <script type="text/javascript">
+      var jQuery_1_3_2 = $.noConflict(true);
+    </script>
     
     <!-- Javascript usado para embarcar php  -->
     <script type="text/javascript" language="javascript" src="js/novo.js"></script>

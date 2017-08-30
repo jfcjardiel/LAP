@@ -1,5 +1,4 @@
-//$(document).ready(function() {
-    $('#dispositivo_select').change(function () {
+function form_maker(){
         $("#input_form").html("");
         $.ajax({
             url: '/disp_form/input.php',
@@ -9,26 +8,25 @@
                 ('#input_form').manageConfirmResponseOnUpdateSuccess(response);
             },
             error: ('#input_form').manageResponseOnFailure.bind('#input_form');
+        }); 
+}
+
+$('#button_submit').click(function(){
+    var Serialized =  $("#form_dispositivo").serialize();
+        $.ajax({
+           type: "POST",
+            url: "/disp_form/answer.php",
+            data: Serialized,
+            success: function(data) {
+                ('#answer_form').manageConfirmResponseOnUpdateSuccess(response);
+            },
+       error: function(){
+            alert('error handing here');
+          }
         });
-    });
-
-    $('#button_submit').click(function(){
-        var Serialized =  $("#form_dispositivo").serialize();
-            $.ajax({
-               type: "POST",
-                url: "/disp_form/answer.php",
-                data: Serialized,
-                success: function(data) {
-                    ('#answer_form').manageConfirmResponseOnUpdateSuccess(response);
-                },
-           error: function(){
-                alert('error handing here');
-              }
-            });
-    });
+});
 
 
-//});
 
 function validateForm(){
         var member_name = 'dispositivo';
