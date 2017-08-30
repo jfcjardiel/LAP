@@ -92,6 +92,8 @@
     <!--=========== END HEADER SECTION ================--> 
 
     <section>
+      <p></p>
+      <p></p>
     </section>
     
     <!--=========== BEGIN COURSE BANNER SECTION ================-->
