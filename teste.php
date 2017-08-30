@@ -50,7 +50,6 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-    <script src="js/jquery2.min.js"></script>
     <script>
       $(document).ready(function() {
           $('.dispositivo_select').change(function () {
@@ -311,7 +310,7 @@
     <!-- Javascript Files
     ================================================== -->  
     <!-- initialize jQuery Library -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="js/jquery2.min.js"></script>
     <!-- Preloader js file -->
     <script src="js/queryloader2.min.js" type="text/javascript"></script>
     <!-- For smooth animatin  -->
@@ -333,7 +332,7 @@
     <script src="js/custom.js"></script>
     
     <!-- Javascript usado para embarcar php  -->
-    <!-- <script type="text/javascript" language="javascript" src="js/novo.js"></script> -->
+    <script type="text/javascript" language="javascript" src="js/novo.js"></script>
 
     <!--=============================================== 
       Template Design By WpFreeware Team.
