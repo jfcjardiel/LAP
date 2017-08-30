@@ -79,21 +79,6 @@
             <div id="navbar" class="navbar-collapse collapse">
               <ul id="top-menu" class="nav navbar-nav navbar-right main-nav">
                 <li class="active"><a href="index.html">Home</a></li>
-              		<li class="dropdown">
-              		  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Research<span class="caret"></span></a>
-              		  <ul class="dropdown-menu" role="menu">
-              		    <li><a href="404.html">Research archive</a></li>
-              		    <li><a href="404.html">Projects</a></li>
-              		  </ul>
-              		</li>
-                              <li class="dropdown">
-              		  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">People<span class="caret"</span></a>
-              		  <ul class="dropdown-menu" role="menu">
-              		    <li><a href="404.html">Students</a></li>
-              		    <li><a href="404.html">Research Staff</a></li>
-              		    <li><a href="404.html">Faculty/PIS</a></li>
-              		  </ul>
-              		</li>
                 <li><a href ="404.html">Microwave Tools</a></li>                
                 <li><a href="404.html">News</a><li>           
                 <li><a href="contact.html">Contact</a></li>
@@ -105,11 +90,6 @@
       <!-- END MENU -->    
     </header>
     <!--=========== END HEADER SECTION ================--> 
-    <!--=========== BEGIN COURSE BANNER SECTION ================-->
-    <section id="imgBanner">
-      <h2>Microwave Tools</h2>
-    </section>
-    <!--=========== END COURSE BANNER SECTION ================-->
     
     <!--=========== BEGIN COURSE BANNER SECTION ================-->
     <section id="courseArchive">
@@ -250,7 +230,7 @@
       <!-- End footer bottom area -->
     </footer>
     <!--=========== END FOOTER SECTION ================--> 
-    
+
     <!-- Javascript usado para embarcar php  -->
     <script type="text/javascript" language="javascript" src="js/novo.js"></script>
 
