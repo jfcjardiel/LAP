@@ -95,11 +95,6 @@ $(document).ready(function() {
     var input_pai       = $(".input_pai");
     var select_value    = '';
 
-    $('#dispositivos_selecionar').onchange(function(){
-        $('.input').remove();
-        $(input_pai).append('<div class="input"> Removeu </div>');
-    });
-
     $(add_button).click(function(e){ 
         e.preventDefault();
         if(x < max_fields){ 
@@ -124,6 +119,12 @@ $(document).ready(function() {
     });
 
 });
+
+function myFunction(){
+    $('.input').remove();
+    alert("achou!");
+    $(input_pai).append('<div class="input"> Removeu </div>');
+}
 
 function validateForm(){
         var member_name = 'dispositivo';
@@ -155,7 +156,7 @@ function validateForm(){
 	<div><input type="text" name="dispositivo"></div>
 </div>
 <div class="container1">
-	<select id="dispositivos_selecionar" name="dispositivos_selecionar" form="dispositivos_selecionar">
+	<select id="dispositivos_selecionar" name="dispositivos_selecionar" form="dispositivos_selecionar" onchange="myFunction()">
 	<option disabled selected value> -- selecione um dispositivo -- </option>
 <?php
 $sql = "SELECT * FROM dispositivo ORDER BY id_dispositivo";
