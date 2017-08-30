@@ -97,7 +97,7 @@ $(document).ready(function() {
 
     $('#dispositivos_selecionar').change(function(){
         $('.input').remove();
-        $(input_pai).append('<div class="input"> </div>');
+        $(input_pai).append('<div class="input"> Removeu </div>');
     });
 
     $(add_button).click(function(e){ 
