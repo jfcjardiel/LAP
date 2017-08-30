@@ -48,7 +48,7 @@
       function form_maker(str){
         var xhttp;
         if (str == "") {
-            document.getElementById("input_form").innerHTML = "";
+            document.getElementById("input_form").innerHTML = "pegou...";
             return;
         }
         xhttp = new XMLHttpRequest();
