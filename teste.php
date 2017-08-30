@@ -90,6 +90,9 @@
       <!-- END MENU -->    
     </header>
     <!--=========== END HEADER SECTION ================--> 
+
+    <section>
+    </section>
     
     <!--=========== BEGIN COURSE BANNER SECTION ================-->
     <section id="courseArchive">
