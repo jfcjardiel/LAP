@@ -43,13 +43,59 @@
 
     <!-- somente para essa pagina -->
     <link rel="stylesheet" type="text/css" href="style_dispositivo.css">
+  
+    <script src="js/jquery2.min.js"></script>
+    <script>
+      function form_maker(){
+        $("#input_form").html("");
+        $.ajax({
+            url: '/disp_form/input.php',
+            method: 'POST',
+            data: {id: this.value()},
+            success : function(response){
+                ('#input_form').manageConfirmResponseOnUpdateSuccess(response);
+            },
+            error: ('#input_form').manageResponseOnFailure.bind('#input_form');
+        }); 
+      }
 
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
+      $('#button_submit').click(function(){
+          var Serialized =  $("#form_dispositivo").serialize();
+              $.ajax({
+                 type: "POST",
+                  url: "/disp_form/answer.php",
+                  data: Serialized,
+                  success: function(data) {
+                      ('#answer_form').manageConfirmResponseOnUpdateSuccess(response);
+                  },
+             error: function(){
+                  alert('error handing here');
+                }
+              });
+      });
+
+      function validateForm(){
+              var member_name = 'dispositivo';
+              var input_form = document.forms["myform"][member_name];
+        if (input_form.value == ""){
+          alert("Name must be filled out");
+          return false;
+        }
+              var aux_x = 0;
+              total = document.forms["myform"].length - 5;
+        while(aux_x < total){
+                      member_name = 'member'+aux_x;
+                      input_form = document.forms["myform"][member_name];
+                      if (input_form.value == ""){
+                              alert("Name must be filled out");
+                              input_form.focus();
+                              return false;
+                      }
+                      aux_x++;
+              }
+              return true;
+      }
+    </script>
   </head>
   <body>
     <!-- SCROLL TOP BUTTON -->
@@ -92,6 +138,7 @@
     <!--=========== END HEADER SECTION ================--> 
 
     <section>
+      <p></p>
       <p></p>
       <p></p>
     </section>
