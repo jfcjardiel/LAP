@@ -1,14 +1,17 @@
-function form_maker(){
-        document.getElementById("#input_form").html("");
-        $.ajax({
-            url: '/disp_form/input.php',
-            method: 'POST',
-            data: {id: this.value()},
-            success : function(response){
-                ('#input_form').manageConfirmResponseOnUpdateSuccess(response);
-            },
-            error: ('#input_form').manageResponseOnFailure.bind('#input_form');
-        }); 
+function form_maker(str){
+        var xhttp;
+        if (str == "") {
+            document.getElementById("input_form").innerHTML = "";
+            return;
+        }
+        xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("input_form").innerHTML = this.responseText;
+            }
+        };
+        xhttp.open("GET", "disp_form/input.php?id="+str, true);
+        xhttp.send();
 }
 
 $('#button_submit').click(function(){

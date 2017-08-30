@@ -131,8 +131,8 @@
               <!-- start single sidebar -->
               <div class="single_sidebar">
                 <h2>Available Tools <span class="fa fa-angle-double-right"></span></h2>
-                <select size="15" id="dispositivo_select" class="dispositivo_select" onchange="form_maker()">
-                	<option disabled selected value> -- Select a Microwave tool -- </option>
+                <select size="15" id="dispositivo_select" class="dispositivo_select" onchange="form_maker(this.value)">
+                	<option value=""> -- Select a Microwave tool -- </option>
           					<?php
           					//Starting connection
           					$mysqli = new mysqli('localhost', 'root', 'input212', 'input');
@@ -140,7 +140,7 @@
           					//If there is any error, then show...
           					if ($mysqli->connect_errno) {
           					    // I do not know what to show yet
-          					    echo "<option id='0'>Connection Problem</option>";
+          					    echo "<option value=''>Connection Problem</option>";
           					    exit;
           					}
 
@@ -148,21 +148,21 @@
           					$sql = "SELECT * FROM dispositivo ORDER BY id_dispositivo";
           					if (!$result = $mysqli->query($sql)) {
           						// I do not know what to show yet
-          						echo "<option id='0'>Connection Problem</option>";
+          						echo "<option value=''>Connection Problem</option>";
           					    exit;
           					}
 
           					// If there is no result
           					if ($result->num_rows === 0) {
           					    // I do not know what to show yet
-          					    echo "<option id='0'>Connection Problem</option>";
+          					    echo "<option value=''>Connection Problem</option>";
           					    exit;
           					}
 
           					//Show the results
           					while ($dispositivo = $result->fetch_assoc()) {
           						//it is exibitig the line.
-          						echo "<option id='" . $dispositivo['id_dispositivo'] . "'>".$dispositivo['nome_dispositivo']."</option>";
+          						echo "<option value='" . $dispositivo['id_dispositivo'] . "'>".$dispositivo['nome_dispositivo']."</option>";
           					}
 
           					//we should close the connection
