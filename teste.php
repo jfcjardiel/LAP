@@ -44,6 +44,13 @@
     <!-- somente para essa pagina -->
     <link rel="stylesheet" type="text/css" href="style_dispositivo.css">
 
+    <script>
+    function form_maker(str){
+    alert(str);
+    }
+
+    </script>
+
   </head>
   <body>
     <!-- SCROLL TOP BUTTON -->
