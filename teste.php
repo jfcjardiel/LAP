@@ -44,6 +44,25 @@
     <!-- somente para essa pagina -->
     <link rel="stylesheet" type="text/css" href="style_dispositivo.css">
 
+    <script>
+      function form_maker(str){
+        var xhttp;
+        if (str == "") {
+            document.getElementById("input_form").innerHTML = "";
+            return;
+        }
+        xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("input_form").innerHTML = this.responseText;
+            }
+        };
+        xhttp.open("GET", "disp_form/input.php?id="+str, true);
+        xhttp.send();
+      }
+
+    </script>
+
   </head>
   <body>
     <!-- SCROLL TOP BUTTON -->
@@ -247,7 +266,7 @@
     </footer>
     
     <!-- Javascript usado para embarcar php  -->
-    <script type="text/javascript" language="javascript" src="js/novo.js"></script>
+    <!-- <script type="text/javascript" language="javascript" src="js/novo.js"></script> -->
     <!--=============================================== 
     Template Design By WpFreeware Team.
     Author URI : http://www.wpfreeware.com/
