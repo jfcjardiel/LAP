@@ -48,6 +48,7 @@
     <script>
       function form_maker(){
         $("#input_form").html("");
+        alert("pega pelo amor de deus");
         $.ajax({
             url: '/disp_form/input.php',
             method: 'POST',
