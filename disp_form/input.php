@@ -1,5 +1,5 @@
 <?php
-$id = _POST['id'];
+$id = _GET['id'];
 //Starting connection
 $mysqli = new mysqli('localhost', 'root', 'input212', 'input');
 
