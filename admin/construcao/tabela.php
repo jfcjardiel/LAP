@@ -95,7 +95,7 @@ $(document).ready(function() {
     var input_pai       = $(".input_pai");
     var select_value    = '';
 
-    $('#dispositivos_selecionar').change(function(){
+    $('#dispositivos_selecionar').onchange(function(){
         $('.input').remove();
         $(input_pai).append('<div class="input"> Removeu </div>');
     });
