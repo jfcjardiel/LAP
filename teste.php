@@ -43,60 +43,7 @@
 
     <!-- somente para essa pagina -->
     <link rel="stylesheet" type="text/css" href="style_dispositivo.css">
-  
-    <script src="js/jquery2.min.js"></script>
-    <script>
-      function form_maker(){
-        $("#input_form").html("");
-        alert("pega pelo amor de deus");
-        $.ajax({
-            url: '/disp_form/input.php',
-            method: 'POST',
-            data: {id: this.value()},
-            success : function(response){
-                ('#input_form').manageConfirmResponseOnUpdateSuccess(response);
-            },
-            error: ('#input_form').manageResponseOnFailure.bind('#input_form');
-        }); 
-      }
 
-      $('#button_submit').click(function(){
-          var Serialized =  $("#form_dispositivo").serialize();
-              $.ajax({
-                 type: "POST",
-                  url: "/disp_form/answer.php",
-                  data: Serialized,
-                  success: function(data) {
-                      ('#answer_form').manageConfirmResponseOnUpdateSuccess(response);
-                  },
-             error: function(){
-                  alert('error handing here');
-                }
-              });
-      });
-
-      function validateForm(){
-              var member_name = 'dispositivo';
-              var input_form = document.forms["myform"][member_name];
-        if (input_form.value == ""){
-          alert("Name must be filled out");
-          return false;
-        }
-              var aux_x = 0;
-              total = document.forms["myform"].length - 5;
-        while(aux_x < total){
-                      member_name = 'member'+aux_x;
-                      input_form = document.forms["myform"][member_name];
-                      if (input_form.value == ""){
-                              alert("Name must be filled out");
-                              input_form.focus();
-                              return false;
-                      }
-                      aux_x++;
-              }
-              return true;
-      }
-    </script>
   </head>
   <body>
     <!-- SCROLL TOP BUTTON -->
@@ -126,13 +73,28 @@
             <div id="navbar" class="navbar-collapse collapse">
               <ul id="top-menu" class="nav navbar-nav navbar-right main-nav">
                 <li class="active"><a href="index.html">Home</a></li>
+                  <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Research<span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                      <li><a href="404.html">Research archive</a></li>
+                      <li><a href="404.html">Projects</a></li>
+                    </ul>
+                  </li>
+                              <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">People<span class="caret"</span></a>
+                    <ul class="dropdown-menu" role="menu">
+                      <li><a href="404.html">Students</a></li>
+                      <li><a href="404.html">Research Staff</a></li>
+                      <li><a href="404.html">Faculty/PIS</a></li>
+                    </ul>
+                  </li>
                 <li><a href ="404.html">Microwave Tools</a></li>                
                 <li><a href="404.html">News</a><li>           
                 <li><a href="contact.html">Contact</a></li>
               </ul>           
             </div><!--/.nav-collapse -->
           </div>     
-        </nav>
+        </nav>  
       </div>
       <!-- END MENU -->    
     </header>
@@ -281,15 +243,39 @@
         </div>
       </div>
       <!-- End footer bottom area -->
-    </footer>
-    <!--=========== END FOOTER SECTION ================--> 
 
+    </footer>
+
+    <!-- Javascript Files
+    ================================================== -->
+
+    <!-- initialize jQuery Library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <!-- Preloader js file -->
+    <script src="js/queryloader2.min.js" type="text/javascript"></script>
+    <!-- For smooth animatin  -->
+    <script src="js/wow.min.js"></script>  
+    <!-- Bootstrap js -->
+    <script src="js/bootstrap.min.js"></script>
+    <!-- slick slider -->
+    <script src="js/slick.min.js"></script>
+    <!-- superslides slider -->
+    <script src="js/jquery.easing.1.3.js"></script>
+    <script src="js/jquery.animate-enhanced.min.js"></script>
+    <script src="js/jquery.superslides.min.js" type="text/javascript" charset="utf-8"></script>   
+    <!-- for circle counter -->
+    <script src='https://cdn.rawgit.com/pguso/jquery-plugin-circliful/master/js/jquery.circliful.min.js'></script>
+    <!-- Gallery slider -->
+    <script type="text/javascript" language="javascript" src="js/jquery.tosrus.min.all.js"></script>   
+   
+    <!-- Custom js-->
+    <script src="js/custom.js"></script>
+    
     <!-- Javascript usado para embarcar php  -->
     <script type="text/javascript" language="javascript" src="js/novo.js"></script>
-
     <!--=============================================== 
-      Template Design By WpFreeware Team.
-      Author URI : http://www.wpfreeware.com/
+    Template Design By WpFreeware Team.
+    Author URI : http://www.wpfreeware.com/
     ====================================================-->
 
   </body>
