@@ -1,5 +1,5 @@
 function form_maker(){
-        $("#input_form").html("");
+        document.getElementById("#input_form").html("");
         $.ajax({
             url: '/disp_form/input.php',
             method: 'POST',

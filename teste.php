@@ -275,13 +275,13 @@
     <!-- Custom js-->
     <script src="js/custom.js"></script>
 
-    <-- Add the newst jquery version -->
+    <!-- Add the newst jquery version -->
     <!-- load jQuery 1.3.2 -->
     <script type="text/javascript" src="js/jquery2.min.js"></script>
     <script type="text/javascript">
       var jQuery_1_3_2 = $.noConflict(true);
     </script>
-    
+
     <!-- Javascript usado para embarcar php  -->
     <script type="text/javascript" language="javascript" src="js/novo.js"></script>
 
