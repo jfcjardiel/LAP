@@ -12,7 +12,7 @@ if ($mysqli->connect_errno) {
 }
 
 //If there isnt any error, then lets read the sql content
-$sql = "SELECT * FROM dispositivo ORDER BY id_dispositivo";
+$sql = "SELECT * FROM dispositivo WHERE id_dispositivo=" . $id;
 if (!$result = $mysqli->query($sql)) {
     // I do not know what to show yet
     echo "Connection Problem";
