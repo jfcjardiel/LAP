@@ -48,7 +48,7 @@ if ($result->num_rows === 0) {
 }
 
 while ($dispositivo = $result->fetch_assoc()) {
-    echo dispositivo['nome_atributo'];
+    echo dispositivo['id_config'];
 }
 
 // The script will automatically free the result and close the MySQL
