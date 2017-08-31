@@ -1,57 +1,37 @@
 <?php
 // get the q parameter from URL
 $id = $_REQUEST["id"] + 0;
+//Starting connection
 $mysqli = new mysqli('localhost', 'root', 'input212', 'input');
 
-// Oh no! A connect_errno exists so the connection attempt failed!
+//If there is any error, then show...
 if ($mysqli->connect_errno) {
-    // The connection failed. What do you want to do? 
-    // You could contact yourself (email?), log the error, show a nice page, etc.
-    // You do not want to reveal sensitive information
-
-    // Let's try this:
-    echo "Sorry, this website is experiencing problems.";
-
-    // Something you should not do on a public site, but this example will show you
-    // anyways, is print out MySQL error related information -- you might log this
-    echo "Error: Failed to make a MySQL connection, here is why: \n";
-    echo "Errno: " . $mysqli->connect_errno . "\n";
-    echo "Error: " . $mysqli->connect_error . "\n";
-    
-    // You might want to show them something nice, but we will simply exit
+    // I do not know what to show yet
+    echo "Connection Problem";
     exit;
 }
 
-// Perform an SQL query
-$sql = "SELECT * FROM dispositivo WHERE id_dispositivo=" . $id;
+//If there isnt any error, then lets read the sql content
+$sql = "SELECT * FROM dispositivo ORDER BY id_dispositivo";
 if (!$result = $mysqli->query($sql)) {
-    // Oh no! The query failed. 
-    echo "Sorry, the website is experiencing problems.";
-
-    // Again, do not do this on a public site, but we'll show you how
-    // to get the error information
-    echo "Error: Our query failed to execute and here is why: \n";
-    echo "Query: " . $sql . "\n";
-    echo "Errno: " . $mysqli->errno . "\n";
-    echo "Error: " . $mysqli->error . "\n";
+    // I do not know what to show yet
+    echo "Connection Problem";
     exit;
 }
 
-// Phew, we made it. We know our MySQL connection and query 
-// succeeded, but do we have a result?
+// If there is no result
 if ($result->num_rows === 0) {
-    // Oh, no rows! Sometimes that's expected and okay, sometimes
-    // it is not. You decide. In this case, maybe actor_id was too
-    // large? 
-    echo "We could not find a match for ID $aid, sorry about that. Please try again.";
+    // I do not know what to show yet
+    echo "Connection Problem";
     exit;
 }
 
+//Show the results
 while ($dispositivo = $result->fetch_assoc()) {
-    echo "o nome eh:" . dispositivo["nome_dispositivo"] . " ";
-}
+    //it is exibitig the line.
+    echo $dispositivo['id_dispositivo'] . $dispositivo['nome_dispositivo'];
+}1
 
-// The script will automatically free the result and close the MySQL
-$result->free();
+//we should close the connection
 $mysqli->close();
 ?>
