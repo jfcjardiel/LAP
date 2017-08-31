@@ -29,7 +29,7 @@ if ($result->num_rows === 0) {
 //Show the results
 while ($dispositivo = $result->fetch_assoc()) {
     //it is exibitig the line.
-    echo $dispositivo['id_dispositivo'] . $dispositivo['nome_dispositivo'];
+    echo $dispositivo['nome_dispositivo'];
 }1
 
 //we should close the connection
