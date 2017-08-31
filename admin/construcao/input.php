@@ -23,7 +23,7 @@ if ($mysqli->connect_errno) {
 }
 
 // Perform an SQL query
-$sql = "SELECT * FROM config_dispositivo_atributos WHERE id_dispositivo=" . $id . "ORDER BY id_config";
+$sql = "SELECT * FROM config_dispositivo_atributos WHERE id_dispositivo=" . $id . " ORDER BY id_config";
 if (!$result = $mysqli->query($sql)) {
     // Oh no! The query failed. 
     echo "Sorry, the website is experiencing problems.";
