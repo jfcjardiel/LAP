@@ -7,22 +7,43 @@ $mysqli = new mysqli('localhost', 'root', 'input212', 'input');
 //If there is any error, then show...
 if ($mysqli->connect_errno) {
     // I do not know what to show yet
-    echo "Connection Problem";
+    echo "<h2 class='blog_title'>Connection Problem </h2>";
     exit;
 }
 
 //If there isnt any error, then lets read the sql content
-$sql = "SELECT * FROM config_dispositivo_atributos  WHERE id_dispositivo=" . $id;
+$sql = "SELECT nome_dispositivo FROM dispositivo WHERE id_dispositivo=" . $id;
 if (!$result = $mysqli->query($sql)) {
     // I do not know what to show yet
-    echo "Connection Problem";
+    echo "<h2 class='blog_title'>Connection Problem </h2>";
     exit;
 }
 
 // If there is no result
 if ($result->num_rows === 0) {
     // I do not know what to show yet
-    echo "Connection Problem";
+    echo "<h2 class='blog_title'>Connection Problem </h2>";
+    exit;
+}
+
+//writing the title
+while ($dispositivo = $result->fetch_assoc()) {
+    //it is exibitig the line.
+    echo "<h2 class='blog_title'> Ferramenta selecionada: " . $dispositivo['nome_dispositivo'] . '</h2>';
+}
+
+//If there isnt any error, then lets read the sql content
+$sql = "SELECT * FROM config_dispositivo_atributos  WHERE id_dispositivo=" . $id;
+if (!$result = $mysqli->query($sql)) {
+    // I do not know what to show yet
+    echo "<h2 class='blog_title'>Connection Problem </h2>";
+    exit;
+}
+
+// If there is no result
+if ($result->num_rows === 0) {
+    // I do not know what to show yet
+    echo "<h2 class='blog_title'>Connection Problem </h2>";
     exit;
 }
 
