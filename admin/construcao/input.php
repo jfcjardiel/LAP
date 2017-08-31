@@ -1,6 +1,6 @@
 <?php
 // get the q parameter from URL
-$id = $_REQUEST["id"] + 0;
+//$id = $_REQUEST["id"] + 0;
 //Starting connection
 $mysqli = new mysqli('localhost', 'root', 'input212', 'input');
 
@@ -12,7 +12,7 @@ if ($mysqli->connect_errno) {
 }
 
 //If there isnt any error, then lets read the sql content
-$sql = "SELECT * FROM dispositivo WHERE id_dispositivo=" . $id;
+$sql = "SELECT * FROM dispositivo ORDER BY id_dispositivo";// WHERE id_dispositivo=" . $id;
 if (!$result = $mysqli->query($sql)) {
     // I do not know what to show yet
     echo "Connection Problem";
