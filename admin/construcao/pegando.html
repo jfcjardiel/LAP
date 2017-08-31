@@ -1,27 +1,35 @@
 <!DOCTYPE html>
 <html>
+<head>
+	<script src="jquery.min.js"></script>
+	<script>
+		function form_maker(str){
+		    var xhttp;
+	        if (str == "") {
+	            document.getElementById("#teste").innerHTML = "";
+	            return;
+	        }
+		    xhttp = new XMLHttpRequest();
+	        xhttp.onreadystatechange = function() {
+	            if (this.readyState == 4 && this.status == 200) {
+	                document.getElementById("teste").innerHTML = this.responseText;
+	            }
+	        };
+	        xhttp.open("GET", "input.php?id="+str, true);
+	        xhttp.send();
+			}
+	</script>
 <body>
 
 <p>Select a new car from the list.</p>
 
-<select id="mySelect" size="6" onchange="myFunction()">
-  <option value="Audi">Audi
-  <option value="BMW">BMW
-  <option value="Mercedes">Mercedes
-  <option value="Volvo">Volvo
+<select id="mySelect" size="6" onchange="form_maker(this.value)">
+  <option value="">Escolha</option>
+  <option value="1">Microfita</option>
+  <option value="2">SeiLa</option>
 </select>
-
-<p>When you select a new car, a function is triggered which outputs the value of the selected car.</p>
-
-<p id="demo"></p>
-
-<script src="js/jquery2.min.js"></script>
-<script>
-function myFunction() {
-    var x = ("#mySelect").value;
-    ("#demo").append("You selected: " + x);
-}
-</script>
-
+<div id="teste">
+	Oremos
+</div>
 </body>
 </html>
