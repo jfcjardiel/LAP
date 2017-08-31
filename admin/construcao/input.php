@@ -1,4 +1,4 @@
-<!--
+<?php
 // get the q parameter from URL
 //$id = $_REQUEST["id"] + 0;
 //Starting connection
@@ -30,12 +30,8 @@ if ($result->num_rows === 0) {
 while ($dispositivo = $result->fetch_assoc()) {
     //it is exibitig the line.
     echo $dispositivo['nome_dispositivo'];
-}1
+}
 
 //we should close the connection
 $mysqli->close();
-?>
--->
-<?php
-    echo "oi";
 ?>
