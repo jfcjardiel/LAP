@@ -48,13 +48,13 @@
       function form_maker(str){
           var xhttp;
             if (str == "") {
-                document.getElementById("#teste").innerHTML = "";
+                document.getElementById("input_form").innerHTML = "";
                 return;
             }
           xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {
-                    document.getElementById("teste").innerHTML = this.responseText;
+                    document.getElementById("input_form").innerHTML = this.responseText;
                 }
             };
             xhttp.open("GET", "disp_form/input.php?id="+str, true);
@@ -98,7 +98,7 @@
                       <li><a href="404.html">Projects</a></li>
                     </ul>
                   </li>
-                              <li class="dropdown">
+                    <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">People<span class="caret"</span></a>
                     <ul class="dropdown-menu" role="menu">
                       <li><a href="404.html">Students</a></li>
