@@ -1,4 +1,4 @@
-<?php
+<!--
 // get the q parameter from URL
 //$id = $_REQUEST["id"] + 0;
 //Starting connection
@@ -34,4 +34,8 @@ while ($dispositivo = $result->fetch_assoc()) {
 
 //we should close the connection
 $mysqli->close();
+?>
+-->
+<?php
+    echo "oi";
 ?>
