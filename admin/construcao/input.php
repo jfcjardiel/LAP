@@ -12,7 +12,7 @@ if ($mysqli->connect_errno) {
 }
 
 //If there isnt any error, then lets read the sql content
-$sql = "SELECT * FROM dispositivo  WHERE id_dispositivo=" . $id;
+$sql = "SELECT * FROM config_dispositivo_atributos  WHERE id_dispositivo=" . $id;
 if (!$result = $mysqli->query($sql)) {
     // I do not know what to show yet
     echo "Connection Problem";
@@ -29,7 +29,7 @@ if ($result->num_rows === 0) {
 //Show the results
 while ($dispositivo = $result->fetch_assoc()) {
     //it is exibitig the line.
-    echo $dispositivo['nome_dispositivo'];
+    echo $dispositivo['nome_atributo'];
 }
 
 //we should close the connection
