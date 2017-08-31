@@ -118,12 +118,12 @@
     </header>
     <!--=========== END HEADER SECTION ================--> 
 
-    <section>
-      <p></p>
-      <p></p>
-      <p></p>
+    <!--=========== BEGIN BANNER SECTION ================-->
+    <section id="imgBanner">
+      <h2>Microwave Tools</h2>
     </section>
-    
+    <!--=========== END BANNER SECTION ================-->
+        
     <!--=========== BEGIN COURSE BANNER SECTION ================-->
     <section id="courseArchive">
       <div class="container">
