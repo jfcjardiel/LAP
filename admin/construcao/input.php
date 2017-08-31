@@ -1,6 +1,6 @@
 <?php
 // get the q parameter from URL
-$id = $_REQUEST["id"];
+$id = $_REQUEST["id"] + 0;
 $mysqli = new mysqli('localhost', 'root', 'input212', 'input');
 
 // Oh no! A connect_errno exists so the connection attempt failed!
