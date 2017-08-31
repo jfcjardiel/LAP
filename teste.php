@@ -133,10 +133,14 @@
             <div class="courseArchive_content">
               <!-- start blog archive  -->
               <div class="row">
-              	<div id="input_form" class="input_form">
-              	</div>
-              	<div id="answer_form">
-              	</div>
+                <div class="col-lg-12 col-12 col-sm-12">
+                  <div class="single_blog_archive wow fadeInUp">
+                  	<div id="input_form" class="input_form">
+                  	</div>
+                  	<div id="answer_form">
+                  	</div>
+                  </div>
+                </div>
               </div>
               <!-- end blog archive  -->
             </div>
