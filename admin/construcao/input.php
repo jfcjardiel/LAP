@@ -23,7 +23,7 @@ if ($mysqli->connect_errno) {
 }
 
 // Perform an SQL query
-$sql = "SELECT * FROM config_dispositivo_atributos WHERE id_dispositivo=1 ORDER BY id_config";
+$sql = "SELECT * FROM dispositivo WHERE id_dispositivo=" . $id . " ORDER BY id_config";
 if (!$result = $mysqli->query($sql)) {
     // Oh no! The query failed. 
     echo "Sorry, the website is experiencing problems.";
@@ -48,7 +48,7 @@ if ($result->num_rows === 0) {
 }
 
 while ($dispositivo = $result->fetch_assoc()) {
-    echo "o nome eh:" . dispositivo["nome_atributo"] . " ";
+    echo "o nome eh:" . dispositivo["nome_dispositivo"] . " ";
 }
 
 // The script will automatically free the result and close the MySQL
