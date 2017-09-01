@@ -1,6 +1,7 @@
 <?php
 // get the q parameter from URL
 $id_dispositivo = $_REQUEST["id_dispositivo"] + 0;
+echo $id_dispositivo;
 
 //***********************************//
 //******** START CONNECTION *********//
