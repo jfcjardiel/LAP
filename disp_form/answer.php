@@ -44,7 +44,7 @@ $aux_write = 0;
 //em cada id_config vamos escrever o valor relativo em valor_dispositivo_atributos
 while ($dispositivo = $result->fetch_assoc()){
     $valor_str = "valor" . $aux_write;
-    $valor_dispositivo = _REQUEST[$valor_str]+0;
+    $valor_dispositivo = $_REQUEST[$valor_str]+0;
     $id_config = $dispositivo["id_config"];
     echo $valor_dispositivo;
     echo $id_config;
