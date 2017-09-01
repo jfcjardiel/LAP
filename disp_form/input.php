@@ -39,7 +39,7 @@ if ($result->num_rows === 0) {
 //writing the title
 while ($dispositivo = $result->fetch_assoc()) {
     //it is exibitig the line.
-    echo "<h2 class='blog_title'> Ferramenta selecionada: " . $dispositivo['nome_dispositivo'] . '</h2>';
+    echo "<h2 class='blog_title'> Selected Tool: " . $dispositivo['nome_dispositivo'] . '</h2>';
 }
 
 //If there isnt any error, then lets read the sql content

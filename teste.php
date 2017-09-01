@@ -66,20 +66,21 @@
       }
       //function to know if the space is empty or not
       function validateForm(){
+        //o .length conta o botao tambem
         var form_length = document.forms["form_dispositivo"].length;
-        alert(form_length);
-        var aux_x = 0;
-        //while(aux_x < form_length){
-        //  member_name = 'member'+aux_x;
-        //  input_form = document.forms["myform"][member_name];
-        //  if (input_form.value == ""){
-        //    alert("Name must be filled out");
-        //    input_form.focus();
-        //    return false;
-        //  }
-        //  aux_x++;
-        //}
-        //return true;
+        //defining the variables for the loop
+        var aux_id = 0;
+        var conteudo = ''
+        //.length counts the button, so we dont have to worry about it
+        while(aux_id < form_length){
+          conteudo = document.getElementById(aux_id).value;
+          if (conteudo == ""){
+            alert("Name must be filled out");
+            return false;
+          }
+          aux_x++;
+        }
+        return true;
       }
     </script>
 
