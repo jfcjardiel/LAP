@@ -78,10 +78,10 @@
         while(aux_id < form_length){
           conteudo = document.getElementById(aux_id).value;
           if (conteudo == ""){
-            alert("Name must be filled out");
             //just show once if there are multiples
             if(is_form_ok){
               is_form_ok = false;
+              alert("Name must be filled out");
             }
           }
           aux_id++;
