@@ -78,7 +78,7 @@
             alert("Name must be filled out");
             return false;
           }
-          aux_x++;
+          aux_id++;
         }
         return true;
       }
