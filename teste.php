@@ -45,21 +45,42 @@
     <link rel="stylesheet" type="text/css" href="style_dispositivo.css">
 
     <script>
+      //Function that calls input.php and embedded the code into the page
       function form_maker(str){
           var xhttp;
-            if (str == "") {
-                document.getElementById("input_form").innerHTML = "<h2 class='blog_title'>Microwave Tools created in LAP</a></h2><p class='blog_summary'>LAP has created many microwave tools along the years. Here you can see the results of all these years of work. Just select which one you want to see.</p>";
-                return;
-            }
+          //if non is select
+          if (str == "") {
+              document.getElementById("input_form").innerHTML = "<h2 class='blog_title'>Microwave Tools created in LAP</h2><p class='blog_summary'>LAP has created many microwave tools along the years. Here you can see the results of all these years of work. Just select which one you want to see.</p>";
+              return;
+          }
+          //if some is, then we will embedded the code of input.php
+          //it is important to say, the only data we are going to send is the id by url
           xhttp = new XMLHttpRequest();
-            xhttp.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                    document.getElementById("input_form").innerHTML = this.responseText;
-                }
-            };
-            xhttp.open("GET", "disp_form/input.php?id="+str, true);
-            xhttp.send();
-        }
+          xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+              document.getElementById("input_form").innerHTML = this.responseText;
+            }
+          };
+          xhttp.open("GET", "disp_form/input.php?id="+str, true);
+          xhttp.send();
+      }
+      //function to know if the space is empty or not
+      function validateForm(){
+        var form_length = document.forms["form_dispositivo"].length;
+        alert(form_length);
+        var aux_x = 0;
+        //while(aux_x < form_length){
+        //  member_name = 'member'+aux_x;
+        //  input_form = document.forms["myform"][member_name];
+        //  if (input_form.value == ""){
+        //    alert("Name must be filled out");
+        //    input_form.focus();
+        //    return false;
+        //  }
+        //  aux_x++;
+        //}
+        //return true;
+      }
     </script>
 
   </head>
@@ -136,7 +157,7 @@
                 <div class="col-lg-12 col-12 col-sm-12">
                   <div class="single_blog_archive wow fadeInUp">
                   	<div id="input_form" class="input_form">
-                      <h2 class="blog_title">Microwave Tools created in LAP</a></h2>
+                      <h2 class="blog_title">Microwave Tools created in LAP</h2>
                       <p class="blog_summary">LAP has created many microwave tools along the years. Here you can see the results of all these years of work. Just select which one you want to see.</p>
                   	</div>
                   	<div id="answer_form">

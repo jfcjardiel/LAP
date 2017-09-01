@@ -1,6 +1,11 @@
 <?php
 // get the q parameter from URL
 $id = $_REQUEST["id"] + 0;
+
+//*******************************//
+//***** READING DATABSE *********//
+//*******************************//
+
 //Starting connection
 $mysqli = new mysqli('localhost', 'root', 'input212', 'input');
 
@@ -26,6 +31,11 @@ if ($result->num_rows === 0) {
     exit;
 }
 
+//********************************//
+//***** INICIALIZE TITLE *********//
+//********************************//
+
+
 //writing the title
 while ($dispositivo = $result->fetch_assoc()) {
     //it is exibitig the line.
@@ -47,14 +57,23 @@ if ($result->num_rows === 0) {
     exit;
 }
 
+//*******************************//
+//***** INICIALIZE FORM *********//
+//*******************************//
+
 //Writing the form
-echo "<form method='post' attribute='post' id='form_dispositivo'>";
+echo "<form method='post' attribute='post' id='form_dispositivo' name='form_dispositivo' onsubmit='return validateForm()'>";
+
+//O id eh simplesmente comecado de 0 ate o tamanho da form
+//O name eh o id_config porque sera acessado de outro lugar
+$id_input = 0;
 
 //Writing the form options
 while ($config_dispositivo = $result->fetch_assoc()) {
     //it is exibitig the line.
     echo '<p>' . $config_dispositivo['nome_atributo'] . '<br/>';
-    echo "<input type='text' id='" . $config_dispositivo['id_config'] . "' name='" . $config_dispositivo['id_config'] . "'></p>";
+    echo "<input type='text' id='" . $id_input . "' name='" . $config_dispositivo['id_config'] . "'></p>";
+    $id_input = $id_input + 1;
 }
 
 //writting submit button
