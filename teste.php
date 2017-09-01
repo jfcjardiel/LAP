@@ -112,10 +112,10 @@
           aux_id++;
         }
         //Caso nao haja problemas de preenchimento
-        alert(is_form_ok);
+        alert("is_form_ok");
         if(is_form_ok){
           //stablihing new XMLHttpRequest
-          alert(is_form_ok);
+          alert("is_form_ok");
           var xhttp;
           xhttp = new XMLHttpRequest();
           //vendo o tamanho da form
