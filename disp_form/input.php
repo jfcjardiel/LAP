@@ -62,7 +62,7 @@ if ($result->num_rows === 0) {
 //*******************************//
 
 //Writing the form
-echo "<form method='post' attribute='post' id='form_dispositivo' name='form_dispositivo' onsubmit='return validateForm()'>";
+echo "<form method='post' attribute='post' id='form_dispositivo' name='form_dispositivo'> onsubmit='return validateForm()'>";
 
 //O id eh simplesmente comecado de 0 ate o tamanho da form
 //O name eh o id_config porque sera acessado de outro lugar
@@ -77,7 +77,7 @@ while ($config_dispositivo = $result->fetch_assoc()) {
 }
 
 //writting submit button
-echo "<button type='submit' name='button_submit' id='button_submit' value='button_submit'>Calculate</button>";
+echo "<button type='submit' name='button_submit' id='button_submit' value='button_submit' onclick='sendForm()'>Calculate</button>";
 
 //we should close the connection
 $mysqli->close();

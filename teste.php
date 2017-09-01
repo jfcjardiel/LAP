@@ -64,6 +64,7 @@
           xhttp.open("GET", "disp_form/input.php?id="+str, true);
           xhttp.send();
       }
+
       //function to know if the space is empty or not
       function validateForm(){
         //o .length conta o botao tambem
@@ -80,7 +81,13 @@
           }
           aux_id++;
         }
+        //Caso nao haja problemas de preenchimento
         return true;
+      }
+
+      //sending data to another page
+      function sendForm(){
+        event.preventDefault();
       }
     </script>
 
