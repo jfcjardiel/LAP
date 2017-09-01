@@ -1,7 +1,7 @@
 <?php
 // get the q parameter from URL
 $id_dispositivo = $_REQUEST["id_dispositivo"] + 0;
-echo $id_dispositivo;
+//echo $id_dispositivo;
 
 //***********************************//
 //******** START CONNECTION *********//
@@ -46,14 +46,11 @@ while ($dispositivo = $result->fetch_assoc()){
     $valor_str = "valor" . $aux_write;
     $valor_dispositivo = $_REQUEST[$valor_str]+0;
     $id_config = $dispositivo["id_config"];
-    echo $valor_dispositivo;
-    echo $id_config;
-    echo "    ";
-    //$sql_write = "INSERT INTO valor_dispositivo_atributos (id_valor, id_config, valor, email) VALUES (NULL, " . $id_config . " , " . $valor_dispositivo . " , 'jfcjardiel@gmail.com')";
-    //if(!$result_write = $mysqli->query($sql_write)){
-    //    echo "<h2 class='blog_title'>Connection Problem writing</h2>";
-    //    exit;
-    //}
+    $sql_write = "INSERT INTO valor_dispositivo_atributos (id_valor, id_config, valor, email) VALUES (NULL, " . $id_config . " , " . $valor_dispositivo . " , 'jfcjardiel@gmail.com')";
+    if(!$result_write = $mysqli->query($sql_write)){
+        echo "<h2 class='blog_title'>Connection Problem writing</h2>";
+        exit;
+    }
     $aux_write = $aux_write + 1;
 }
 
