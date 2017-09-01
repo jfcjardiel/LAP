@@ -122,7 +122,7 @@
           //building the URL that will be send
           url_send_form = "disp_form/answer.php?id_dispositivo="+id_dispositivo_select;
           while(aux_send < form_length){
-            $url_send_form = $url_send_form + "&valor" + aux_send + "=" + document.getElementById(aux_send).value;
+            url_send_form = url_send_form + "&valor" + aux_send + "=" + document.getElementById(aux_send).value;
             aux_send = aux_send + 1;
           }
           //inicializing the request
