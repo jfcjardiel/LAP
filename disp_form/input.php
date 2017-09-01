@@ -77,7 +77,8 @@ while ($config_dispositivo = $result->fetch_assoc()) {
 }
 
 //writting submit button
-echo "<button type='submit' name='button_submit' id='button_submit' value='button_submit' onclick='validateForm()'>Calculate</button>";
+//we are going to send the id of the form via the function validateFom.
+echo "<button type='button' name='button_submit' id='button_submit' value='button_submit' onclick='validateForm(" . $id .")'>Calculate</button>";
 
 //we should close the connection
 $mysqli->close();

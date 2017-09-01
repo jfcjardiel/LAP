@@ -69,6 +69,8 @@
       function validateForm(){
         //o .length conta o botao tambem
         var form_length = document.forms["form_dispositivo"].length;
+        //verifying if the form is ok
+        var is_form_ok = true;
         //defining the variables for the loop
         var aux_id = 0;
         var conteudo = ''
@@ -77,12 +79,14 @@
           conteudo = document.getElementById(aux_id).value;
           if (conteudo == ""){
             alert("Name must be filled out");
-            return false;
+            is_form_ok = false;
           }
           aux_id++;
         }
         //Caso nao haja problemas de preenchimento
-        return true;
+        if(is_form_ok){
+          sendForm();
+        }
       }
 
       //sending data to another page
