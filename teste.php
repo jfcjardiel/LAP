@@ -66,7 +66,7 @@
       }
 
       //function to know if the space is empty or not
-      function validateForm(){
+      function validateForm(id_dispositivo_select){
         //o .length conta o botao tambem
         var form_length = document.forms["form_dispositivo"].length;
         //verifying if the form is ok
@@ -79,19 +79,42 @@
           conteudo = document.getElementById(aux_id).value;
           if (conteudo == ""){
             alert("Name must be filled out");
-            is_form_ok = false;
+            //just show once if there are multiples
+            if(is_form_ok){
+              is_form_ok = false;
+            }
           }
           aux_id++;
         }
         //Caso nao haja problemas de preenchimento
         if(is_form_ok){
-          sendForm();
+          sendForm(id_dispositivo_select);
         }
       }
 
       //sending data to another page
-      function sendForm(){
-        event.preventDefault();
+      function sendForm(id_dispositivo_select){
+        //stablihing new XMLHttpRequest
+        var xhttp;
+        xhttp = new XMLHttpRequest();
+        //vendo o tamanho da form
+        var form_length = document.forms["form_dispositivo"].length;
+        var aux_send = 0;
+        //inicializing the request
+        xhttp.onreadystatechange = function() {
+          if (this.readyState == 4 && this.status == 200) {
+            document.getElementById("answer_form").innerHTML = this.responseText;
+          }
+        };
+        //building the URL that will be send
+        $url_send_form = "disp_form/answer.php?id_dispositivo="+id_dispositivo_select;
+        while(aux_send < form_length){
+          $url_send_form = $url_send_form + "&valor" + aux_send + "=" + document.getElementById(aux_id).value;
+          aux_send = aux_send + 1;
+        }
+        //sending the data to answer.
+        xhttp.open("GET", $url_send_form, true);
+        xhttp.send();        
       }
     </script>
 

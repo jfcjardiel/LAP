@@ -1,42 +1,53 @@
 <?php
-//stablishing connection
+// get the q parameter from URL
+$id_dispositivo = $_REQUEST["id_dispositivo"] + 0;
+
+//***********************************//
+//******** START CONNECTION *********//
+//***********************************//
+
+//Starting connection
 $mysqli = new mysqli('localhost', 'root', 'input212', 'input');
 
 //If there is any error, then show...
 if ($mysqli->connect_errno) {
     // I do not know what to show yet
-    echo "<h2 class="blog_title"><a>Problem in communication with the server. </a></h2>";
+    echo "<h2 class='blog_title'>Connection Problem </h2>";
     exit;
 }
 
-if ($result = $mysqli->prepare("SELECT valor 
-        FROM valor_dispositivo_atributos
-        WHERE id_config = ?
-        ORDER BY data_hora")) {
-        $result->bind_param('s', $id);  // Bind "$id" to parameter.
-        $result->execute();    // Execute the prepared query.
-        $result->store_result();
+//**********************************//
+//******** READING DATABSE *********//
+//**********************************//
+
+//We are getting all the attributes of the dispositivo
+$sql = "SELECT * FROM config_dispositivo_atributos  WHERE id_dispositivo=" . $id_dispositivo;
+if (!$result = $mysqli->query($sql)) {
+    // I do not know what to show yet
+    echo "<h2 class='blog_title'>Connection Problem </h2>";
+    exit;
 }
 
 // If there is no result
-if ($result->num_rows == 0) {
+if ($result->num_rows === 0) {
     // I do not know what to show yet
-    echo "<h2 class="blog_title"><a>Problem in communication with the server. </a></h2>";
+    echo "<h2 class='blog_title'>Connection Problem </h2>";
     exit;
 }
 
-//Writing the form
-echo "<form method='post' attribute='post' id='form_dispositivo'>";
+//********************************************//
+//******** WRITING VALUES ON DATABSE *********//
+//********************************************//
+$aux_write = 0;
 
-//Writing the input form
-while ($config_dispositivo = $result->fetch_assoc()) {
-	//it is exibitig the line.
-	echo '<p>' . $config_dispositivo['nome_atributo'] . '<br/>';
-	echo "<input type='text' id='" . $config_dispositivo['id_config'] . "' name='" . $config_dispositivo['id_config'] . "'></p>";
+//em cada id_config vamos escrever o valor relativo em valor_dispositivo_atributos
+while ($dispositivo = $result->fetch_assoc()){
+    $valor_str = "valor" + $aux_write;
+    $valor_dispositivo = _REQUEST[$valor_str];
+    $id_config = $dispositivo["id_config"];
+    $sql_write = "INSERT INTO valor_dispositivo_atributos (id_valor, id_config, valor, email) VALUES (NULL, " . $id_config . " , " . $valor_dispositivo . " , 'jfcjardiel@gmail.com')";
+    $aux_write = $aux_write + 1;
 }
-
-//writting submit button
-echo "<button type='submit' name='button_submit' id='button_submit' value='button_submit'>Calculate</button>";
 
 //we should close the connection
 $mysqli->close();

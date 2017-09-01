@@ -42,6 +42,11 @@ while ($dispositivo = $result->fetch_assoc()) {
     echo "<h2 class='blog_title'> Selected Tool: " . $dispositivo['nome_dispositivo'] . '</h2>';
 }
 
+
+//*******************************//
+//***** INICIALIZE FORM *********//
+//*******************************//
+
 //If there isnt any error, then lets read the sql content
 $sql = "SELECT * FROM config_dispositivo_atributos  WHERE id_dispositivo=" . $id;
 if (!$result = $mysqli->query($sql)) {
@@ -56,10 +61,6 @@ if ($result->num_rows === 0) {
     echo "<h2 class='blog_title'>Connection Problem </h2>";
     exit;
 }
-
-//*******************************//
-//***** INICIALIZE FORM *********//
-//*******************************//
 
 //Writing the form
 echo "<form method='post' attribute='post' id='form_dispositivo' name='form_dispositivo'>"; //onsubmit='return validateForm()'>";
