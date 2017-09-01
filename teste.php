@@ -115,7 +115,6 @@
         alert("is_form_ok");
         if(is_form_ok){
           //stablihing new XMLHttpRequest
-          alert("is_form_ok");
           var xhttp;
           xhttp = new XMLHttpRequest();
           //vendo o tamanho da form
@@ -128,15 +127,7 @@
             aux_send = aux_send + 1;
           }
           //inicializing the request
-          xhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-              document.getElementById("answer_form").innerHTML = this.responseText;
-            }
-          };
-          //sending the data to answer.
-          xhttp.open("GET", url_send_form, true);
-          xhttp.send();   
-        }
+          alert(url_send_form);
       }
 
     </script>
