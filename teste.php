@@ -76,7 +76,6 @@
         url_send_form = "disp_form/answer.php?id_dispositivo="+id_dispositivo_select;
         for(var aux_send = 0; aux_send < form_length; aux_send++){
           url_send_form = url_send_form + "&valor" + aux_send + "=" + document.getElementById(aux_send).value;
-          aux_send = aux_send + 1;
         }
         alert(url_send_form);
         //inicializing the request
