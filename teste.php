@@ -100,11 +100,14 @@
         var aux_id = 0;
         var conteudo = '';
         //.length counts the button, so we dont have to worry about it
-        while(aux_id < form_length){
+        while(aux_id < form_length+1){
+          if(aux_id == form_length){
+            break;
+          }
           conteudo = document.getElementById(aux_id).value;
           if (conteudo == ""){
             alert("Name must be filled out");
-            if_form_ok = false;
+            is_form_ok = false;
             break;
             }
           aux_id = aux_id+1;
@@ -112,15 +115,17 @@
         alert("is_form_ok");
         if(is_form_ok){
           //stablihing new XMLHttpRequest
-          //var xhttp;
-          //xhttp = new XMLHttpRequest();
+          var xhttp;
+          xhttp = new XMLHttpRequest();
           //vendo o tamanho da form
-          var form_length = document.forms["form_dispositivo"].length;
           alert(form_length);
           var aux_send = 0;
           //building the URL that will be send
           url_send_form = "disp_form/answer.php?id_dispositivo="+id_dispositivo_select;
-          while(aux_send < form_length){
+          while(aux_send < form_length+1){
+            if(aux_send == form_length){
+              break;
+            }
             url_send_form = url_send_form + "&valor" + aux_send + "=" + document.getElementById(aux_send).value;
             aux_send = aux_send + 1;
           }
