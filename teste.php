@@ -98,7 +98,7 @@
         var is_form_ok = true;
         //defining the variables for the loop
         var aux_id = 0;
-        var conteudo = '';
+        var conteudo = ''
         //.length counts the button, so we dont have to worry about it
         while(aux_id < form_length){
           conteudo = document.getElementById(aux_id).value;
@@ -112,6 +112,9 @@
           aux_id = aux_id+1;
         }
         alert("is_form_ok");
+        if(is_form_ok){
+            break;
+        }
       }
 
     </script>
