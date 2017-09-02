@@ -116,7 +116,7 @@
         if(is_form_ok){
           //stablihing new XMLHttpRequest
           var xhttp;
-          xhttp = new XMLHttpRequest();
+          //xhttp = new XMLHttpRequest();
           //vendo o tamanho da form
           var form_length = document.forms["form_dispositivo"].length;
           var aux_send = 0;
