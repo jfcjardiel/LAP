@@ -114,20 +114,6 @@
         //Caso nao haja problemas de preenchimento
         alert("is_form_ok");
         if(is_form_ok){
-          //stablihing new XMLHttpRequest
-          var xhttp;
-          //xhttp = new XMLHttpRequest();
-          //vendo o tamanho da form
-          var form_length = document.forms["form_dispositivo"].length;
-          var aux_send = 0;
-          //building the URL that will be send
-          url_send_form = "disp_form/answer.php?id_dispositivo="+id_dispositivo_select;
-          while(aux_send < form_length){
-            url_send_form = url_send_form + "&valor" + aux_send + "=" + document.getElementById(aux_send).value;
-            aux_send = aux_send + 1;
-          }
-          //inicializing the request
-          alert(url_send_form);
         }
       }
 
