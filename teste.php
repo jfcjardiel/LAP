@@ -100,6 +100,7 @@
         var aux_id = 0;
         var conteudo = ''
         //.length counts the button, so we dont have to worry about it
+        alert(form_length);
         while(aux_id < form_length){
           conteudo = document.getElementById(aux_id).value;
           if (conteudo == ""){
@@ -109,7 +110,7 @@
               alert("Name must be filled out");
             }
           }
-          aux_id++;
+          aux_id = aux_id+1;
         }
         //Caso nao haja problemas de preenchimento
         alert("is_form_ok");
