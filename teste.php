@@ -75,7 +75,7 @@
         //building the URL that will be send
         $url_send_form = "disp_form/answer.php?id_dispositivo="+id_dispositivo_select;
         for(var aux_send = 0; aux_send < form_length; aux_send++){
-          $url_send_form = $url_send_form + "&valor" + aux_send + "=" + document.getElementById(aux_send).value;
+          url_send_form = url_send_form + "&valor" + aux_send + "=" + document.getElementById(aux_send).value;
           aux_send = aux_send + 1;
         }
         //inicializing the request
@@ -85,7 +85,8 @@
           }
         };
         //sending the data to answer.
-        xhttp.open("GET", $url_send_form, true);
+        alert(url_send_form);
+        xhttp.open("GET", url_send_form, true);
         xhttp.send();        
       }
 
