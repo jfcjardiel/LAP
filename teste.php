@@ -78,6 +78,7 @@
           url_send_form = url_send_form + "&valor" + aux_send + "=" + document.getElementById(aux_send).value;
           aux_send = aux_send + 1;
         }
+        alert(url_send_form);
         //inicializing the request
         xhttp.onreadystatechange = function() {
           if (this.readyState == 4 && this.status == 200) {
@@ -85,7 +86,6 @@
           }
         };
         //sending the data to answer.
-        alert(url_send_form);
         xhttp.open("GET", url_send_form, true);
         xhttp.send();        
       }
