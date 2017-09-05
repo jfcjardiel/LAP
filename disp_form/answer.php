@@ -46,13 +46,40 @@ while ($dispositivo = $result->fetch_assoc()){
     $valor_str = "valor" . $aux_write;
     $valor_dispositivo = $_REQUEST[$valor_str]+0;
     $id_config = $dispositivo["id_config"];
-    $sql_write = "INSERT INTO valor_dispositivo_atributos (id_valor, id_config, valor, email) VALUES (NULL, " . $id_config . " , " . $valor_dispositivo . " , 'jfcjardiel@gmail.com')";
+    $sql_write = "INSERT INTO valor_dispositivo_atributos (id_valor, id_config, id_dispositivo, valor, email) VALUES (NULL, " . $id_config . " , " . $id_dispositivo . " ," . $valor_dispositivo . " , 'jfcjardiel@gmail.com')";
     if(!$result_write = $mysqli->query($sql_write)){
         echo "<h2 class='blog_title'>Connection Problem writing</h2>";
         exit;
     }
     $aux_write = $aux_write + 1;
 }
+
+//********************************************//
+//********** EXECUTING MATHEMATICA ***********//
+//********************************************//
+
+//We are getting the name of dispositivo from dispositivo_id
+$sql = "SELECT * FROM dispositivo  WHERE id_dispositivo=" . $id_dispositivo;
+if (!$result = $mysqli->query($sql)) {
+    // I do not know what to show yet
+    echo "<h2 class='blog_title'>Connection Problem </h2>";
+    exit;
+}
+
+// If there is no result
+if ($result->num_rows === 0) {
+    // I do not know what to show yet
+    echo "<h2 class='blog_title'>Connection Problem </h2>";
+    exit;
+}
+
+//executing mathematica
+$dispositivo = $result->fetch_assoc();
+
+$order = 'wolfram -script ' . $dispositivo["nome_dispositivo"];
+$output = shell_exec($order);
+
+echo "<pre> $output </pre>"
 
 //we should close the connection
 $mysqli->close();

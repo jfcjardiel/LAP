@@ -5,39 +5,54 @@
 <title>Answer:</title>
 </head>
 <body>
-<p>Os valores foram: <br/>
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "input212";
-$dbname = "input";
-$conn = mysql_connect($servername, $username, $password);
-if(!$conn){
-        die("Connection failed: " . mysql_error());
-}
-//entrando na database chamada input
-$mydb = mysql_select_db($dbname);
-if(!$mydb){
-        die('Could not connect to database: ' . mysql_error());
+
+//***********************************//
+//******** START CONNECTION *********//
+//***********************************//
+
+//Starting connection
+$mysqli = new mysqli('localhost', 'root', 'input212', 'input');
+
+//If there is any error, then show...
+if ($mysqli->connect_errno) {
+    // I do not know what to show yet
+    echo "<h2 class='blog_title'>Connection Problem </h2>";
+    exit;
 }
 
+//**********************************//
+//******** READING DATABSE *********//
+//**********************************//
+
+//We are inserting the dispositivo in the database
 $dispositivo = $_POST['dispositivo'];
-mysql_query("INSERT INTO dispositivo (id_dispositivo, nome_dispositivo, mostrar_dispositivo) VALUES (NULL, '$dispositivo', TRUE)");
-$id = mysql_query("SELECT id_dispositivo FROM dispositivo ORDER BY id_dispositivo DESC LIMIT 1") + 0;
+$sql = "INSERT INTO dispositivo (id_dispositivo, nome_dispositivo, mostrar_dispositivo) VALUES (NULL," . $dispositivo .", TRUE)";
+if (!$result = $mysqli->query($sql)) {
+    // I do not know what to show yet
+    echo "<h2 class='blog_title'>Connection Problem </h2>";
+    exit;
+}
 
-//echo $id;
+//getting the last dispositivo uploaded
+$id = mysqli->query("SELECT id_dispositivo FROM dispositivo ORDER BY id_dispositivo DESC LIMIT 1") + 0;
 
-for($i=0;$i<10;$i++){
-	$name = 'member'.$i;
+//inserting the dispositivo atributes
+for($i=0;$i<30;$i++){
+	$name = 'nome'.$i;
 	if(isset($_POST[$name])){
 		$nome_atributo = $_POST[$name];
-		mysql_query("INSERT INTO config_dispositivo_atributos (id_config, nome_atributo, id_dispositivo) VALUES (NULL, '$nome_atributo', '$id')");
+		mysqli->query("INSERT INTO config_dispositivo_atributos (id_config, nome_atributo, id_dispositivo) VALUES (NULL, " . $nome_atributo . ", " . $id ")");
 		//echo $_POST[$name];
 	}
 }
-//criando o upload
 
-$target_dir = "/var/www/html/admin/upload/";
+//***********************************//
+//********** START UPLOAD ***********//
+//***********************************//
+
+//criando o upload  -> o arquivo vai ter o nome do dispositivo na pasta disp_form
+$target_dir = "/var/www/html/disp_form";
 $target_file = $target_dir . $dispositivo;
 
 //echo "nome do arquivo: ", $target_file , "\n";
@@ -75,6 +90,13 @@ else{
 		echo "There was an error, file not uploaded";
 	}
 }
+
+//**********************************************************//
+//******** PREPARANDO O DOCUMENTO PARA A A LEITURA *********//
+//**********************************************************//
+
+
+
 ?>
 
 </p>

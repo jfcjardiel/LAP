@@ -107,7 +107,6 @@
             }
           }
         }
-        alert("is_form_ok");
         if(is_form_ok){
           sendForm(id_dispositivo_select);
         }
