@@ -1,0 +1,14 @@
+Needs["DatabaseLink`"];
+
+conn = OpenSQLConnection[
+  JDBC["MySQL(Connector/J)", "localhost:3306/input"], 
+  Username -> "root", Password -> "input212"]
+
+SQLConnections[]
+
+SQLTableNames[conn]
+
+table = SQLExecute[conn, 
+  "SELECT * FROM demicrofita ORDER BY id DESC LIMIT 1"]
+
+{{id, impedancia, permissividade}} = table
