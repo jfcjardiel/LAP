@@ -54,7 +54,7 @@ for($i=0;$i<30;$i++){
 //***********************************//
 
 //criando o upload  -> o arquivo vai ter o nome do dispositivo na pasta disp_form
-$target_dir = "/var/www/html/disp_form";
+$target_dir = "/var/www/html/admin/disp_form";
 $target_file = $target_dir . $dispositivo;
 
 //echo "nome do arquivo: ", $target_file , "\n";
