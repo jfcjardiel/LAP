@@ -95,8 +95,32 @@ else{
 //******** PREPARANDO O DOCUMENTO PARA A A LEITURA *********//
 //**********************************************************//
 
+//putting the header into the file
+$file_head = 'Needs["DatabaseLink`"];';
+$file_head .= 'conn = OpenSQLConnection[JDBC["MySQL(Connector/J)", "localhost:3306/input"], Username -> "root", Password -> "input212"];';
+
+//inserting into the file, the correct variables
+$file_connection = '';
+for($i=0;$i<30;$i++){
+	$name = 'nome'.$i;
+	$variavel = 'variavel'.$i;
+	if(isset($_POST[$name])){
+		if(isset($_POST[$variavel])){
+			//pegar o id_config do nome do dispositivo
+			$nome_atributo = $_POST[$name];
+			$stmt = "SELECT id_config FROM config_dispositivo_atributos WHERE nome_atributo='".$nome_atributo."' AND id_dispositivo=".$id;
+			$id_config = mysqli->query($stmt) + 0;
+			//com o id em maos, vamos colocar no arquivo como ele deve pegar o valor
+			$nome_variavel = $_POST[$variavel];
+			$file_connection .= '{{'.$nome_variavel.'}}=SQLExecute[conn, "SELECT valor FROM valor_dispositivo_atributos WHERE id_config='.$id_config.' AND jaleu=FALSE ORDER BY id_valor DESC LIMIT 1"]';
+		}
+	}
+}
 
 
+//com os dados em maos, basta colocar o arquivo e salvar
+$file_data = $file_head . $file_connection . file_get_contents($target_file);
+file_put_contents($target_file, $file_data);
 ?>
 
 </p>
