@@ -80,7 +80,7 @@ if($_FILES["upfile"]["size"] > 1000000000){
 
 //echo $uploadOk;
 
-if($uploadOK){
+if($uploadOk){
 	echo "Error your file was not uploaded. Caiu no primeiro IF";
 	exit;
 }
@@ -98,9 +98,6 @@ else{
 //******** PREPARANDO O DOCUMENTO PARA A A LEITURA *********//
 //**********************************************************//
 
-if($uploadOK){
-
-}
 //putting the header into the file
 $file_head = 'Needs["DatabaseLink`"];';
 $file_head .= 'conn = OpenSQLConnection[JDBC["MySQL(Connector/J)", "localhost:3306/input"], Username -> "root", Password -> "input212"];';
