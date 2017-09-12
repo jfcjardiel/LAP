@@ -22,7 +22,7 @@ if ($mysqli->connect_errno) {
 //**********************************//
 
 //We are getting all the attributes of the dispositivo
-$sql = "SELECT * FROM config_dispositivo_atributos  WHERE id_dispositivo=" . $id_dispositivo;
+$sql = "SELECT * FROM config_dispositivo_atributos WHERE id_dispositivo=" . $id_dispositivo;
 if (!$result = $mysqli->query($sql)) {
     // I do not know what to show yet
     echo "<h2 class='blog_title'>Connection Problem </h2>";
@@ -76,10 +76,10 @@ if ($result->num_rows === 0) {
 //executing mathematica
 $dispositivo = $result->fetch_assoc();
 
-$order = 'wolfram -script ' . $dispositivo["nome_dispositivo"];
+$order = "wolfram -script " . $dispositivo["nome_dispositivo"];
 $output = shell_exec($order);
 
-echo "<pre> $output </pre>"
+echo "<pre> $output </pre>";
 
 //we should close the connection
 $mysqli->close();
