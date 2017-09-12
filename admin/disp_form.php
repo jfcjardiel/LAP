@@ -47,9 +47,12 @@ for($i=0;$i<30;$i++){
 	}
 }
 
+
 //***********************************//
 //********** START UPLOAD ***********//
 //***********************************//
+
+/*
 
 //criando o upload  -> o arquivo vai ter o nome do dispositivo na pasta disp_form
 $target_dir = "/var/www/html/disp_form";
@@ -90,6 +93,8 @@ else{
 		echo "There was an error, file not uploaded";
 	}
 }
+
+*/
 
 //**********************************************************//
 //******** PREPARANDO O DOCUMENTO PARA A A LEITURA *********//
