@@ -103,8 +103,8 @@ else{
 //**********************************************************//
 
 //putting the header into the file
-$file_head = 'Needs["DatabaseLink`"];';
-$file_head .= 'conn = OpenSQLConnection[JDBC["MySQL(Connector/J)", "localhost:3306/input"], Username -> "root", Password -> "input212"];';
+$file_head = 'Needs["DatabaseLink`"];\n';
+$file_head .= 'conn = OpenSQLConnection[JDBC["MySQL(Connector/J)", "localhost:3306/input"], Username -> "root", Password -> "input212"];\n';
 
 //inserting into the file, the correct variables
 $file_connection = '';
@@ -119,9 +119,9 @@ for($i=0;$i<30;$i++){
 			$id_config = $mysqli->query($stmt) + 0;
 			//com o id em maos, vamos colocar no arquivo como ele deve pegar o valor
 			$nome_variavel = $_POST[$variavel];
-			$file_connection .= '{{'.$nome_variavel.'}}=SQLExecute[conn, "SELECT valor FROM valor_dispositivo_atributos WHERE id_config='.$id_config.' AND jaleu=FALSE ORDER BY id_valor DESC LIMIT 1"];';
+			$file_connection .= '{{'.$nome_variavel.'}}=SQLExecute[conn, "SELECT valor FROM valor_dispositivo_atributos WHERE id_config='.$id_config.' AND jaleu=FALSE ORDER BY id_valor DESC LIMIT 1"];\n';
 			//dando update no valor lido
-			$file_connection .= 'SQLExecute[conn, "UPDATE valor_dispositivo_atributos SET jaleu=TRUE WHERE id_config='.$id_config.' ORDER BY id_valor DESC LIMIT 1"];';
+			$file_connection .= 'SQLExecute[conn, "UPDATE valor_dispositivo_atributos SET jaleu=TRUE WHERE id_config='.$id_config.' ORDER BY id_valor DESC LIMIT 1"];\n';
 		}
 	}
 }
