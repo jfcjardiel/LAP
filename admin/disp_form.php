@@ -35,9 +35,9 @@ if (!$result = $mysqli->query($sql)) {
 }
 
 //getting the last dispositivo uploaded
-$id = mysqli->query("SELECT id_dispositivo FROM dispositivo ORDER BY id_dispositivo DESC LIMIT 1") + 0;
+//$id = mysqli->query("SELECT id_dispositivo FROM dispositivo ORDER BY id_dispositivo DESC LIMIT 1") + 0;
 
-echo $id;
+//echo $id;
 
 ?>
 
