@@ -130,8 +130,6 @@ for($i=0;$i<30;$i++){
 $file_data = $file_head . $file_connection . file_get_contents($target_file);
 file_put_contents($target_file, $file_data);
 
-echo "verifique";
-
 ?>
 
 </p>
