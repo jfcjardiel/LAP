@@ -95,10 +95,11 @@ else{
 //******** PREPARANDO O DOCUMENTO PARA A A LEITURA *********//
 //**********************************************************//
 
+/*
+
 //putting the header into the file
 $file_head = 'Needs["DatabaseLink`"];';
 $file_head .= 'conn = OpenSQLConnection[JDBC["MySQL(Connector/J)", "localhost:3306/input"], Username -> "root", Password -> "input212"];';
-$file_head .= 'email = ';
 
 //inserting into the file, the correct variables
 $file_connection = '';
@@ -125,6 +126,7 @@ $file_data = $file_head . $file_connection . file_get_contents($target_file) . $
 file_put_contents($target_file, $file_data);
 
 echo "verifique";
+*/
 ?>
 
 </p>
