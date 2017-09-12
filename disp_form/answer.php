@@ -46,7 +46,7 @@ while ($dispositivo = $result->fetch_assoc()){
     $valor_str = "valor" . $aux_write;
     $valor_dispositivo = $_REQUEST[$valor_str]+0;
     $id_config = $dispositivo["id_config"];
-    $sql_write = "INSERT INTO valor_dispositivo_atributos (id_valor, id_config, id_dispositivo, valor, email) VALUES (NULL, " . $id_config . " , " . $id_dispositivo . " ," . $valor_dispositivo . " , 'jfcjardiel@gmail.com')";
+    $sql_write = "INSERT INTO valor_dispositivo_atributos (id_valor, id_config, jaleu, valor, email) VALUES (NULL, " . $id_config . " , FALSE ," . $valor_dispositivo . " , 'jfcjardiel@gmail.com')";
     if(!$result_write = $mysqli->query($sql_write)){
         echo "<h2 class='blog_title'>Connection Problem writing</h2>";
         exit;
