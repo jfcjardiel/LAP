@@ -85,6 +85,8 @@ if($uploadOk){
 	exit;
 }
 else{
+	ini_set('display_errors',1);
+	error_reporting(E_ALL);
 	$moved = move_uploaded_file($file_tmp,$target_file);
 	if($moved){
 		echo "the file " . basename($file_name) . "has been uploaded";
