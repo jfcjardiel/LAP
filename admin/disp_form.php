@@ -45,7 +45,7 @@ for($i=0;$i<30;$i++){
 	if(isset($_POST[$name])){
 		$nome_atributo = $_POST[$name];
 		$mysqli->query("INSERT INTO config_dispositivo_atributos (id_config, nome_atributo, id_dispositivo) VALUES (NULL, '" . $nome_atributo . "', " . $id . ")");
-		echo $_POST[$name];
+		//echo $_POST[$name];
 	}
 }
 
@@ -70,7 +70,7 @@ $file_extension = strtolower(end(explode('.',$file_name)));
 
 if(file_exists($target_file)){
 	echo "Warning: arquivo com o mesmo nome da pasta foi sobrescrito";
-	$uploadOk = TRUE;
+	$uploadOk = FALSE;
 }
 
 if($_FILES["upfile"]["size"] > 1000000000){
@@ -82,6 +82,7 @@ if($_FILES["upfile"]["size"] > 1000000000){
 
 if($uploadOK){
 	echo "Error your file was not uploaded. Caiu no primeiro IF";
+	exit;
 }
 else{
 	$moved = move_uploaded_file($file_tmp,$target_file);
