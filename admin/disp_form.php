@@ -7,6 +7,10 @@
 <body>
 <?php
 
+//debug settings
+ini_set('display_errors',1);
+error_reporting(E_ALL);
+
 //***********************************//
 //******** START CONNECTION *********//
 //***********************************//
@@ -54,7 +58,7 @@ for($i=0;$i<30;$i++){
 //***********************************//
 
 //criando o upload  -> o arquivo vai ter o nome do dispositivo na pasta disp_form
-$target_dir = "/var/www/html/admin/disp_form";
+$target_dir = "/var/www/html/disp_form/";
 $target_file = $target_dir . $dispositivo;
 
 //echo "nome do arquivo: ", $target_file , "\n";
@@ -85,8 +89,6 @@ if($uploadOk){
 	exit;
 }
 else{
-	ini_set('display_errors',1);
-	error_reporting(E_ALL);
 	$moved = move_uploaded_file($file_tmp,$target_file);
 	if($moved){
 		echo "the file " . basename($file_name) . "has been uploaded";
