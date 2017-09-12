@@ -42,7 +42,7 @@ for($i=0;$i<30;$i++){
 	$name = 'nome'.$i;
 	if(isset($_POST[$name])){
 		$nome_atributo = $_POST[$name];
-		mysqli->query("INSERT INTO config_dispositivo_atributos (id_config, nome_atributo, id_dispositivo) VALUES (NULL, " . $nome_atributo . ", " . $id ")");
+		mysqli->query("INSERT INTO config_dispositivo_atributos (id_config, nome_atributo, id_dispositivo) VALUES (NULL, " . $nome_atributo . ", " . $id . ")");
 		//echo $_POST[$name];
 	}
 }
