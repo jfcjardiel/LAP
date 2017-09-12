@@ -58,7 +58,7 @@ $target_dir = "/var/www/html/disp_form";
 $target_file = $target_dir . $dispositivo;
 
 //echo "nome do arquivo: ", $target_file , "\n";
-$uploadOk = TRUE;
+$uploadOk = FALSE;
 $fileType = pathinfo($target_file,PATHINFO_EXTENSION);
 
 $errors = array();
@@ -70,12 +70,12 @@ $file_extension = strtolower(end(explode('.',$file_name)));
 
 if(file_exists($target_file)){
 	echo "Warning: arquivo com o mesmo nome da pasta foi sobrescrito";
-	$uploadOk = FALSE;
+	$uploadOk = TRUE;
 }
 
 if($_FILES["upfile"]["size"] > 1000000000){
 	echo "Error, file is larger than 10MB" . $_FILES["upfile"]["size"];
-	$uploadOk = FALSE;
+	$uploadOk = TRUE;
 }
 
 //echo $uploadOk;
@@ -98,6 +98,9 @@ else{
 //******** PREPARANDO O DOCUMENTO PARA A A LEITURA *********//
 //**********************************************************//
 
+if($uploadOK){
+
+}
 //putting the header into the file
 $file_head = 'Needs["DatabaseLink`"];';
 $file_head .= 'conn = OpenSQLConnection[JDBC["MySQL(Connector/J)", "localhost:3306/input"], Username -> "root", Password -> "input212"];';
