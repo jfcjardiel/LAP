@@ -1,7 +1,7 @@
 <?php
 
 //Starting connection
-$mysqli = new mysqli('localhost', 'sec_user', 'secuserinput212', 'secure_login');
+$mysqli = new mysqli('localhost', 'root', 'input212', 'secure_login');
 
 //If there is any error, then show...
 if ($mysqli->connect_errno) {
