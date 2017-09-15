@@ -1,7 +1,7 @@
 <?php
 
 //Starting connection
-$mysqli = new mysqli('localhost', 'root', 'input212', 'input');
+$mysqli = new mysqli('localhost', 'sec_user', 'secuserinput212', 'secure_login');
 
 //If there is any error, then show...
 if ($mysqli->connect_errno) {
@@ -11,9 +11,9 @@ if ($mysqli->connect_errno) {
 }
 
 //getting the last dispositivo uploaded
-$id = $mysqli->query("SELECT id_dispositivo FROM dispositivo ORDER BY id_dispositivo DESC LIMIT 1") + 0;
+//$id = $mysqli->query("SELECT id_dispositivo FROM dispositivo ORDER BY id_dispositivo DESC LIMIT 1") + 0;
 
-//$id = $mysqli->query("SELECT username FROM members");
+$id = $mysqli->query("SELECT username FROM members");
 
 echo $id;
 
