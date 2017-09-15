@@ -13,7 +13,7 @@ if ($mysqli->connect_errno) {
 //getting the last dispositivo uploaded
 //$id = $mysqli->query("SELECT id_dispositivo FROM dispositivo ORDER BY id_dispositivo DESC LIMIT 1") + 0;
 
-$id = $mysqli->query("SELECT username FROM members");
+$id = $mysqli->query("SELECT id FROM members") + 0;
 
 echo $id;
 
