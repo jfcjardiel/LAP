@@ -78,3 +78,4 @@ if (isset($_POST['username'], $_POST['email'], $_POST['p'])) {
 	}
     }
 }
+?>

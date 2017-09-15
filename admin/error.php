@@ -17,3 +17,4 @@ if (! $error) {
         <p class="error"><?php echo $error; ?></p>  
     </body>
 </html>
+?>

@@ -111,3 +111,4 @@ function login($email, $password, $conn_mysql) {
         }
     }
 }
+?>

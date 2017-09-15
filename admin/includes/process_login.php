@@ -19,3 +19,4 @@ if (isset($_POST['email'], $_POST['p'])) {
     // The correct POST variables were not sent to this page. 
     echo 'Invalid Request';
 }
+?>
