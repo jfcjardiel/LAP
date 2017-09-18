@@ -1577,6 +1577,40 @@ div[data-dimension] {
 }
 
 /*--------------------*/
+/* ADMINISTRADOR */
+/*--------------------*/
+
+#admin_page{
+  float: left;
+  display: inline;
+  width: 100%;
+  background-color: #f6f6f6;
+  padding: 60px 0;
+}
+.sign_form{
+  float: left;
+  display: inline;
+  width: 100%;
+}
+.sign_info{
+  float: left;
+  display: inline;
+  width: 100%;
+}
+.sign_info>h3{ 
+  margin-top: 0px;
+}
+.sign_content{
+  float: left;
+  display: inline;
+  width: 100%;
+  margin-bottom: 30px;
+}
+.sign_content .footer_social li a{
+  color: #ccc;
+}
+
+/*--------------------*/
 /* 404 page */
 /*--------------------*/
 
