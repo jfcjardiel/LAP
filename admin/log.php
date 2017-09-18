@@ -113,6 +113,52 @@ sec_session_start();
 
     <?php if (login_check($mysqli) == true) : ?>
 
+    <script>
+        //Function that calls input.php and embedded the code into the page
+        function administrador_action(str){
+          var xhttp;
+          //if non is select
+          if (str == "") {
+              document.getElementById("input_form").innerHTML = '<h2 class="blog_title">Administrador Page</h2><p class="blog_summary">Here you can execute administrator actions for the entire website.</p>';
+              return;
+          }
+          //if some is, then we will embedded the code of input.php
+          //it is important to say, the only data we are going to send is the id by url
+          //xhttp = new XMLHttpRequest();
+          //xhttp.onreadystatechange = function() {
+          //  if (this.readyState == 4 && this.status == 200) {
+          //    document.getElementById("input_form").innerHTML = this.responseText;
+          //  }
+          //};
+          //xhttp.open("GET", "disp_form/input.php?id="+str, true);
+          //xhttp.send();
+        }
+
+        //sending data to another page
+        function sendForm(id_dispositivo_select){
+            //stablihing new XMLHttpRequest
+            var xhttp;
+            xhttp = new XMLHttpRequest();
+            //vendo o tamanho da form
+            var form_length = document.forms["form_dispositivo"].length-1;
+            //building the URL that will be send
+            url_send_form = "disp_form/answer.php?id_dispositivo="+id_dispositivo_select;
+            for(var aux_send = 0; aux_send < form_length; aux_send++){
+                url_send_form = url_send_form + "&valor" + aux_send + "=" + document.getElementById(aux_send).value;
+            }
+            alert(url_send_form);
+            //inicializing the request
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    document.getElementById("answer_form").innerHTML = this.responseText;
+                }
+            };
+            //sending the data to answer.
+            xhttp.open("GET", url_send_form, true);
+            xhttp.send();        
+        }
+    </script>
+
     <!--=========== BEGIN LOGIN BANNER SECTION ================-->
     <section id="imgBanner">
       <h2>Secure Login: LOGGED IN</h2>
@@ -131,8 +177,8 @@ sec_session_start();
                 <div class="col-lg-12 col-12 col-sm-12">
                   <div class="single_blog_archive wow fadeInUp">
                     <div id="input_form" class="input_form">
-                      <h2 class="blog_title">Microwave Tools created in LAP</h2>
-                      <p class="blog_summary">LAP has created many microwave tools along the years. Here you can see the results of all these years of work. Just select which one you want to see.</p>
+                      <h2 class="blog_title">Administrador Page</h2>
+                      <p class="blog_summary">Here you can execute administrator actions for the entire website.</p>
                     </div>
                     <div id="answer_form">
                     </div>
@@ -149,9 +195,13 @@ sec_session_start();
             <div class="courseArchive_sidebar">
               <!-- start single sidebar -->
               <div class="single_sidebar">
-                <h2>Available Tools <span class="fa fa-angle-double-right"></span></h2>
-                <select size="15" id="dispositivo_select" class="dispositivo_select" onchange="form_maker(this.value)">
-                    <option value=""> -- Select a Microwave tool -- </option>
+                <h2>Administrador Actions <span class="fa fa-angle-double-right"></span></h2>
+                <select size="15" id="action_select" class="action_select" onchange="administrador_action(this.value)">
+                    <option value=""> -- Select the action you would like -- </option>
+                    <option value="microwave_tools"> Insert Microwave Tool </option>
+                    <option value="edit_tools"> Edit Microwave Tool </option>
+                    <option value="edit_professor"> Edit Professor Informations </option>
+                    <option value="edit_students"> Edit Student Informations </option>
                 </select>
               </div>
               <!-- End single sidebar -->
@@ -211,9 +261,9 @@ sec_session_start();
             <div class="courseArchive_sidebar">
               <!-- start single sidebar -->
               <div class="single_sidebar">
-                <h2>Available Tools <span class="fa fa-angle-double-right"></span></h2>
+                <h2> Administrador Actions <span class="fa fa-angle-double-right"></span></h2>
                 <select size="15" id="dispositivo_select" class="dispositivo_select" onchange="form_maker(this.value)">
-                    <option value=""> -- Select a Microwave tool -- </option>
+                    <option value=""> -- You have no permission -- </option>
                 </select>
               </div>
               <!-- End single sidebar -->
@@ -304,11 +354,6 @@ sec_session_start();
 
     <!-- Javascript Files
     ================================================== -->
-
-    <!-- files for autentication -->
-    <script type="text/JavaScript" src="js/sha512.js"></script> 
-    <script type="text/JavaScript" src="js/forms.js"></script> 
-
     <!-- initialize jQuery Library -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <!-- Preloader js file -->
