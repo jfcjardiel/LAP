@@ -84,7 +84,7 @@ if (login_check($mysqli) == true) {
               <!-- TEXT BASED LOGO -->
               <!-- <a class="navbar-brand" href="index.html">LAP <span></span></a> -->              
               <!-- IMG BASED LOGO  -->
-              <a class="navbar-new" href="index.html"><img src="img/logo.png" alt="logo"></a>          
+              <a class="navbar-new" href="index.html"><img src="../img/logo.png" alt="logo"></a>          
                      
             </div>
             <div id="navbar" class="navbar-collapse collapse">
@@ -169,6 +169,12 @@ if (login_check($mysqli) == true) {
       </div>
     </section>
     <!--=========== END CONTACT SECTION ================-->
+
+    <!--=========== BEGIN GOOGLE MAP SECTION ================-->
+    <section id="googleMap">
+      <br>
+    </section>
+    <!--=========== END GOOGLE MAP SECTION ================-->
     
     <!--=========== BEGIN FOOTER SECTION ================-->
     <footer id="footer">
