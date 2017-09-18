@@ -119,7 +119,13 @@ if (login_check($mysqli) == true) {
 
     <!--=========== BEGIN LOGIN BANNER SECTION ================-->
     <section id="imgBanner">
-      <h2>Secure Login: Log In</h2>
+      <?php
+        if (login_check($mysqli) == true) {
+          echo '<h2>Secure Login: Logged ' . $logged . ' as ' . htmlentities($_SESSION['username']) . '.</h2>';
+        } else {
+            echo '<h2>Secure Login: Logged ' . $logged . '.</h2>';
+          }
+      ?>
     </section>
     <!--=========== END LOGIN BANNER SECTION ================-->
     
