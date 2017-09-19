@@ -84,7 +84,7 @@ if (login_check($mysqli) == true) {
               <!-- TEXT BASED LOGO -->
               <!-- <a class="navbar-brand" href="index.html">LAP <span></span></a> -->              
               <!-- IMG BASED LOGO  -->
-              <a class="navbar-new" href="../index.html"><img src="img/logo.png" alt="logo"></a>          
+              <a class="navbar-new" href="../index.html"><img src="../img/logo.png" alt="logo"></a>          
                      
             </div>
             <div id="navbar" class="navbar-collapse collapse">
@@ -122,22 +122,52 @@ if (login_check($mysqli) == true) {
       <h2> Administrator </h2>
     </section>
     <!--=========== END LOGIN BANNER SECTION ================-->
+
+    <?php if (login_check($mysqli) == true) : ?>
     
-    <!--=========== BEGIN CONTACT SECTION ================-->
+    <!--=========== BEGIN IF YOU ARE ALREADY LOGEED IN SECTION ================-->
     <section id="admin_page">
       <div class="container">
        <div class="row">
           <div class="col-lg-12 col-md-12"> 
             <div class="title_area">
-              <h2 class="title_two">
+              <h2 class="title_two"><?php echo 'Logged ' . $logged . ' as ' . htmlentities($_SESSION['username']); ?> </h2>
+              <span></span> 
               <?php
-                if (login_check($mysqli) == true) {
-                  echo 'Logged ' . $logged . ' as ' . htmlentities($_SESSION['username']);
-                } else {
-                    echo 'Logged ' . $logged;
-                  }
+                if (isset($_GET['error'])) {
+                    echo '<p class="error">Error Logging In!</p>';
+                }
+              ?> 
+            </div>
+          </div>
+       </div>
+       <div class="row">
+         <div class="col-lg-4 col-md-4 col-sm-4">
+           <div class="sign_info wow fadeInRight">
+             <h3>Information</h3>
+             <div class="sign_content">
+              <?php
+                echo '<p>If you want to go to administrator page, <a href="log.php">CLICK HERE</a>.</p>';
+                echo '<p>Currently logged ' . $logged . ' as ' . htmlentities($_SESSION['username']) . '.</p>';
+                echo '<p>Do you want to change user? <a href="includes/logout.php">Log out</a>.</p>';
               ?>
-              </h2>
+             </div>
+           </div>
+         </div>
+       </div>
+      </div>
+    </section>
+    <!--=========== END BEGIN IF YOU ARE ALREADY LOGEED IN SECTION ================-->
+
+    <?php else : ?>
+
+    <!--=========== BEGIN IF YOU ARE LOGEED OUT SECTION ================-->
+    <section id="admin_page">
+      <div class="container">
+       <div class="row">
+          <div class="col-lg-12 col-md-12"> 
+            <div class="title_area">
+              <h2 class="title_two"><?php echo 'Logged ' . $logged; ?></h2>
               <span></span> 
               <?php
                 if (isset($_GET['error'])) {
@@ -150,6 +180,7 @@ if (login_check($mysqli) == true) {
        <div class="row">
          <div class="col-lg-8 col-md-8 col-sm-8">
            <div class="sign_form wow fadeInLeft">
+
               <form class="submitphoto_form" action="includes/process_login.php" method="post" name="login_form">
                 <input type="text" class="wp-form-control wpcf7-text" placeholder="Email" name="email">          
                 <input type="password" class="wp-form-control wpcf7-text" placeholder="Password" name="password" id="password">
@@ -162,13 +193,8 @@ if (login_check($mysqli) == true) {
              <h3>Information</h3>
              <div class="sign_content">
               <?php
-                if (login_check($mysqli) == true) {
-                  echo '<p>Currently logged ' . $logged . ' as ' . htmlentities($_SESSION['username']) . '.</p>';
-                  echo '<p>Do you want to change user? <a href="includes/logout.php">Log out</a>.</p>';
-                } else {
-                    echo '<p>Currently logged ' . $logged . '.</p>';
-                    echo "<p>If you don't have a login, please ask for registration to the administrator";
-                  }
+                echo '<p>Currently logged ' . $logged . '.</p>';
+                echo "<p>If you don't have a login, please ask for registration to the administrator";
               ?>
              </div>
            </div>
@@ -176,7 +202,9 @@ if (login_check($mysqli) == true) {
        </div>
       </div>
     </section>
-    <!--=========== END CONTACT SECTION ================-->
+    <!--=========== END BEGIN IF YOU ARE LOGEED OUT SECTION ================-->
+
+    <?php endif; ?>
 
     <!--=========== BEGIN GOOGLE MAP SECTION ================-->
     <section id="googleMap">
