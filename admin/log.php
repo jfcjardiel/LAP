@@ -125,6 +125,10 @@ sec_session_start();
               document.getElementById("input_form").innerHTML = '<h2 class="blog_title">Administrador Page</h2><p class="blog_summary">Here you can execute administrator actions for the entire website.</p>';
               return;
           }
+          if (str == "register"){
+            document.getElementById("input_form").innerHTML = '<iframe height="400" width="100%" src="register.php"><p>Your browser does not support iframes.</p></iframe>';
+            return;
+          }
           //if some is, then we will embedded the code of input.php
           //it is important to say, the only data we are going to send is the id by url
           xhttp = new XMLHttpRequest();
@@ -160,6 +164,30 @@ sec_session_start();
             xhttp.open("GET", url_send_form, true);
             xhttp.send();        
         }
+
+        //function to know if the space is empty or not
+        function validateForm(id_dispositivo_select){
+          //o .length conta o botao tambem
+          var form_length = document.forms["form_dispositivo"].length-1;
+          //verifying if the form is ok
+          var is_form_ok = true;
+          //defining the variables for the loop
+          var conteudo = '';
+          //.length counts the button, so we dont have to worry about it
+          for(var aux_id = 0; aux_id < form_length; aux_id++){
+            conteudo = document.getElementById(aux_id).value;
+            if (conteudo == ""){
+              if(is_form_ok){
+                alert("Name must be filled out");
+                is_form_ok = false;
+              }
+            }
+          }
+          if(is_form_ok){
+            sendForm(id_dispositivo_select);
+          }
+        }
+
     </script>
 
     <!--=========== BEGIN LOGIN BANNER SECTION ================-->
