@@ -47,6 +47,9 @@ sec_session_start();
     <link href='http://fonts.googleapis.com/css?family=Merriweather' rel='stylesheet' type='text/css'>   
     <link href='http://fonts.googleapis.com/css?family=Varela' rel='stylesheet' type='text/css'>    
 
+    <!-- somente para essa pagina -->
+    <link rel="stylesheet" type="text/css" href="style_dispositivo.css">
+
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -78,7 +81,7 @@ sec_session_start();
               <!-- TEXT BASED LOGO -->
               <!-- <a class="navbar-brand" href="index.html">LAP <span></span></a> -->              
               <!-- IMG BASED LOGO  -->
-              <a class="navbar-new" href="../index.html"><img src="img/logo.png" alt="logo"></a>          
+              <a class="navbar-new" href="../index.html"><img src="../img/logo.png" alt="logo"></a>          
                      
             </div>
             <div id="navbar" class="navbar-collapse collapse">
@@ -124,14 +127,14 @@ sec_session_start();
           }
           //if some is, then we will embedded the code of input.php
           //it is important to say, the only data we are going to send is the id by url
-          //xhttp = new XMLHttpRequest();
-          //xhttp.onreadystatechange = function() {
-          //  if (this.readyState == 4 && this.status == 200) {
-          //    document.getElementById("input_form").innerHTML = this.responseText;
-          //  }
-          //};
-          //xhttp.open("GET", "disp_form/input.php?id="+str, true);
-          //xhttp.send();
+          xhttp = new XMLHttpRequest();
+          xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+              document.getElementById("input_form").innerHTML = this.responseText;
+            }
+          };
+          xhttp.open("GET", str+".php", true);
+          xhttp.send();
         }
 
         //sending data to another page
@@ -202,6 +205,7 @@ sec_session_start();
                     <option value="edit_tools"> Edit Microwave Tool </option>
                     <option value="edit_professor"> Edit Professor Informations </option>
                     <option value="edit_students"> Edit Student Informations </option>
+                    <option value="register"> Register Another User </option>
                 </select>
               </div>
               <!-- End single sidebar -->
