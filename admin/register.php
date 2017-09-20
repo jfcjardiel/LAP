@@ -4,6 +4,7 @@ include_once 'includes/functions.php';
 ?>
 <!DOCTYPE html>
 <html>
+    <?php if (login_check($mysqli) == true) : ?>
     <head>
         <meta charset="UTF-8">
         <title>Secure Login: Registration Form</title>
@@ -54,6 +55,15 @@ include_once 'includes/functions.php';
                                    this.form.password,
                                    this.form.confirmpwd);" /> 
         </form>
-        <p>Return to the <a href="index.php">login page</a>.</p>
     </body>
+
+    <?php else : ?>
+        
+    <head>
+    </head>
+    <body>
+        <h1> You are not allowed! </h1>
+    </body>
+
+    <?php endif; ?>
 </html>
