@@ -1,3 +1,5 @@
+/* RELATIVO A LOG.PHP*/
+
 select { 
 	border:0;
 	color:#2f2f2f;
@@ -7,4 +9,105 @@ select {
 	padding:2px 10px; 
 	width:100%;
 	-webkit-appearance: none; 
+}
+
+/*--------------------*/
+/* ADMIN/MICROWAVE TOOLS */
+/*--------------------*/
+
+
+.add_form_field {
+  background-color: #fff;
+  padding: 10px 15px;
+  border-radius: 4px;
+  text-transform: uppercase;
+  text-align: center;
+  cursor: pointer;
+  outline: none;
+  color: #3498db;
+  border: solid #58a4d6 2px;
+  border-radius: 15px;
+}
+
+.add_form_field:hover {
+	background-color: #58a4d6;
+    color: #ffffff;
+}
+
+.del_form_field {
+  background-color: #fff;
+  padding: 10px 15px;
+  text-transform: uppercase;
+  text-align: center;
+  cursor: pointer;
+  outline: none;
+  color: #ff0000;
+  border: solid #ff4242 2px;
+  border-radius: 15px;
+}
+
+.del_form_field:hover {
+	background-color: #ff4242;
+    color: #ffffff;
+}
+
+.final{
+  background-color: #fff;
+  padding: 10px 15px;
+  border-radius: 4px;
+  text-transform: uppercase;
+  text-align: center;
+  cursor: pointer;
+  outline: none;
+  color: #3498db;
+  border: solid #58a4d6 2px;
+  border-radius: 15px;
+}
+
+.final:hover {
+	background-color: #58a4d6;
+    color: #ffffff;
+}
+
+.right{
+	display: inline-block;
+}
+
+.right > p{
+	padding-top: 0px;
+	padding-bottom: 0px;
+}
+
+.left{
+	display: inline-block;
+}
+
+.left > p{
+	padding-top: 0px;
+	padding-bottom: 0px;
+}
+
+
+.container_config > input{
+    border: 1px solid;
+    width: 100px;
+    height: 20px;
+    margin-bottom:14px;
+}
+
+.container_config input[type=text] {
+	padding:5px 0px;
+	margin:5px 5px 5px 0px;
+}
+
+.container > input{
+    border: 1px solid;
+    width: 100px;
+    height: 20px;
+    margin-bottom:14px;
+}
+
+.container > input[type=text] {
+	padding:5px 0px;
+	margin:5px 5px 5px 0px;
 }
