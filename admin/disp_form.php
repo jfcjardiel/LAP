@@ -10,6 +10,8 @@
 	include_once 'includes/functions.php';
 
 	sec_session_start();
+
+	//only who is logged can do it!
 	if (login_check($mysqli) == true){
 		//debug settings
 		ini_set('display_errors',1);
@@ -30,7 +32,7 @@
 		}
 
 		//**********************************//
-		//******** READING DATABSE *********//
+		//******** WRITING DATABSE *********//
 		//**********************************//
 
 		//We are inserting the dispositivo in the database
@@ -44,27 +46,26 @@
 
 
 		//getting the last dispositivo uploaded
-		$id_stmt = $mysqli_disp->query("SELECT id_dispositivo FROM dispositivo ORDER BY id_dispositivo DESC LIMIT 1");
-		$id = $id_stmt->fetch_assoc();
-	    //if ($stmt = $mysqli->prepare("SELECT id_dispositivo 
-	    //    FROM dispositivo
-	    //    ORDER BY id_dispositivo 
-	    //    DESC LIMIT 1")) {
-	    //    $stmt->execute();    // Execute the prepared query.
-	    //    $stmt->store_result();
-	    //     // get variables from result.
-	    //    $stmt->bind_result($id);
-	    //    $stmt->fetch();
-		//	//echo $id;
-	    //}
-
+		$id_result = $mysqli_disp->query("SELECT id_dispositivo FROM dispositivo ORDER BY id_dispositivo DESC LIMIT 1");
+		if($id_result->num_rows > 0){
+			$id_row = $id_result->fetch_assoc();
+			$id = $id_now["id_dispositivo"];			
+		}
+		else{
+			echo "<h1> Connection Problem </h1>";
+			exit;
+		}
 
 		//inserting the dispositivo atributes
 		for($i=0;$i<30;$i++){
 			$name = 'nome'.$i;
 			if(isset($_POST[$name])){
 				$nome_atributo = $_POST[$name];
-				$mysqli_disp->query("INSERT INTO config_dispositivo_atributos (id_config, nome_atributo, id_dispositivo) VALUES (NULL, '" . $nome_atributo . "', " . $id . ")");
+				$stmt = "INSERT INTO config_dispositivo_atributos (id_config, nome_atributo, id_dispositivo) VALUES (NULL, '" . $nome_atributo . "', " . $id . ")";
+				if($mysqli_disp->query($stmt) == FALSE){
+					echo "<h1> Connection Problem </h1>";
+					exit;
+				}
 				//echo $_POST[$name];
 			}
 		}
@@ -132,7 +133,15 @@
 					//pegar o id_config do nome do dispositivo
 					$nome_atributo = $_POST[$name];
 					$stmt = "SELECT id_config FROM config_dispositivo_atributos WHERE nome_atributo='".$nome_atributo."' AND id_dispositivo=".$id;
-					$id_config = $mysqli_disp->query($stmt) + 0;
+					$id_config_result = $mysqli_disp->query($stmt);
+					if($id_config_result->num_row == 1){
+						$id_config_row = $id_config_result->fetch_assoc();
+						$id_config = $id_config_row['id_config'];
+					}
+					else{
+						echo "ERROR: CONTACT SUPPORT";
+						exit;
+					}
 					//com o id em maos, vamos colocar no arquivo como ele deve pegar o valor
 					$nome_variavel = $_POST[$variavel];
 					$file_connection .= '{'.$nome_variavel.'}=SQLExecute[conn, "SELECT valor FROM valor_dispositivo_atributos WHERE id_config='.$id_config.' AND jaleu=FALSE ORDER BY id_valor DESC LIMIT 1"];'  . "\n";
