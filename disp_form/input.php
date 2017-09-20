@@ -69,13 +69,20 @@ echo "<form method='post' attribute='post' id='form_dispositivo' name='form_disp
 //O name eh o id_config porque sera acessado de outro lugar
 $id_input = 0;
 
+//making a table.
+echo '<table class="table table-striped course_table"><thead><tr><th>Variable Name</th><th>Variable Input</th></tr></thead><tbody>';
+
 //Writing the form options
 while ($config_dispositivo = $result->fetch_assoc()) {
     //it is exibitig the line.
-    echo '<p class="blog_summary">' . $config_dispositivo['nome_atributo'] . '<br/>';
-    echo "<input type='text' class='blog_summary' id='" . $id_input . "' name='" . $config_dispositivo['id_config'] . "'></p>";
+    echo '<tr>';
+    echo '<td>' . $config_dispositivo['nome_atributo'] . '<td>';
+    echo "<td><input type='text' id='" . $id_input . "' name='" . $config_dispositivo['id_config'] . "'><td>";
+    echo '</tr>';
     $id_input = $id_input + 1;
 }
+
+echo '</tbody></table>';
 
 //writting submit button
 //we are going to send the id of the form via the function validateFom.
