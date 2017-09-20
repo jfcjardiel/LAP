@@ -76,8 +76,8 @@ echo '<table class="table table-striped course_table"><thead><tr><th>Variable Na
 while ($config_dispositivo = $result->fetch_assoc()) {
     //it is exibitig the line.
     echo '<tr>';
-    echo '<td>' . $config_dispositivo['nome_atributo'] . '<td>';
-    echo "<td><input type='text' id='" . $id_input . "' name='" . $config_dispositivo['id_config'] . "'><td>";
+    echo '<td>' . $config_dispositivo['nome_atributo'] . '</td>';
+    echo "<td><input type='text' id='" . $id_input . "' name='" . $config_dispositivo['id_config'] . "'></td>";
     echo '</tr>';
     $id_input = $id_input + 1;
 }
