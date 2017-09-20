@@ -102,7 +102,10 @@ function validateForm(){
                 </div>
             </div>
         </div>
+        Here is the File in .txt you are going to upload:
         <input type = "file" name="upfile" id = "upfile"><br><br>
+        Here is the IMAGE you are going to upload (JUST JPG):
+        <input type = "file" name="upimg" id = "upimg"><br><br>
         <button class="final" type="submit" name="answer" id="answer" value="answer">Submit Microwave Tool</br></button>
     </div>
 </form>

@@ -221,7 +221,7 @@
           					}
 
           					//If there isnt any error, then lets read the sql content
-          					$sql = "SELECT * FROM dispositivo ORDER BY id_dispositivo";
+          					$sql = "SELECT * FROM dispositivo WHERE mostrar_dispositivo=TRUE ORDER BY id_dispositivo";
           					if (!$result = $mysqli->query($sql)) {
           						// I do not know what to show yet
           						echo "<option value=''>Connection Problem</option>";
