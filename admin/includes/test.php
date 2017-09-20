@@ -15,7 +15,18 @@ if ($stmt = $mysqli->prepare("SELECT id, username, password
     $stmt->fetch();
     echo $user_id;
     echo $username;
-    echo $db_password;
+}
+//getting the last dispositivo uploaded
+$id_result = $mysqli_disp->query("SELECT id FROM members ORDER BY id DESC LIMIT 1");
+if($id_result->num_rows > 0){
+	$id_row = $id_result->fetch_assoc();
+	$id = $id_row["id"];
+	echo "ACHOU!";
+	echo $id;
+}
+else{
+	echo "<h1> Connection Problem </h1>";
+	exit;
 }
 
 ?>
