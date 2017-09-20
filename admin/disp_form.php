@@ -144,7 +144,7 @@
 					}
 					//com o id em maos, vamos colocar no arquivo como ele deve pegar o valor
 					$nome_variavel = $_POST[$variavel];
-					$file_connection .= '{'.$nome_variavel.'}=SQLExecute[conn, "SELECT valor FROM valor_dispositivo_atributos WHERE id_config='.$id_config.' AND jaleu=FALSE ORDER BY id_valor DESC LIMIT 1"];'  . "\n";
+					$file_connection .= '{{'.$nome_variavel.'}}=SQLExecute[conn, "SELECT valor FROM valor_dispositivo_atributos WHERE id_config='.$id_config.' AND jaleu=FALSE ORDER BY id_valor DESC LIMIT 1"];'  . "\n";
 					//dando update no valor lido
 					$file_connection .= 'SQLExecute[conn, "UPDATE valor_dispositivo_atributos SET jaleu=TRUE WHERE id_config='.$id_config.' ORDER BY id_valor DESC LIMIT 1"];' . "\n";
 				}
