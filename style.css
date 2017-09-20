@@ -1155,6 +1155,16 @@ div[data-dimension] {
   text-transform: uppercase;
 }
 
+
+/*--------------------*/
+/* MICROWAVE TOOL     */
+/*--------------------*/
+
+.micro_input {
+  color: #9b9b9b;
+  margin: 10px 5px 10px 0;
+}
+
 /*--------------------*/
 /* BLOG PAGE */
 /*--------------------*/
