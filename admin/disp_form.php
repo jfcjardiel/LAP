@@ -134,9 +134,9 @@
 					$nome_atributo = $_POST[$name];
 					$stmt = "SELECT id_config FROM config_dispositivo_atributos WHERE nome_atributo='".$nome_atributo."' AND id_dispositivo=".$id;
 					$id_config_result = $mysqli_disp->query($stmt);
-					if($id_config_result->num_row == 1){
+					if($id_config_result->num_rows == 1){
 						$id_config_row = $id_config_result->fetch_assoc();
-						$id_config = $id_config_row['id_config'];
+						$id_config = $id_config_row["id_config"];
 					}
 					else{
 						echo "ERROR: CONTACT SUPPORT";
