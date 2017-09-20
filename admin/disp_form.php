@@ -49,7 +49,7 @@
 		$id_result = $mysqli_disp->query("SELECT id_dispositivo FROM dispositivo ORDER BY id_dispositivo DESC LIMIT 1");
 		if($id_result->num_rows > 0){
 			$id_row = $id_result->fetch_assoc();
-			$id = $id_now["id_dispositivo"];			
+			$id = $id_row["id_dispositivo"];			
 		}
 		else{
 			echo "<h1> Connection Problem </h1>";
