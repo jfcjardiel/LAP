@@ -72,8 +72,8 @@ $id_input = 0;
 //Writing the form options
 while ($config_dispositivo = $result->fetch_assoc()) {
     //it is exibitig the line.
-    echo '<p>' . $config_dispositivo['nome_atributo'] . '<br/>';
-    echo "<input type='text' id='" . $id_input . "' name='" . $config_dispositivo['id_config'] . "'></p>";
+    echo '<p class="blog_summary">' . $config_dispositivo['nome_atributo'] . '<br/>';
+    echo "<input type='text' class='blog_summary' id='" . $id_input . "' name='" . $config_dispositivo['id_config'] . "'></p>";
     $id_input = $id_input + 1;
 }
 
