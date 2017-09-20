@@ -154,6 +154,52 @@
 		//com os dados em maos, basta colocar o arquivo e salvar
 		$file_data = $file_head . $file_connection . file_get_contents($target_file);
 		file_put_contents($target_file, $file_data);
+
+		//**************************************//
+		//******** UPLOADING NA FIGURA *********//
+		//**************************************//
+
+
+		//criando o upload  -> o arquivo vai ter o nome do dispositivo na pasta disp_form
+		$target_dir_img = "/var/www/html/disp_form/img/";
+		$target_img = $target_dir . $dispositivo . ".jpg";
+
+		//echo "nome do arquivo: ", $target_file , "\n";
+		$uploadOk = FALSE;
+		$imgType = pathinfo($target_img,PATHINFO_EXTENSION);
+
+		$errors = array();
+		$img_name = $_FILES['upimg']['name'];
+		$img_size = $_FILES['upimg']['size'];
+		$img_tmp = $_FILES['upimg']['tmp_name'];
+		$img_type = $_FILES['upimg']['type'];
+		$img_extension = strtolower(end(explode('.',$file_name)));
+
+		if(file_exists($target_img)){
+			echo "Warning: arquivo com o mesmo nome da pasta foi sobrescrito";
+			$uploadOk = TRUE;
+		}
+
+		if($_FILES["upimg"]["size"] > 1000000000){
+			echo "Error, file is larger than 10MB" . $_FILES["upfile"]["size"];
+			$uploadOk = TRUE;
+		}
+
+		//echo $uploadOk;
+
+		if($uploadOk){
+			echo "Error your file was not uploaded. Caiu no primeiro IF";
+			exit;
+		}
+		else{
+			$moved = move_uploaded_file($img_tmp,$target_img);
+			if($moved){
+				echo "the image " . basename($img_name) . "has been uploaded";
+			}
+			else{
+				echo "There was an error, image not uploaded";
+			}
+		}
 	}
 	else{
 		echo "<h1>You are not allowed</h1>";
