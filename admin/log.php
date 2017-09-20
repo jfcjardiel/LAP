@@ -165,7 +165,7 @@ sec_session_start();
               <!-- start single sidebar -->
               <div class="single_sidebar">
                 <h2>Administrador Actions <span class="fa fa-angle-double-right"></span></h2>
-                <select size="15" id="action_select" class="action_select" onchange="administrador_action(this.value)">
+                <select size="7" id="action_select" class="action_select" onchange="administrador_action(this.value)">
                     <option value=""> -- Select the action you would like -- </option>
                     <option value="microwave_tools"> Insert Microwave Tool </option>
                     <option value="edit_tools"> Edit Microwave Tool </option>
@@ -177,11 +177,9 @@ sec_session_start();
               <!-- End single sidebar -->
               <!-- start single sidebar -->
               <div class="single_sidebar">
-                <h2>Tags <span class="fa fa-angle-double-right"></span></h2>
+                <h2>Other Actions <span class="fa fa-angle-double-right"></span></h2>
                 <ul class="tags_nav">
-                  <li><a href="#"><i class="fa fa-tags"></i>Articles</a></li>
-                  <li><a href="#"><i class="fa fa-tags"></i>Posters</a></li>
-                  <li><a href="#"><i class="fa fa-tags"></i>Conference</a></li>
+                  <li><a href="includes/logout.php"><i class="fa fa-tags"></i>Log out</a></li>
                 </ul>
               </div>
               <!-- End single sidebar -->

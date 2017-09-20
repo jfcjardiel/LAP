@@ -73,20 +73,9 @@ select {
 	display: inline-block;
 }
 
-.right > p{
-	padding-top: 0px;
-	padding-bottom: 0px;
-}
-
 .left{
 	display: inline-block;
 }
-
-.left > p{
-	padding-top: 0px;
-	padding-bottom: 0px;
-}
-
 
 .container_config > input{
     border: 1px solid;
