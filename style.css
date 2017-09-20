@@ -1580,8 +1580,8 @@ div[data-dimension] {
 /* MICROWAVE SECTION  */
 /*--------------------*/
 
-#input_form{
-  padding-left: 10%;
+.input_form{
+  padding-left: 10px;
 }
 
 /*--------------------*/
