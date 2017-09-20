@@ -22,13 +22,8 @@ if ($stmt = $mysqli->prepare("SELECT id, username, password
 
 $mysqli_disp = new mysqli('localhost', 'root', 'input212', 'input');
 
-		$id_result = $mysqli_disp->query("SELECT id_dispositivo FROM dispositivo ORDER BY id_dispositivo DESC LIMIT 1");
-		if($id_result->num_rows > 0){
-			$id_row = $id_result->fetch_assoc();
-			$id = $id_row["id_dispositivo"];			
-		}
-		else{
-			echo "<h1> Connection Problem </h1>";
-			exit;
-		}
+$stmt = "INSERT INTO config_dispositivo_atributos (id_config, nome_atributo, id_dispositivo) VALUES (NULL, 'oi', 1)";
+if($mysqli_disp->query($stmt) == FALSE){
+	echo "<h1> Connection Problem </h1>";
+}
 ?>
