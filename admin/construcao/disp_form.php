@@ -47,18 +47,18 @@ sec_session_start();
 
 
 	//getting the last dispositivo uploaded
-	//$id = $mysqli_disp->query("SELECT id_dispositivo FROM dispositivo ORDER BY id_dispositivo DESC LIMIT 1");
-    if ($stmt = $mysqli->prepare("SELECT id_dispositivo 
-        FROM dispositivo
-        ORDER BY id_dispositivo 
-        DESC LIMIT 1")) {
-        $stmt->execute();    // Execute the prepared query.
-        $stmt->store_result();
-         // get variables from result.
-        $stmt->bind_result($id);
-        $stmt->fetch();
-		//echo $id;
-    }
+	$id = $mysqli_disp->query("SELECT id_dispositivo FROM dispositivo ORDER BY id_dispositivo DESC LIMIT 1");
+    //if ($stmt = $mysqli->prepare("SELECT id_dispositivo 
+    //    FROM dispositivo
+    //    ORDER BY id_dispositivo 
+    //    DESC LIMIT 1")) {
+    //    $stmt->execute();    // Execute the prepared query.
+    //    $stmt->store_result();
+    //     // get variables from result.
+    //    $stmt->bind_result($id);
+    //    $stmt->fetch();
+	//	//echo $id;
+    //}
 
 
 	//inserting the dispositivo atributes
