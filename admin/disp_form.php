@@ -66,7 +66,7 @@
 					echo "<h1> Connection Problem </h1>";
 					exit;
 				}
-				//echo $_POST[$name];
+				echo $_POST[$name];
 			}
 		}
 
