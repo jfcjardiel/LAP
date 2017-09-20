@@ -20,10 +20,4 @@ if ($stmt = $mysqli->prepare("SELECT id, username, password
     echo $username;
 }
 
-$mysqli_disp = new mysqli('localhost', 'root', 'input212', 'input');
-
-$stmt = "INSERT INTO config_dispositivo_atributos (id_config, nome_atributo, id_dispositivo) VALUES (NULL, 'oi', 1)";
-if($mysqli_disp->query($stmt) == FALSE){
-	echo "<h1> Connection Problem </h1>";
-}
 ?>

@@ -158,7 +158,6 @@
 	else{
 		echo "<h1>You are not allowed</h1>";
 	}
-	endif;
 	?>
 	</body>
 </html>
