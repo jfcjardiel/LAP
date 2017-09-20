@@ -115,7 +115,6 @@ sec_session_start();
     <!--=========== END HEADER SECTION ================-->
 
     <?php if (login_check($mysqli) == true) : ?>
-
     <script>
         //Function that calls input.php and embedded the code into the page
         function administrador_action(str){
@@ -125,69 +124,8 @@ sec_session_start();
               document.getElementById("input_form").innerHTML = '<h2 class="blog_title">Administrador Page</h2><p class="blog_summary">Here you can execute administrator actions for the entire website.</p>';
               return;
           }
-          if (str == "register"){
-            document.getElementById("input_form").innerHTML = '<iframe height="400" width="100%" src="register.php"><p>Your browser does not support iframes.</p></iframe>';
-            return;
-          }
-          //if some is, then we will embedded the code of input.php
-          //it is important to say, the only data we are going to send is the id by url
-          xhttp = new XMLHttpRequest();
-          xhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-              document.getElementById("input_form").innerHTML = this.responseText;
-            }
-          };
-          xhttp.open("GET", str+".php", true);
-          xhttp.send();
+          document.getElementById("input_form").innerHTML = '<iframe height="400" width="100%" src="'+str+'.php"><p>Your browser does not support iframes.</p></iframe>';
         }
-
-        //sending data to another page
-        function sendForm(id_dispositivo_select){
-            //stablihing new XMLHttpRequest
-            var xhttp;
-            xhttp = new XMLHttpRequest();
-            //vendo o tamanho da form
-            var form_length = document.forms["form_dispositivo"].length-1;
-            //building the URL that will be send
-            url_send_form = "disp_form/answer.php?id_dispositivo="+id_dispositivo_select;
-            for(var aux_send = 0; aux_send < form_length; aux_send++){
-                url_send_form = url_send_form + "&valor" + aux_send + "=" + document.getElementById(aux_send).value;
-            }
-            alert(url_send_form);
-            //inicializing the request
-            xhttp.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                    document.getElementById("answer_form").innerHTML = this.responseText;
-                }
-            };
-            //sending the data to answer.
-            xhttp.open("GET", url_send_form, true);
-            xhttp.send();        
-        }
-
-        //function to know if the space is empty or not
-        function validateForm(id_dispositivo_select){
-          //o .length conta o botao tambem
-          var form_length = document.forms["form_dispositivo"].length-1;
-          //verifying if the form is ok
-          var is_form_ok = true;
-          //defining the variables for the loop
-          var conteudo = '';
-          //.length counts the button, so we dont have to worry about it
-          for(var aux_id = 0; aux_id < form_length; aux_id++){
-            conteudo = document.getElementById(aux_id).value;
-            if (conteudo == ""){
-              if(is_form_ok){
-                alert("Name must be filled out");
-                is_form_ok = false;
-              }
-            }
-          }
-          if(is_form_ok){
-            sendForm(id_dispositivo_select);
-          }
-        }
-
     </script>
 
     <!--=========== BEGIN LOGIN BANNER SECTION ================-->

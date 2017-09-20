@@ -14,24 +14,24 @@ include_once 'includes/functions.php';
     <body>
         <!-- Registration form to be output if the POST variables are not
         set or if the registration script caused an error. -->
-        <h1>Register with us</h1>
+        <h1>Register another person</h1>
         <?php
         if (!empty($error_msg)) {
             echo $error_msg;
         }
         ?>
         <ul>
-            <li>Usernames may contain only digits, upper and lowercase letters and underscores</li>
-            <li>Emails must have a valid email format</li>
-            <li>Passwords must be at least 6 characters long</li>
+            <li>Usernames may contain only digits, upper and lowercase letters and underscores</li><br>
+            <li>Emails must have a valid email format</li><br>
+            <li>Passwords must be at least 6 characters long</li><br>
             <li>Passwords must contain
                 <ul>
                     <li>At least one uppercase letter (A..Z)</li>
                     <li>At least one lowercase letter (a..z)</li>
                     <li>At least one number (0..9)</li>
                 </ul>
-            </li>
-            <li>Your password and confirmation must match exactly</li>
+            </li><br>
+            <li>Your password and confirmation must match exactly</li><br>
         </ul>
         <form action="<?php echo esc_url($_SERVER['REQUEST_URI']); ?>" 
                 method="post" 
