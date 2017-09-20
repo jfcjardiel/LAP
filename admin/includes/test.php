@@ -19,17 +19,16 @@ if ($stmt = $mysqli->prepare("SELECT id, username, password
     echo $user_id;
     echo $username;
 }
-//getting the last dispositivo uploaded
-$id_result = $mysqli->query("SELECT id FROM members ORDER BY id DESC LIMIT 1");
-if($id_result->num_rows > 0){
-	$id_row = $id_result->fetch_assoc();
-	$id = $id_row["id"];
-	echo "ACHOU!";
-	echo $id;
-}
-else{
-	echo "<h1> Connection Problem </h1>";
-	exit;
-}
 
+$mysqli_disp = new mysqli('localhost', 'root', 'input212', 'input');
+
+		$id_result = $mysqli_disp->query("SELECT id_dispositivo FROM dispositivo ORDER BY id_dispositivo DESC LIMIT 1");
+		if($id_result->num_rows > 0){
+			$id_row = $id_result->fetch_assoc();
+			$id = $id_row["id_dispositivo"];			
+		}
+		else{
+			echo "<h1> Connection Problem </h1>";
+			exit;
+		}
 ?>
