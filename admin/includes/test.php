@@ -2,7 +2,7 @@
 		//debug settings
 		ini_set('display_errors',1);
 		error_reporting(E_ALL);
-		
+
 include_once 'psl-config.php';
 include_once 'db_connect.php';
 
@@ -20,7 +20,7 @@ if ($stmt = $mysqli->prepare("SELECT id, username, password
     echo $username;
 }
 //getting the last dispositivo uploaded
-$id_result = $mysqli_disp->query("SELECT id FROM members ORDER BY id DESC LIMIT 1");
+$id_result = $mysqli->query("SELECT id FROM members ORDER BY id DESC LIMIT 1");
 if($id_result->num_rows > 0){
 	$id_row = $id_result->fetch_assoc();
 	$id = $id_row["id"];
