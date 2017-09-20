@@ -124,7 +124,7 @@ sec_session_start();
               document.getElementById("input_form").innerHTML = '<h2 class="blog_title">Administrador Page</h2><p class="blog_summary">Here you can execute administrator actions for the entire website.</p>';
               return;
           }
-          document.getElementById("input_form").innerHTML = '<iframe height="450" width="100%" src="'+str+'.php"><p>Your browser does not support iframes.</p></iframe>';
+          document.getElementById("input_form").innerHTML = '<iframe height="500" width="100%" src="'+str+'.php"><p>Your browser does not support iframes.</p></iframe>';
         }
     </script>
 
