@@ -39,6 +39,7 @@ if ($result->num_rows === 0) {
 //writing the title
 while ($dispositivo = $result->fetch_assoc()) {
     //it is exibitig the line.
+    $nome_dispositivo = $dispositivo['nome_dispositivo'];
     echo "<h2 class='blog_title'> Selected Tool: " . $dispositivo['nome_dispositivo'] . '</h2>';
 }
 
@@ -48,11 +49,11 @@ while ($dispositivo = $result->fetch_assoc()) {
 
 //criando o upload  -> o arquivo vai ter o nome do dispositivo na pasta disp_form
 $target_dir_img = "disp_form/img/";
-$target_img = $target_dir_img . $dispositivo['nome_dispositivo'] . $id . ".jpg";
+$target_img = $target_dir_img . $nome_dispositivo . $id . ".jpg";
 
-//if(file_exists($target_img)){
+if(file_exists($target_img)){
     echo '<div class="blogimg_container"><a class="blog_img"><img alt="img" src="'.$target_img.'"></a></div>';
-//}
+}
 
 //*******************************//
 //***** INICIALIZE FORM *********//
