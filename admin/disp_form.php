@@ -123,6 +123,11 @@
 		$file_head = 'Needs["DatabaseLink`"];' . "\n";
 		$file_head .= 'conn = OpenSQLConnection[JDBC["MySQL(Connector/J)", "localhost:3306/input"], Username -> "root", Password -> "input212"];' . "\n";
 
+		//now, we are going to guarantee that mathematica is going execute everyy ask
+		$file_head .= '{{variavelLoopEscolhidaPorJardiel}} = SQLExecute[conn, "SELECT COUNT(*) FROM valor_dispositivo_atributos WHERE jaleu=FALSE AND id_dispositivo='. $id .'"];' . "\n";
+		$file_head .= 'While[variavelLoopEscolhidaPorJardiel>0,' . "\n";
+
+
 		//inserting into the file, the correct variables
 		$file_connection = '';
 		for($i=0;$i<30;$i++){
@@ -146,13 +151,17 @@
 					$nome_variavel = $_POST[$variavel];
 					$file_connection .= '{{'.$nome_variavel.'}}=SQLExecute[conn, "SELECT valor FROM valor_dispositivo_atributos WHERE id_config='.$id_config.' AND jaleu=FALSE ORDER BY id_valor DESC LIMIT 1"];'  . "\n";
 					//dando update no valor lido
-					$file_connection .= 'SQLExecute[conn, "UPDATE valor_dispositivo_atributos SET jaleu=TRUE WHERE id_config='.$id_config.' ORDER BY id_valor DESC LIMIT 1"];' . "\n";
+					$file_connection .= 'SQLExecute[conn, "UPDATE valor_dispositivo_atributos SET jaleu=TRUE WHERE id_config='.$id_config.' AND jaleu=FALSE ORDER BY id_valor DESC LIMIT 1"];' . "\n";
 				}
 			}
 		}
 
+		//CLOSING WHILE
+		$file_foot = '{{variavelLoopEscolhidaPorJardiel}} = SQLExecute[conn, "SELECT COUNT(*) FROM valor_dispositivo_atributos WHERE jaleu=FALSE AND id_dispositivo='. $id .'"];' . "\n";
+		$file_foot .= 'CloseSQLConnection[conn];'
+
 		//com os dados em maos, basta colocar o arquivo e salvar
-		$file_data = $file_head . $file_connection . file_get_contents($target_file);
+		$file_data = $file_head . $file_connection . file_get_contents($target_file) . $file_foot;
 		file_put_contents($target_file, $file_data);
 
 		//**************************************//
