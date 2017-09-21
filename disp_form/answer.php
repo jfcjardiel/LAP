@@ -1,4 +1,8 @@
 <?php
+//debug settings
+ini_set('display_errors',1);
+error_reporting(E_ALL);
+
 // get the q parameter from URL
 $id_dispositivo = $_REQUEST["id_dispositivo"] + 0;
 //echo $id_dispositivo;

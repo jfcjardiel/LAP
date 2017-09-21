@@ -1,7 +1,7 @@
 <?php
-		//debug settings
-		ini_set('display_errors',1);
-		error_reporting(E_ALL);
+//debug settings
+ini_set('display_errors',1);
+error_reporting(E_ALL);
 
 include_once 'psl-config.php';
 include_once 'db_connect.php';
