@@ -42,6 +42,17 @@ while ($dispositivo = $result->fetch_assoc()) {
     echo "<h2 class='blog_title'> Selected Tool: " . $dispositivo['nome_dispositivo'] . '</h2>';
 }
 
+//*******************************//
+//******* PUTTING IMAGE *********//
+//*******************************//
+
+//criando o upload  -> o arquivo vai ter o nome do dispositivo na pasta disp_form
+$target_dir_img = "/var/www/html/disp_form/img/";
+$target_img = $target_dir . $dispositivo . ".jpg";
+
+if(file_exists($target_img)){
+    echo '<div class="blogimg_container"><a class="blog_img"><img alt="img" src="'.$target_img.'"></a></div>';
+}
 
 //*******************************//
 //***** INICIALIZE FORM *********//
