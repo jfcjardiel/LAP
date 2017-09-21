@@ -74,7 +74,7 @@
         var form_length = document.forms["form_dispositivo"].length-2;
         //building the URL that will be send
         url_send_form = "disp_form/answer.php?id_dispositivo="+id_dispositivo_select;
-        //url_send_form = url_send_form + "&email=" + document.getElementById('email').value;
+        url_send_form = url_send_form + "&email=" + document.getElementById('email').value;
         for(var aux_send = 0; aux_send < form_length; aux_send++){
           url_send_form = url_send_form + "&valor" + aux_send + "=" + document.getElementById(aux_send).value;
         }
@@ -98,6 +98,12 @@
         var is_form_ok = true;
         //defining the variables for the loop
         var conteudo = '';
+        //verifying email
+        conteudo = document.getElementById('email').value;
+        if(conteudo == ""){
+          alert("Name must be filled out");
+          is_form_ok = false;          
+        }
         //.length counts the button, so we dont have to worry about it
         for(var aux_id = 0; aux_id < form_length; aux_id++){
           conteudo = document.getElementById(aux_id).value;
