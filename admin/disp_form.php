@@ -162,23 +162,28 @@
 
 		//criando o upload  -> o arquivo vai ter o nome do dispositivo na pasta disp_form
 		$target_dir_img = "/var/www/html/disp_form/img/";
-		$target_img = $target_dir_img . $dispositivo . $id ".jpg";
+		$target_img = $target_dir_img . $dispositivo . $id . ".jpg";
 
 		//echo "nome do arquivo: ", $target_file , "\n";
 		$uploadOk = FALSE;
 		$imgType = pathinfo($target_img,PATHINFO_EXTENSION);
 
 		$errors = array();
-		$img_name = $_FILES['upimg']['name'];
-		$img_size = $_FILES['upimg']['size'];
-		$img_tmp = $_FILES['upimg']['tmp_name'];
-		$img_type = $_FILES['upimg']['type'];
-		$img_extension = strtolower(end(explode('.',$file_name)));
+
+		if(isset($_FILES['upimg'])){
+			$img_name = $_FILES['upimg']['name'];
+			$img_size = $_FILES['upimg']['size'];
+			$img_tmp = $_FILES['upimg']['tmp_name'];
+			$img_type = $_FILES['upimg']['type'];
+			$img_extension = strtolower(end(explode('.',$file_name)));
+			$uploadOk = TRUE;
+		}
 
 		if(file_exists($target_img)){
 			echo "Warning: arquivo com o mesmo nome da pasta foi sobrescrito";
 			$uploadOk = TRUE;
 		}
+
 
 		if($_FILES["upimg"]["size"] > 1000000000){
 			echo "Error, file is larger than 10MB" . $_FILES["upfile"]["size"];
