@@ -176,6 +176,8 @@
 			$img_tmp = $_FILES['upimg']['tmp_name'];
 			$img_type = $_FILES['upimg']['type'];
 			$img_extension = strtolower(end(explode('.',$file_name)));
+		}
+		else{
 			$uploadOk = TRUE;
 		}
 
