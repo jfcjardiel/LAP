@@ -74,12 +74,11 @@ if ($result->num_rows === 0) {
     exit;
 }
 
+//adding e-mail input form
+echo "<p class='blog_summary'>E-mail<br><input class='blog_summary' type='text' id='email'></p>";
+
 //Writing the form
 echo "<form method='post' attribute='post' id='form_dispositivo' name='form_dispositivo'>"; //onsubmit='return validateForm()'>";
-
-
-//adding e-mail input form
-//echo "<p class='blog_summary'>E-mail (If the simulation take too much time, we are going to send an email with the results)<br><input class='blog_summary' type='text' id='email' name='email'></p>";
 
 //O id eh simplesmente comecado de 0 ate o tamanho da form
 //O name eh o id_config porque sera acessado de outro lugar
