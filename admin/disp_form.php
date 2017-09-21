@@ -162,7 +162,7 @@
 
 		//criando o upload  -> o arquivo vai ter o nome do dispositivo na pasta disp_form
 		$target_dir_img = "/var/www/html/disp_form/img/";
-		$target_img = $target_dir . $dispositivo . ".jpg";
+		$target_img = $target_dir_img . $dispositivo . ".jpg";
 
 		//echo "nome do arquivo: ", $target_file , "\n";
 		$uploadOk = FALSE;
