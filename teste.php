@@ -71,7 +71,7 @@
         var xhttp;
         xhttp = new XMLHttpRequest();
         //vendo o tamanho da form
-        var form_length = document.forms["form_dispositivo"].length-1;
+        var form_length = document.forms["form_dispositivo"].length-2;
         //building the URL that will be send
         url_send_form = "disp_form/answer.php?id_dispositivo="+id_dispositivo_select;
         //url_send_form = url_send_form + "&email=" + document.getElementById('email').value;
@@ -93,7 +93,7 @@
       //function to know if the space is empty or not
       function validateForm(id_dispositivo_select){
         //o .length conta o botao tambem
-        var form_length = document.forms["form_dispositivo"].length-1;
+        var form_length = document.forms["form_dispositivo"].length-2;
         //verifying if the form is ok
         var is_form_ok = true;
         //defining the variables for the loop
