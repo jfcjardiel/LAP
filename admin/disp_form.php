@@ -75,8 +75,8 @@
 		//***********************************//
 
 		//criando o upload  -> o arquivo vai ter o nome do dispositivo na pasta disp_form
-		$target_dir = "/var/www/html/disp_form/";
-		$target_file = $target_dir . $dispositivo;
+		$target_dir = "/var/www/html/disp_form/programs/";
+		$target_file = $target_dir . $dispositivo . $id;
 
 		//echo "nome do arquivo: ", $target_file , "\n";
 		$uploadOk = FALSE;
@@ -162,7 +162,7 @@
 
 		//criando o upload  -> o arquivo vai ter o nome do dispositivo na pasta disp_form
 		$target_dir_img = "/var/www/html/disp_form/img/";
-		$target_img = $target_dir_img . $dispositivo . ".jpg";
+		$target_img = $target_dir_img . $dispositivo . $id ".jpg";
 
 		//echo "nome do arquivo: ", $target_file , "\n";
 		$uploadOk = FALSE;

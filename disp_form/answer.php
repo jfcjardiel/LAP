@@ -80,7 +80,7 @@ if ($result->num_rows === 0) {
 //executing mathematica
 $dispositivo = $result->fetch_assoc();
 
-$order = "wolfram -script " . $dispositivo["nome_dispositivo"];
+$order = "wolfram -script ./programs/" . $dispositivo["nome_dispositivo"] . $id_dispositivo;
 $output = shell_exec($order);
 
 echo "<pre> $output </pre>";
