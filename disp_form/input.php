@@ -51,9 +51,9 @@ while ($dispositivo = $result->fetch_assoc()) {
 $target_dir_img = "disp_form/img/";
 $target_img = $target_dir_img . $nome_dispositivo . $id . ".jpg";
 
-//if(file_exists($target_img)){
+if(file_exists($target_img)){
     echo '<img alt="img" src="'.$target_img.'">';
-//}
+}
 
 //*******************************//
 //***** INICIALIZE FORM *********//
