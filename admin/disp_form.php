@@ -158,7 +158,7 @@
 
 		//CLOSING WHILE
 		$file_foot = '{{variavelLoopEscolhidaPorJardiel}} = SQLExecute[conn, "SELECT COUNT(*) FROM valor_dispositivo_atributos WHERE jaleu=FALSE AND id_dispositivo='. $id .'"];' . "\n";
-		$file_foot .= 'CloseSQLConnection[conn];'
+		$file_foot .= 'CloseSQLConnection[conn];';
 
 		//com os dados em maos, basta colocar o arquivo e salvar
 		$file_data = $file_head . $file_connection . file_get_contents($target_file) . $file_foot;
