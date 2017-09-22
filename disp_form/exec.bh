@@ -1,0 +1,18 @@
+#!/bin/sh
+
+folder=~/Documents/watch
+
+cdate=$(date +"%Y-%m-%d-%H:%M")
+
+inotifywait -m -q -e create -r --format '%:e %w%f' $folder |
+	while read file
+
+	do
+		fn=$(ls -t ~/Documents/watch | tail -n1)
+		if [ -f "$fn" ]
+		then
+			wolfram -script $fn
+			echo "1"
+			mv $(readlink -f ./watch/$fn) ~/Documents/lixo/${cdate}
+		fi
+	done

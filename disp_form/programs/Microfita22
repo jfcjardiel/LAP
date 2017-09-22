@@ -1,0 +1,26 @@
+Needs["DatabaseLink`"];
+conn = OpenSQLConnection[JDBC["MySQL(Connector/J)", "localhost:3306/input"], Username -> "root", Password -> "input212"];
+{{variavelLoopEscolhidaPorJardiel}} = SQLExecute[conn, "SELECT COUNT(*) FROM valor_dispositivo_atributos WHERE jaleu=FALSE AND id_dispositivo=2"];
+While[variavelLoopEscolhidaPorJardiel>0,
+{{permissividade}}=SQLExecute[conn, "SELECT valor FROM valor_dispositivo_atributos WHERE id_config=3 AND jaleu=FALSE ORDER BY id_valor DESC LIMIT 1"];
+SQLExecute[conn, "UPDATE valor_dispositivo_atributos SET jaleu=TRUE WHERE id_config=3 AND jaleu=FALSE ORDER BY id_valor DESC LIMIT 1"];
+{{impedancia}}=SQLExecute[conn, "SELECT valor FROM valor_dispositivo_atributos WHERE id_config=4 AND jaleu=FALSE ORDER BY id_valor DESC LIMIT 1"];
+SQLExecute[conn, "UPDATE valor_dispositivo_atributos SET jaleu=TRUE WHERE id_config=4 AND jaleu=FALSE ORDER BY id_valor DESC LIMIT 1"];
+A[z0_, \[Epsilon]_] := 
+ z0/60*Sqrt[(\[Epsilon] + 1)/
+     2] + (\[Epsilon] - 1)/(\[Epsilon] + 1)*(0.23 + 0.11/\[Epsilon]);
+B[z0_, \[Epsilon]_] := 377*3.14/2/z0/Sqrt[\[Epsilon]];
+wsobred[k_] := 8*Exp[k]/(Exp[2*k] - 2);
+razao[z0_, \[Epsilon]_] := 
+ If[wsobred[A[z0, \[Epsilon]]] < 2, wsobred[A[z0, \[Epsilon]]], 
+  2/3.14*(B[z0, \[Epsilon]] - 1 - 
+     Log[2*B[z0, \[Epsilon]] - 
+       1] + (\[Epsilon] - 1)/
+        2/\[Epsilon]*(Log[B[z0, \[Epsilon]] - 1] + 0.39 - 
+        0.61/\[Epsilon]))];
+Print[impedancia];
+Print[permissividade];
+Print[razao[impedancia, permissividade]];
+{{variavelLoopEscolhidaPorJardiel}} = SQLExecute[conn, "SELECT COUNT(*) FROM valor_dispositivo_atributos WHERE jaleu=FALSE AND id_dispositivo=2"]];
+Print[variavelLoopEscolhidaPorJardiel];
+CloseSQLConnection[conn];
