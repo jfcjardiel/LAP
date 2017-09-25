@@ -8,7 +8,7 @@ cdate=$(date +"%Y-%m-%d-%H:%M")
 
 #visualiza caso haja um arquivo dentro da pasta
 inotifywait -m -q -e create -r --format '%:e %w%f' $folder |
-	while read file
+	while read file;
 	do
 		fn=$(ls -t $folder | tail -n1)
 		if [ -f "$fn" ]
