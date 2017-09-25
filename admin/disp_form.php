@@ -128,7 +128,7 @@
 		$file_head .= 'While[variavelLoopEscolhidaPorJardiel>0,' . "\n";
 
 		//getting the user
-		$file_head .= '{{user}} = SQLExecute[conn, "SELECT SUBSTRING_INDEX(email,' . "'@'" . ',1) FROM valor_dispositivo_atributos ORDER BY id_valor ASC LIMIT 1"];' . "\n";
+		$file_head .= '{{user}} = SQLExecute[conn, "SELECT SUBSTRING_INDEX(email,' . "'@'" . ',1) FROM valor_dispositivo_atributos WHERE jaleu=FALSE ORDER BY id_valor ASC LIMIT 1"];' . "\n";
 
 		//inserting into the file, the correct variables
 		$file_connection = '';
