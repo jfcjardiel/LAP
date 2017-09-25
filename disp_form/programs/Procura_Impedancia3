@@ -2,7 +2,7 @@ Needs["DatabaseLink`"];
 conn = OpenSQLConnection[JDBC["MySQL(Connector/J)", "localhost:3306/input"], Username -> "root", Password -> "input212"];
 {{variavelLoopEscolhidaPorJardiel}} = SQLExecute[conn, "SELECT COUNT(*) FROM valor_dispositivo_atributos WHERE jaleu=FALSE AND id_dispositivo=3"];
 While[variavelLoopEscolhidaPorJardiel>0,
-{{user}} = SQLExecute[conn, "SELECT SUBSTRING_INDEX(email,'@',1) FROM valor_dispositivo_atributos WHERE jaleu=FALSE ORDER BY id_valor ASC LIMIT 1"];
+{{user}} = SQLExecute[conn, "SELECT SUBSTRING_INDEX(email,'@',1) FROM valor_dispositivo_atributos WHERE jaleu=FALSE AND id_dispositivo=3 ORDER BY id_valor ASC LIMIT 1"];
 {{fr}}=SQLExecute[conn, "SELECT valor FROM valor_dispositivo_atributos WHERE id_config=9 AND jaleu=FALSE ORDER BY id_valor ASC LIMIT 1"];
 SQLExecute[conn, "UPDATE valor_dispositivo_atributos SET jaleu=TRUE WHERE id_config=9 AND jaleu=FALSE ORDER BY id_valor ASC LIMIT 1"];
 {{h}}=SQLExecute[conn, "SELECT valor FROM valor_dispositivo_atributos WHERE id_config=10 AND jaleu=FALSE ORDER BY id_valor ASC LIMIT 1"];
@@ -28,8 +28,6 @@ h = h*10^-3;
 tan\[Delta];
 ZL = ZLReal + I *ZLImag;
 factor;
-
-
 
 SetDirectory[NotebookDirectory[]];
 SetOptions[ListPlot, BaseStyle -> FontSize -> 14, 
@@ -306,6 +304,5 @@ picture = ListPlot[{Im[Zin[a, b, x0, z0]], Re[Zin[a, b, x0, z0]]},
    Frame -> True, FrameLabel -> {"Freq[GHz]", "Zin[\[CapitalOmega]]"},
     GridLines -> Automatic, Joined -> True, AspectRatio -> 3/4];
 If[ValueQ[picture],Export[StringJoin["/var/www/html/disp_form/results/",user,"3",".jpg"], picture],picture=False];
-Quit[];
 {{variavelLoopEscolhidaPorJardiel}} = SQLExecute[conn, "SELECT COUNT(*) FROM valor_dispositivo_atributos WHERE jaleu=FALSE AND id_dispositivo=3"]];
 CloseSQLConnection[conn];
