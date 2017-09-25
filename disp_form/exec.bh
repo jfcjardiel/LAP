@@ -14,6 +14,6 @@ inotifywait -m -q -e create -r --format '%:e %w%f' $folder |
 		then
 			wolfram -script /var/www/html/disp_form/programs/$fn
 			echo "Watchdog foi acionado."
-			mv /var/www/html/disp_form/$fn /var/www/html/disp_form/lixo/${cdate}
+			mv /var/www/html/disp_form/watch/$fn /var/www/html/disp_form/lixo/${cdate}
 		fi
 	done
