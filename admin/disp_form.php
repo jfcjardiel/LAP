@@ -146,7 +146,7 @@
 						$id_config = $id_config_row["id_config"];
 					}
 					else{
-						echo "ERROR: CONTACT SUPPORT";
+						echo "ERROR: CONTACT SOMEONE";
 						exit;
 					}
 					//com o id em maos, vamos colocar no arquivo como ele deve pegar o valor
