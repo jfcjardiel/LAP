@@ -1,0 +1,11 @@
+Needs["DatabaseLink`"];
+conn = OpenSQLConnection[JDBC["MySQL(Connector/J)", "localhost:3306/input"], Username -> "root", Password -> "input212"];
+{{variavelLoopEscolhidaPorJardiel}} = SQLExecute[conn, "SELECT COUNT(*) FROM valor_dispositivo_atributos WHERE jaleu=FALSE AND id_dispositivo=1"];
+While[variavelLoopEscolhidaPorJardiel>0,
+{{user}} = SQLExecute[conn, "SELECT SUBSTRING_INDEX(email,'@',1) FROM valor_dispositivo_atributos WHERE jaleu=FALSE ORDER BY id_valor ASC LIMIT 1"];
+{{y}}=SQLExecute[conn, "SELECT valor FROM valor_dispositivo_atributos WHERE id_config=1 AND jaleu=FALSE ORDER BY id_valor ASC LIMIT 1"];
+SQLExecute[conn, "UPDATE valor_dispositivo_atributos SET jaleu=TRUE WHERE id_config=1 AND jaleu=FALSE ORDER BY id_valor ASC LIMIT 1"];
+picture = Plot[Sin[x], {x, 0, y}];
+If[ValueQ[picture],Export[StringJoin["/var/www/html/disp_form/results/",user,"1",".jpg"],picture],picture=False];
+{{variavelLoopEscolhidaPorJardiel}} = SQLExecute[conn, "SELECT COUNT(*) FROM valor_dispositivo_atributos WHERE jaleu=FALSE AND id_dispositivo=1"]];
+CloseSQLConnection[conn];
