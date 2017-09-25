@@ -3,21 +3,16 @@
 ini_set('display_errors',1);
 error_reporting(E_ALL);
 
-include_once 'psl-config.php';
-include_once 'db_connect.php';
-
-
-//getting the last dispositivo uploaded
-//$id = $mysqli->query("SELECT id_dispositivo FROM dispositivo ORDER BY id_dispositivo DESC LIMIT 1") + 0;
-
-if ($stmt = $mysqli->prepare("SELECT id, username, password 
-    FROM members")) {
-    $stmt->execute();    // Execute the prepared query.
-    $stmt->store_result();
-    $stmt->bind_result($user_id, $username, $db_password);
-    $stmt->fetch();
-    echo $user_id;
-    echo $username;
+$image_result_server = "/var/www/html/disp_form/results/jfcjardiel1.jpg";
+while(!file_exists($image_result_server) || ($aux_time < 30)){
+    sleep(1);
+    $aux_time = $aux_time + 1;
 }
 
+$image_result = "../../disp_form/results/";
+if($aux_time < 30){
+    echo '<img alt="img" src="'.$image_result.'">';
+}else{
+    echo "<h2 class='blog_title'>Not working </h2>";
+}
 ?>
