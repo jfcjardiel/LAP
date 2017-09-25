@@ -10,6 +10,7 @@ cdate=$(date +"%Y-%m-%d-%H:%M")
 inotifywait -m -q -e create -r --format '%:e %w%f' $folder |
 	while read path action file; do
 		fn=$(ls -t $folder | tail -n1)
+		echo $fn
 		if [ -f "$fn" ]
 		then
 			wolfram -script /var/www/html/disp_form/programs/$fn

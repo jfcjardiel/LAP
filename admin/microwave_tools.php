@@ -28,7 +28,7 @@ $(document).ready(function() {
         e.preventDefault();
         if(x < max_fields){ 
             x++;
-            $(wrapper).append('<div class="member'+x+'"><div class="left">Atribute Name<br>(How they will see)<br><input type="text" name="nome'+x+'" id="nome'+x+'"/></div><div class="right">Atribute Name<br>(as in Mathematica)<br><input type="text" name="variavel'+x+'" id="variavel'+x+'"/></div></div>');
+            $(wrapper).append('<div class="member'+x+'"><div class="left">Atribute Name<br>(How they will see)<br><input type="text" name="nome'+x+'" id="nome'+x+'" maxlength="20"/></div><div class="right">Atribute Name<br>(as in Mathematica)<br><input type="text" name="variavel'+x+'" id="variavel'+x+'"/></div></div>');
         }
         else{
             alert('You Reached the limits entrou aqui');
