@@ -1,18 +1,20 @@
 #!/bin/sh
 
-folder=~/Documents/watch
+#pasta do watch
+folder=/var/www/html/disp_form/watch/
 
+#variavel para nunca ter problema de mesmo dinheiro
 cdate=$(date +"%Y-%m-%d-%H:%M")
 
+#visualiza caso haja um arquivo dentro da pasta
 inotifywait -m -q -e create -r --format '%:e %w%f' $folder |
 	while read file
-
 	do
-		fn=$(ls -t ~/Documents/watch | tail -n1)
+		fn=$(ls -t $folder | tail -n1)
 		if [ -f "$fn" ]
 		then
-			wolfram -script $fn
-			echo "1"
-			mv $(readlink -f ./watch/$fn) ~/Documents/lixo/${cdate}
+			wolfram -script /var/www/html/disp_form/programs/$fn
+			echo "Watchdog foi acionado."
+			mv /var/www/html/disp_form/$fn /var/www/html/disp_form/lixo/${cdate}
 		fi
 	done

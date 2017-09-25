@@ -127,6 +127,8 @@
 		$file_head .= '{{variavelLoopEscolhidaPorJardiel}} = SQLExecute[conn, "SELECT COUNT(*) FROM valor_dispositivo_atributos WHERE jaleu=FALSE AND id_dispositivo='. $id .'"];' . "\n";
 		$file_head .= 'While[variavelLoopEscolhidaPorJardiel>0,' . "\n";
 
+		//getting the user
+		$file_head .= '{{user}} = SQLExecute[conn, "SELECT SUBSTRING_INDEX(email,' . "'@'" . ',1) FROM valor_dispositivo_atributos ORDER BY id_valor ASC LIMIT 1"];';
 
 		//inserting into the file, the correct variables
 		$file_connection = '';
@@ -149,15 +151,18 @@
 					}
 					//com o id em maos, vamos colocar no arquivo como ele deve pegar o valor
 					$nome_variavel = $_POST[$variavel];
-					$file_connection .= '{{'.$nome_variavel.'}}=SQLExecute[conn, "SELECT valor FROM valor_dispositivo_atributos WHERE id_config='.$id_config.' AND jaleu=FALSE ORDER BY id_valor DESC LIMIT 1"];'  . "\n";
+					$file_connection .= '{{'.$nome_variavel.'}}=SQLExecute[conn, "SELECT valor FROM valor_dispositivo_atributos WHERE id_config='.$id_config.' AND jaleu=FALSE ORDER BY id_valor ASC LIMIT 1"];'  . "\n";
 					//dando update no valor lido
-					$file_connection .= 'SQLExecute[conn, "UPDATE valor_dispositivo_atributos SET jaleu=TRUE WHERE id_config='.$id_config.' AND jaleu=FALSE ORDER BY id_valor DESC LIMIT 1"];' . "\n";
+					$file_connection .= 'SQLExecute[conn, "UPDATE valor_dispositivo_atributos SET jaleu=TRUE WHERE id_config='.$id_config.' AND jaleu=FALSE ORDER BY id_valor ASC LIMIT 1"];' . "\n";
 				}
 			}
 		}
 
+		//This is going to test if picture is set. If it is, then it will generae a picture. If not, it will do nothing
+		$file_foot = 'If[ValueQ[picture],Export[StringJoin["/var/www/html/disp_form/results/",user,"'. $id .'",".jpg"]],picture=False];' . "\n";
+
 		//CLOSING WHILE
-		$file_foot = '{{variavelLoopEscolhidaPorJardiel}} = SQLExecute[conn, "SELECT COUNT(*) FROM valor_dispositivo_atributos WHERE jaleu=FALSE AND id_dispositivo='. $id .'"]];' . "\n";
+		$file_foot .= '{{variavelLoopEscolhidaPorJardiel}} = SQLExecute[conn, "SELECT COUNT(*) FROM valor_dispositivo_atributos WHERE jaleu=FALSE AND id_dispositivo='. $id .'"]];' . "\n";
 		$file_foot .= 'CloseSQLConnection[conn];';
 
 		//com os dados em maos, basta colocar o arquivo e salvar

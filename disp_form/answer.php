@@ -80,13 +80,38 @@ if ($result->num_rows === 0) {
     exit;
 }
 
-//executing mathematica
+//Criando o arquivo na pasta watch para o watchdog perceber a criacao e executar o mathematica
 $dispositivo = $result->fetch_assoc();
 
-$order = "wolfram -script ./programs/" . $dispositivo["nome_dispositivo"] . $id_dispositivo;
-$output = shell_exec($order);
+//THIS PART IS WHEN WE TRY TO EXECUTE SHELL_EXEC
+//$order = "wolfram -script ./programs/" . $dispositivo["nome_dispositivo"] . $id_dispositivo;
+//$output = shell_exec($order);
 
-echo "<pre> $output </pre>";
+//creating the file flag to watch execute mathematica
+$file_flag = "/var/www/html/disp_form/watch/" . $dispositivo["nome_dispositivo"] . $id_dispositivo;
+$handle = fopen($file_flag, 'w') or die('Cannot open file:  '.$file_flag);
+fwrite($file_flag, "Jardiel");
+fclose($file_flag);
+
+//expecting an image to be ready
+$email_result = explode("@", $email, 2);
+$image_result_server = "/var/www/html/disp_form/results/". $email_result . $id_dispositivo . ".jpg" ;
+$aux_time = 0; //we are going to expect a certain amount of time
+while(!file_exists($image_result_server) && $aux_time < 30){
+    sleep(5);
+    $aux_time = $aux_time + 1;
+}
+
+$image_result = "disp_form/results/";
+if($aux_time < 30){
+    echo '<img alt="img" src="'.$image_result.'">';
+}else{
+    echo "<h2 class='blog_title'>Not working </h2>";
+}
+
+//Estou fazendo isso porque eu nao consigo eliminar o arquivo
+//$shell_command = "rm -f " . $file_flag;
+//shell_exec($shell_command);
 
 //we should close the connection
 $mysqli->close();

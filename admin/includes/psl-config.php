@@ -11,5 +11,5 @@ define("DATABASE", "secure_login"); //o nome da database que vamos querer acessa
 define("CAN_REGISTER", "any");
 define("DEFAULT_ROLE","member");
 
-define("SECURE", FALSE); //for development only
+define("SECURE", TRUE); //for development use FALSE
 ?>
