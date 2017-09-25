@@ -21,27 +21,14 @@ SQLExecute[conn, "UPDATE valor_dispositivo_atributos SET jaleu=TRUE WHERE id_con
 fr = fr*10^9;
 fmin = fr - 0.1*10^9;
 fmax = fr + 0.1*10^9;
-
-Print[fr];
-Print[fmin];
-Print[fmax];
-Print[f];
-Print[h];
-Print[\[Epsilon]r];
-Print[tan\[Delta]];
-Print[ZL];
-Print[factor];
-
-
 f = Range[fmin, fmax, 0.001*10^9];
 
 h = h*10^-3;
 \[Epsilon]r;
 tan\[Delta];
-ZLReal;
-ZLImag;
-ZL = ZLReal + I*ZLImag;
+ZL = ZLReal + I *ZLImag;
 factor;
+
 
 
 SetDirectory[NotebookDirectory[]];
@@ -50,27 +37,34 @@ SetOptions[ListPlot, BaseStyle -> FontSize -> 14,
 SetOptions[ListLinePlot, BaseStyle -> FontSize -> 20, 
   LabelStyle -> Directive[Bold, Black], PlotStyle -> Red, 
   Filling -> Axis];
-fmin = fr - 0.1*10^9;
-fmax = fr + 0.1*10^9;
-f = Range[fmin, fmax, 0.0001*10^9];
+
 \[CurlyEpsilon]r = \[Epsilon]r;
-\[Sigma] = 3.64*10^7;		
-\[Epsilon]0 = 8.854/10^12;		
+
+\[Sigma] = 3.64*10^7;   
+
+\[Epsilon]0 = 8.854/10^12;    
 \[Mu]0 = (4 \[Pi])/10^7;
 \[Eta]0 = Sqrt[\[Mu]0/\[Epsilon]0];
 c0 = 1/Sqrt[\[Mu]0 \[Epsilon]0];
+
  \[Omega]0 = 2 \[Pi] fr;
+
  k0 = \[Omega]0 Sqrt[\[Mu]0 \[Epsilon]0];
+
   Rs = Sqrt[2/(\[Omega]0 \[Mu]0 \[Sigma])]; 
 I0 = 1;
+
 Q1 = 0;
+
 Q2 = 0;
+
 \[Omega][f_] := 2 \[Pi] f;
 k[f_] := (2 \[Pi] f)/c0;
 k1[f1_] := (2 \[Pi] f1)/c0;
 \[Omega]1[f1_] := 2 *Pi*f1;
+
 b = c0/(2 fr Sqrt[\[Epsilon]r]);
-factor = 1;
+
 af[b_] := factor*b;
 a = af[b];
 x0 = a/2;
@@ -97,24 +91,24 @@ G[m_, n_] := Sinc[(m \[Pi] Dx)/(2 a)] Sinc[(n \[Pi] Dx)/(2 b)];
 
    E1[\[Theta]_, \[Phi]_, m_?NumericQ, n_?NumericQ] := 
   2 k0^2 Abs[Sin[\[Theta]] Sin[\[Phi]] Cos[\[Phi]]]*
-   						 
+               
    Abs[Cos[(m \[Pi])/2]^2 Sin[  (k0 a)/2 Sin[\[Theta]] Cos[\[Phi]]] + 
      I Sin[(m \[Pi])/2]^2 Cos[  (k0 a)/2 Sin[\[Theta]] Cos[\[Phi]]]]*
-   						Abs[
+              Abs[
     Cos[(n \[Pi])/2]^2 Sin[  (k0 b)/2 Sin[\[Theta]] Sin[\[Phi]]] + 
      I Sin[(n \[Pi])/2]^2 Cos[ (k0 b)/2 Sin[\[Theta]] Sin[\[Phi]]]]*
-   						Abs[
+              Abs[
     1/(k0^2 Sin[\[Theta]]^2 Cos[\[Phi]]^2 - ((m \[Pi])/a)^2) + 1/(
      k0^2 Sin[\[Theta]]^2 Sin[\[Phi]]^2 - ((n \[Pi])/b)^2)];
   E2[\[Theta]_, \[Phi]_, m_?NumericQ, n_?NumericQ] := 
   2 k0^2 Abs[Sin[\[Theta]] Cos[\[Theta]]]*
-   						 
+               
    Abs[Cos[(m \[Pi])/2]^2 Sin[  (k0 a)/2 Sin[\[Theta]] Cos[\[Phi]]] + 
      I Sin[(m \[Pi])/2]^2 Cos[  (k0 a)/2 Sin[\[Theta]] Cos[\[Phi]]]]*
-   						Abs[
+              Abs[
     Cos[(n \[Pi])/2]^2 Sin[  (k0 b)/2 Sin[\[Theta]] Sin[\[Phi]]] + 
      I Sin[(n \[Pi])/2]^2 Cos[ (k0 b)/2 Sin[\[Theta]] Sin[\[Phi]]]]*
-   						Abs[
+              Abs[
     Cos[\[Phi]]^2/(
      k0^2 Sin[\[Theta]]^2 Cos[\[Phi]]^2 - ((m \[Pi])/a)^2) - 
      Sin[\[Phi]]^2/(
@@ -138,9 +132,7 @@ Zin[a_, b_, x0_,
    z0_] := -I \[Mu]0 h \[Omega][
     f] ((\[Psi]0[0, 
        1]^2 G[0, 1]^2)/( \[CurlyEpsilon]r k[f]^2 (1 - I Q1) - 
-      kt[0, 1]^2) + (\[Psi]0[1, 
-       0]^2 G[1, 0]^2)/( \[CurlyEpsilon]r k[f]^2 (1 - I Q2) - 
-      kt[1, 0]^2) + \!\(
+      kt[0, 1]^2) + \!\(
 \*UnderoverscriptBox[\(\[Sum]\), \(m = 0\), \(70\)]\(
 \*UnderoverscriptBox[\(\[Sum]\), \(n = 
          0\), \(70\)]If[\((m == 0 && n == 1)\) || \((m == 1 && 
@@ -165,227 +157,147 @@ Zin1[a_, b_, f1_, x0_,
 \*SuperscriptBox[\(\[Psi]0[m, n]\), \(2\)]\ G[m, 
             n]^2\), \(\[CurlyEpsilon]r\ 
 \*SuperscriptBox[\(k1[f1]\), \(2\)] - kt[m, n]^2\)]]\)\));
-SetAttributes[SearchFunction, HoldAll];
 
-SearchFunction[] := (
-   (*----Condicoes iniciais-----*)
+
+(*----Condicoes iniciais-----*)
+
+flag = 0;
+Pborda = 2*10^-3;
+Q1 = \[Delta]eff[0, 1];
+z0 = b/4;
+z0ant = z0;
+step = z0;
+
+
+(*Calculo inicial*)
+
+ZinV = Zin[a, b, x0, z0];
+
+
+PosMax = Ordering[Re[ZinV], -1] // Last;
+dif = 50;
+dif1 = 50;
+PosF = Ordering[Abs[f - fr], 1] // Last;
+
+(*Grrafico dinamico*)
+con = 0;
+Zdinamic = ConstantArray[NullSpace, 50];    expr = 
+ Dynamic[Framed[
+   ListLinePlot[Abs[Im[ZL] - Zdinamic], PlotLabel -> "Convergence", 
+    Frame -> True, FrameLabel -> {"Pass", "Difference"}, 
+    GridLines -> Automatic, 
+    PlotRange -> {{1, Automatic}, {Automatic, Automatic}}, 
+    BaseStyle -> FontSize -> 20, LabelStyle -> Directive[Bold, Black],
+     PlotStyle -> Black, Filling -> Axis]]];
+  
+
+While[dif1 > 1,
+  
+          While [step > 1*10^-7,
    
-   flag = 0;
-   Pborda = 2*10^-3;
-   Q1 = \[Delta]eff[0, 1];
-   z0 = b/4;
-   z0ant = z0;
-   step = z0;
-   
-   (*Calculo inicial*)
-   
-   ZinV = Zin[a, b, x0, z0];
-   PosMax = Ordering[Re[ZinV], -1] // Last;
-   dif = 50;
-   dif1 = 50;
-   PosF = Ordering[Abs[f - fr], 1] // Last;
-   
-   (*Grrafico dinamico*)
-   con = 0;
-   Zdinamic = ConstantArray[NullSpace, 50];    
-   expr = Dynamic[
-     Framed[ListLinePlot[Abs[Im[ZL] - Zdinamic], 
-       PlotLabel -> "Convergence", Frame -> True, 
-       FrameLabel -> {"Pass", "Difference"}, GridLines -> Automatic, 
-       PlotRange -> {{1, Automatic}, {Automatic, Automatic}}, 
-       BaseStyle -> FontSize -> 20, 
-       LabelStyle -> Directive[Bold, Black], PlotStyle -> Black, 
-       Filling -> Axis]]];
-   	
-   
-   While[dif1 > 1,
-    
-            While [step > 1*10^-7,
-     
-     		If[Im[ZinV[[PosMax]]] > Im[ZL],
-      				
-      				(*capacitiva*)
-      				      
-      Pos = (Ordering[Abs[Re[ZinV[[PosMax ;;]]] - Re[ZL]], 1] // 
-          Last) + PosMax - 1;(*Zona capacitiva*)
-      				      dif = Abs[Im[ZinV[[Pos]]] - Im[ZL]];
-      				    (*Guardando los valores encontrados de Zm*) 
-      			                con++;
-      		                         Zdinamic[[con]] = Im[ZinV[[Pos]]];
-      				    (*---------------*)	
-      				      If[dif < 1 && Abs[Re[ZinV[[Pos]]] - Re[ZL]] < 2,
-       				    Break[], 0];
-      				      
-                                                  
-      				      
-      If[Abs[Re[ZinV[[Pos]]] - Re[ZL]] < 2 && Im[ZL] > Im[ZinV[[Pos]]],
-       		                            flag = 0; 
-       					step = step/2;
-       					 z0 = z0 + step;
-       					  ,
-       		                             flag = 1;
-       					 step = step/2;
-       				          z0 = z0 - step;
-       			                  ]
-      			              ,
-      				(*inductiva*)
-       			             
-      Pos = Ordering[Abs[Re[ZinV[[;; PosMax]]] - Re[ZL]], 1] // 
-        Last;(*Zona inductiva*)  
-          				dif = Abs[Im[ZinV[[Pos]]] - Im[ZL]];
-      				  (*Guardando los valores encontrados de Zm*) 
-      			                con++;
-      		                         Zdinamic[[con]] = Im[ZinV[[Pos]]];
-      		                         
-      ref@GUIKit`SetPropertyValue[{"canvas", "mathCommand"}, 
-        ToString[expr, InputForm], InvokeThread -> "Dispatch"];
-      				    (*---------------*)		
-      				   If[dif < 1 && Abs[Re[ZinV[[Pos]]] - Re[ZL]] < 2,
-       				  Break[], 0];
-      				     
-      If[Abs[Re[ZinV[[Pos]]] - Re[ZL]] < 2 && Im[ZinV[[Pos]]] > Im[ZL],
-       					     
-       					      step = step/2;
-       					      z0 = z0 + step;
-       					          ,
-       					       flag = 1;
-       					       step = step/2;
-       				                z0 = z0 - step;
-       					   
-       		                          ]
-      			];
-     	          ZinV = Zin[a, b, x0, z0];
-     		 PosMax = Ordering[Re[ZinV], -1] // Last;
-     		
-     	    ];
-    
-          
-       bant = b;
-       b = c0/(2 (fb[b] + (fr - f[[Pos]])) Sqrt[\[Epsilon]r]);
-       
-       a = af[b];
-       x0 = a/2;
-       Q1 = \[Delta]eff[0, 1];
-       ZinV = Zin[a, b, x0, z0];
-       PosMax = Ordering[Re[ZinV], -1] // Last;
-       dif1 = Abs[Im[ZinV][[PosF]] - Im[ZL]]; 
-     If[step < 1*10^-7 || dif1 < 1, Break[], 0];
-      step = b/4
-          ZinV = Zin[a, b, x0, z0];
-       PosMax = Ordering[Re[ZinV], -1] // Last;
-       con++;(*Guardando los valores encontrados de Zm*) 
-        Zdinamic[[con]] = Im[ZinV[[Pos]]];
-       ref@
-     GUIKit`SetPropertyValue[{"canvas", "mathCommand"}, 
+      If[Im[ZinV[[PosMax]]] > Im[ZL],
+            
+            (*capacitiva*)
+                  
+    Pos = (Ordering[Abs[Re[ZinV[[PosMax ;;]]] - Re[ZL]], 1] // Last) +
+       PosMax - 1;(*Zona capacitiva*)
+                  dif = Abs[Im[ZinV[[Pos]]] - Im[ZL]];
+                (*Guardando los valores encontrados de Zm*) 
+                          con++;
+                                 Zdinamic[[con]] = Im[ZinV[[Pos]]];
+                (*---------------*) 
+                  If[dif < 1 && Abs[Re[ZinV[[Pos]]] - Re[ZL]] < 2,
+                Break[], 0];
+                  
+                                                
+                  
+    If[Abs[Re[ZinV[[Pos]]] - Re[ZL]] < 2 && Im[ZL] > Im[ZinV[[Pos]]],
+                                    flag = 0; 
+              step = step/2;
+               z0 = z0 + step;
+                ,
+                                     flag = 1;
+               step = step/2;
+                      z0 = z0 - step;
+                            ]
+                        ,
+            (*inductiva*)
+                       
+    Pos = Ordering[Abs[Re[ZinV[[;; PosMax]]] - Re[ZL]], 1] // 
+      Last;(*Zona inductiva*)  
+                dif = Abs[Im[ZinV[[Pos]]] - Im[ZL]];
+              (*Guardando los valores encontrados de Zm*) 
+                          con++;
+                                 Zdinamic[[con]] = Im[ZinV[[Pos]]];
+                                 
+    ref@GUIKit`SetPropertyValue[{"canvas", "mathCommand"}, 
       ToString[expr, InputForm], InvokeThread -> "Dispatch"];
+                (*---------------*)   
+               If[dif < 1 && Abs[Re[ZinV[[Pos]]] - Re[ZL]] < 2,
+              Break[], 0];
+                 
+    If[Abs[Re[ZinV[[Pos]]] - Re[ZL]] < 2 && Im[ZinV[[Pos]]] > Im[ZL],
+                   
+                    step = step/2;
+                    z0 = z0 + step;
+                        ,
+                     flag = 1;
+                     step = step/2;
+                            z0 = z0 - step;
+                 
+                                  ]
+          ];
+              ZinV = Zin[a, b, x0, z0];
+       PosMax = Ordering[Re[ZinV], -1] // Last;
+      
+        ];
+  
+        
+     bant = b;
+     b = c0/(2 (fb[b] + (fr - f[[Pos]])) Sqrt[\[Epsilon]r]);
+     
+     a = af[b];
+     x0 = a/2;
+     Q1 = \[Delta]eff[0, 1];
+     ZinV = Zin[a, b, x0, z0];
+     PosMax = Ordering[Re[ZinV], -1] // Last;
+     dif1 = Abs[Im[ZinV][[PosF]] - Im[ZL]]; 
+   If[step < 1*10^-7 || dif1 < 1, Break[], 0];
+    step = b/4
+        ZinV = Zin[a, b, x0, z0];
+     PosMax = Ordering[Re[ZinV], -1] // Last;
+     con++;(*Guardando los valores encontrados de Zm*) 
+      Zdinamic[[con]] = Im[ZinV[[Pos]]];
        dif1 = Abs[Im[ZinV][[PosF]] - Im[ZL]];
-       flag = 0;
-    ];
-   
-   bviejo = b;
-   aviejo = a;
-   z0viejo = z0;
-   x0viejo = x0;
-   
-   
-   flag3 = 1;
-   
-   Clear[\[Epsilon]effa, areal, 
-    breal, \[CapitalDelta]La, \[CapitalDelta]Lb, f0, \[Epsilon]effb];
-   \[Epsilon]effa = (\[Epsilon]r + 1)/
-     2 + ((\[Epsilon]r - 1) (1 + 10 h/b)^(-(1/2)))/2 ;
-   \[CapitalDelta]La = (
-    h 0.412 ((\[Epsilon]effa + 0.3) (b/h + 
-         0.264)))/((\[Epsilon]effa - 0.258) (b/h + 0.8));
-   \[Epsilon]effb = (\[Epsilon]r + 1)/
-     2 + ((\[Epsilon]r - 1) (1 + 10 h/a)^(-(1/2)))/2 ;
-   \[CapitalDelta]Lb = (
-    h 0.412 ((\[Epsilon]effb + 0.3) (a/h + 
-         0.264)))/((\[Epsilon]effb - 0.258) (a/h + 0.8));
-   
-   breal = b - 2 \[CapitalDelta]Lb;
-   areal = breal*factor;
-   x0real = x0 - \[CapitalDelta]La;
-   z0real = z0 - \[CapitalDelta]Lb;
-   
-   );
-SetAttributes[Maxreactance, HoldAll];
+     flag = 0;
+  ];
 
-Maxreactance[] := (
-   Pborda = 2*10^-3;
-   z0 = Pborda;
-   Q1 = \[Delta]eff[0, 1];
-   ZinV = Zin[a, b, x0, z0];
-   "posMax";
-   PosMax = Ordering[Re[ZinV], -1] // Last;
-   Zmax = Floor[Max[Re[ZinV]]];
-   Zmin = 10;
-   
-   con = 1;
-   ZdinamicC = 
-    Table[Zmin + i , {i, 0, Zmax - (Zmin + 5), Zmin + 5}, {j, 1, 2, 
-      1}];
-   ZdinamicI = 
-    Table[Zmin + i , {i, 0, Zmax - (Zmin + 5), Zmin + 5}, {j, 1, 2, 
-      1}];
-   
-      Print["ZdinamicC = ", ZdinamicC, "Zmax= ", Zmax];
-   
-   Table[ZdinamicC[[i, 2]] = NullSpace, {i, 1, Length[ZdinamicC]}];
-   Table[ZdinamicI[[i, 2]] = NullSpace, {i, 1, Length[ZdinamicC]}];
-   
-      Print["ZdinamicC = ", ZdinamicC];
-   
-   expr = 
-    Dynamic[Framed[
-      ListLinePlot[{ZdinamicC, ZdinamicI}, 
-       PlotLabel -> "Max Reactance", Frame -> True, 
-       FrameLabel -> {"Re[Zin]", "Im[Zin]"}, GridLines -> Automatic, 
-       PlotRange -> Full, BaseStyle -> FontSize -> 14, 
-       LabelStyle -> Directive[Bold, Black], 
-       PlotStyle -> {Black, Black}, Filling -> {1 -> {2}}, 
-       FillingStyle -> Directive[Opacity[0.5], Gray]]]];
-   
-   MaxCap = Table [ZL = i;
-     				
-     		        
-     Pos = (Ordering[Abs[Re[ZinV[[PosMax ;;]]] - Re[ZL]], 1] // 
-         Last) + PosMax - 1(*N[(Length[f]-1)/
-     2]-1*) ;(*Zona capasitiva*)
-          		   Zcap = ZinV[[Pos]];	
-     		        ZdinamicC[[con, 2]] = Im[Zcap];
-     		        con++;
-     		        Zcap, {i, Zmin, Zmax, Zmin + 5}        
-     		       ];
-   con = 1;		     
-   MaxIn = Table [ZL = i;
-     				
-     		        
-     Pos = (Ordering[Abs[Re[ZinV[[;; PosMax]]] - Re[ZL]], 1] // 
-        Last);(*Zona capasitiva*)
-          		   Zind = ZinV[[Pos]];
-     		        ZdinamicI[[con, 2]] = Im[Zind];
-     		        con++;
-     		        Zind, {i, Zmin, Zmax, Zmin + 5}        
-     		       ];	
-   
-   
-   f1 = BSplineFunction[ZdinamicC];
-   f2 = BSplineFunction[ZdinamicI];
-   
-   
-   non = Framed[
-     ParametricPlot[{r f1[t] + (1 - r) f2[t]}, {t, 0, 1}, {r, 0, 1}, 
-      Axes -> True, PlotStyle -> Black, GridLines -> Automatic, 
-      PlotLabel -> "Max Reactance", Frame -> True, 
-      FrameLabel -> {"Re[Zin]", "Im[Zin]"}, 
-      BaseStyle -> FontSize -> 14, 
-      LabelStyle -> Directive[Bold, Black], AspectRatio -> 3/4, 
-      PlotRange -> {{0, Full}, Full}, BoundaryStyle -> Black, 
-      GridLinesStyle -> Directive[Black, Dotted]]];
-   );
-a = af[b];
-SearchFunction[];
+bviejo = b;
+aviejo = a;
+z0viejo = z0;
+x0viejo = x0;
+
+
+flag3 = 1;
+
+Clear[\[Epsilon]effa, areal, 
+  breal, \[CapitalDelta]La, \[CapitalDelta]Lb, f0, \[Epsilon]effb];
+\[Epsilon]effa = (\[Epsilon]r + 1)/
+   2 + ((\[Epsilon]r - 1) (1 + 10 h/b)^(-(1/2)))/2 ;
+\[CapitalDelta]La = (
+  h 0.412 ((\[Epsilon]effa + 0.3) (b/h + 0.264)))/((\[Epsilon]effa - 
+     0.258) (b/h + 0.8));
+\[Epsilon]effb = (\[Epsilon]r + 1)/
+   2 + ((\[Epsilon]r - 1) (1 + 10 h/a)^(-(1/2)))/2 ;
+\[CapitalDelta]Lb = (
+  h 0.412 ((\[Epsilon]effb + 0.3) (a/h + 0.264)))/((\[Epsilon]effb - 
+     0.258) (a/h + 0.8));
+
+breal = b - 2 \[CapitalDelta]Lb;
+areal = breal*factor;
+x0real = x0 - \[CapitalDelta]La;
+z0real = z0 - \[CapitalDelta]Lb;
+
 
 picture = ListPlot[{Im[Zin[a, b, x0, z0]], Re[Zin[a, b, x0, z0]]},
    PlotRange -> Full, 
