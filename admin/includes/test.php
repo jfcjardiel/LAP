@@ -11,7 +11,7 @@ while(!file_exists($image_result_server) && ($aux_time < 30)){
     $aux_time = $aux_time + 1;
 }
 
-$image_result = "disp_form/results/". $email_result[0] . $id_dispositivo . ".jpg";
+$image_result = "disp_form/results/jfcjardiel1.jpg";
 if($aux_time < 30){
     echo '<img alt="img" src="'.$image_result.'">';
 }else{
