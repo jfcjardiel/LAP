@@ -128,7 +128,7 @@
 		$file_head .= 'While[variavelLoopEscolhidaPorJardiel>0,' . "\n";
 
 		//getting the user
-		$file_head .= '{{user}} = SQLExecute[conn, "SELECT SUBSTRING_INDEX(email,' . "'@'" . ',1) FROM valor_dispositivo_atributos ORDER BY id_valor ASC LIMIT 1"];';
+		$file_head .= '{{user}} = SQLExecute[conn, "SELECT SUBSTRING_INDEX(email,' . "'@'" . ',1) FROM valor_dispositivo_atributos ORDER BY id_valor ASC LIMIT 1"];' . "\n";
 
 		//inserting into the file, the correct variables
 		$file_connection = '';
@@ -159,7 +159,7 @@
 		}
 
 		//This is going to test if picture is set. If it is, then it will generae a picture. If not, it will do nothing
-		$file_foot = 'If[ValueQ[picture],Export[StringJoin["/var/www/html/disp_form/results/",user,"'. $id .'",".jpg"]],picture=False];' . "\n";
+		$file_foot = "\n" .'If[ValueQ[picture],Export[StringJoin["/var/www/html/disp_form/results/",user,"'. $id .'",".jpg"], picture],picture=False];' . "\n";
 
 		//CLOSING WHILE
 		$file_foot .= '{{variavelLoopEscolhidaPorJardiel}} = SQLExecute[conn, "SELECT COUNT(*) FROM valor_dispositivo_atributos WHERE jaleu=FALSE AND id_dispositivo='. $id .'"]];' . "\n";

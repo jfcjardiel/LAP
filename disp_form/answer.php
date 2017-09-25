@@ -88,14 +88,18 @@ $dispositivo = $result->fetch_assoc();
 //$output = shell_exec($order);
 
 //creating the file flag to watch execute mathematica
+
 $file_flag = "/var/www/html/disp_form/watch/" . $dispositivo["nome_dispositivo"] . $id_dispositivo;
 $handle = fopen($file_flag, 'w') or die('Cannot open file:  '.$file_flag);
-fwrite($file_flag, "Jardiel");
-fclose($file_flag);
+fwrite($handle, "Jardiel");
+fclose($handle);
+
 
 //expecting an image to be ready
 $email_result = explode("@", $email, 2);
-$image_result_server = "/var/www/html/disp_form/results/". $email_result . $id_dispositivo . ".jpg" ;
+$image_result_server = "/var/www/html/disp_form/results/". $email_result[0] . $id_dispositivo . ".jpg" ;
+echo $image_result_server;
+/*
 $aux_time = 0; //we are going to expect a certain amount of time
 while(!file_exists($image_result_server) && $aux_time < 30){
     sleep(5);
@@ -108,7 +112,7 @@ if($aux_time < 30){
 }else{
     echo "<h2 class='blog_title'>Not working </h2>";
 }
-
+*/
 //Estou fazendo isso porque eu nao consigo eliminar o arquivo
 //$shell_command = "rm -f " . $file_flag;
 //shell_exec($shell_command);
