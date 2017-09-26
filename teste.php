@@ -49,9 +49,10 @@
       function form_maker(str){
           var xhttp;
           //if non is select
+          document.getElementById("answer_form").innerHTML = "";
           if (str == "") {
               document.getElementById("input_form").innerHTML = "<h2 class='blog_title'>Microwave Tools created in LAP</h2><p class='blog_summary'>LAP has created many microwave tools along the years. Here you can see the results of all these years of work. Just select which one you want to see.</p>";
-              document.getElementById("answer_form").innerHTML = "";
+              //document.getElementById("answer_form").innerHTML = "";
               return;
           }
           //if some is, then we will embedded the code of input.php

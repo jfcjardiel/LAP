@@ -85,7 +85,7 @@ function validateForm(){
     <div class="container" align="center">
         <h1> Add New Microwave Tool </h1>
         <form method="post" attribute="post" action="disp_form.php" name="myform" enctype="multipart/form-data" onsubmit="return validateForm()">
-        <p>Tool Name:</p><input type="text" name="dispositivo"><br><br>
+        <p>Tool Name:</p><input type="text" name="dispositivo" maxlength="20"><br><br>
         <button class="add_form_field"> + </button>
         <button class="del_form_field"> - </button> <br>
         <div class="container_config">
@@ -93,7 +93,7 @@ function validateForm(){
                 <div class="left">
                     Atribute Name<br>
                     (How they will see)<br>
-                    <input type="text" name="nome0" id="nome0"/>
+                    <input type="text" name="nome0" id="nome0" maxlength="20"/>
                 </div>
                 <div class="right">
                     Atribute Name<br>

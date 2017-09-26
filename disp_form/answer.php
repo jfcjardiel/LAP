@@ -88,6 +88,14 @@ $dispositivo = $result->fetch_assoc();
 //$output = exec($order);
 //echo $output;
 
+//expecting an image to be ready
+$email_result = explode("@", $email, 2);
+$image_result_server = "/var/www/html/disp_form/results/". $email_result[0] . $id_dispositivo . ".jpg" ;
+
+//deleting if there is the same
+$shell_command_delete = "rm -f " . $image_result_server;
+exec($shell_command_delete);
+
 //creating the file flag to watch execute mathematica
 $file_flag = "/var/www/html/disp_form/watch/" . $dispositivo["nome_dispositivo"] . $id_dispositivo;
 $handle = fopen($file_flag, 'w') or die('Cannot open file:  '.$file_flag);
@@ -95,13 +103,10 @@ fwrite($handle, "Jardiel");
 fclose($handle);
 
 
-//expecting an image to be ready
-$email_result = explode("@", $email, 2);
-$image_result_server = "/var/www/html/disp_form/results/". $email_result[0] . $id_dispositivo . ".jpg" ;
 //echo $image_result_server;
 $aux_time = 0; //we are going to expect a certain amount of time
 while(!file_exists($image_result_server) && ($aux_time < 30)){
-    sleep(5);
+    sleep(3);
     $aux_time = $aux_time + 1;
 }
 
