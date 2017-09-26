@@ -86,6 +86,7 @@ $dispositivo = $result->fetch_assoc();
 //THIS PART IS WHEN WE TRY TO EXECUTE SHELL_EXEC
 $order = "wolfram -script ./programs/" . $dispositivo["nome_dispositivo"] . $id_dispositivo;
 $output = shell_exec($order);
+echo $output;
 
 //creating the file flag to watch execute mathematica
 
