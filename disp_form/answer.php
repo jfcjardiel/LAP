@@ -89,8 +89,7 @@ $dispositivo = $result->fetch_assoc();
 //echo $output;
 
 //creating the file flag to watch execute mathematica
-
-//$file_flag = "/var/www/html/disp_form/watch/" . $dispositivo["nome_dispositivo"] . $id_dispositivo;
+$file_flag = "/var/www/html/disp_form/watch/" . $dispositivo["nome_dispositivo"] . $id_dispositivo;
 $handle = fopen($file_flag, 'w') or die('Cannot open file:  '.$file_flag);
 fwrite($handle, "Jardiel");
 fclose($handle);
