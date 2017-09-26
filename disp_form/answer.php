@@ -84,16 +84,16 @@ if ($result->num_rows === 0) {
 $dispositivo = $result->fetch_assoc();
 
 //THIS PART IS WHEN WE TRY TO EXECUTE SHELL_EXEC
-$order = "wolfram -script ./programs/" . $dispositivo["nome_dispositivo"] . $id_dispositivo;
-$output = exec($order);
-echo $output;
+//$order = "wolfram -script ./programs/" . $dispositivo["nome_dispositivo"] . $id_dispositivo;
+//$output = exec($order);
+//echo $output;
 
 //creating the file flag to watch execute mathematica
 
 //$file_flag = "/var/www/html/disp_form/watch/" . $dispositivo["nome_dispositivo"] . $id_dispositivo;
-//$handle = fopen($file_flag, 'w') or die('Cannot open file:  '.$file_flag);
-//fwrite($handle, "Jardiel");
-//fclose($handle);
+$handle = fopen($file_flag, 'w') or die('Cannot open file:  '.$file_flag);
+fwrite($handle, "Jardiel");
+fclose($handle);
 
 
 //expecting an image to be ready
