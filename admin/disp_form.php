@@ -128,7 +128,7 @@
 		$file_head .= 'While[variavelLoopEscolhidaPorJardiel>0,' . "\n";
 
 		//clearing picture
-		$file_head .= 'Clear[picture]' . "\n";
+		$file_head .= 'Clear[picture];' . "\n";
 
 		//getting the user
 		$file_head .= '{{user}} = SQLExecute[conn, "SELECT SUBSTRING_INDEX(email,' . "'@'" . ',1) FROM valor_dispositivo_atributos WHERE jaleu=FALSE AND id_dispositivo='. $id .' ORDER BY id_valor ASC LIMIT 1"];' . "\n";
