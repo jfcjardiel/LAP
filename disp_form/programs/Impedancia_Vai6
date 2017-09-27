@@ -333,24 +333,27 @@ If[0.5*10^9 < fr < 10*10^9 && 0.3*10^-3 < h < 10*10^-3 &&
     (*Plotc=GraphicsRow[{Plota,Plotb,Dados},ImageSize\[Rule]Scaled[1],
     Frame\[Rule]All]*)
     
-   picture = Grid[{{"\!\(\*
-      StyleBox[\"Input\",\nFontFamily->\"Comic Sans MS\"]\)\!\(\*
-      StyleBox[\" \",\nFontFamily->\"Comic Sans MS\"]\)\!\(\*
-      StyleBox[\"Impedance\",\nFontFamily->\"Comic Sans MS\"]\)", 
-      "\!\(\*
-      StyleBox[\"Reflection\",\nFontFamily->\"Comic Sans MS\"]\)\!\(\*\
-
-      StyleBox[\" \",\nFontFamily->\"Comic Sans MS\"]\)\!\(\*
-      StyleBox[\"Coefficient\",\nFontFamily->\"Comic Sans MS\"]\)", 
-      "\!\(\*
-      StyleBox[\"Antenna\",\nFontFamily->\"Comic Sans MS\"]\)\!\(\*
-      StyleBox[\" \",\nFontFamily->\"Comic Sans MS\"]\)\!\(\*
-      StyleBox[\"Dimensions\",\nFontFamily->\"Comic Sans MS\"]\)"}, \
-{Plota, 
-           Plotb, Dados}}, 
-       ItemStyle -> 
-     Directive[FontSize -> 20, FontWeight -> "Fat", Bold], 
-       Frame -> True, Dividers -> {{True, True, True}, All}];
+picture = Grid[{{"\!\(\*
+StyleBox[\"Input\",\nFontFamily->\"Comic Sans MS\"]\)\!\(\*
+StyleBox[\" \",\nFontFamily->\"Comic Sans MS\"]\)\!\(\*
+StyleBox[\"Impedance\",\nFontFamily->\"Comic Sans MS\"]\)", "\!\(\*
+StyleBox[\"Reflection\",\nFontFamily->\"Comic Sans MS\"]\)\!\(\*
+StyleBox[\" \",\nFontFamily->\"Comic Sans MS\"]\)\!\(\*
+StyleBox[\"Coefficient\",\nFontFamily->\"Comic Sans MS\"]\)"}, {Plota,
+      Plotb}, {"\!\(\*
+StyleBox[\"Antenna\",\nFontFamily->\"Comic Sans MS\"]\)\!\(\*
+StyleBox[\" \",\nFontFamily->\"Comic Sans MS\"]\)\!\(\*
+StyleBox[\"Dimensions\",\nFontFamily->\"Comic Sans MS\"]\)\!\(\*
+StyleBox[\" \",\nFontFamily->\"Comic Sans MS\"]\)\!\(\*
+StyleBox[\"&\",\nFontFamily->\"Comic Sans MS\"]\)\!\(\*
+StyleBox[\" \",\nFontFamily->\"Comic Sans MS\"]\)\!\(\*
+StyleBox[\"Probe\",\nFontFamily->\"Comic Sans MS\"]\)\!\(\*
+StyleBox[\" \",\nFontFamily->\"Comic Sans MS\"]\)\!\(\*
+StyleBox[\"Position\",\nFontFamily->\"Comic Sans MS\"]\)", 
+     SpanFromLeft, SpanFromLeft}, {Dados, SpanFromLeft, 
+     SpanFromLeft}}, 
+   ItemStyle -> Directive[FontSize -> 20, FontWeight -> "Fat", Bold], 
+   Frame -> True, Dividers -> {{True, True, True}, All}];
     ,
     Print["Out of Range"]];
 If[ValueQ[picture],Export[StringJoin["/var/www/html/disp_form/results/",user,"6",".jpg"], picture],picture=False];
