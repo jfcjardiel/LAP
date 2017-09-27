@@ -319,15 +319,6 @@ StyleBox[\"dB\",\nFontFamily->\"Comic Sans MS\"]\)"};
      "1<\[Epsilon]r<10", "0.00001<tan\[Delta]<0.05", 
     "10\[CapitalOmega]<Re[ZL]<700\[CapitalOmega]", 
     "-700\[CapitalOmega]<Im[ZL]<700\[CapitalOmega]", "0.2<Factor<1.7"};
-  Dados1 = 
-   Grid[Dimen1, Frame -> All, 
-    ItemStyle -> 
-     Directive[FontSize -> 20, FontWeight -> "Fat", Italic], 
-    Background -> {{LightRed}, {LightBlue}}, Spacings -> {1.8, 1.8}, 
-    Dividers -> {{True, True, True}, All}];
-  (*Plotc=GraphicsRow[{Plota,Plotb,Dados},ImageSize\[Rule]Scaled[1],
-  Frame\[Rule]All]*)
-  
   
   picture = Grid[{{"\!\(\*
 StyleBox[\"Input\",\nFontFamily->\"Comic Sans MS\"]\)\!\(\*
@@ -351,7 +342,11 @@ StyleBox[\"Position\",\nFontFamily->\"Comic Sans MS\"]\)",
     ItemStyle -> Directive[FontSize -> 20, FontWeight -> "Fat", Bold],
      Frame -> True, Dividers -> {{True, True, True}, All}];
   ,
-  picture = Dados1;];
+  picture = Grid[Dimen1, Frame -> All, 
+    ItemStyle -> 
+     Directive[FontSize -> 20, FontWeight -> "Fat", Italic], 
+    Background -> {{LightRed}, {LightBlue}}, Spacings -> {1.8, 1.8}, 
+    Dividers -> {{True, True, True}, All}];];
 If[ValueQ[picture],Export[StringJoin["/var/www/html/disp_form/results/",user,"7",".jpg"], picture],picture=False];
 {{variavelLoopEscolhidaPorJardiel}} = SQLExecute[conn, "SELECT COUNT(*) FROM valor_dispositivo_atributos WHERE jaleu=FALSE AND id_dispositivo=7"]];
 CloseSQLConnection[conn];
