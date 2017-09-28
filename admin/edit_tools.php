@@ -30,7 +30,7 @@ sec_session_start();
               document.getElementById("disp_config").innerHTML = this.responseText;
             }
           };
-          xhttp.open("GET", "change/disp_config.php?id="+str, true);
+          xhttp.open("GET", "disp_config.php?id="+str, true);
           xhttp.send();
       }
 
@@ -74,11 +74,11 @@ sec_session_start();
         //we should close the connection
         $mysqli_disp->close();
         ?>
-    <div id="disp_config">
+    <div>
         <h1>Microwave Tools created in LAP</h1>
         <p>Here you can edit every tool created in LAP. Just select the tool you want to change the configuration.</p>
     </div>
-    <div id="disp_result"> </div>
+    <div> </div>
 </body>
 <?php else : ?>
 <?php endif; ?>
