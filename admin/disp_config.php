@@ -87,7 +87,7 @@ echo "<p> Tools Name: </p>";
 //echo $nome_dispositivo;
 echo "<input type='text' id='disp_name' name='nome_dispositivo' placeholder=' ". $nome_dispositivo ."'><br>";
 
-echo '<input type="checkbox" name="show_dispositivo" value="show"> Show Tool<br>';
+echo '<input type="checkbox" name="show_dispositivo" value="show_dispositivo" id="show_dispositivo"> Show Tool<br>';
 
 echo "<h3>Tool Configuration </h3>";
 
