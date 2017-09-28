@@ -131,7 +131,7 @@ if($aux_time < 30){
         echo '<img alt="Picture not displayed" style="width:100%;height:auto;" src="'.$image_result.'">';
     }else{
         //se nao for grande, nao vamos encaixar no servidor
-        echo '<img alt="Picture not displayed" src="'.$image_result.'">'
+        echo '<img alt="Picture not displayed" src="'.$image_result.'">';
     }
 }else{
     echo "<h2 class='blog_title'>Not working </h2>";
