@@ -53,7 +53,7 @@ $target_img_server = $target_dir_img . $id . ".jpg";
 $target_img = "disp_form/img/". $id . ".jpg";
 
 if(file_exists($target_img_server)){
-    echo '<img alt="img" src="'.$target_img.'">';
+    echo '<img alt="img" class="img-responsive" src="'.$target_img.'">';
 }
 
 //*******************************//
