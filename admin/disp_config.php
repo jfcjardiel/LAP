@@ -100,3 +100,5 @@ echo "<button type='button' name='button_submit' id='button_submit' value='butto
 //we should close the connection
 $mysqli_disp->close();
 ?>
+<?php else : ?>
+<?php endif; ?>
