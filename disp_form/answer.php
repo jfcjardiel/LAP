@@ -114,17 +114,25 @@ $image_result_server = "/var/www/html/disp_form/results/" . $id_image . ".jpg" ;
 $image_result = "disp_form/results/". $id_image . ".jpg" ;
 
 //echo $image_result_server;
+//vamos ficar procurando a imagem ate 90s
 $aux_time = 0; //we are going to expect a certain amount of time
 while(!file_exists($image_result_mathematica_server) && ($aux_time < 30)){
     sleep(3);
     $aux_time = $aux_time + 1;
 }
 
+//caso o tempo de 90segundos tenha ultrapassado...
 if($aux_time < 30){
     $shell_command = "mv -f " . $image_result_mathematica_server . " " . $image_result_server;
     shell_exec($shell_command);
     echo "<br>";
-    echo '<img alt="Picture not displayed" style="width:100%;height:auto;" src="'.$image_result.'">';
+    //vamos verificar quantos pixels existem... se for muito grande, vamos encaixar no servidor
+    if(getimagesize($image_result_server) > 700){
+        echo '<img alt="Picture not displayed" style="width:100%;height:auto;" src="'.$image_result.'">';
+    }else{
+        //se nao for grande, nao vamos encaixar no servidor
+        echo '<img alt="Picture not displayed" src="'.$image_result.'">'
+    }
 }else{
     echo "<h2 class='blog_title'>Not working </h2>";
 }
