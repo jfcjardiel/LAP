@@ -1,110 +1,49 @@
 <?php
-// get the q parameter from URL
-$id = $_REQUEST["id"] + 0;
 
-//*******************************//
-//***** READING DATABSE *********//
-//*******************************//
-
+include_once 'includes/db_connect.php';
+include_once 'includes/functions.php';
+ 
+sec_session_start();
+?>
+<html>
+<?php if (login_check($mysqli) == true) : ?>
+<head>
+</head>
+<body>
+<?php
 //Starting connection
 $mysqli = new mysqli('localhost', 'root', 'input212', 'input');
 
 //If there is any error, then show...
 if ($mysqli->connect_errno) {
     // I do not know what to show yet
-    echo "<h2 class='blog_title'>Connection Problem </h2>";
+    echo "<option value=''>Connection Problem</option>";
     exit;
 }
 
 //If there isnt any error, then lets read the sql content
-$sql = "SELECT nome_dispositivo FROM dispositivo WHERE id_dispositivo=" . $id;
+$sql = "SELECT * FROM dispositivo WHERE mostrar_dispositivo=TRUE ORDER BY id_dispositivo";
 if (!$result = $mysqli->query($sql)) {
     // I do not know what to show yet
-    echo "<h2 class='blog_title'>Connection Problem </h2>";
+    echo "<option value=''>Connection Problem</option>";
     exit;
 }
 
 // If there is no result
 if ($result->num_rows === 0) {
     // I do not know what to show yet
-    echo "<h2 class='blog_title'>Connection Problem </h2>";
+    echo "<option value=''>Connection Problem</option>";
     exit;
 }
 
-//********************************//
-//***** INICIALIZE TITLE *********//
-//********************************//
-
-
-//writing the title
+//Show the results
 while ($dispositivo = $result->fetch_assoc()) {
     //it is exibitig the line.
-    $nome_dispositivo = $dispositivo['nome_dispositivo'];
-    echo "<h2 class='blog_title'> Selected Tool: " . $dispositivo['nome_dispositivo'] . '</h2>';
+    echo "<option value='" . $dispositivo['id_dispositivo'] . "'>".$dispositivo['nome_dispositivo']."</option>";
 }
-
-//*******************************//
-//******* PUTTING IMAGE *********//
-//*******************************//
-
-//criando o upload  -> o arquivo vai ter o nome do dispositivo na pasta disp_form
-$target_dir_img = "/var/www/html/disp_form/img/";
-$target_img_server = $target_dir_img . $nome_dispositivo . $id . ".jpg";
-$target_img = "disp_form/img/". $nome_dispositivo . $id . ".jpg";
-
-if(file_exists($target_img_server)){
-    echo '<img alt="img" src="'.$target_img.'">';
-}
-
-//*******************************//
-//***** INICIALIZE FORM *********//
-//*******************************//
-
-//If there isnt any error, then lets read the sql content
-$sql = "SELECT * FROM config_dispositivo_atributos  WHERE id_dispositivo=" . $id;
-if (!$result = $mysqli->query($sql)) {
-    // I do not know what to show yet
-    echo "<h2 class='blog_title'>Connection Problem </h2>";
-    exit;
-}
-
-// If there is no result
-if ($result->num_rows === 0) {
-    // I do not know what to show yet
-    echo "<h2 class='blog_title'>Connection Problem </h2>";
-    exit;
-}
-
-//Writing the form
-echo "<form method='post' attribute='post' id='form_dispositivo' name='form_dispositivo'>"; //onsubmit='return validateForm()'>";
-
-
-//adding e-mail input form
-echo "<p class='blog_summary'>E-mail<br><input type='text' id='email'></p>";
-
-//O id eh simplesmente comecado de 0 ate o tamanho da form
-//O name eh o id_config porque sera acessado de outro lugar
-$id_input = 0;
-
-//making a table.
-echo '<table class="table table-striped course_table"><thead><tr><th>Variable Name</th><th>Variable Input</th></tr></thead><tbody>';
-
-//Writing the form options
-while ($config_dispositivo = $result->fetch_assoc()) {
-    //it is exibitig the line.
-    echo '<tr>';
-    echo '<td>' . $config_dispositivo['nome_atributo'] . '</td>';
-    echo "<td><input type='text' id='" . $id_input . "' name='" . $config_dispositivo['id_config'] . "'></td>";
-    echo '</tr>';
-    $id_input = $id_input + 1;
-}
-
-echo '</tbody></table>';
-
-//writting submit button
-//we are going to send the id of the form via the function validateFom.
-echo "<button type='button' name='button_submit' id='button_submit' value='button_submit' onclick='validateForm(" . $id .")'>Calculate</button>";
 
 //we should close the connection
 $mysqli->close();
 ?>
+</body>
+<html>
