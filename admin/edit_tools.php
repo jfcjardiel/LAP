@@ -40,7 +40,7 @@ sec_session_start();
         var xhttp;
         xhttp = new XMLHttpRequest();
         //vendo o tamanho da form
-        var form_length = document.forms["form_dispositivo"].length;
+        var form_length = document.forms["mod_disp"].length;
         alert(form_length);
         //building the URL that will be send
         url_send_form = "disp_answer.php?id_dispositivo="+id_dispositivo_select;
