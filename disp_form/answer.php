@@ -110,8 +110,8 @@ $email_result = explode("@", $email, 2);
 $image_result_mathematica_server = "/var/www/html/disp_form/results/". $email_result[0] . $id_dispositivo . ".jpg" ;
 
 $id_image = time();
-$image_result_server = "/var/www/html/disp_form/results/" . $id_image;
-$image_result = "disp_form/results/". $id_image;
+$image_result_server = "/var/www/html/disp_form/results/" . $id_image . ".jpg" ;
+$image_result = "disp_form/results/". $id_image . ".jpg" ;
 
 //echo $image_result_server;
 $aux_time = 0; //we are going to expect a certain amount of time
