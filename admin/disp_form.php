@@ -14,8 +14,8 @@
 	//only who is logged can do it!
 	if (login_check($mysqli) == true){
 		//debug settings
-		ini_set('display_errors',1);
-		error_reporting(E_ALL);
+		//ini_set('display_errors',1);
+		//error_reporting(E_ALL);
 
 		//***********************************//
 		//******** START CONNECTION *********//
@@ -66,7 +66,7 @@
 					echo "<h1> Connection Problem </h1>";
 					exit;
 				}
-				echo $_POST[$name];
+				//echo $_POST[$name];
 			}
 		}
 
@@ -102,13 +102,13 @@
 		//echo $uploadOk;
 
 		if($uploadOk){
-			echo "Error your file was not uploaded. Caiu no primeiro IF";
+			echo "Error your file was not uploaded.";
 			exit;
 		}
 		else{
 			$moved = move_uploaded_file($file_tmp,$target_file);
 			if($moved){
-				echo "the file " . basename($file_name) . "has been uploaded";
+				echo "The file " . basename($file_name) . "has been uploaded" . "\n";
 			}
 			else{
 				echo "There was an error, file not uploaded";
@@ -218,7 +218,7 @@
 		else{
 			$moved = move_uploaded_file($img_tmp,$target_img);
 			if($moved){
-				echo "the image " . basename($img_name) . "has been uploaded";
+				echo "The image " . basename($img_name) . "has been uploaded";
 			}
 			else{
 				echo "There was an error, image not uploaded";

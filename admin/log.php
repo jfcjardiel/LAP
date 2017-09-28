@@ -99,11 +99,9 @@ sec_session_start();
                     <ul class="dropdown-menu" role="menu">
                       <li><a href="../students.html">Students</a></li>
                       <li><a href="../research_staff.html">Research Staff</a></li>
-                      <li><a href="../faculty.html">Faculty/PIS</a></li>
                     </ul>
                   </li>
-                <li><a href ="../microwave_tools.html">Microwave Tools</a></li>                
-                <li><a href="../news.html">News</a><li>           
+                <li><a href ="../microwave_tools.html">Microwave Tools</a></li>                          
                 <li><a href="../contact.html">Contact</a></li>
               </ul>           
             </div><!--/.nav-collapse -->

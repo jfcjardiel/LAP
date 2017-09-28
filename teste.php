@@ -165,11 +165,9 @@
                     <ul class="dropdown-menu" role="menu">
                       <li><a href="404.html">Students</a></li>
                       <li><a href="404.html">Research Staff</a></li>
-                      <li><a href="404.html">Faculty/PIS</a></li>
                     </ul>
                   </li>
-                <li><a href ="404.html">Microwave Tools</a></li>                
-                <li><a href="404.html">News</a><li>           
+                <li><a href ="404.html">Microwave Tools</a></li>                        
                 <li><a href="contact.html">Contact</a></li>
               </ul>           
             </div><!--/.nav-collapse -->
