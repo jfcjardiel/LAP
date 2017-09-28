@@ -12,28 +12,54 @@ sec_session_start();
 <head>
     <script>
       //Function that calls input.php and embedded the code into the page
-      function disp_information(str){
-          var xhttp;
-          //if non is select
-          document.getElementById("disp_result").innerHTML = "";
-          document.getElementById("disp_config").innerHTML = "";
-          if (str == "") {
-              document.getElementById("disp_config").innerHTML = "<h1>Microwave Tools created in LAP</h1><p>Here you can edit every tool created in LAP. Just select the tool you want to change the configuration.</p>";
-              //document.getElementById("answer_form").innerHTML = "";
-              return;
-          }
-          //if some is, then we will embedded the code of input.php
-          //it is important to say, the only data we are going to send is the id by url
-          xhttp = new XMLHttpRequest();
-          xhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-              document.getElementById("disp_config").innerHTML = this.responseText;
-            }
-          };
-          xhttp.open("GET", "disp_config.php?id="+str, true);
-          xhttp.send();
+    function disp_information(str){
+      var xhttp;
+      //if non is select
+      document.getElementById("disp_result").innerHTML = "";
+      document.getElementById("disp_config").innerHTML = "";
+      if (str == "") {
+          document.getElementById("disp_config").innerHTML = "<h1>Microwave Tools created in LAP</h1><p>Here you can edit every tool created in LAP. Just select the tool you want to change the configuration.</p>";
+          //document.getElementById("answer_form").innerHTML = "";
+          return;
       }
+      //if some is, then we will embedded the code of input.php
+      //it is important to say, the only data we are going to send is the id by url
+      xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+          document.getElementById("disp_config").innerHTML = this.responseText;
+        }
+      };
+      xhttp.open("GET", "disp_config.php?id="+str, true);
+      xhttp.send();
+    }
 
+    //sending data to another page
+    function sendForm(id_dispositivo_select){
+        //stablihing new XMLHttpRequest
+        var xhttp;
+        xhttp = new XMLHttpRequest();
+        //vendo o tamanho da form
+        var form_length = document.forms["form_dispositivo"].length-2;
+        alert(form_length);
+        //building the URL that will be send
+        url_send_form = "disp_answer.php?id_dispositivo="+id_dispositivo_select;
+        url_send_form = url_send_form + "&email=" + document.getElementById('email').value;
+        for(var aux_send = 0; aux_send < form_length; aux_send++){
+          url_send_form = url_send_form + "&valor" + aux_send + "=" + document.getElementById(aux_send).value;
+        }
+        alert("Check if it is up-to-date");
+        alert(url_send_form);
+        //inicializing the request
+        //xhttp.onreadystatechange = function() {
+        //  if (this.readyState == 4 && this.status == 200) {
+        //    document.getElementById("answer_form").innerHTML = this.responseText;
+        //  }
+        //};
+        //sending the data to answer.
+        //xhttp.open("GET", url_send_form, true);
+        //xhttp.send();        
+    }
     </script>
 </head>
 <body>
