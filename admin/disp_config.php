@@ -11,7 +11,7 @@ sec_session_start();
 <?php
 // get the q parameter from URL
 $id = $_REQUEST["id"] + 0;
-echo $id;
+//echo $id;
 
 //*******************************//
 //***** READING DATABSE *********//
@@ -80,7 +80,8 @@ echo "<form method='post' attribute='post' id='mod_disp' name='mod_disp'>"; //on
 
 //editing name
 echo "<p> Tools Name: </p>";
-echo "<input type='text' id='disp_name' placeholder='". $nome_dispositivo ."'><br>";
+echo $nome_dispositivo;
+echo "<input type='text' id='disp_name' placeholder=' ". $nome_dispositivo ."'><br>";
 
 echo '<input type="checkbox" name="show" value="show"> Show Tool<br>';
 
