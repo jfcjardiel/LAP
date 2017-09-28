@@ -84,6 +84,7 @@
         //inicializing the request
         xhttp.onreadystatechange = function() {
           if (this.readyState == 4 && this.status == 200) {
+            document.getElementById("answer_form").innerHTML = "";
             document.getElementById("answer_form").innerHTML = this.responseText;
           }
         };
