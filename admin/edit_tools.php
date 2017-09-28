@@ -30,7 +30,7 @@ sec_session_start();
               document.getElementById("disp_config").innerHTML = this.responseText;
             }
           };
-          xhttp.open("GET", "disp_config?id="+str, true);
+          xhttp.open("GET", "disp_config.php?id="+str, true);
           xhttp.send();
       }
 
