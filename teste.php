@@ -80,7 +80,8 @@
         for(var aux_send = 0; aux_send < form_length; aux_send++){
           url_send_form = url_send_form + "&valor" + aux_send + "=" + document.getElementById(aux_send).value;
         }
-        alert(url_send_form);
+        alert("Your calculation may take a time. Is it take too long, we are going to send the answer by Email.");
+        //alert(url_send_form);
         //inicializing the request
         xhttp.onreadystatechange = function() {
           if (this.readyState == 4 && this.status == 200) {
