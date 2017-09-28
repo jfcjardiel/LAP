@@ -127,12 +127,12 @@ if($aux_time < 30){
     shell_exec($shell_command);
     echo "<br>";
     //vamos verificar quantos pixels existem... se for muito grande, vamos encaixar no servidor
-    if(getimagesize($image_result_server)[0] > 700){
-        echo '<img alt="Picture not displayed" class="img-responsive" style="width:100%;height:auto;" src="'.$image_result.'">';
-    }else{
+    //if(getimagesize($image_result_server)[0] > 700){
+    //    echo '<img alt="Picture not displayed" class="img-responsive" style="width:100%;height:auto;" src="'.$image_result.'">';
+    //}else{
         //se nao for grande, nao vamos encaixar no servidor
         echo '<img alt="Picture not displayed" class="img-responsive" src="'.$image_result.'">';
-    }
+    //}
 }else{
     echo "<h2 class='blog_title'>Not working </h2>";
 }
