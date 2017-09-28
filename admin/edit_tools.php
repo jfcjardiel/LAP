@@ -18,7 +18,7 @@ sec_session_start();
           document.getElementById("disp_result").innerHTML = "";
           document.getElementById("disp_config").innerHTML = "";
           if (str == "") {
-              document.getElementById("input_form").innerHTML = "<h1>Microwave Tools created in LAP</h1><p>Here you can edit every tool created in LAP. Just select the tool you want to change the configuration.</p>";
+              document.getElementById("disp_config").innerHTML = "<h1>Microwave Tools created in LAP</h1><p>Here you can edit every tool created in LAP. Just select the tool you want to change the configuration.</p>";
               //document.getElementById("answer_form").innerHTML = "";
               return;
           }
@@ -30,7 +30,7 @@ sec_session_start();
               document.getElementById("disp_config").innerHTML = this.responseText;
             }
           };
-          xhttp.open("GET", "./disp_config.php?id="+str, true);
+          xhttp.open("GET", "disp_config.php?id="+str, true);
           xhttp.send();
       }
 
