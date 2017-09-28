@@ -127,7 +127,7 @@ sec_session_start();
         }
 
         //we should close the connection
-        $mysqli->close();
+        $mysqli_disp->close();
         ?>
     <div id="disp_config"> </div>
     <div id="disp_result"> </div>
