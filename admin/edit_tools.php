@@ -40,15 +40,15 @@ sec_session_start();
         var xhttp;
         xhttp = new XMLHttpRequest();
         //vendo o tamanho da form
-        var form_length = document.forms["form_dispositivo"].length-2;
+        var form_length = document.forms["form_dispositivo"].length;
         alert(form_length);
         //building the URL that will be send
         url_send_form = "disp_answer.php?id_dispositivo="+id_dispositivo_select;
         url_send_form = url_send_form + "&email=" + document.getElementById('email').value;
-        for(var aux_send = 0; aux_send < form_length; aux_send++){
-          url_send_form = url_send_form + "&valor" + aux_send + "=" + document.getElementById(aux_send).value;
-        }
-        alert("Check if it is up-to-date");
+        //for(var aux_send = 0; aux_send < form_length; aux_send++){
+        //  url_send_form = url_send_form + "&valor" + aux_send + "=" + document.getElementById(aux_send).value;
+        //}
+        //alert("Check if it is up-to-date");
         alert(url_send_form);
         //inicializing the request
         //xhttp.onreadystatechange = function() {
