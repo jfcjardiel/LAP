@@ -49,8 +49,8 @@ while ($dispositivo = $result->fetch_assoc()) {
 
 //criando o upload  -> o arquivo vai ter o nome do dispositivo na pasta disp_form
 $target_dir_img = "/var/www/html/disp_form/img/";
-$target_img_server = $target_dir_img . $nome_dispositivo . $id . ".jpg";
-$target_img = "disp_form/img/". $nome_dispositivo . $id . ".jpg";
+$target_img_server = $target_dir_img . $id . ".jpg";
+$target_img = "disp_form/img/". $id . ".jpg";
 
 if(file_exists($target_img_server)){
     echo '<img alt="img" src="'.$target_img.'">';
