@@ -42,6 +42,7 @@ if ($result->num_rows === 0) {
     exit;
 }
 
+//pegando o nome do dispositivo
 $nome_row = $result->fetch_assoc();
 $nome_dispositivo = $nome_row['nome_dispositivo'];
 
@@ -83,10 +84,10 @@ echo "<form method='post' attribute='post' id='mod_disp' name='mod_disp'>"; //on
 
 //editing name
 echo "<p> Tools Name: </p>";
-echo $nome_dispositivo;
-echo "<input type='text' id='disp_name' placeholder=' ". $nome_dispositivo ."'><br>";
+//echo $nome_dispositivo;
+echo "<input type='text' id='disp_name' name='nome_dispositivo' placeholder=' ". $nome_dispositivo ."'><br>";
 
-echo '<input type="checkbox" name="show" value="show"> Show Tool<br>';
+echo '<input type="checkbox" name="show_dispositivo" value="show"> Show Tool<br>';
 
 echo "<h3>Tool Configuration </h3>";
 
