@@ -312,22 +312,6 @@ StyleBox[\"dB\",\nFontFamily->\"Comic Sans MS\"]\)"};
     Background -> {{LightRed}, None}, Spacings -> {0.5, 0.7}, 
     Dividers -> {{True, True, True}, All}];
   
-  Dimen1 = Table[Subscript[m, i, j], {i, 8}, {j, 2}];
-  Dimen1[[All, 1]] = {" ", "fr", "h", "\[Epsilon]r", "tan\[Delta]", 
-    "Re[ZL]", "Im[ZL]", "Factor"};
-  Dimen1[[All, 2]] = {"OUT OF RANGE", "1GHz<fr<10GHz", "0.3mm<h<10mm",
-     "1<\[Epsilon]r<10", "0.00001<tan\[Delta]<0.05", 
-    "10\[CapitalOmega]<Re[ZL]<700\[CapitalOmega]", 
-    "-700\[CapitalOmega]<Im[ZL]<700\[CapitalOmega]", "0.2<Factor<1.7"};
-  Dados1 = 
-   Grid[Dimen1, Frame -> All, 
-    ItemStyle -> 
-     Directive[FontSize -> 20, FontWeight -> "Fat", Italic], 
-    Background -> {{LightRed}, {LightBlue}}, Spacings -> {1.8, 1.8}, 
-    Dividers -> {{True, True, True}, All}];
-  (*Plotc=GraphicsRow[{Plota,Plotb,Dados},ImageSize\[Rule]Scaled[1],
-  Frame\[Rule]All]*)
-  
   
   picture = Grid[{{"\!\(\*
 StyleBox[\"Input\",\nFontFamily->\"Comic Sans MS\"]\)\!\(\*
@@ -351,6 +335,21 @@ StyleBox[\"Position\",\nFontFamily->\"Comic Sans MS\"]\)",
     ItemStyle -> Directive[FontSize -> 20, FontWeight -> "Fat", Bold],
      Frame -> True, Dividers -> {{True, True, True}, All}];
   ,
+    Dimen1 = Table[Subscript[m, i, j], {i, 8}, {j, 2}];
+  Dimen1[[All, 1]] = {" ", "fr", "h", "\[Epsilon]r", "tan\[Delta]", 
+    "Re[ZL]", "Im[ZL]", "Factor"};
+  Dimen1[[All, 2]] = {"OUT OF RANGE", "1GHz<fr<10GHz", "0.3mm<h<10mm",
+     "1<\[Epsilon]r<10", "0.00001<tan\[Delta]<0.05", 
+    "10\[CapitalOmega]<Re[ZL]<700\[CapitalOmega]", 
+    "-700\[CapitalOmega]<Im[ZL]<700\[CapitalOmega]", "0.2<Factor<1.7"};
+  Dados1 = 
+   Grid[Dimen1, Frame -> All, 
+    ItemStyle -> 
+     Directive[FontSize -> 20, FontWeight -> "Fat", Italic], 
+    Background -> {{LightRed}, {LightBlue}}, Spacings -> {1.8, 1.8}, 
+    Dividers -> {{True, True, True}, All}];
+  (*Plotc=GraphicsRow[{Plota,Plotb,Dados},ImageSize\[Rule]Scaled[1],
+  Frame\[Rule]All]*)
   picture = Dados1;];
 If[ValueQ[picture],Export[StringJoin["/var/www/html/disp_form/results/",user,"1",".jpg"], picture],picture=False];
 {{variavelLoopEscolhidaPorJardiel}} = SQLExecute[conn, "SELECT COUNT(*) FROM valor_dispositivo_atributos WHERE jaleu=FALSE AND id_dispositivo=1"]];

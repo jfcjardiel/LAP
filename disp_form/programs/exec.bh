@@ -3,9 +3,6 @@
 #pasta do watch
 folder=/var/www/html/disp_form/watch/
 
-#variavel para nunca ter problema de mesmo dinheiro
-cdate=$(date +"%Y-%m-%d-%H:%M")
-
 #visualiza caso haja um arquivo dentro da pasta
 inotifywait -m -q -e create -r --format '%:e %w%f' $folder |
 	while read path action file; do
@@ -17,7 +14,5 @@ inotifywait -m -q -e create -r --format '%:e %w%f' $folder |
 			rm -f /var/www/html/disp_form/watch/$fn
 			wolfram -script /var/www/html/disp_form/programs/$fn &
 			echo "Watchdog foi acionado."
-			#mv /var/www/html/disp_form/watch/$fn /var/www/html/disp_form/lixo/${cdate}
-			#rm -f /var/www/html/disp_form/watch/$fn 
 		fi
 	done
