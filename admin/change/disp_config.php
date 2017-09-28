@@ -1,12 +1,12 @@
 <?php
 
-include_once 'includes/db_connect.php';
-include_once 'includes/functions.php';
+//include_once 'includes/db_connect.php';
+//include_once 'includes/functions.php';
  
-sec_session_start();
+//sec_session_start();
 ?>
 
-<?php if (login_check($mysqli) == true) : ?>
+<?php //if (login_check($mysqli) == true) : ?>
 
 <?php
 // get the q parameter from URL
@@ -101,5 +101,5 @@ echo "<button type='button' name='button_submit' id='button_submit' value='butto
 //we should close the connection
 $mysqli_disp->close();
 ?>
-<?php else : ?>
-<?php endif; ?>
+<?php //else : ?>
+<?php //endif; ?>
