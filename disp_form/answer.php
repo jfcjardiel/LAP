@@ -118,11 +118,11 @@ $aux_time = 0; //we are going to expect a certain amount of time
 while(!file_exists($image_result_mathematica_server) && ($aux_time < 30)){
     sleep(3);
     $aux_time = $aux_time + 1;
-    $shell_command = "mv -f " . $image_result_mathematica_server . " " . $image_result_server;
-    shell_exec($shell_command);
 }
 
 if($aux_time < 30){
+    $shell_command = "mv -f " . $image_result_mathematica_server . " " . $image_result_server;
+    shell_exec($shell_command);
     echo '<img alt="Picture not displayed" style="width:100%;height:auto;" src="'.$image_result.'">';
 }else{
     echo "<h2 class='blog_title'>Not working </h2>";
