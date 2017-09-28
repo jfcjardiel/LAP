@@ -42,7 +42,7 @@ if ($result->num_rows === 0) {
     exit;
 }
 
-$nome_row = $result->fetch_assoc()
+$nome_row = $result->fetch_assoc();
 $nome_dispositivo = $nome_row['nome_dispositivo'];
 
 //*******************************//
