@@ -42,6 +42,8 @@ if ($result->num_rows === 0) {
     exit;
 }
 
+$nome_dispositivo = $result['nome_dispositivo'];
+
 //*******************************//
 //******* PUTTING IMAGE *********//
 //*******************************//
