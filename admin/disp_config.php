@@ -81,7 +81,7 @@ echo "<form method='post' attribute='post' id='mod_disp' name='mod_disp'>"; //on
 echo "<p> Tools Name: </p>";
 echo "<input type='text' id='disp_name' placeholder='". $nome_dispositivo ."'><br>";
 
-echo "<input type="checkbox" name="show" value="show"> Show Tool<br>";
+echo '<input type="checkbox" name="show" value="show"> Show Tool<br>';
 
 echo "<h3>Tool Configuration </h3>";
 
