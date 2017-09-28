@@ -42,7 +42,7 @@ if ($result->num_rows === 0) {
     exit;
 }
 
-$nome_dispositivo = $result['nome_dispositivo'];
+//$nome_dispositivo = $result['nome_dispositivo'];
 
 //*******************************//
 //******* PUTTING IMAGE *********//
