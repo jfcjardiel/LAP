@@ -132,4 +132,6 @@ sec_session_start();
     <div id="disp_config"> </div>
     <div id="disp_result"> </div>
 </body>
+<?php else : ?>
+<?php endif; ?>
 <html>
