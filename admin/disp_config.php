@@ -90,7 +90,7 @@ $id_input = 0;
 //Writing the form options
 while ($config_dispositivo = $result->fetch_assoc()) {
     //it is exibitig the line.
-    echo "<input type='text' id='" . $id_input . "' name='" . $config_dispositivo['id_config'] . "' placeholder='". $config_dispositivo['nome_atributo'] ."'>";
+    echo "<input type='text' id='" . $id_input . "' name='" . $config_dispositivo['id_config'] . "' placeholder='". $config_dispositivo['nome_atributo'] ."'><br>";
     $id_input = $id_input + 1;
 }
 
