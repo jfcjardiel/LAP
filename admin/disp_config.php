@@ -11,6 +11,7 @@ sec_session_start();
 <?php
 // get the q parameter from URL
 $id = $_REQUEST["id"] + 0;
+echo $id;
 
 //*******************************//
 //***** READING DATABSE *********//
@@ -48,7 +49,7 @@ if ($result->num_rows === 0) {
 //criando o upload  -> o arquivo vai ter o nome do dispositivo na pasta disp_form
 $target_dir_img = "/var/www/html/disp_form/img/";
 $target_img_server = $target_dir_img . $id . ".jpg";
-$target_img = "disp_form/img/". $id . ".jpg";
+$target_img = "../disp_form/img/". $id . ".jpg";
 
 if(file_exists($target_img_server)){
     echo '<img alt="img" src="'.$target_img.'">';
@@ -60,16 +61,16 @@ if(file_exists($target_img_server)){
 
 //If there isnt any error, then lets read the sql content
 $sql = "SELECT * FROM config_dispositivo_atributos  WHERE id_dispositivo=" . $id;
-if (!$result = $mysqli->query($sql)) {
+if (!$result = $mysqli_disp->query($sql)) {
     // I do not know what to show yet
-    echo "<h2 class='blog_title'>Connection Problem </h2>";
+    echo "<p>Connection Problem </p>";
     exit;
 }
 
 // If there is no result
 if ($result->num_rows === 0) {
     // I do not know what to show yet
-    echo "<h2 class='blog_title'>Connection Problem </h2>";
+    echo "<p>Connection Problem <p>";
     exit;
 }
 

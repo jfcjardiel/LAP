@@ -30,7 +30,7 @@ sec_session_start();
               document.getElementById("disp_config").innerHTML = this.responseText;
             }
           };
-          xhttp.open("GET", "disp_config.php?id="+str, true);
+          xhttp.open("GET", "./disp_config.php?id="+str, true);
           xhttp.send();
       }
 
@@ -92,7 +92,7 @@ sec_session_start();
     </script>
 </head>
 <body>
-<select size="15" id="dispositivo_select" onchange="disp_information(this.value)">
+<select id="dispositivo_select" onchange="disp_information(this.value)">
     <option value=""> -- Select a Microwave tool -- </option>
         <?php
         //conexao para listar os dispositivos
@@ -130,6 +130,8 @@ sec_session_start();
         $mysqli_disp->close();
         ?>
     <div id="disp_config"> </div>
+        <h1>Microwave Tools created in LAP</h1>
+        <p>Here you can edit every tool created in LAP. Just select the tool you want to change the configuration.</p>
     <div id="disp_result"> </div>
 </body>
 <?php else : ?>
