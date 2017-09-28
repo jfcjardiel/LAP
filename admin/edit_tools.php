@@ -129,9 +129,10 @@ sec_session_start();
         //we should close the connection
         $mysqli_disp->close();
         ?>
-    <div id="disp_config"> </div>
+    <div id="disp_config">
         <h1>Microwave Tools created in LAP</h1>
         <p>Here you can edit every tool created in LAP. Just select the tool you want to change the configuration.</p>
+    </div>
     <div id="disp_result"> </div>
 </body>
 <?php else : ?>
