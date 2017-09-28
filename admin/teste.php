@@ -16,7 +16,7 @@ function loadDoc() {
       this.responseText;
     }
   };
-  xhttp.open("GET", "register_sucess.php", true);
+  xhttp.open("GET", "register_success.php", true);
   xhttp.send();
 }
 </script>
