@@ -50,11 +50,13 @@ if(isset($_REQUEST("show"))){
 }
 
 //em cada id_config vamos escrever o valor relativo em valor_dispositivo_atributos
-while ($dispositivo = $result->fetch_assoc()){
-    $dispositivo_name = $dispositivo("id_config");
+$aux = 0;
+while ($aux < 30){
+    $dispositivo_name = "valor".$aux;
     if(isset($_REQUEST($dispositivo_name))){
         echo $_REQUEST($dispositivo_name);
     }
+    $aux = $aux +1;
 }
 
 //we should close the connection
