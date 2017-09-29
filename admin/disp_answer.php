@@ -45,8 +45,8 @@ if(isset($_REQUEST("nome_dispositivo"))){
     echo $_REQUEST("nome_dispositivo");
 }
 
-if(isset($_REQUEST("show_dispositivo"))){
-    echo $_REQUEST("show_dispositivo");
+if(isset($_REQUEST("show"))){
+    echo $_REQUEST("show");
 }
 
 //em cada id_config vamos escrever o valor relativo em valor_dispositivo_atributos

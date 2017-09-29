@@ -57,14 +57,14 @@ sec_session_start();
         //alert("Check if it is up-to-date");
         alert(url_send_form);
         //inicializing the request
-        //xhttp.onreadystatechange = function() {
-        //  if (this.readyState == 4 && this.status == 200) {
-        //    document.getElementById("answer_form").innerHTML = this.responseText;
-        //  }
-        //};
+        xhttp.onreadystatechange = function() {
+          if (this.readyState == 4 && this.status == 200) {
+            document.getElementById("answer_form").innerHTML = this.responseText;
+          }
+        };
         //sending the data to answer.
-        //xhttp.open("GET", url_send_form, true);
-        //xhttp.send();        
+        xhttp.open("GET", url_send_form, true);
+        xhttp.send();        
     }
     </script>
 </head>
