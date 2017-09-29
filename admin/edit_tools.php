@@ -42,7 +42,8 @@ sec_session_start();
         //vendo o tamanho da form
         var form_length = document.forms["mod_disp"].length;
         alert(form_length);
-        alert(getElementById('show_dispositivo').value);
+        var show = getElementById('show_dispositivo').value;
+        alert(show);
         //building the URL that will be send
         //url_send_form = "disp_answer.php?id_dispositivo="+id_dispositivo_select;
         //url_send_form = url_send_form + "&email=" + document.getElementById('email').value;
