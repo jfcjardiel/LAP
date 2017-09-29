@@ -118,7 +118,7 @@ $image_result_mathematica_server = "/var/www/html/disp_form/results/". $email_re
 
 $id_image = time();
 $image_result_server = "/var/www/html/disp_form/results/" . $id_image . ".jpg" ;
-$image_result = "../../disp_form/results/". $id_image . ".jpg" ;
+$image_result = "../disp_form/results/". $id_image . ".jpg" ;
 
 //echo $image_result_server;
 //vamos ficar procurando a imagem ate 90s
