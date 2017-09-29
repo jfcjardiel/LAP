@@ -1,11 +1,4 @@
 <?php
-include_once 'includes/db_connect.php';
-include_once 'includes/functions.php';
- 
-sec_session_start();
-?>
-<?php if (login_check($mysqli) == true) : ?>
-<?php
 //debug settings
 //ini_set('display_errors',1);
 //error_reporting(E_ALL);
@@ -151,5 +144,3 @@ if($aux_time < 30){
 //we should close the connection
 $mysqli_teste->close();
 ?>
-<?php else : ?>
-<?php endif; ?>
