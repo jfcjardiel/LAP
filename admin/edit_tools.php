@@ -43,13 +43,12 @@ sec_session_start();
         var form_length = document.forms["mod_disp"].length;
         alert(form_length);
         var show = getElementById('show_dispositivo').value;
-        alert(show);
         //building the URL that will be send
-        //url_send_form = "disp_answer.php?id_dispositivo="+id_dispositivo_select;
-        //url_send_form = url_send_form + "&email=" + document.getElementById('email').value;
-        //for(var aux_send = 0; aux_send < form_length; aux_send++){
-        //  url_send_form = url_send_form + "&valor" + aux_send + "=" + document.getElementById(aux_send).value;
-        //}
+        url_send_form = "disp_answer.php?id_dispositivo="+id_dispositivo_select;
+        url_send_form = url_send_form + "&email=" + document.getElementById('email').value;
+        for(var aux_send = 0; aux_send < form_length-2; aux_send++){
+          url_send_form = url_send_form + "&valor" + aux_send + "=" + document.getElementById(aux_send).value;
+        }
         //alert("Check if it is up-to-date");
         alert(url_send_form);
         //inicializing the request
