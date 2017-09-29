@@ -45,7 +45,6 @@ sec_session_start();
         var show = getElementById('show_dispositivo').value;
         //building the URL that will be send
         url_send_form = "disp_answer.php?id_dispositivo="+id_dispositivo_select;
-        url_send_form = url_send_form + "&email=" + document.getElementById('email').value;
         for(var aux_send = 0; aux_send < form_length-3; aux_send++){
           url_send_form = url_send_form + "&valor" + aux_send + "=" + document.getElementById(aux_send).value;
         }
