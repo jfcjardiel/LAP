@@ -28,7 +28,7 @@ if ($mysqli_disp->connect_errno) {
 }
 
 //If there isnt any error, then lets read the sql content
-$sql = "SELECT nome_dispositivo FROM dispositivo WHERE id_dispositivo=" . $id;
+$sql = "SELECT * FROM dispositivo WHERE id_dispositivo=" . $id;
 if (!$result = $mysqli_disp->query($sql)) {
     // I do not know what to show yet
     echo "<p>Connection Problem </p>";
@@ -45,6 +45,7 @@ if ($result->num_rows === 0) {
 //pegando o nome do dispositivo
 $nome_row = $result->fetch_assoc();
 $nome_dispositivo = $nome_row['nome_dispositivo'];
+$jaleu = $nome_row['jaleu'];
 
 //*******************************//
 //******* PUTTING IMAGE *********//
@@ -87,7 +88,11 @@ echo "<p> Tools Name: </p>";
 //echo $nome_dispositivo;
 echo "<input type='text' id='disp_name' name='nome_dispositivo' placeholder=' ". $nome_dispositivo ."'><br>";
 
-echo '<input type="checkbox" name="show_dispositivo" value="yes" id="show_dispositivo"> Show Tool<br>';
+if($jaleu == true){
+    echo '<input type="radio" name="show" value="yes" checked> Show Tool<br><input type="radio" name="show" value="no"> Not show<br>';
+}else{
+    echo '<input type="radio" name="show" value="yes"> Show Tool<br><input type="radio" name="show" value="no" checked> Not show<br>';
+}
 
 echo "<h3>Tool Configuration </h3>";
 
