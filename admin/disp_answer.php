@@ -93,7 +93,7 @@ if(isset($_REQUEST["show"])){
     }
 }
 
-echo "<h1>It Worked!</h1>"
+echo "<h1>It Worked!</h1>";
 
 //we should close the connection
 $mysqli_disp->close();
