@@ -88,7 +88,6 @@ echo "<p> Tools Name: </p>";
 //echo $nome_dispositivo;
 echo "<input type='text' id='disp_name' name='nome_dispositivo' placeholder=' ". $nome_dispositivo ."'><br>";
 
-echo $jaleu;
 if($jaleu == true){
     echo '<input type="radio" name="show" value="yes" checked> Show Tool<br><input type="radio" name="show" value="no"> Not show<br>';
 }else{
