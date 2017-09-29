@@ -85,13 +85,15 @@ if(isset($_REQUEST["show"])){
         }
     }
     if($_REQUEST["show"] == "no"){
-    $sql_write = "UPDATE dispositivo SET mostrar_dispositivo=FALSE WHERE id_dispositivo=".$id_dispositivo;
-    if(!$result_write = $mysqli_disp->query($sql_write)){
-        echo "<p>Connection Problem writing</p>";
-        exit;
+        $sql_write = "UPDATE dispositivo SET mostrar_dispositivo=FALSE WHERE id_dispositivo=".$id_dispositivo;
+        if(!$result_write = $mysqli_disp->query($sql_write)){
+            echo "<p>Connection Problem writing</p>";
+            exit;
+        }
     }
 }
-}
+
+echo "<h1>It Worked!</h1>"
 
 //we should close the connection
 $mysqli_disp->close();

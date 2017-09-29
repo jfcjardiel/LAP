@@ -64,6 +64,8 @@ sec_session_start();
         //inicializing the request
         xhttp.onreadystatechange = function() {
           if (this.readyState == 4 && this.status == 200) {
+            document.getElementById("disp_config").innerHTML = "";
+            document.getElementById("selection").innerHTML = "";
             document.getElementById("disp_result").innerHTML = this.responseText;
           }
         };
@@ -74,44 +76,46 @@ sec_session_start();
     </script>
 </head>
 <body>
-    <select id="dispositivo_select" onchange="disp_information(this.value)">
-        <option value=""> -- Select a Microwave tool -- </option>
-            <?php
-            //conexao para listar os dispositivos
-            $mysqli_disp = new mysqli('localhost', 'root', 'input212', 'input');
+    <div id="selection">
+        <select id="dispositivo_select" onchange="disp_information(this.value)">
+            <option value=""> -- Select a Microwave tool -- </option>
+                <?php
+                //conexao para listar os dispositivos
+                $mysqli_disp = new mysqli('localhost', 'root', 'input212', 'input');
 
-            //If there is any error, then show...
-            if ($mysqli_disp->connect_errno) {
-                // I do not know what to show yet
-                echo "<option value=''>Connection Problem</option>";
-                exit;
-            }
+                //If there is any error, then show...
+                if ($mysqli_disp->connect_errno) {
+                    // I do not know what to show yet
+                    echo "<option value=''>Connection Problem</option>";
+                    exit;
+                }
 
-            //If there isnt any error, then lets read the sql content
-            $sql = "SELECT * FROM dispositivo ORDER BY id_dispositivo";
-            if (!$result = $mysqli_disp->query($sql)) {
-                // I do not know what to show yet
-                echo "<option value=''>Connection Problem</option>";
-                exit;
-            }
+                //If there isnt any error, then lets read the sql content
+                $sql = "SELECT * FROM dispositivo ORDER BY id_dispositivo";
+                if (!$result = $mysqli_disp->query($sql)) {
+                    // I do not know what to show yet
+                    echo "<option value=''>Connection Problem</option>";
+                    exit;
+                }
 
-            // If there is no result
-            if ($result->num_rows === 0) {
-                // I do not know what to show yet
-                echo "<option value=''>Connection Problem</option>";
-                exit;
-            }
+                // If there is no result
+                if ($result->num_rows === 0) {
+                    // I do not know what to show yet
+                    echo "<option value=''>Connection Problem</option>";
+                    exit;
+                }
 
-            //Show the results
-            while ($dispositivo = $result->fetch_assoc()) {
-                //it is exibitig the line.
-                echo "<option value='" . $dispositivo['id_dispositivo'] . "'>".$dispositivo['nome_dispositivo']."</option>";
-            }
+                //Show the results
+                while ($dispositivo = $result->fetch_assoc()) {
+                    //it is exibitig the line.
+                    echo "<option value='" . $dispositivo['id_dispositivo'] . "'>".$dispositivo['nome_dispositivo']."</option>";
+                }
 
-            //we should close the connection
-            $mysqli_disp->close();
-            ?>
-    </select>
+                //we should close the connection
+                $mysqli_disp->close();
+                ?>
+        </select>
+    </div>
     <div id="disp_config">
         <h1>Microwave Tools created in LAP</h1>
         <p>Here you can edit every tool created in LAP. Just select the tool you want to change the configuration.</p>
