@@ -126,6 +126,63 @@
 
   </head>
   <body>
+    <!-- SCROLL TOP BUTTON -->
+    <a class="scrollToTop" href="#"></a>
+    <!-- END SCROLL TOP BUTTON -->
+
+    <!--=========== BEGIN HEADER SECTION ================-->
+    <header id="header">
+      <!-- BEGIN MENU -->
+      <div class="menu_area">
+        <nav class="navbar navbar-default navbar-fixed-top" role="navigation">  <div class="container">
+            <div class="navbar-header">
+              <!-- FOR MOBILE VIEW COLLAPSED BUTTON -->
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <!-- LOGO -->
+              <!-- TEXT BASED LOGO -->
+              <!-- <a class="navbar-brand" href="index.html">LAP <span></span></a> -->              
+              <!-- IMG BASED LOGO  -->
+              <a class="navbar-new" href="index.html"><img src="img/logo.png" alt="logo"></a>          
+                     
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+              <ul id="top-menu" class="nav navbar-nav navbar-right main-nav">
+                <li class="active"><a href="index.html">Home</a></li>
+                  <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Research<span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                      <li><a href="404.html">Research archive</a></li>
+                      <li><a href="404.html">Projects</a></li>
+                    </ul>
+                  </li>
+                    <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">People<span class="caret"</span></a>
+                    <ul class="dropdown-menu" role="menu">
+                      <li><a href="404.html">Students</a></li>
+                      <li><a href="404.html">Research Staff</a></li>
+                    </ul>
+                  </li>
+                <li><a href ="404.html">Microwave Tools</a></li>                        
+                <li><a href="contact.html">Contact</a></li>
+              </ul>           
+            </div><!--/.nav-collapse -->
+          </div>     
+        </nav>  
+      </div>
+      <!-- END MENU -->    
+    </header>
+    <!--=========== END HEADER SECTION ================--> 
+
+    <!--=========== BEGIN BANNER SECTION ================-->
+    <section id="imgBanner">
+      <h2>Microwave Tools</h2>
+    </section>
+    <!--=========== END BANNER SECTION ================-->
         
     <!--=========== BEGIN COURSE BANNER SECTION ================-->
     <section id="courseArchive">
@@ -172,7 +229,7 @@
           					}
 
           					//If there isnt any error, then lets read the sql content
-          					$sql = "SELECT * FROM dispositivo ORDER BY id_dispositivo";
+          					$sql = "SELECT * FROM dispositivo WHERE mostrar_dispositivo=TRUE ORDER BY id_dispositivo";
           					if (!$result = $mysqli->query($sql)) {
           						// I do not know what to show yet
           						echo "<option value=''>Connection Problem</option>";
@@ -215,6 +272,63 @@
       </div>
     </section>
     <!--=========== END COURSE BANNER SECTION ================-->
+    
+    <!--=========== BEGIN FOOTER SECTION ================-->
+    <footer id="footer">
+      <!-- Start footer top area -->
+      <div class="footer_top">
+        <div class="container">
+          <div class="row">
+            <div class="col-ld-3  col-md-3 col-sm-3">
+              <div class="single_footer_widget">
+                <h3>LAP</h3>
+                <p>Laboratory of Antenna e Propagation.</p>
+              </div>
+            </div>
+            <div class="col-ld-3  col-md-3 col-sm-3">
+              <div class="single_footer_widget">
+                <h3>Community</h3>
+                <ul class="footer_widget_nav">
+                  <li><a href="#ourTutors">Professors</a></li>
+                  <li><a href="#studentsTestimonial">Students</a></li>
+                  <li><a href="#">Team</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-ld-3  col-md-3 col-sm-3">
+              <div class="single_footer_widget">
+                <h3>Others</h3>
+                <ul class="footer_widget_nav">
+                  <li><a href="http://www.ita.br">ITA</a></li>
+                </ul>
+              </div>
+ 
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- End footer top area -->
+
+      <!-- Start footer bottom area -->
+      <div class="footer_bottom">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-6">
+              <div class="footer_bootomLeft">
+                <p> Copyright &copy; All Rights Reserved</p>
+              </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6">
+              <div class="footer_bootomRight">
+                <p>Designed by <a href="http://wpfreeware.com/" rel="nofollow">Wpfreeware.com</a></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- End footer bottom area -->
+
+    </footer>
     
     <!-- Javascript Files
     ================================================== -->
