@@ -45,7 +45,7 @@ if ($result->num_rows === 0) {
 //pegando o nome do dispositivo
 $nome_row = $result->fetch_assoc();
 $nome_dispositivo = $nome_row['nome_dispositivo'];
-$jaleu = $nome_row['jaleu'];
+$jaleu = $nome_row['mostar_dispositivo'];
 
 //*******************************//
 //******* PUTTING IMAGE *********//
