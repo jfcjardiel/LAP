@@ -1,4 +1,14 @@
 <?php
+
+include_once 'includes/db_connect.php';
+include_once 'includes/functions.php';
+ 
+sec_session_start();
+?>
+
+<?php if (login_check($mysqli) == true) : ?>
+
+<?php
 //getting 
 $id_dispositivo = $_REQUEST["id_dispositivo"] + 0;
 //echo $id_dispositivo;
@@ -37,29 +47,54 @@ if ($result->num_rows === 0) {
 }
 
 //********************************************//
-//******** WRITING VALUES ON DATABSE *********//
+//******** CHANGING CONFIG ATRIBUTOS *********//
 //********************************************//
 $aux_write = 0;
 
+//em cada id_config vamos escrever o valor relativo em valor_dispositivo_atributos
+while ($dispositivo = $result->fetch_assoc()){
+    $config_name = "valor".$aux_write;
+    if(isset($_REQUEST[$config_name])){
+        $sql_write = "UPDATE config_dispositivo_atributos SET nome_atributo='". $_REQUEST[$config_name] ."' WHERE id_config=".$dispositivo["id_config"];
+        if(!$result_write = $mysqli_disp->query($sql_write)){
+            echo "<p>Connection Problem writing</p>";
+            exit;
+        }
+    }
+    $aux_write = $aux_write + 1;
+}
+
+//********************************************//
+//********** CHANGING DISPOSITIVOS ***********//
+//********************************************//
+
 if(isset($_REQUEST["nome_dispositivo"])) {
-    echo "nome dispositivo";
-    echo $_REQUEST["nome_dispositivo"];
+    $sql_write = "UPDATE dispositivo SET nome_dispositivo='". $_REQUEST["nome_dispositivo"] ."' WHERE id_dispositivo=".$id_dispositivo;
+    if(!$result_write = $mysqli_disp->query($sql_write)){
+        echo "<p>Connection Problem writing</p>";
+        exit;
+    }
 }
 
 if(isset($_REQUEST["show"])){
-    echo $_REQUEST["show"];
-}
-
-//em cada id_config vamos escrever o valor relativo em valor_dispositivo_atributos
-$aux = 0;
-while ($aux < 30){
-    $dispositivo_name = "valor".$aux;
-    if(isset($_REQUEST[$dispositivo_name])){
-        echo $aux;
+    if($_REQUEST["show"] == "yes"){
+        $sql_write = "UPDATE dispositivo SET mostrar_dispositivo=TRUE WHERE id_dispositivo=".$id_dispositivo;
+        if(!$result_write = $mysqli_disp->query($sql_write)){
+            echo "<p>Connection Problem writing</p>";
+            exit;
+        }
     }
-    $aux = $aux +1;
+    if($_REQUEST["show"] == "no"){
+    $sql_write = "UPDATE dispositivo SET mostrar_dispositivo=FALSE WHERE id_dispositivo=".$id_dispositivo;
+    if(!$result_write = $mysqli_disp->query($sql_write)){
+        echo "<p>Connection Problem writing</p>";
+        exit;
+    }
+}
 }
 
 //we should close the connection
 $mysqli_disp->close();
 ?>
+<?php else : ?>
+<?php endif; ?>

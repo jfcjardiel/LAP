@@ -86,7 +86,7 @@ echo "<form method='post' attribute='post' id='mod_disp' name='mod_disp'>"; //on
 //editing name
 echo "<p> Tools Name: </p>";
 //echo $nome_dispositivo;
-echo "<input type='text' id='disp_name' name='nome_dispositivo' placeholder=' ". $nome_dispositivo ."'><br>";
+echo "<input type='text' id='disp_name' name='nome_dispositivo' placeholder=' ". $nome_dispositivo ."' maxlength='20'><br>";
 
 if($jaleu == true){
     echo '<input type="radio" name="show" value="yes" checked> Show Tool<br><input type="radio" name="show" value="no"> Not show<br>';
@@ -100,7 +100,7 @@ $id_input = 0;
 //Writing the form options
 while ($config_dispositivo = $result->fetch_assoc()) {
     //it is exibitig the line.
-    echo "<input type='text' id='" . $id_input . "' name='" . $config_dispositivo['id_config'] . "' placeholder='". $config_dispositivo['nome_atributo'] ."'><br><br>";
+    echo "<input type='text' id='" . $id_input . "' name='" . $config_dispositivo['id_config'] . "' placeholder='". $config_dispositivo['nome_atributo'] ."' maxlength='20'><br>";
     $id_input = $id_input + 1;
 }
 
