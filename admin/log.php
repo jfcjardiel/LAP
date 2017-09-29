@@ -170,6 +170,7 @@ sec_session_start();
                     <option value="edit_professor"> Edit Professor Informations </option>
                     <option value="edit_students"> Edit Student Informations </option>
                     <option value="register"> Register Another User </option>
+                    <option value="ferramenta_teste"> Microwave Test Tool </option>
                 </select>
               </div>
               <!-- End single sidebar -->
