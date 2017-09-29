@@ -51,8 +51,8 @@ sec_session_start();
         //building the URL that will be send
         url_send_form = "disp_answer.php?id_dispositivo="+id_dispositivo_select;
         url_send_form = url_send_form + "&show=" + show_disp;
-        if(document.getElementById("nome_dispositivo").value != ""){
-            url_send_form = url_send_form + "&nome_dispositivo=" + document.getElementById("nome_dispositivo").value;
+        if(document.getElementById("disp_name").value != ""){
+            url_send_form = url_send_form + "&nome_dispositivo=" + document.getElementById("disp_name").value;
         }
         for(var aux_send = 0; aux_send < form_length-4; aux_send++){
             if(document.getElementById(aux_send).value != ""){
