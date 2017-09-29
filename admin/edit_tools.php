@@ -51,8 +51,13 @@ sec_session_start();
         //building the URL that will be send
         url_send_form = "disp_answer.php?id_dispositivo="+id_dispositivo_select;
         url_send_form = url_send_form + "&show=" + show_disp;
+        if(document.getElementById("nome_dispositivo").value != ""){
+            url_send_form = url_send_form + "&nome_dispositivo=" + document.getElementById("nome_dispositivo").value;
+        }
         for(var aux_send = 0; aux_send < form_length-4; aux_send++){
-          url_send_form = url_send_form + "&valor" + aux_send + "=" + document.getElementById(aux_send).value;
+            if(document.getElementById(aux_send).value != ""){
+                url_send_form = url_send_form + "&valor" + aux_send + "=" + document.getElementById(aux_send).value;
+            }
         }
         //alert("Check if it is up-to-date");
         alert(url_send_form);

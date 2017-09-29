@@ -42,6 +42,7 @@ if ($result->num_rows === 0) {
 $aux_write = 0;
 
 if(isset($_REQUEST["nome_dispositivo"])) {
+    echo "nome dispositivo";
     echo $_REQUEST["nome_dispositivo"];
 }
 
