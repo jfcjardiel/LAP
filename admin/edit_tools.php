@@ -59,7 +59,7 @@ sec_session_start();
         //inicializing the request
         xhttp.onreadystatechange = function() {
           if (this.readyState == 4 && this.status == 200) {
-            document.getElementById("answer_form").innerHTML = this.responseText;
+            document.getElementById("disp_result").innerHTML = this.responseText;
           }
         };
         //sending the data to answer.
