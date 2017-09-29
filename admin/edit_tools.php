@@ -43,7 +43,7 @@ sec_session_start();
         var form_length = document.forms["mod_disp"].length;
         //alert(form_length);
         var show = document.getElementsByName("show");
-        if(x[0].checked == true){
+        if(show[0].checked == true){
             show_disp = show[0].value;
         }else{
             show_disp = show[1].value;
