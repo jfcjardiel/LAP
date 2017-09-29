@@ -54,7 +54,7 @@ $aux = 0;
 while ($aux < 30){
     $dispositivo_name = "valor".$aux;
     if(isset($_REQUEST[$dispositivo_name])){
-        echo $_REQUEST[$dispositivo_name];
+        echo $aux;
     }
     $aux = $aux +1;
 }
