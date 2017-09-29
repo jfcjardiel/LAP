@@ -1,3 +1,10 @@
+<?php
+include_once 'includes/db_connect.php';
+include_once 'includes/functions.php';
+ 
+sec_session_start();
+?>
+<?php if (login_check($mysqli) == true) : ?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -63,7 +70,7 @@
               document.getElementById("input_form").innerHTML = this.responseText;
             }
           };
-          xhttp.open("GET", "../disp_form/input.php?id="+str, true);
+          xhttp.open("GET", "disp_form/input.php?id="+str, true);
           xhttp.send();
       }
 
@@ -75,7 +82,7 @@
         //vendo o tamanho da form
         var form_length = document.forms["form_dispositivo"].length-2;
         //building the URL that will be send
-        url_send_form = "../disp_form/answer.php?id_dispositivo="+id_dispositivo_select;
+        url_send_form = "disp_form/answer.php?id_dispositivo="+id_dispositivo_select;
         url_send_form = url_send_form + "&email=" + document.getElementById('email').value;
         for(var aux_send = 0; aux_send < form_length; aux_send++){
           url_send_form = url_send_form + "&valor" + aux_send + "=" + document.getElementById(aux_send).value;
@@ -219,10 +226,10 @@
                 	<option value=""> -- Select a Microwave tool -- </option>
           					<?php
           					//Starting connection
-          					$mysqli = new mysqli('localhost', 'root', 'input212', 'input');
+          					$mysqli_teste = new mysqli('localhost', 'root', 'input212', 'input');
 
           					//If there is any error, then show...
-          					if ($mysqli->connect_errno) {
+          					if ($mysqli_teste->connect_errno) {
           					    // I do not know what to show yet
           					    echo "<option value=''>Connection Problem</option>";
           					    exit;
@@ -230,7 +237,7 @@
 
           					//If there isnt any error, then lets read the sql content
           					$sql = "SELECT * FROM dispositivo ORDER BY id_dispositivo";
-          					if (!$result = $mysqli->query($sql)) {
+          					if (!$result = $mysqli_teste->query($sql)) {
           						// I do not know what to show yet
           						echo "<option value=''>Connection Problem</option>";
           					    exit;
@@ -250,7 +257,7 @@
           					}
 
           					//we should close the connection
-          					$mysqli->close();
+          					$mysqli_teste->close();
           					?>
                 </select>
               </div>
@@ -361,3 +368,5 @@
 
   </body>
 </html>
+<?php else : ?>
+<?php endif; ?>
