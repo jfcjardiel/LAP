@@ -55,12 +55,16 @@
               //document.getElementById("answer_form").innerHTML = "";
               return;
           }
+          //loader icon
+          document.getElementById("input_form").innerHTML = '<img alt="Picture not displayed" class="img-responsive" src="img/loader.gif">';
           //if some is, then we will embedded the code of input.php
           //it is important to say, the only data we are going to send is the id by url
           xhttp = new XMLHttpRequest();
           xhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
               document.getElementById("input_form").innerHTML = this.responseText;
+            }else{
+              document.getElementById("input_form").innerHTML = '<h1>ERROR </h1>';
             }
           };
           xhttp.open("GET", "disp_form/input.php?id="+str, true);
@@ -81,11 +85,14 @@
           url_send_form = url_send_form + "&valor" + aux_send + "=" + document.getElementById(aux_send).value;
         }
         alert("Your calculation may take a time. Is it take too long, we are going to send the answer by Email.");
+        document.getElementById("answer_form").innerHTML = '<img alt="Picture not displayed" class="img-responsive" src="img/loader.gif">';
         //alert(url_send_form);
         //inicializing the request
         xhttp.onreadystatechange = function() {
           if (this.readyState == 4 && this.status == 200) {
             document.getElementById("answer_form").innerHTML = this.responseText;
+          }else{
+            document.getElementById("answer_form").innerHTML = '<h1>ERROR</h1>';
           }
         };
         //sending the data to answer.
