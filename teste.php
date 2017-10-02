@@ -90,7 +90,7 @@
           if (this.readyState == 4 && this.status == 200) {
             document.getElementById("answer_form").innerHTML = this.responseText;
           }else{
-            document.getElementById("answer_form").innerHTML = '<br><br><img alt="Picture not displayed" class="img-responsive" src="img/loader.gif">';
+            document.getElementById("answer_form").innerHTML = '<br><<img alt="Picture not displayed" class="img-responsive" src="img/loader.gif">';
           }
         };
         //sending the data to answer.
