@@ -63,8 +63,6 @@
           xhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
               document.getElementById("input_form").innerHTML = this.responseText;
-            }else{
-              document.getElementById("input_form").innerHTML = '<h1>ERROR </h1>';
             }
           };
           xhttp.open("GET", "disp_form/input.php?id="+str, true);
@@ -92,7 +90,7 @@
           if (this.readyState == 4 && this.status == 200) {
             document.getElementById("answer_form").innerHTML = this.responseText;
           }else{
-            document.getElementById("answer_form").innerHTML = '<h1>ERROR</h1>';
+            document.getElementById("answer_form").innerHTML = '<img alt="Picture not displayed" class="img-responsive" src="img/loader.gif">';
           }
         };
         //sending the data to answer.
