@@ -1,0 +1,498 @@
+Needs["DatabaseLink`"];
+conn = OpenSQLConnection[JDBC["MySQL(Connector/J)", "localhost:3306/input"], Username -> "root", Password -> "input212"];
+{{variavelLoopEscolhidaPorJardiel}} = SQLExecute[conn, "SELECT COUNT(*) FROM valor_dispositivo_atributos WHERE jaleu=FALSE AND id_dispositivo=4"];
+While[variavelLoopEscolhidaPorJardiel>0,
+Clear[picture];
+{{user}} = SQLExecute[conn, "SELECT SUBSTRING_INDEX(email,'@',1) FROM valor_dispositivo_atributos WHERE jaleu=FALSE AND id_dispositivo=4 ORDER BY id_valor ASC LIMIT 1"];
+{{fr}}=SQLExecute[conn, "SELECT valor FROM valor_dispositivo_atributos WHERE id_config=20 AND jaleu=FALSE ORDER BY id_valor ASC LIMIT 1"];
+SQLExecute[conn, "UPDATE valor_dispositivo_atributos SET jaleu=TRUE WHERE id_config=20 AND jaleu=FALSE ORDER BY id_valor ASC LIMIT 1"];
+{{h}}=SQLExecute[conn, "SELECT valor FROM valor_dispositivo_atributos WHERE id_config=21 AND jaleu=FALSE ORDER BY id_valor ASC LIMIT 1"];
+SQLExecute[conn, "UPDATE valor_dispositivo_atributos SET jaleu=TRUE WHERE id_config=21 AND jaleu=FALSE ORDER BY id_valor ASC LIMIT 1"];
+{{\[Epsilon]r}}=SQLExecute[conn, "SELECT valor FROM valor_dispositivo_atributos WHERE id_config=22 AND jaleu=FALSE ORDER BY id_valor ASC LIMIT 1"];
+SQLExecute[conn, "UPDATE valor_dispositivo_atributos SET jaleu=TRUE WHERE id_config=22 AND jaleu=FALSE ORDER BY id_valor ASC LIMIT 1"];
+{{tan\[Delta]}}=SQLExecute[conn, "SELECT valor FROM valor_dispositivo_atributos WHERE id_config=23 AND jaleu=FALSE ORDER BY id_valor ASC LIMIT 1"];
+SQLExecute[conn, "UPDATE valor_dispositivo_atributos SET jaleu=TRUE WHERE id_config=23 AND jaleu=FALSE ORDER BY id_valor ASC LIMIT 1"];
+fr = fr*10^9;
+h = h*10^-3;
+\[Epsilon]r;
+tan\[Delta];
+
+(*
+fr=2.45*10^9;
+h=1.524*10^-3;
+\[Epsilon]r=2.22;
+tan\[Delta]=0.009;
+*)
+
+If[0.5*10^9 < fr < 10*10^9 && 0.3*10^-3 < h < 10*10^-3 && 
+   1 < \[Epsilon]r < 10 && 0.00001 < tan\[Delta] < 0.05,
+  
+  fmin = fr - 0.05*10^9;
+  fmax = fr + 0.05*10^9;
+  f = Range[fmin, fmax, 0.001*10^9];
+  \[CurlyEpsilon]r = \[Epsilon]r;
+  
+  
+  (*constantens que nao mudam*)
+  \[Sigma] = 3.64*10^7;
+  \[Epsilon]0 = 8.854*10^-12;
+  \[Mu]0 = 4 \[Pi]*10^-7;
+  \[Eta]0 = Sqrt[\[Mu]0/\[Epsilon]0];
+  c0 = 1/Sqrt[\[Mu]0 \[Epsilon]0];
+  \[Omega]0 = 2 \[Pi] fr;
+  k0 = \[Omega]0 Sqrt[\[Mu]0 \[Epsilon]0];
+  Rs = Sqrt[2/(\[Omega]0 \[Mu]0 \[Sigma])]; 
+  I0 = 1;
+  Q1 = 0;
+  Q2 = 0;
+  
+  (*constantens que mudam com a frequencia*)
+  
+  \[Omega][f_] := 2 \[Pi] f;
+  k[f_] := (2 \[Pi] f)/c0;
+  k1[f1_] := (2 \[Pi] f1)/c0;
+  \[Omega]1[f1_] := 2 *Pi*f1;
+  
+  (*comprimento Inicial*)
+  b = c0/(2 fr Sqrt[\[Epsilon]r]);
+  a = b;
+  
+  (*Pocisao de proba inicial*)
+  x0 = 0.005;
+  z0 = x0;
+  
+  (*Orientacao e tamanho da fita*)
+  Dx = 1.3*10^-3;
+  Dz = 1.3*10^-3;
+  
+  
+  (*Sub funcao principal*)
+  kt[m_, n_] := Sqrt[((m \[Pi])/a)^2 + ((n \[Pi])/b)^2];
+  \[Omega]r[m_, n_] := 
+   2 \[Pi] ((m c0)/(2 a Sqrt[\[Epsilon]r]) + (n c0)/(
+      2 b Sqrt[\[Epsilon]r]));
+  \[Epsilon]x[m_] := If[m == 0, 1, 2];
+  \[Epsilon]z[n_] := If[n == 0, 1, 2];
+  G[m_, n_] := Sinc[(m \[Pi] Dx)/(2 a)] Sinc[(n \[Pi] Dx)/(2 b)];
+  \[Psi]0[m_, n_] := 
+   Sqrt[(\[Epsilon]x[m] \[Epsilon]z[n])/(a b)]
+     Cos[((m \[Pi]) x0)/a] Cos[((n \[Pi]) z0)/b];
+  
+     E1[\[Theta]_, \[Phi]_, m_?NumericQ, n_?NumericQ] := 
+   2 k0^2 Abs[Sin[\[Theta]] Sin[\[Phi]] Cos[\[Phi]]]*
+    						 
+    Abs[Cos[(m \[Pi])/2]^2 Sin[  (k0 a)/2 Sin[\[Theta]] Cos[\[Phi]]] +
+       I Sin[(m \[Pi])/2]^2 Cos[  (k0 a)/2 Sin[\[Theta]] Cos[\[Phi]]]]*
+    						
+    Abs[Cos[(n \[Pi])/2]^2 Sin[  (k0 b)/2 Sin[\[Theta]] Sin[\[Phi]]] +
+       I Sin[(n \[Pi])/2]^2 Cos[ (k0 b)/2 Sin[\[Theta]] Sin[\[Phi]]]]*
+    						
+    Abs[1/(k0^2 Sin[\[Theta]]^2 Cos[\[Phi]]^2 - ((m \[Pi])/a)^2) + 1/(
+      k0^2 Sin[\[Theta]]^2 Sin[\[Phi]]^2 - ((n \[Pi])/b)^2)];
+  
+    E2[\[Theta]_, \[Phi]_, m_?NumericQ, n_?NumericQ] := 
+   2 k0^2 Abs[Sin[\[Theta]] Cos[\[Theta]]]*
+    						 
+    Abs[Cos[(m \[Pi])/2]^2 Sin[  (k0 a)/2 Sin[\[Theta]] Cos[\[Phi]]] +
+       I Sin[(m \[Pi])/2]^2 Cos[  (k0 a)/2 Sin[\[Theta]] Cos[\[Phi]]]]*
+    						
+    Abs[Cos[(n \[Pi])/2]^2 Sin[  (k0 b)/2 Sin[\[Theta]] Sin[\[Phi]]] +
+       I Sin[(n \[Pi])/2]^2 Cos[ (k0 b)/2 Sin[\[Theta]] Sin[\[Phi]]]]*
+    						
+    Abs[Cos[\[Phi]]^2/(
+      k0^2 Sin[\[Theta]]^2 Cos[\[Phi]]^2 - ((m \[Pi])/a)^2) - 
+      Sin[\[Phi]]^2/(
+      k0^2 Sin[\[Theta]]^2 Sin[\[Phi]]^2 - ((n \[Pi])/b)^2)];
+  
+  I\[Theta][m_?NumericQ, n_?NumericQ] := 
+   NIntegrate[
+    Abs[E1[\[Theta], \[Phi], m, n]]^2*Sin[\[Theta]], {\[Theta], 0, 
+     Pi/2}, {\[Phi], 0, Pi/2}];
+  I\[Phi][m_?NumericQ, n_?NumericQ] := 
+   NIntegrate[
+    Abs[E2[\[Theta], \[Phi], m, n]]^2*Sin[\[Theta]], {\[Theta], 0, 
+     Pi/2}, {\[Phi], 0, Pi/2}];
+  
+   \[Delta]eff[m_?NumericQ, n_?NumericQ] := 
+   tan\[Delta] + Rs/h + (
+    4 c0 h \[Epsilon]x[m] \[Epsilon]z[
+      n] (I\[Theta][m, n] + I\[Phi][m, n]))/(\[Pi]^2 a b \[Omega]r[m, 
+      n] \[Epsilon]r);
+  fb[b_] := c0/(2 b Sqrt[\[Epsilon]r]);
+  fa[a_] := c0/(2  a Sqrt[\[Epsilon]r]);
+  
+  (*funcao pra dimensaoes*)
+  SetAttributes[DimensoesA, HoldAll];
+  DimensoesA[a_, b_, x0_, z0_] := (Clear[c, dif];
+    							dif = 1;
+    	While[dif >= 1*10^-6,
+     				          A = Cos[(\[Pi] x0)/a]/Cos[(\[Pi] z0)/b];
+     					          \[Delta]eff1 = 
+      1/2 (\[Delta]eff[0, 1] + \[Delta]eff[1, 0]);
+     					c = 1/2 (b \[Delta]eff1) (A + 1/A);
+     						anuevo = b + c;
+     					dif = Abs[a - anuevo];
+     					a = anuevo;
+     					kd = \[Pi]/b;
+     					\[CapitalDelta]k = (\[Pi] c)/b^2;
+     					\[CapitalDelta] = 
+      If[\[CapitalDelta]k^2 - (kd \[Delta]eff1)^2 < 0, 
+       0, \[CapitalDelta]k^2 - (kd \[Delta]eff1)^2];
+     
+     					
+     Term = If[(
+        kd \[Delta]eff1 Cos[( \[Pi] x0)/a])/(\[CapitalDelta]k + 
+         Sqrt[\[CapitalDelta]]) > 1, 1, (
+       kd \[Delta]eff1 Cos[( \[Pi] x0)/a])/(\[CapitalDelta]k + 
+        Sqrt[\[CapitalDelta]])];
+     					z0 := (b /\[Pi] ArcCos[Term])];
+    					Q1 = \[Delta]eff[0, 1];
+    					Q2 = \[Delta]eff[1, 0];
+    		
+    					);
+  
+  (*curva de posicaoes de proba*)
+  SetAttributes[PosicaoProbai, HoldAll];
+  PosicaoProbac[a_, b_, x0_] := (			
+    							P = (b Sinc[(\[Pi] Dx)/(2 a)])/(a Sinc[(\[Pi] Dx)/(2 b)]);
+    							\[CapitalDelta] = (\[Pi]/b - \[Pi]/a);
+    							kr = k0 Sqrt[\[Epsilon]r];
+    							
+    kr = If[kr Sqrt[Q1 Q2] > \[CapitalDelta], \[CapitalDelta] /Sqrt[
+      Q1 Q2], k0 Sqrt[\[Epsilon]r]];
+    						         fer = (c0 kr )/(2 \[Pi] Sqrt[\[Epsilon]r]);
+    							
+    z0 = b/\[Pi] ArcCos[(
+       P Q1 kr Cos[(\[Pi] x0)/a])/( \[CapitalDelta] + 
+        Sqrt[ \[CapitalDelta]^2 - kr^2 (Q1 Q2)])];
+    					                    );
+  SetAttributes[PosicaoProbai, HoldAll];
+  PosicaoProbai[a_, b_, z0_] := (     		
+    							P = (b Sinc[(\[Pi] Dx)/(2 a)])/(a Sinc[(\[Pi] Dx)/(2 b)]);
+    							\[CapitalDelta] = \[Pi] (1/b - 1/a);
+    							
+    kr = If[k0 Sqrt[\[Epsilon]r] Sqrt[
+        Q1 Q2] > \[CapitalDelta], \[CapitalDelta] /Sqrt[Q1 Q2], 
+      k0 Sqrt[\[Epsilon]r]];	
+    						         fer = (c0 kr )/(2 \[Pi] Sqrt[\[Epsilon]r]);
+    					        	
+    x0 = a/\[Pi] ArcCos[( 
+       Cos[(\[Pi] z0)/
+         b] (\[CapitalDelta] - 
+          Sqrt[ \[CapitalDelta]^2 - kr^2 (Q1 Q2)]))/(P Q1 kr )] ;   
+    							);
+  (*Funcao para razao axial*)
+  RazaoAxial[a_, b_, x0_, z0_] := (
+    
+    Exz = (
+     b (\[CurlyEpsilon]r k[f]^2 (1 - I Q1) - 
+        kt[0, 1]^2) Cos[(\[Pi] x0)/a] Sinc[(\[Pi] Dx)/(2*a)])/(
+     a (\[CurlyEpsilon]r k[f]^2 (1 - I Q2) - 
+        kt[1, 0]^2) Cos[(\[Pi] z0)/b] Sinc[(\[Pi] Dx)/(2*b)]);
+    
+    T = Sqrt[1 + Abs[Exz]^4 + 2 Abs[Exz]^2 Cos[2 Arg[Exz]]];
+    
+    AR = 20 Log10[
+       Abs[Sqrt[(1 + Abs[Exz]^2 + T)/(1 + Abs[Exz]^2 - T)]]];
+    
+    Pos = Ordering[AR, 1] // Last;
+    
+    							);
+  (*Funcao Zin*)
+  Zin[a_, b_, x0_, 
+    z0_] := -I \[Mu]0 h \[Omega][
+     f] ((\[Psi]0[0, 
+        1]^2 G[0, 1]^2)/( \[CurlyEpsilon]r k[f]^2 (1 - I Q1) - 
+       kt[0, 1]^2) + (\[Psi]0[1, 
+        0]^2 G[1, 0]^2)/( \[CurlyEpsilon]r k[f]^2 (1 - I Q2) - 
+       kt[1, 0]^2) + \!\(
+\*UnderoverscriptBox[\(\[Sum]\), \(m = 0\), \(40\)]\(
+\*UnderoverscriptBox[\(\[Sum]\), \(n = 
+          0\), \(40\)]If[\((m == 0 && n == 1)\) || \((m == 1 && 
+            n == 0)\), 0, 
+\*FractionBox[\(
+\*SuperscriptBox[\(\[Psi]0[m, n]\), \(2\)]\ G[m, 
+             n]^2\), \(\[CurlyEpsilon]r\ 
+\*SuperscriptBox[\(k[f]\), \(2\)] - kt[m, n]^2\)]]\)\));
+  Zin1[a_, b_, f1_, x0_, 
+    z0_] := -I*\[Mu]0 h \[Omega]1[
+     f1] ((\[Psi]0[0, 
+        1]^2 G[0, 1]^2)/( \[CurlyEpsilon]r k1[f1]^2 (1 - I Q1) - 
+       kt[0, 1]^2) + (\[Psi]0[1, 
+        0]^2 G[1, 0]^2)/( \[CurlyEpsilon]r k1[f1]^2 (1 - I Q2) - 
+       kt[1, 0]^2) + \!\(
+\*UnderoverscriptBox[\(\[Sum]\), \(m = 0\), \(40\)]\(
+\*UnderoverscriptBox[\(\[Sum]\), \(n = 
+          0\), \(40\)]If[\((m == 0 && n == 1)\) || \((m == 1 && 
+            n == 0)\), 0, 
+\*FractionBox[\(
+\*SuperscriptBox[\(\[Psi]0[m, n]\), \(2\)]\ G[m, 
+             n]^2\), \(\[CurlyEpsilon]r\ 
+\*SuperscriptBox[\(k1[f1]\), \(2\)] - kt[m, n]^2\)]]\)\));
+  
+  (*Funcao para achara Zm*)
+  SetAttributes[ZmCapacitiva, HoldAll];
+  ZmCapacitiva[a_, b_, x0_, z0_] := (
+    		
+    		If[flag3 == 0, Q1 = \[Delta]eff[0, 1]; Q2 = \[Delta]eff[1, 0], 
+     0];
+    	         x0 = Range[0.1*10^-3, a/2, 0.01*10^-3];
+    		PosicaoProbac[a, b, x0];
+    		x01 = x0;
+    		z01 = z0;
+             (*Calculo de la frequencia donde ocurre la minima RA*)
+    		x0 = x0[[1]];
+    		z0 = z0[[1]];
+    		RazaoAxial[a, b, x0, z0];
+    	(* Correccion en frequencia da razao axial *)	
+    		b = c0/(2 (fb[b] + (fr - f[[Pos]])) Sqrt[\[Epsilon]r]);
+    		
+    		a = c0/(2 (fa[a] + (fr - f[[Pos]])) Sqrt[\[Epsilon]r]);				
+    	
+    	(*recalculo da curva z0vsx0 para as novas dimensaoes *)
+    		If[flag3 == 0, Q1 = \[Delta]eff[0, 1]; Q2 = \[Delta]eff[1, 0], 
+     0];	
+    	         x0 = Range[0.1*10^-3, a/2, 0.01*10^-3.];
+    		PosicaoProbac[a, b, x0];
+    		x01 = x0;
+    		z01 = z0;
+    	(*recalculo de la frequencia donde ocurre la minima RA*)		
+    		x0 = x01[[1]];
+    		z0 = z01[[1]];
+    		RazaoAxial[a, b, x0, z0];
+    		
+              (*Calculo del vector que contiene todos los Zin en la \
+frequencia de RA min y calculo de zin mas cercano*)
+    		x0 = x01;
+    		z0 = z01;
+    		Zm = 
+     Zin1[a, b, f[[Pos]], x0, 
+      z0]; (*para evitar que ejecute varias veces Zin1[a,b,f1]*)
+    		Pos1 = Ordering[Abs[Re[Zm] - Re[ZL]], 1] // Last;
+             	Zm = Zm[[Pos1]];
+    		);
+  SetAttributes[ZmInductiva, HoldAll];
+  ZmInductiva[a_, b_, x0_, z0_] := (
+    		If[flag3 == 0, Q1 = \[Delta]eff[0, 1]; Q2 = \[Delta]eff[1, 0], 
+     0];
+    		z0 = Range[0.1*10^-3., b/2., 0.01*10^-3.];
+    		PosicaoProbai[a, b, z0];
+    		x01 = x0;
+    		z01 = z0;
+    (*Calculo de la frequencia donde ocurre la minima RA*)
+    		x0 = x01[[1]];
+    		z0 = z01[[1]];
+    		RazaoAxial[a, b, x0, z0];
+    		
+    (* Correccion en frequencia da razao axial *)	
+    		b = c0/(2 (fb[b] + (fr - f[[Pos]])) Sqrt[\[Epsilon]r]);
+    		
+    		a = c0/(2 (fa[a] + (fr - f[[Pos]])) Sqrt[\[Epsilon]r]);	
+    				
+    	(*recalculo da curva z0vsx0 para as novas dimensaoes *)	
+    		If[flag3 == 0, Q1 = \[Delta]eff[0, 1]; Q2 = \[Delta]eff[1, 0], 
+     0];
+    		z0 = Range[0.1*10^-3., b/2, 0.01*10^-3.];
+    		PosicaoProbai[a, b, z0];
+    		x01 = x0;
+    		z01 = z0;
+    	(*recalculo de la frequencia donde ocurre la minima RA*)		
+    		x0 = x01[[1]];
+    		z0 = z01[[1]];
+    		RazaoAxial[a, b, x0, z0];
+    	(*Calculo del vector que contiene todos los Zin en la frequencia \
+de RA min y calculo de zin mas cercano*)
+    	         x0 = x01;
+    		z0 = z01;
+    		Zm = 
+     Zin1[a, b, f[[Pos]], x0, 
+      z0]; (*para evitar que ejecute varias veces Zin1[a,b,f1]*)
+    		Pos1 = Ordering[Abs[Re[Zm] - Re[ZL]], 1] // Last;
+             	Zm = Zm[[Pos1]];
+    	);
+  
+  (*------------------------comeca aqui o \
+prgrama---------------------------------------------------*)
+  
+  
+  (*--------------------minima distancia entre modos----------------------------*)
+  
+  flag3 = 0;
+  DimensoesA[a, b, x0, z0];
+  RazaoAxial[a, b, x0, z0];
+  b = c0/(2 (fb[b] + (fr - f[[Pos]])) Sqrt[\[Epsilon]r]);	
+  a = c0/(2 (fa[a] + (fr - f[[Pos]])) Sqrt[\[Epsilon]r]);		
+  RazaoAxial[a, b, x0, z0];
+  
+  
+  (*--------------------Max reatancia------------------------------------------*)\
+
+  
+  	 Zmax = Floor[Re[Zin1[a, b, f[[Pos]], x0, z0]]];
+  	ZL = Zmax;
+            Zmin = 10; 
+  	paso = Zmin + 30;      
+  	 step = 1*10^-3;
+  
+  
+  	ZdinamicC = Table[i, {i, Zmin, Zmax + paso, paso}, {j, 1, 2, 1}];
+  	ZdinamicI = Table[i, {i, Zmin, Zmax + paso, paso}, {j, 1, 2, 1}];
+  	Table[ZdinamicC[[i, 2]] = NullSpace, {i, 1, Length[ZdinamicC]}];
+  	Table[ZdinamicI[[i, 2]] = NullSpace, {i, 1, Length[ZdinamicC]}];
+  
+  (*----------------Parte Inductiva---------------------*)
+            flag = 0;
+  	ZmCapacitiva[a, b, x0, z0];
+  	
+  	aant = a;
+  	bant = b;
+  	aviejo = a;
+  	bviejo = b;
+  	x0viejo = x0[[Pos1]];
+  	z0viejo = z0[[Pos1]];
+  	Q1viejo = Q1;
+  	Q2viejo = Q2;
+  
+  	Zmini = Zm;
+           Zmant = 0;
+  	con = 1;  
+  
+  	
+  	MaxCap = Table[
+    			
+    			ZL = i;
+    
+    				While [
+     Abs[Im[Zm] - Zmant] > 
+      0.1,(*Procura por o residuo da parte img*)
+                                 
+                     	     	
+     If[ Abs[Re[Zm] - Re[ZL]] < 2 && 
+       Zmant < Im[Zm](*cambio de direcao*), a = aant; b = bant; 
+      ZmCapacitiva[a, b, x0, z0]; Break[], 0];		
+     				  
+     			            If[Abs[Re[Zm] - Re[ZL]] < 1,
+      								aant = a;
+      							         bant = b;
+      								Zmant = Im[Zm];
+      								step = If[flag == 1, step/2, step];
+      								a = a + step;
+      								ZmCapacitiva[a, b, x0, z0];
+      								
+      						                  ,(*else*)
+      								flag = 1;
+      								step = step/2;
+      								b = bant;
+      						                   a = aant + step;
+      						                   ZmCapacitiva[a, b, x0, z0];		
+      				  ];
+     			  	
+     				]; 
+    Zcap = {Zm, AR[[Pos]], Chop[x0[[Pos1]]], Chop[z0[[Pos1]]], a, b};
+    					ZdinamicC[[con, 2]] = Im[Zm];
+    					con++;
+    					aant = aviejo; bant = bviejo; a = aviejo; b = bviejo; 
+    x0 = x0viejo; z0 = z0viejo; Q1 = Q1viejo; Q2 = Q2viejo;
+    				         step = 1*10^-3; flag = 0; Zmant = 0; Zm = Zmini;
+    				         Zcap, {i, Zmin, Zmax + paso, paso }
+    				];
+  
+  	step = 1*10^-3;
+  	flag = 0;
+  	Zmant = 0;
+  	Zm = 0;
+  	aant = a;
+  	bant = b;
+  	con = 1;  
+  
+  	a = aviejo;
+  	b = bviejo;
+  	x0 = x0viejo;
+  	z0 = z0viejo;
+  	Q1 = Q1viejo;
+  	Q2 = Q2viejo;
+  	ZmCapacitiva[a, b, x0, z0];
+  	Zm = Zmini;
+  
+  	
+  	MaxIn = Table[ZL = i;
+    	
+    			
+    		While [
+     Abs[Im[Zm] - Zmant] > 
+      0.1,(*Procura por o residuo da parte img*)
+     	                                    	
+     			If[ Abs[Re[Zm] - Re[ZL]] < 2 && Abs[Zmant] - Abs[Im[Zm]] > 0, 
+      a = aant; b = bant; ZmInductiva[a, b, x0, z0]; Break[], 0];
+     	
+     		       	   If[Abs[Re[Zm] - Re[ZL]] < 2,
+      								aant = a;
+      							         bant = b;
+      								Zmant = Im[Zm];
+      								step = If[flag == 1, step/2, step];
+      						                   b = b - step;
+      						                   ZmInductiva[a, b, x0, z0];
+      								
+      						               ,(*else*)
+      								flag = 1;
+      								step = step/2;
+      								a = aant;
+      						                   b = bant - step;
+      						                   ZmInductiva[a, b, x0, z0];
+      							
+      			      ];
+     		
+     			]; 
+    Zcap = {Zm, AR[[Pos]], Chop[x0[[Pos1]]], Chop[z0[[Pos1]]], a, b};
+    				ZdinamicI[[con, 2]] = Im[Zm];
+    				con++;(*Guardando los valores encontrados de Zm*) 
+    				aant = aviejo; bant = bviejo; a = aviejo; b = bviejo; 
+    x0 = x0viejo; z0 = z0viejo; Q1 = Q1viejo; Q2 = Q2viejo;
+    				step = 1*10^-3; flag = 0; Zmant = 0; Zm = Zmini;
+    				Zcap, {i, Zmin, Zmax + paso, paso}];
+  
+  
+  
+  f1 = BSplineFunction[ZdinamicC];
+  f2 = BSplineFunction[ZdinamicI];
+  
+  
+  
+  (*-------------------------PLot-------------------------------------\
+*)
+  
+  SetOptions[ListPlot, BaseStyle -> FontSize -> 14, 
+   LabelStyle -> Directive[Bold, Black]];
+  SetOptions[ListLinePlot, BaseStyle -> FontSize -> 20, 
+   LabelStyle -> Directive[Bold, Black], PlotStyle -> Red, 
+   Filling -> Axis];
+  
+  picture = 
+   Framed[ParametricPlot[{r f1[t] + (1 - r) f2[t]}, {t, 0, 1}, {r, 0, 
+      1}, Axes -> True, PlotStyle -> Black, GridLines -> Automatic, 
+     PlotLabel -> "Max Reactance", Frame -> True, 
+     FrameLabel -> {"Re[Zin]", "Im[Zin]"}, 
+     BaseStyle -> FontSize -> 14, ImageSize -> 500, 
+     LabelStyle -> Directive[Bold, Black], AspectRatio -> Automatic, 
+     PlotRange -> {{0, Full}, Full}, BoundaryStyle -> Black, 
+     GridLinesStyle -> Directive[Black, Dotted]]]
+  
+  ,(*----Elseeeee----*)
+  Dimen1 = Table[Subscript[m, i, j], {i, 8}, {j, 2}];
+  Dimen1[[All, 1]] = {" ", "fr", "h", "\[Epsilon]r", "tan\[Delta]", 
+    "Re[ZL]", "Im[ZL]", "Factor"};
+  Dimen1[[All, 2]] = {"OUT OF RANGE", "0.7GHz<fr<10GHz", 
+    "0.3mm<h<10mm", "1<\[Epsilon]r<10", "0.00001<tan\[Delta]<0.05", 
+    "10\[CapitalOmega]<Re[ZL]<700\[CapitalOmega]", 
+    "-700\[CapitalOmega]<Im[ZL]<700\[CapitalOmega]", "0.2<Factor<1.7"};
+  picture = 
+   Grid[Dimen1, Frame -> All, 
+    ItemStyle -> 
+     Directive[FontSize -> 20, FontWeight -> "Fat", Italic], 
+    Background -> {{LightRed}, None}, Spacings -> {1, 1}, 
+    Dividers -> {{True, True, True}, All}];];
+
+
+If[ValueQ[picture],Export[StringJoin["/var/www/html/disp_form/results/",user,"4",".jpg"], picture],picture=False];
+{{variavelLoopEscolhidaPorJardiel}} = SQLExecute[conn, "SELECT COUNT(*) FROM valor_dispositivo_atributos WHERE jaleu=FALSE AND id_dispositivo=4"]];
+CloseSQLConnection[conn];
