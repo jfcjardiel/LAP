@@ -144,7 +144,7 @@ if($aux_time < $time_tolerance){
         sleep(10);
         $aux_time = $aux_time + 1;
     }
-    if($aux_time < 300){
+    if($aux_time < 30){
         $shell_command = "mv -f " . $image_result_mathematica_server . " " . $image_result_server;
         shell_exec($shell_command);
         $txt = "Your answer is ready. \nAccess: www.lap.ele.ita.br/".$image_result;
