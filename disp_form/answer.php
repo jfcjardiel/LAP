@@ -116,13 +116,14 @@ $image_result = "disp_form/results/". $id_image . ".jpg" ;
 //echo $image_result_server;
 //vamos ficar procurando a imagem ate 90s
 $aux_time = 0; //we are going to expect a certain amount of time
-while(!file_exists($image_result_mathematica_server) && ($aux_time < 30)){
+$time_tolerance = 5;
+while(!file_exists($image_result_mathematica_server) && ($aux_time < $time_tolerance)){
     sleep(3);
     $aux_time = $aux_time + 1;
 }
 
 //caso o tempo de 90segundos tenha ultrapassado...
-if($aux_time < 30){
+if($aux_time < $time_tolerance){
     $shell_command = "mv -f " . $image_result_mathematica_server . " " . $image_result_server;
     shell_exec($shell_command);
     echo "<br>";
