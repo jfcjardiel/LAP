@@ -134,7 +134,24 @@ if($aux_time < 30){
         echo '<img alt="Picture not displayed" class="img-responsive" src="'.$image_result.'">';
     //}
 }else{
-    echo "<h2 class='blog_title'>Not working </h2>";
+    echo '<h2>We are going to send by email.</h2>';
+    $to = $email;
+    $subject = "LAP: Answer";
+    $headers = "From: danielcn@ita.br";
+    $aux_time = 0;
+    while(!file_exists($image_result_mathematica_server) && ($aux_time < 300)){
+        sleep(10);
+        $aux_time = $aux_time + 1;
+    }
+    if($aux_time < 300){
+        $shell_command = "mv -f " . $image_result_mathematica_server . " " . $image_result_server;
+        shell_exec($shell_command);
+        $txt = "Your answer is ready. \nAccess: www.lap.ele.ita.br/".$image_result;
+        $txt = wordwrap($txt,70);
+    }else{
+        $txt = "It didnt work. Sorry.";
+    }
+    mail($to,$subject,$txt,$headers);
 }
 
 //Estou fazendo isso porque eu nao consigo eliminar o arquivo
