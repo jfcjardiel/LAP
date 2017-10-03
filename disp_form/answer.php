@@ -140,7 +140,7 @@ if($aux_time < $time_tolerance){
     $subject = "LAP: Answer";
     $headers = "From: danielcn@ita.br";
     $aux_time = 0;
-    while(!file_exists($image_result_mathematica_server) && ($aux_time < 300)){
+    while(!file_exists($image_result_mathematica_server) && ($aux_time < 30)){
         sleep(10);
         $aux_time = $aux_time + 1;
     }
@@ -153,6 +153,7 @@ if($aux_time < $time_tolerance){
         $txt = "It didnt work. Sorry.";
     }
     mail($to,$subject,$txt,$headers);
+    echo "acabou";
 }
 
 //Estou fazendo isso porque eu nao consigo eliminar o arquivo
