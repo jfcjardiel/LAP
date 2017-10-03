@@ -116,7 +116,7 @@ $image_result = "disp_form/results/". $id_image . ".jpg" ;
 //echo $image_result_server;
 //vamos ficar procurando a imagem ate 90s
 $aux_time = 0; //we are going to expect a certain amount of time
-$time_tolerance = 5;
+$time_tolerance = 30;
 while(!file_exists($image_result_mathematica_server) && ($aux_time < $time_tolerance)){
     sleep(3);
     $aux_time = $aux_time + 1;
@@ -140,7 +140,7 @@ if($aux_time < $time_tolerance){
     $subject = "LAP: Answer";
     $headers = "From: danielcn@ita.br";
     $aux_time = 0;
-    while(!file_exists($image_result_mathematica_server) && ($aux_time < 30)){
+    while(!file_exists($image_result_mathematica_server) && ($aux_time < 300)){
         sleep(10);
         $aux_time = $aux_time + 1;
     }
