@@ -33,30 +33,7 @@ if (login_check($mysqli) == true){
 			echo "There was an error, image not uploaded";
 		}
 	}
-
-	//***********************************//
-	//********** START UPLOAD ***********//
-	//***********************************//
-
-	//criando o upload  -> o arquivo vai ter o nome do dispositivo na pasta disp_form
-	$target_dir = "/var/www/html/disp_form/programs/";
-	$target_file = $target_dir . $id;
-
-	if(isset($_FILES['upfile'])){
-		$file_name = $_FILES['upfile']['name'];
-		$file_size = $_FILES['upfile']['size'];
-		$file_tmp = $_FILES['upfile']['tmp_name'];
-		$file_type = $_FILES['upfile']['type'];
-		$file_extension = strtolower(end(explode('.',$file_name)));
-		$moved = move_uploaded_file($file_tmp,$target_file);
-		if($moved){
-			echo "The file " . basename($file_name) . "has been uploaded" . "\n";
-		}
-		else{
-			echo "There was an error, file not uploaded";
-		}
-	}
-
+	
 	echo "<h1> Upload ok! </h1>";
 }else{
 	echo "<h1> You are not Allowed </h1>";
