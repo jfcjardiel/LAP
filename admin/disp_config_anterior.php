@@ -60,17 +60,6 @@ if(file_exists($target_img_server)){
     echo '<img alt="img" src="'.$target_img.'">';
 }
 
-//********************************//
-//******* CHANGING FILES *********//
-//********************************//
-
-echo '<p>If you want to change the Image or File, please upload here<p>';
-echo '<form method="post" attribute="post" action="file_upload_edit.php?id=' . $id . '" name="file_form" enctype="multipart/form-data">';
-echo 'Here is the File in .txt you are going to replace (you can put nothing here): <input type = "file" name="upfile" id = "upfile"><br><br>';
-echo 'Here is the IMAGE you are going to replace, JUST JPG (you can put nothing here) :<input type = "file" name="upimg" id = "upimg"><br><br>';
-echo '<button type="submit" name="submit_file_change" id="submit_file_change" value="answer">Change Files</br></button> </form>';
-
-
 //*******************************//
 //***** INICIALIZE FORM *********//
 //*******************************//
