@@ -55,13 +55,15 @@ $aux_write = 0;
 while ($dispositivo = $result->fetch_assoc()){
     $config_name = "valor".$aux_write;
     if(isset($_REQUEST[$config_name])){
-        $sql_write = "UPDATE config_dispositivo_atributos SET nome_atributo='". $_REQUEST[$config_name] ."' WHERE id_config=".$dispositivo["id_config"];
-        if(!$result_write = $mysqli_disp->query($sql_write)){
-            echo "<p>Connection Problem writing</p>";
-            exit;
+        if($_REQUEST[$config_name] != ""){
+            $sql_write = "UPDATE config_dispositivo_atributos SET nome_atributo='". $_REQUEST[$config_name] ."' WHERE id_config=".$dispositivo["id_config"];
+            if(!$result_write = $mysqli_disp->query($sql_write)){
+                echo "<p>Connection Problem writing</p>";
+                exit;
+            }
         }
+        $aux_write = $aux_write + 1;
     }
-    $aux_write = $aux_write + 1;
 }
 
 //********************************************//
@@ -69,10 +71,12 @@ while ($dispositivo = $result->fetch_assoc()){
 //********************************************//
 
 if(isset($_REQUEST["nome_dispositivo"])) {
-    $sql_write = "UPDATE dispositivo SET nome_dispositivo='". $_REQUEST["nome_dispositivo"] ."' WHERE id_dispositivo=".$id_dispositivo;
-    if(!$result_write = $mysqli_disp->query($sql_write)){
-        echo "<p>Connection Problem writing</p>";
-        exit;
+    if($_REQUEST["nome_dispositivo"] != ""){
+        $sql_write = "UPDATE dispositivo SET nome_dispositivo='". $_REQUEST["nome_dispositivo"] ."' WHERE id_dispositivo=".$id_dispositivo;
+        if(!$result_write = $mysqli_disp->query($sql_write)){
+            echo "<p>Connection Problem writing</p>";
+            exit;
+        }
     }
 }
 
@@ -109,9 +113,11 @@ if(isset($_FILES['upimg'])){
     $img_tmp = $_FILES['upimg']['tmp_name'];
     $img_type = $_FILES['upimg']['type'];
     $img_extension = strtolower(end(explode('.',$file_name)));
+    $command = "rm " . $target_img;
+    shell_exec($command);
     $moved = move_uploaded_file($img_tmp,$target_img);
     if($moved){
-        echo "<p>The image " . basename($img_name) . "has been uploaded</p>";
+        echo "<p>The image " . basename($img_name) . "has been uploaded as " . $target_img . "</p>";
     }
     else{
         echo "There was an error, image not uploaded";
