@@ -60,16 +60,6 @@ if(file_exists($target_img_server)){
     echo '<img alt="img" src="'.$target_img.'">';
 }
 
-//********************************//
-//******* CHANGING FILES *********//
-//********************************//
-
-echo '<form method="post" attribute="post" action="file_upload_edit.php?id=' . $id . '" name="file_form" enctype="multipart/form-data">';
-echo '<p>If you want to change the Image or File, please upload here <p>';
-echo '<input type = "file" name="upimg" id = "upimg"><br><br>';
-echo '<button type="submit" name="submit_file_change" id="submit_file_change" value="answer">Change Files</br></button> </form>';
-
-
 //*******************************//
 //***** INICIALIZE FORM *********//
 //*******************************//
@@ -90,7 +80,7 @@ if ($result->num_rows === 0) {
 }
 
 //Writing the form
-echo "<form method='post' attribute='post' id='mod_disp' name='mod_disp'>"; //onsubmit='return validateForm()'>";
+echo '<form method="post" attribute="post" action="disp_answer.php?id_dispositivo=' . $id . '" id="mod_disp" name="mod_disp">'; //onsubmit='return validateForm()'>';
 
 
 //editing name
@@ -110,13 +100,16 @@ $id_input = 0;
 //Writing the form options
 while ($config_dispositivo = $result->fetch_assoc()) {
     //it is exibitig the line.
-    echo "<input type='text' id='" . $id_input . "' name='" . $config_dispositivo['id_config'] . "' placeholder='". $config_dispositivo['nome_atributo'] ."' maxlength='20'><br>";
+    echo "<input type='text' id='" . $id_input . "' name='valor" . $id_input . "' placeholder='". $config_dispositivo['nome_atributo'] ."' maxlength='20'><br>";
     $id_input = $id_input + 1;
 }
 
+echo '<p>If you want to change the Image or File, please upload here <p>';
+echo '<input type = "file" name="upimg" id = "upimg"><br><br>';
+
 //writting submit button
 //we are going to send the id of the form via the function validateFom.
-echo "<button type='button' name='button_submit' id='button_submit' value='button_submit' onclick='sendForm(" . $id .")'>Change</button>";
+echo "<button type='button' name='button_submit' id='button_submit' value='button_submit>Change Options</button>";
 
 //we should close the connection
 $mysqli_disp->close();

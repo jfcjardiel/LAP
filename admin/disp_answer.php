@@ -93,10 +93,39 @@ if(isset($_REQUEST["show"])){
     }
 }
 
+//**************************************//
+//******** UPLOADING NA FIGURA *********//
+//**************************************//
+
+//criando o upload  -> o arquivo vai ter o nome do dispositivo na pasta disp_form
+$target_dir_img = "/var/www/html/disp_form/img/";
+$target_img = $target_dir_img . $id_dispositivo . ".jpg";
+
+$errors = array();
+
+if(isset($_FILES['upimg'])){
+    $img_name = $_FILES['upimg']['name'];
+    $img_size = $_FILES['upimg']['size'];
+    $img_tmp = $_FILES['upimg']['tmp_name'];
+    $img_type = $_FILES['upimg']['type'];
+    $img_extension = strtolower(end(explode('.',$file_name)));
+    $moved = move_uploaded_file($img_tmp,$target_img);
+    if($moved){
+        echo "<p>The image " . basename($img_name) . "has been uploaded</p>";
+    }
+    else{
+        echo "There was an error, image not uploaded";
+        exit;
+    }
+}
+
+echo "<h1> Upload ok! </h1>";
+
 echo "<h1>It Worked!</h1>";
 
 //we should close the connection
 $mysqli_disp->close();
 ?>
 <?php else : ?>
+    <h1> You are not Allowed </h1>
 <?php endif; ?>
