@@ -114,8 +114,7 @@ if(isset($_FILES['upimg'])){
     $img_type = $_FILES['upimg']['type'];
     $img_extension = strtolower(end(explode('.',$file_name)));
     $moved = move_uploaded_file($img_tmp,$target_img);
-    if($moved){
-    }else{
+    if(!$moved){
         echo "<p> There was an error, image not uploaded";
         exit;
     }
