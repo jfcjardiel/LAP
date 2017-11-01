@@ -117,19 +117,17 @@ if(isset($_FILES['upimg'])){
     shell_exec($command);
     $moved = move_uploaded_file($img_tmp,$target_img);
     if($moved){
-        echo "<p>The image " . basename($img_name) . "has been uploaded as " . $target_img . "</p>";
+        echo "<p> The image has been uploaded </p>";
     }
     else{
-        echo "There was an error, image not uploaded";
+        echo "<p> There was an error, image not uploaded";
         exit;
     }
-}else{
-    echo "Nao pegou...";
 }
 
 echo "<h1> Upload ok! </h1>";
 
-echo "<h1>It Worked!</h1>";
+echo "<br><p href='./edit_tools.php'>GO BACK</p>";
 
 //we should close the connection
 $mysqli_disp->close();
