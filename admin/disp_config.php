@@ -109,7 +109,7 @@ echo '<input type = "file" name="upimg" id = "upimg"><br><br>';
 
 //writting submit button
 //we are going to send the id of the form via the function validateFom.
-echo "<button type='button' name='button_submit' id='button_submit' value='button_submit>Change Options</button></form>";
+echo "<button type='button' name='button_submit' id='button_submit' value='button_submit'>Change Options</button></form>";
 
 //we should close the connection
 $mysqli_disp->close();
