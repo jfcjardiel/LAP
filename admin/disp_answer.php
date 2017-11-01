@@ -107,6 +107,8 @@ $target_img = $target_dir_img . $id_dispositivo . ".jpg";
 
 $errors = array();
 
+echo isset($_FILES['upimg']);
+
 if(isset($_FILES['upimg'])){
     $img_name = $_FILES['upimg']['name'];
     $img_size = $_FILES['upimg']['size'];
