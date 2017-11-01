@@ -113,8 +113,6 @@ if(isset($_FILES['upimg'])){
     $img_tmp = $_FILES['upimg']['tmp_name'];
     $img_type = $_FILES['upimg']['type'];
     $img_extension = strtolower(end(explode('.',$file_name)));
-    $command = "rm " . $target_img;
-    shell_exec($command);
     $moved = move_uploaded_file($img_tmp,$target_img);
     if($moved){
     }else{
