@@ -80,7 +80,7 @@ if ($result->num_rows === 0) {
 }
 
 //Writing the form
-echo '<form method="post" attribute="post" action="disp_answer.php?id_dispositivo=' . $id . '" id="mod_disp" name="mod_disp">'; //onsubmit='return validateForm()'>';
+echo '<form method="post" attribute="post" action="disp_answer.php?id_dispositivo=' . $id . '" enctype="multipart/form-data" id="mod_disp" name="mod_disp">'; //onsubmit='return validateForm()'>';
 
 
 //editing name
