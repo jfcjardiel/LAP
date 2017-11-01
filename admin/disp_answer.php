@@ -117,9 +117,7 @@ if(isset($_FILES['upimg'])){
     shell_exec($command);
     $moved = move_uploaded_file($img_tmp,$target_img);
     if($moved){
-        echo "<p> The image has been uploaded </p>";
-    }
-    else{
+    }else{
         echo "<p> There was an error, image not uploaded";
         exit;
     }
@@ -127,7 +125,7 @@ if(isset($_FILES['upimg'])){
 
 echo "<h1> Upload ok! </h1>";
 
-echo "<br><p href='./edit_tools.php'>GO BACK</p>";
+echo "<a href='edit_tools.php'>GO BACK</a>";
 
 //we should close the connection
 $mysqli_disp->close();
