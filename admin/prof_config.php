@@ -8,6 +8,24 @@ sec_session_start();
 
 <?php if (login_check($mysqli) == true) : ?>
 
+<html>
+
+<head>
+<style type="text/css">
+<!--
+.style10 {font-size: 12px}
+.style12 {color: #804000}
+.style13 {color: #8C4600}
+.style14 {  color: #8C4600;
+    font-size: 12px;
+    font-weight: bold;
+}
+.style15 {font-size: 14px}
+-->
+</style>
+</head>
+
+<body bgcolor="#FFFFFF">
 <?php
 // get the q parameter from URL
 $id_prof = $_REQUEST["id_prof"] + 0;
