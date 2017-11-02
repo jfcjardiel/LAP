@@ -100,7 +100,7 @@ if (!$result = $mysqli_information->query($sql)) {
 $num_articles = $result->num_rows;
 
 //lets put a place to to add
-echo "<p>" . $num_articles+1 . "</p><textarea cols='60' rows='4' name='". $num_articles+1 ."' placeholder='New Reference'></textarea>";
+echo "<textarea cols='60' rows='4' name='". $num_articles+1 ."' placeholder='New Reference'></textarea>";
 
 // If there is no result
 if ($num_articles > 0) {
