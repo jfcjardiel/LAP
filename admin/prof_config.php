@@ -89,7 +89,7 @@ echo "<h3>Articles: </h3>";
 //Reading database!
 
 //If there isnt any error, then lets read the sql content
-$sql = "SELECT * FROM articles  WHERE id_prof=" . $id_prof . " ORDER BY year DESC";
+$sql = "SELECT * FROM articles WHERE id_prof=" . $id_prof . " ORDER BY year DESC";
 if (!$result = $mysqli_information->query($sql)) {
     // I do not know what to show yet
     echo "<p>Connection Problem </p>";
@@ -100,7 +100,7 @@ if (!$result = $mysqli_information->query($sql)) {
 $num_articles = $result->num_rows;
 
 //lets put a place to to add
-echo "<a>" . $num_articles+1 . "</a><textarea cols='30' rows='4' name='". $num_articles+1 ."' placeholder='New Reference'></textarea>";
+echo "<p>" . $num_articles+1 . "</p><textarea cols='60' rows='4' name='". $num_articles+1 ."' placeholder='New Reference'></textarea>";
 
 // If there is no result
 if ($num_articles > 0) {

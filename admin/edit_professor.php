@@ -67,7 +67,7 @@ sec_session_start();
                 //Show the results
                 while ($professor = $result->fetch_assoc()) {
                     //it is exibitig the line.
-                    echo "<option value='" . $professor['id_prof'] . "'>".$professor['nome_prof']."</option>";
+                    echo "<option value='" . $professor['id_prof'] . "'>".$professor['name_prof']."</option>";
                 }
 
                 //we should close the connection
