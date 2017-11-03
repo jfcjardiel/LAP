@@ -11,6 +11,7 @@ sec_session_start();
 <html>
 
 <head>
+<meta charset="utf-8">
 <style type="text/css">
 <!--
 .style10 {font-size: 12px}
@@ -64,7 +65,8 @@ if ($result->num_rows === 0) {
 $prof_row = $result->fetch_assoc();
 $name_prof = $prof_row['name_prof'];
 $show_prof = $prof_row['show_professor'];
-$email_prof = $prof_row['email_prof'];
+$email_prof = $prof_row['email'];
+$about_prof = $prof_row['about_prof'];
 
 //*******************************//
 //******* PUTTING IMAGE *********//
@@ -92,15 +94,18 @@ echo "<p> Professor Name: </p>";
 echo "<input type='text' name='name_prof' placeholder=' ". $name_prof ."' maxlength='30'><br>";
 
 if($show_professor == true){
-    echo '<input type="radio" name="show_professor" value="yes" checked> Show Tool<br><input type="radio" name="show_professor" value="no"> Not show<br>';
+    echo '<input type="radio" name="show_professor" value="yes" checked> Professor Active <br><input type="radio" name="show_professor" value="no"> Former Professor <br>';
 }else{
-    echo '<input type="radio" name="show_professor" value="yes"> Show Tool<br><input type="radio" name="show_professor" value="no" checked> Not show<br>';
+    echo '<input type="radio" name="show_professor" value="yes"> Professor Active <br><input type="radio" name="show_professor" value="no" checked> Former Professor <br>';
 }
 
 //editing email
 echo "<p> Email: </p>";
 //echo $nome_dispositivo;
 echo "<input type='text' name='email_prof' placeholder=' ". $email_prof ."' maxlength='30'><br>";
+
+echo "<p>About the professor: </p>";
+echo '<textarea cols="60" rows="10" placeholder="' . $about_prof . '" name="about_prof"></textarea>';
 
 echo "<h3>Articles: </h3>";
 
@@ -144,9 +149,10 @@ if ($num_articles > 1) {
     }
     //writting submit button
     //we are going to send the id of the form via the function validateFom.
-    echo "</table>";
-    echo '<button type="submit" name="change_prof" id="change_prof" value="change_prof">Change Information</br></button> </form>';
 }
+
+echo "</table>";
+echo '<button type="submit" name="change_prof" id="change_prof" value="change_prof">Change Information</br></button> </form>';
 
 
 //we should close the connection
