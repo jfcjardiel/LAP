@@ -128,7 +128,7 @@ echo '<table width="846" border="0" cellpadding="0" cellspacing="0">';
 
 echo '<tr>
     <td height="0" valign="top">&nbsp;</td>
-    <td height="0" valign="top" class="style14"><input type="text" id="disp_name" name="year'. $num_articles .'" maxlength="20"><br></td>
+    <td height="0" valign="top" class="style14"><input type="text" id="disp_name" name="year'. $num_articles .'" placeholder="year" maxlength="20"><br></td>
     <td height="0" align="center" valign="top" class="style10">['.$num_articles.']</td>
     <td height="0" valign="top" class="style15"><textarea cols="60" rows="4" placeholder="New Reference" name="art' . $num_articles .'"></textarea></td>
     </tr>';
