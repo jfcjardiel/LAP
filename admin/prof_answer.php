@@ -10,7 +10,7 @@ sec_session_start();
 
 <?php
 //getting 
-$id_dispositivo = $_REQUEST["id_dispositivo"] + 0;
+$id_prof = $_REQUEST["id_prof"] + 0;
 //echo $id_dispositivo;
 
 //***********************************//
@@ -18,25 +18,46 @@ $id_dispositivo = $_REQUEST["id_dispositivo"] + 0;
 //***********************************//
 
 //Starting connection
-$mysqli_disp = new mysqli('localhost', 'root', 'input212', 'input');
+$mysqli_information = new mysqli('localhost', 'root', 'input212', 'information');
 
 //If there is any error, then show...
-if ($mysqli_disp->connect_errno) {
+if ($mysqli_information->connect_errno) {
     // I do not know what to show yet
     echo "<h2 class='blog_title'>Connection Problem </h2>";
     exit;
 }
 
-//**********************************//
-//******** READING DATABSE *********//
-//**********************************//
+//***********************************//
+//******** READING DATABASE *********//
+//***********************************//
 
-//We are getting all the attributes of the dispositivo
-$sql = "SELECT id_config FROM config_dispositivo_atributos WHERE id_dispositivo=" . $id_dispositivo;
-if (!$result = $mysqli_disp->query($sql)) {
+//If there isnt any error, then lets read the sql content
+$sql = "SELECT * FROM articles WHERE id_prof=" . $id_prof . " ORDER BY year DESC";
+if (!$result = $mysqli_information->query($sql)) {
     // I do not know what to show yet
-    echo "<h2 class='blog_title'>Connection Problem </h2>";
+    echo "<p>Connection Problem </p>";
     exit;
+}
+
+//the number of articles is the result of the research
+$num_articles = $result->num_rows+1;
+
+
+//***************************************//
+//******** INSERT NEW REFERENCE *********//
+//***************************************//
+
+$year_art = 'year'.$num_articles;
+$ref_art = 'art'.$num_articles;
+
+if(isset($_POST[$year_art])){
+    if(isset($_POST[$ref_art])){
+        $sqrt_write = 'INSERT INTO articles (id_art, id_prof, year, reference) VALUES (NULL,'.$id_prof.','.$year_art.',"'.$ref_art'")';
+        if(!$result_write = $mysqli_information->query($sql_write)){
+            echo "<p>Connection Problem writing</p>";
+            exit;
+        }
+    }
 }
 
 // If there is no result
@@ -46,33 +67,44 @@ if ($result->num_rows === 0) {
     exit;
 }
 
-//********************************************//
-//******** CHANGING CONFIG ATRIBUTOS *********//
-//********************************************//
-$aux_write = 0;
+//*****************************************//
+//********** CHANGING REFERENCE ***********//
+//*****************************************//
+
+$num_articles = $num_articles - 1;
 
 //em cada id_config vamos escrever o valor relativo em valor_dispositivo_atributos
-while ($dispositivo = $result->fetch_assoc()){
-    $config_name = "valor".$aux_write;
-    if(isset($_REQUEST[$config_name])){
-        if($_REQUEST[$config_name] != ""){
-            $sql_write = "UPDATE config_dispositivo_atributos SET nome_atributo='". $_REQUEST[$config_name] ."' WHERE id_config=".$dispositivo["id_config"];
-            if(!$result_write = $mysqli_disp->query($sql_write)){
+while ($articles = $result->fetch_assoc()){
+    $year_art = 'year'.$num_articles;
+    $ref_art = 'art'.$num_articles;
+    if(isset($_POST[$year_art])){
+        if($_POST[$year_art] != ""){
+            $sql_write = 'UPDATE articles SET year='.$year_art.' WHERE id_art='.$articles['id_art'];
+            if(!$result_write = $mysqli_information->query($sql_write)){
                 echo "<p>Connection Problem writing</p>";
                 exit;
             }
         }
-        $aux_write = $aux_write + 1;
+    }
+    if(isset($_POST[$year_art])){
+        if($_POST[$year_art] != ""){
+            $sql_write = 'UPDATE articles SET reference="'.$ref_art.'" WHERE id_art='.$articles['id_art'];
+            if(!$result_write = $mysqli_information->query($sql_write)){
+                echo "<p>Connection Problem writing</p>";
+                exit;
+            }
+        }
     }
 }
 
-//********************************************//
-//********** CHANGING DISPOSITIVOS ***********//
-//********************************************//
+//******************************************//
+//********** CHANGING PROFESSORS ***********//
+//******************************************//
 
-if(isset($_REQUEST["nome_dispositivo"])) {
-    if($_REQUEST["nome_dispositivo"] != ""){
-        $sql_write = "UPDATE dispositivo SET nome_dispositivo='". $_REQUEST["nome_dispositivo"] ."' WHERE id_dispositivo=".$id_dispositivo;
+//updating name_prof
+if(isset($_POST["name_prof"])) {
+    if($_POST["name_prof"] != ""){
+        $sql_write = "UPDATE professors SET name_prof='". $_POST["name_prof"] ."' WHERE id_prof=".$id_prof;
         if(!$result_write = $mysqli_disp->query($sql_write)){
             echo "<p>Connection Problem writing</p>";
             exit;
@@ -80,16 +112,17 @@ if(isset($_REQUEST["nome_dispositivo"])) {
     }
 }
 
-if(isset($_REQUEST["show"])){
-    if($_REQUEST["show"] == "yes"){
-        $sql_write = "UPDATE dispositivo SET mostrar_dispositivo=TRUE WHERE id_dispositivo=".$id_dispositivo;
+//updating show_professor
+if(isset($_POST["show_professor"])){
+    if($_POST["show_professor"] == "yes"){
+        $sql_write = "UPDATE professors SET show_professor=TRUE WHERE id_prof=".$id_prof;
         if(!$result_write = $mysqli_disp->query($sql_write)){
             echo "<p>Connection Problem writing</p>";
             exit;
         }
     }
-    if($_REQUEST["show"] == "no"){
-        $sql_write = "UPDATE dispositivo SET mostrar_dispositivo=FALSE WHERE id_dispositivo=".$id_dispositivo;
+    if($_REQUEST["show_professor"] == "no"){
+        $sql_write = "UPDATE professors SET show_professor=FALSE WHERE id_prof=".$id_prof;
         if(!$result_write = $mysqli_disp->query($sql_write)){
             echo "<p>Connection Problem writing</p>";
             exit;
@@ -97,32 +130,31 @@ if(isset($_REQUEST["show"])){
     }
 }
 
-//**************************************//
-//******** UPLOADING NA FIGURA *********//
-//**************************************//
+//updating email_prof
+if(isset($_POST["email_prof"])) {
+    if($_POST["email_prof"] != ""){
+        $sql_write = "UPDATE professors SET email='". $_POST["email_prof"] ."' WHERE id_prof=".$id_prof;
+        if(!$result_write = $mysqli_disp->query($sql_write)){
+            echo "<p>Connection Problem writing</p>";
+            exit;
+        }
+    }
+}
 
-//criando o upload  -> o arquivo vai ter o nome do dispositivo na pasta disp_form
-$target_dir_img = "/var/www/html/disp_form/img/";
-$target_img = $target_dir_img . $id_dispositivo . ".jpg";
-
-$errors = array();
-
-if($_FILES['upimg']["error"] == 0){
-    $img_name = $_FILES['upimg']['name'];
-    $img_size = $_FILES['upimg']['size'];
-    $img_tmp = $_FILES['upimg']['tmp_name'];
-    $img_type = $_FILES['upimg']['type'];
-    $img_extension = strtolower(end(explode('.',$file_name)));
-    $moved = move_uploaded_file($img_tmp,$target_img);
-    if(!$moved){
-        echo "<p> There was an error, image not uploaded";
-        exit;
+//updating about_prof
+if(isset($_POST["about_prof"])) {
+    if($_POST["about_prof"] != ""){
+        $sql_write = "UPDATE professors SET about_prof='". $_POST["about_prof"] ."' WHERE id_prof=".$id_prof;
+        if(!$result_write = $mysqli_disp->query($sql_write)){
+            echo "<p>Connection Problem writing</p>";
+            exit;
+        }
     }
 }
 
 echo "<h1> Upload ok! </h1>";
 
-echo "<a href='edit_tools.php'>GO BACK</a>";
+echo "<a href='edit_professor.php'>GO BACK</a>";
 
 //we should close the connection
 $mysqli_disp->close();

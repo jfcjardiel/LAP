@@ -141,9 +141,9 @@ if ($num_articles > 1) {
         //it is exibitig the line.
         echo '<tr>
             <td height="0" valign="top">&nbsp;</td>
-            <td height="0" valign="top" class="style14"><input type="text" id="disp_name" name="year'. $num_articles .'" maxlength="20"><br></td>
+            <td height="0" valign="top" class="style14"><input type="text" id="disp_name" name="year'. $num_articles .'" placeholder="'. $config_dispositivo['year'] .'"maxlength="20"><br></td>
             <td height="0" align="center" valign="top" class="style10">['.$num_articles.']</td>
-            <td height="0" valign="top" class="style15"><textarea cols="60" rows="4" placeholder="New Reference" name="art' . $num_articles .'"></textarea></td>
+            <td height="0" valign="top" class="style15"><textarea cols="60" rows="4" placeholder="' . $config_dispositivo['reference'] . '" name="art' . $num_articles .'"></textarea></td>
             </tr>';
         $num_articles = $num_articles - 1;
     }
