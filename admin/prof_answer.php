@@ -94,7 +94,7 @@ if ($num_articles > 1) {
 //******************************************//
 //********** CHANGING PROFESSORS ***********//
 //******************************************//
-
+/*
 //updating name_prof
 if(isset($_POST["name_prof"])) {
     if($_POST["name_prof"] != ""){
@@ -145,7 +145,7 @@ if(isset($_POST["about_prof"])) {
         }
     }
 }
-
+*/
 echo "<h1> Upload ok! </h1>";
 
 echo "<a href='edit_professor.php'>GO BACK</a>";
