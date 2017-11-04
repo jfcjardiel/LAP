@@ -41,6 +41,23 @@ if (!$result = $mysqli_information->query($sql)) {
 //the number of articles is the result of the research
 $num_articles = $result->num_rows+1;
 
+//***************************************//
+//******** INSERT NEW REFERENCE *********//
+//***************************************//
+
+$year_art = 'year'.$num_articles;
+$ref_art = 'art'.$num_articles;
+
+if(isset($_POST[$year_art]) && $_POST[$year_art] != ""){
+    if(isset($_POST[$ref_art]) && $_POST[$ref_art] != ""){
+        $sqrt_write = 'INSERT INTO articles (id_art, id_prof, year, reference) VALUES (NULL,'.$id_prof.','.$year_art.',"'.$ref_art.'")';
+        if(!$result_write = $mysqli_information->query($sql_write)){
+            echo "<p>Connection Problem writing</p>";
+            exit;
+        }
+    }
+}
+
 
 echo "<h1> Upload ok! </h1>";
 
