@@ -48,6 +48,9 @@ $num_articles = $result->num_rows+1;
 $year_art = 'year'.$num_articles;
 $ref_art = 'art'.$num_articles;
 
+echo $_POST[$year_art];
+echo $_POST[$ref_art];
+
 if(isset($_POST[$year_art]) && $_POST[$year_art] != ""){
     if(isset($_POST[$ref_art]) && $_POST[$ref_art] != ""){
         $sqrt_write = 'INSERT INTO articles (id_art, id_prof, year, reference) VALUES (NULL,'.$id_prof.','.$_POST[$year_art].',"'.$_POST[$ref_art].'")';
