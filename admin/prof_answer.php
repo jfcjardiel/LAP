@@ -151,7 +151,7 @@ echo "<h1> Upload ok! </h1>";
 echo "<a href='edit_professor.php'>GO BACK</a>";
 
 //we should close the connection
-$mysqli_disp->close();
+$mysqli_information->close();
 ?>
 <?php else : ?>
     <h1> You are not Allowed </h1>
