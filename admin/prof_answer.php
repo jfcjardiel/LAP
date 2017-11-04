@@ -16,7 +16,7 @@ $id_prof = $_REQUEST["id_prof"] + 0;
 //***********************************//
 //******** START CONNECTION *********//
 //***********************************//
-
+/*
 //Starting connection
 $mysqli_information = new mysqli('localhost', 'root', 'input212', 'information');
 
@@ -30,7 +30,7 @@ if ($mysqli_information->connect_errno) {
 //***********************************//
 //******** READING DATABASE *********//
 //***********************************//
-
+/*
 //If there isnt any error, then lets read the sql content
 $sql = "SELECT * FROM articles WHERE id_prof=" . $id_prof . " ORDER BY year DESC";
 if (!$result = $mysqli_information->query($sql)) {
@@ -151,7 +151,7 @@ echo "<h1> Upload ok! </h1>";
 echo "<a href='edit_professor.php'>GO BACK</a>";
 
 //we should close the connection
-$mysqli_information->close();
+//$mysqli_information->close();
 ?>
 <?php else : ?>
     <h1> You are not Allowed </h1>
