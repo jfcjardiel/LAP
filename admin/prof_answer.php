@@ -76,7 +76,7 @@ if ($num_articles > 1) {
         $ref_art = 'art'.$num_articles;
         if(isset($_POST[$year_art])){
             if($_POST[$year_art] != ""){
-                $sql_write = 'UPDATE articles SET year='.$year_art.' WHERE id_art='.$articles['id_art'];
+                $sql_write = 'UPDATE articles SET year='.$_POST[$year_art].' WHERE id_art='.$articles['id_art'];
                 if(!$result_write = $mysqli_information->query($sql_write)){
                     echo "<p>Connection Problem writing</p>";
                     exit;
@@ -85,13 +85,14 @@ if ($num_articles > 1) {
         }
         if(isset($_POST[$year_art])){
             if($_POST[$year_art] != ""){
-                $sql_write = 'UPDATE articles SET reference="'.$ref_art.'" WHERE id_art='.$articles['id_art'];
+                $sql_write = 'UPDATE articles SET reference="'.$_POST[$ref_art].'" WHERE id_art='.$articles['id_art'];
                 if(!$result_write = $mysqli_information->query($sql_write)){
                     echo "<p>Connection Problem writing</p>";
                     exit;
                 }
             }
         }
+        $num_articles = $num_articles - 1;
     }
 }
 
