@@ -10,6 +10,7 @@ sec_session_start();
 <?php if (login_check($mysqli) == true) : ?>
 <!-- ESTA LOGADO -->
 <head>
+    <meta charset="utf-8">
     <script>
       //Function that calls input.php and embedded the code into the page
     function prof_information(str){

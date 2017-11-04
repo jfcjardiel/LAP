@@ -11,7 +11,6 @@ sec_session_start();
 <html>
 
 <head>
-<meta charset="utf-8">
 <style type="text/css">
 <!--
 .style10 {font-size: 12px}
