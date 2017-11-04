@@ -30,7 +30,6 @@ sec_session_start();
     <input type = "file" name="std_img" id = "std_imgd"><br><br>
     <button type="submit" name="change_std" id="change_std" value="change_std">Change Information</br></button> 
 </form>
-?>
 </body>
 </html>
 <?php else : ?>
