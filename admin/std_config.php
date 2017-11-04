@@ -90,74 +90,46 @@ if(file_exists($target_img_server)){
 //*******************************//
 
 //Writing the form
-echo '<form method="post" attribute="post" action="prof_answer.php?id_prof=' . $id_prof . '" enctype="multipart/form-data" id="mod_disp" name="mod_disp">';
+echo '<form method="post" attribute="post" action="std_answer.php?id_std=' . $id_std . '" enctype="multipart/form-data" id="mod_disp" name="mod_disp">';
 
 //editing name
-echo "<p> Professor Name: </p>";
+echo "<p> Student Name: </p>";
 //echo $nome_dispositivo;
-echo "<input type='text' name='name_prof' placeholder=' ". $name_prof ."' maxlength='30'><br>";
+echo "<input type='text' name='name_std' placeholder=' ". $name_std ."' maxlength='30'><br>";
 
-if($show_prof == true){
-    echo '<input type="radio" name="show_professor" value="yes" checked> Professor Active <br><input type="radio" name="show_professor" value="no"> Former Professor <br>';
+echo "Students Degree in LAP:"
+//phd
+if($phd == true){
+    echo '<input type="checkbox" name="phd" value="true" checked> Phd Student';
+    echo '<input type="text" name="year_phd" placeholder="'.$year_phd.'">';
 }else{
-    echo '<input type="radio" name="show_professor" value="yes"> Professor Active <br><input type="radio" name="show_professor" value="no" checked> Former Professor <br>';
+    echo '<input type="checkbox" name="phd" value="true"> Phd Student';
+    echo '<input type="text" name="year_phd" placeholder="Degree Year">';
 }
 
-//editing email
-echo "<p> Email: </p>";
-//echo $nome_dispositivo;
-echo "<input type='text' name='email_prof' placeholder=' ". $email_prof ."' maxlength='30'><br>";
-
-echo "<p>About the professor: </p>";
-echo '<textarea cols="60" rows="10" placeholder="' . $about_prof . '" name="about_prof"></textarea>';
-
-echo "<h3>Articles: </h3>";
-
-//Reading database!
-
-//If there isnt any error, then lets read the sql content
-$sql = "SELECT * FROM articles WHERE id_prof=" . $id_prof . " ORDER BY year DESC";
-if (!$result = $mysqli_information->query($sql)) {
-    // I do not know what to show yet
-    echo "<p>Connection Problem </p>";
-    exit;
+//master
+if($master == true){
+    echo '<input type="checkbox" name="master" value="true" checked> Master Student';
+    echo '<input type="text" name="year_master" placeholder="'.$year_master.'">';
+}else{
+    echo '<input type="checkbox" name="master" value="true"> Master Student';
+    echo '<input type="text" name="year_master" placeholder="Degree Year">';
 }
 
-//the number of articles is the result of the research
-$num_articles = $result->num_rows + 1;
-
-//lets put a place to to add
-
-echo '<table width="846" border="0" cellpadding="0" cellspacing="0">';
-
-echo '<tr>
-    <td height="0" valign="top">&nbsp;</td>
-    <td height="0" valign="top" class="style14"><input type="text" id="disp_name" name="year'. $num_articles .'" placeholder="year" maxlength="20"><br></td>
-    <td height="0" align="center" valign="top" class="style10">['.$num_articles.']</td>
-    <td height="0" valign="top" class="style15"><textarea cols="60" rows="4" placeholder="New Reference" name="art' . $num_articles .'"></textarea></td>
-    </tr>';
-
-// If there is no result
-if ($num_articles > 1) {
-    $num_articles = $num_articles - 1;
-    //Writing the form options
-    while ($config_dispositivo = $result->fetch_assoc()) {
-        //it is exibitig the line.
-        echo '<tr>
-            <td height="0" valign="top">&nbsp;</td>
-            <td height="0" valign="top" class="style14"><input type="text" id="disp_name" name="year'. $num_articles .'" placeholder="'. $config_dispositivo['year'] .'"maxlength="20"><br></td>
-            <td height="0" align="center" valign="top" class="style10">['.$num_articles.']</td>
-            <td height="0" valign="top" class="style15"><textarea cols="60" rows="4" placeholder="' . $config_dispositivo['reference'] . '" name="art' . $num_articles .'"></textarea></td>
-            </tr>';
-        $num_articles = $num_articles - 1;
-    }
-    //writting submit button
-    //we are going to send the id of the form via the function validateFom.
+//graduation
+if($grad == true){
+    echo '<input type="checkbox" name="grad" value="true" checked> Undergraduate Student';
+    echo '<input type="text" name="year_master" placeholder="'.$year_grad.'">';
+}else{
+    echo '<input type="checkbox" name="grad" value="true"> Undergraduate Student';
+    echo '<input type="text" name="year_grad" placeholder="Degree Year">';
 }
 
-echo "</table>";
-echo '<button type="submit" name="change_prof" id="change_prof" value="change_prof">Change Information</br></button> </form>';
+//about student section
+echo "<p>About the student: </p>";
+echo '<textarea cols="60" rows="10" placeholder="' . $about_std . '" name="about_std"></textarea>';
 
+echo '<button type="submit" name="change_std" id="change_std" value="change_std">Change Information</br></button> </form>';
 
 //we should close the connection
 $mysqli_information->close();

@@ -18,7 +18,7 @@ sec_session_start();
       //if non is select
       document.getElementById("std_config").innerHTML = "";
       if (str == "") {
-          document.getElementById("std_config").innerHTML = "      <h1>Edit Students</h1><p>Here you can edit every information about the students in LAP.</p>";
+          document.getElementById("std_config").innerHTML = "<h1>Edit Students</h1><p>Here you can edit every information about the students in LAP.</p>";
           //document.getElementById("answer_form").innerHTML = "";
           return;
       }
