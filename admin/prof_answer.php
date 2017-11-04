@@ -143,7 +143,7 @@ if(isset($_POST["email_prof"])) {
 if(isset($_POST["about_prof"])) {
     if($_POST["about_prof"] != ""){
         $sql_write = "UPDATE professors SET about_prof='". $_POST["about_prof"] ."' WHERE id_prof=".$id_prof;
-        if(!$result_write = $mysqli_disp->query($sql_write)){
+        if(!$result_write = $mysqli_information->query($sql_write)){
             echo "<p>Connection Problem writing</p>";
             exit;
         }
