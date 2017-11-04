@@ -9,6 +9,9 @@ sec_session_start();
 <?php if (login_check($mysqli) == true) : ?>
 
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 //getting 
 $id_prof = $_REQUEST["id_prof"] + 0;
 
@@ -48,8 +51,8 @@ $num_articles = $result->num_rows+1;
 $year_art = 'year'.$num_articles;
 $ref_art = 'art'.$num_articles;
 
-echo $_POST[$year_art];
-echo $_POST[$ref_art];
+//echo $_POST[$year_art];
+//echo $_POST[$ref_art];
 
 if(isset($_POST[$year_art]) && $_POST[$year_art] != ""){
     if(isset($_POST[$ref_art]) && $_POST[$ref_art] != ""){
