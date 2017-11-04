@@ -154,5 +154,4 @@ echo "<a href='edit_professor.php'>GO BACK</a>";
 //$mysqli_information->close();
 ?>
 <?php else : ?>
-    <h1> You are not Allowed </h1>
 <?php endif; ?>
