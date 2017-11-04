@@ -83,8 +83,8 @@ if ($num_articles > 1) {
                 }
             }
         }
-        if(isset($_POST[$year_art])){
-            if($_POST[$year_art] != ""){
+        if(isset($_POST[$ref_art])){
+            if($_POST[$ref_art] != ""){
                 $sql_write = 'UPDATE articles SET reference="'.$_POST[$ref_art].'" WHERE id_art='.$articles['id_art'];
                 if(!$result_write = $mysqli_information->query($sql_write)){
                     echo "<p>Connection Problem writing</p>";
