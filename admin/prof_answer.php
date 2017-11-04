@@ -58,6 +58,36 @@ if(isset($_POST[$year_art]) && $_POST[$year_art] != ""){
     }
 }
 
+//*****************************************//
+//********** CHANGING REFERENCE ***********//
+//*****************************************//
+
+if ($num_articles > 1) {
+    $num_articles = $num_articles - 1;
+    //em cada id_config vamos escrever o valor relativo em valor_dispositivo_atributos
+    while ($articles = $result->fetch_assoc()){
+        $year_art = 'year'.$num_articles;
+        $ref_art = 'art'.$num_articles;
+        if(isset($_POST[$year_art])){
+            if($_POST[$year_art] != ""){
+                $sql_write = 'UPDATE articles SET year='.$year_art.' WHERE id_art='.$articles['id_art'];
+                if(!$result_write = $mysqli_information->query($sql_write)){
+                    echo "<p>Connection Problem writing</p>";
+                    exit;
+                }
+            }
+        }
+        if(isset($_POST[$year_art])){
+            if($_POST[$year_art] != ""){
+                $sql_write = 'UPDATE articles SET reference="'.$ref_art.'" WHERE id_art='.$articles['id_art'];
+                if(!$result_write = $mysqli_information->query($sql_write)){
+                    echo "<p>Connection Problem writing</p>";
+                    exit;
+                }
+            }
+        }
+    }
+}
 
 echo "<h1> Upload ok! </h1>";
 
