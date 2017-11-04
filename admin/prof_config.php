@@ -134,7 +134,7 @@ echo '<tr>
 
 // If there is no result
 if ($num_articles > 1) {
-    $id_article = $num_articles;
+    $num_articles = $num_articles - 1;
     //Writing the form options
     while ($config_dispositivo = $result->fetch_assoc()) {
         //it is exibitig the line.
