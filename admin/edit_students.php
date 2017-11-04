@@ -18,7 +18,7 @@ sec_session_start();
       //if non is select
       document.getElementById("std_config").innerHTML = "";
       if (str == "") {
-          document.getElementById("std_config").innerHTML = "<h1>Edit Students</h1><p>Here you can edit every information about the students in LAP.</p>";
+          document.getElementById("std_config").innerHTML = "<h1>Edit Students</h1><p>Here you can edit every information about the students in LAP.</p><a href='add_std.php'>CLICK HERE</a><a>If you want to add new student</a>";
           //document.getElementById("answer_form").innerHTML = "";
           return;
       }
@@ -79,6 +79,7 @@ sec_session_start();
     <div id="std_config">
       <h1>Edit Students</h1>
       <p>Here you can edit every information about the students in LAP.</p>
+      <a href="add_std.php">CLICK HERE</a><a>If you want to add new student</a>
     </div>
 </body>
 <?php else : ?>
