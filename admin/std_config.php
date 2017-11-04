@@ -30,6 +30,7 @@ sec_session_start();
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
+
 // get the q parameter from URL
 $id_std = $_REQUEST["id_std"] + 0;
 //echo $id;
@@ -100,7 +101,7 @@ echo "<p> Student Name: </p>";
 //echo $nome_dispositivo;
 echo "<input type='text' name='name_std' placeholder=' ". $name_std ."' maxlength='30'><br>";
 
-echo "Students Degree in LAP:"
+echo "Students Degree in LAP:";
 //phd
 if($phd == true){
     echo '<input type="checkbox" name="phd" value="true" checked> Phd Student';
