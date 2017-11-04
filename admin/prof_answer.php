@@ -56,7 +56,7 @@ $ref_art = 'art'.$num_articles;
 
 if(isset($_POST[$year_art]) && $_POST[$year_art] != ""){
     if(isset($_POST[$ref_art]) && $_POST[$ref_art] != ""){
-        $sqrt_write = 'INSERT INTO articles (id_art, id_prof, year, reference) VALUES (NULL,'.$id_prof.','.$_POST[$year_art].',"'.$_POST[$ref_art].'")';
+        $sql_write = 'INSERT INTO articles (id_art, id_prof, year, reference) VALUES (NULL,'.$id_prof.','.$_POST[$year_art].',"'.$_POST[$ref_art].'")';
         if(!$result_write = $mysqli_information->query($sql_write)){
             echo "<p>Connection Problem writing</p>";
             exit;
