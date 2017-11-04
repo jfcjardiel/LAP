@@ -103,7 +103,7 @@ if ($num_articles > 1) {
 if(isset($_POST["name_prof"])) {
     if($_POST["name_prof"] != ""){
         $sql_write = "UPDATE professors SET name_prof='". $_POST["name_prof"] ."' WHERE id_prof=".$id_prof;
-        if(!$result_write = $mysqli_disp->query($sql_write)){
+        if(!$result_write = $mysqli_information->query($sql_write)){
             echo "<p>Connection Problem writing</p>";
             exit;
         }
@@ -114,14 +114,14 @@ if(isset($_POST["name_prof"])) {
 if(isset($_POST["show_professor"])){
     if($_POST["show_professor"] == "yes"){
         $sql_write = "UPDATE professors SET show_professor=TRUE WHERE id_prof=".$id_prof;
-        if(!$result_write = $mysqli_disp->query($sql_write)){
+        if(!$result_write = $mysqli_information->query($sql_write)){
             echo "<p>Connection Problem writing</p>";
             exit;
         }
     }
     if($_REQUEST["show_professor"] == "no"){
         $sql_write = "UPDATE professors SET show_professor=FALSE WHERE id_prof=".$id_prof;
-        if(!$result_write = $mysqli_disp->query($sql_write)){
+        if(!$result_write = $mysqli_information->query($sql_write)){
             echo "<p>Connection Problem writing</p>";
             exit;
         }
@@ -132,7 +132,7 @@ if(isset($_POST["show_professor"])){
 if(isset($_POST["email_prof"])) {
     if($_POST["email_prof"] != ""){
         $sql_write = "UPDATE professors SET email='". $_POST["email_prof"] ."' WHERE id_prof=".$id_prof;
-        if(!$result_write = $mysqli_disp->query($sql_write)){
+        if(!$result_write = $mysqli_information->query($sql_write)){
             echo "<p>Connection Problem writing</p>";
             exit;
         }
