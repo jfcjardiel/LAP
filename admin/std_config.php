@@ -101,37 +101,37 @@ echo "<p> Student Name: </p>";
 //echo $nome_dispositivo;
 echo "<input type='text' name='name_std' placeholder=' ". $name_std ."' maxlength='30'><br>";
 
-echo "Students Degree in LAP:";
+echo "<p>Students Degree in LAP:</p>";
 //phd
 if($phd == true){
     echo '<input type="checkbox" name="phd" value="true" checked> Phd Student';
-    echo '<input type="text" name="year_phd" placeholder="'.$year_phd.'">';
+    echo '<input type="text" name="year_phd" placeholder="'.$year_phd.'"><br>';
 }else{
     echo '<input type="checkbox" name="phd" value="true"> Phd Student';
-    echo '<input type="text" name="year_phd" placeholder="Degree Year">';
+    echo '<input type="text" name="year_phd" placeholder="Degree Year"><br>';
 }
 
 //master
 if($master == true){
     echo '<input type="checkbox" name="master" value="true" checked> Master Student';
-    echo '<input type="text" name="year_master" placeholder="'.$year_master.'">';
+    echo '<input type="text" name="year_master" placeholder="'.$year_master.'"><br>';
 }else{
     echo '<input type="checkbox" name="master" value="true"> Master Student';
-    echo '<input type="text" name="year_master" placeholder="Degree Year">';
+    echo '<input type="text" name="year_master" placeholder="Degree Year"><br>';
 }
 
 //graduation
 if($grad == true){
     echo '<input type="checkbox" name="grad" value="true" checked> Undergraduate Student';
-    echo '<input type="text" name="year_master" placeholder="'.$year_grad.'">';
+    echo '<input type="text" name="year_master" placeholder="'.$year_grad.'"><br>';
 }else{
     echo '<input type="checkbox" name="grad" value="true"> Undergraduate Student';
-    echo '<input type="text" name="year_grad" placeholder="Degree Year">';
+    echo '<input type="text" name="year_grad" placeholder="Degree Year"><br>';
 }
 
 //about student section
 echo "<p>About the student: </p>";
-echo '<textarea cols="60" rows="10" placeholder="' . $about_std . '" name="about_std"></textarea>';
+echo '<textarea cols="60" rows="10" placeholder="' . $about_std . '" name="about_std"></textarea><br>';
 
 echo '<button type="submit" name="change_std" id="change_std" value="change_std">Change Information</br></button> </form>';
 
