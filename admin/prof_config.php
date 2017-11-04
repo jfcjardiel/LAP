@@ -92,7 +92,7 @@ echo "<p> Professor Name: </p>";
 //echo $nome_dispositivo;
 echo "<input type='text' name='name_prof' placeholder=' ". $name_prof ."' maxlength='30'><br>";
 
-if($show_professor == true){
+if($show_prof == true){
     echo '<input type="radio" name="show_professor" value="yes" checked> Professor Active <br><input type="radio" name="show_professor" value="no"> Former Professor <br>';
 }else{
     echo '<input type="radio" name="show_professor" value="yes"> Professor Active <br><input type="radio" name="show_professor" value="no" checked> Former Professor <br>';
