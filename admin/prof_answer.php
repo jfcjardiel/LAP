@@ -9,13 +9,29 @@ sec_session_start();
 <?php if (login_check($mysqli) == true) : ?>
 
 <?php
+//getting 
+$id_prof = $_REQUEST["id_prof"] + 0;
+
+//***********************************//
+//******** START CONNECTION *********//
+//***********************************//
+
+//Starting connection
+$mysqli_information = new mysqli('localhost', 'root', 'input212', 'information');
+
+//If there is any error, then show...
+if ($mysqli_information->connect_errno) {
+    // I do not know what to show yet
+    echo "<h2 class='blog_title'>Connection Problem </h2>";
+    exit;
+}
 
 echo "<h1> Upload ok! </h1>";
 
 echo "<a href='edit_professor.php'>GO BACK</a>";
 
 //we should close the connection
-//$mysqli_information->close();
+$mysqli_information->close();
 ?>
 <?php else : ?>
 <?php endif; ?>
