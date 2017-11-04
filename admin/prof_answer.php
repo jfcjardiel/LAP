@@ -46,7 +46,7 @@ $num_articles = $result->num_rows+1;
 //***************************************//
 //******** INSERT NEW REFERENCE *********//
 //***************************************//
-
+/*
 $year_art = 'year'.$num_articles;
 $ref_art = 'art'.$num_articles;
 
@@ -63,7 +63,7 @@ if(isset($_POST[$year_art]) && $_POST[$year_art] != ""){
 //*****************************************//
 //********** CHANGING REFERENCE ***********//
 //*****************************************//
-
+/*
 if ($num_articles > 1) {
     $num_articles = $num_articles - 1;
     //em cada id_config vamos escrever o valor relativo em valor_dispositivo_atributos
