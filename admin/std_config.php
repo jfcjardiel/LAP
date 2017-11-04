@@ -27,6 +27,9 @@ sec_session_start();
 
 <body bgcolor="#FFFFFF">
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 // get the q parameter from URL
 $id_std = $_REQUEST["id_std"] + 0;
 //echo $id;
