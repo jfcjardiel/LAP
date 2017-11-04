@@ -28,7 +28,7 @@ sec_session_start();
 <body bgcolor="#FFFFFF">
 <?php
 // get the q parameter from URL
-$id_prof = $_REQUEST["id_prof"] + 0;
+$id_std = $_REQUEST["id_std"] + 0;
 //echo $id;
 
 //*******************************//
@@ -46,7 +46,7 @@ if ($mysqli_information->connect_errno) {
 }
 
 //If there isnt any error, then lets read the sql content
-$sql = "SELECT * FROM professors WHERE id_prof=" . $id_prof;
+$sql = "SELECT * FROM students WHERE id_std=" . $id_std;
 if (!$result = $mysqli_information->query($sql)) {
     // I do not know what to show yet
     echo "<p>Connection Problem </p>";
@@ -60,21 +60,26 @@ if ($result->num_rows === 0) {
     exit;
 }
 
-//pegando o nome do professor
-$prof_row = $result->fetch_assoc();
-$name_prof = $prof_row['name_prof'];
-$show_prof = $prof_row['show_professor'];
-$email_prof = $prof_row['email'];
-$about_prof = $prof_row['about_prof'];
+//taking all students informations
+$std_row = $result->fetch_assoc();
+$name_std = $std_row['name_std'];
+$phd = $std_row['phd'];
+$year_php = $std_row['year_phd'];
+$master = $std_row['master'];
+$year_master = $std_row['year_master'];
+$grad = $std_row['grad'];
+$year_grad = $std_row['year_grad'];
+$active = $std_row['active'];
+$about_std = $std_row['about_std'];
 
 //*******************************//
 //******* PUTTING IMAGE *********//
 //*******************************//
 
 //colocando a imagem
-$target_dir_img = "/var/www/html/img/professor/";
-$target_img_server = $target_dir_img . $id_prof . ".jpg";
-$target_img = "../img/professor/". $id_prof . ".jpg";
+$target_dir_img = "/var/www/html/img/std/";
+$target_img_server = $target_dir_img . $id_std . ".jpg";
+$target_img = "../img/std/". $id_std . ".jpg";
 
 if(file_exists($target_img_server)){
     echo '<img alt="img" src="'.$target_img.'">';
@@ -127,7 +132,7 @@ echo '<table width="846" border="0" cellpadding="0" cellspacing="0">';
 
 echo '<tr>
     <td height="0" valign="top">&nbsp;</td>
-    <td height="0" valign="top" class="style14"><input type="number" id="disp_name" name="year'. $num_articles .'" placeholder="year" maxlength="20"><br></td>
+    <td height="0" valign="top" class="style14"><input type="text" id="disp_name" name="year'. $num_articles .'" placeholder="year" maxlength="20"><br></td>
     <td height="0" align="center" valign="top" class="style10">['.$num_articles.']</td>
     <td height="0" valign="top" class="style15"><textarea cols="60" rows="4" placeholder="New Reference" name="art' . $num_articles .'"></textarea></td>
     </tr>';
@@ -140,7 +145,7 @@ if ($num_articles > 1) {
         //it is exibitig the line.
         echo '<tr>
             <td height="0" valign="top">&nbsp;</td>
-            <td height="0" valign="top" class="style14"><input type="number" id="disp_name" name="year'. $num_articles .'" placeholder="'. $config_dispositivo['year'] .'"maxlength="20"><br></td>
+            <td height="0" valign="top" class="style14"><input type="text" id="disp_name" name="year'. $num_articles .'" placeholder="'. $config_dispositivo['year'] .'"maxlength="20"><br></td>
             <td height="0" align="center" valign="top" class="style10">['.$num_articles.']</td>
             <td height="0" valign="top" class="style15"><textarea cols="60" rows="4" placeholder="' . $config_dispositivo['reference'] . '" name="art' . $num_articles .'"></textarea></td>
             </tr>';
