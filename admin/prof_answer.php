@@ -95,6 +95,61 @@ if ($num_articles > 1) {
     }
 }
 
+//******************************************//
+//********** CHANGING PROFESSORS ***********//
+//******************************************//
+
+//updating name_prof
+if(isset($_POST["name_prof"])) {
+    if($_POST["name_prof"] != ""){
+        $sql_write = "UPDATE professors SET name_prof='". $_POST["name_prof"] ."' WHERE id_prof=".$id_prof;
+        if(!$result_write = $mysqli_disp->query($sql_write)){
+            echo "<p>Connection Problem writing</p>";
+            exit;
+        }
+    }
+}
+
+//updating show_professor
+if(isset($_POST["show_professor"])){
+    if($_POST["show_professor"] == "yes"){
+        $sql_write = "UPDATE professors SET show_professor=TRUE WHERE id_prof=".$id_prof;
+        if(!$result_write = $mysqli_disp->query($sql_write)){
+            echo "<p>Connection Problem writing</p>";
+            exit;
+        }
+    }
+    if($_REQUEST["show_professor"] == "no"){
+        $sql_write = "UPDATE professors SET show_professor=FALSE WHERE id_prof=".$id_prof;
+        if(!$result_write = $mysqli_disp->query($sql_write)){
+            echo "<p>Connection Problem writing</p>";
+            exit;
+        }
+    }
+}
+
+//updating email_prof
+if(isset($_POST["email_prof"])) {
+    if($_POST["email_prof"] != ""){
+        $sql_write = "UPDATE professors SET email='". $_POST["email_prof"] ."' WHERE id_prof=".$id_prof;
+        if(!$result_write = $mysqli_disp->query($sql_write)){
+            echo "<p>Connection Problem writing</p>";
+            exit;
+        }
+    }
+}
+
+//updating about_prof
+if(isset($_POST["about_prof"])) {
+    if($_POST["about_prof"] != ""){
+        $sql_write = "UPDATE professors SET about_prof='". $_POST["about_prof"] ."' WHERE id_prof=".$id_prof;
+        if(!$result_write = $mysqli_disp->query($sql_write)){
+            echo "<p>Connection Problem writing</p>";
+            exit;
+        }
+    }
+}
+
 echo "<h1> Upload ok! </h1>";
 
 echo "<a href='edit_professor.php'>GO BACK</a>";
