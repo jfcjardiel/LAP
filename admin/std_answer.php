@@ -74,7 +74,7 @@ if(isset($_POST["phd"])){
     }
 }
 
-if(isset($_POST["year_phd"])){
+if(isset($_POST["year_phd"]) $$ $_POST["year_phd"] != ""){
     $sql_write = "UPDATE students SET year_phd='". $_POST["year_phd"] ."' WHERE id_std=".$id_std;
     if(!$result_write = $mysqli_information->query($sql_write)){
         echo "<p>Connection Problem writing</p>";
@@ -95,7 +95,7 @@ if(isset($_POST["master"])){
     }
 }
 
-if(isset($_POST["year_master"])){
+if(isset($_POST["year_master"]) && $_POST["year_master"] != ""){
     $sql_write = "UPDATE students SET year_master='". $_POST["year_master"] ."' WHERE id_std=".$id_std;
     if(!$result_write = $mysqli_information->query($sql_write)){
         echo "<p>Connection Problem writing</p>";
@@ -116,7 +116,7 @@ if(isset($_POST["grad"])){
     }
 }
 
-if(isset($_POST["year_grad"])){
+if(isset($_POST["year_grad"]) && $_POST["year_grad"] != ""){
     $sql_write = "UPDATE students SET year_grad='". $_POST["year_grad"] ."' WHERE id_std=".$id_std;
     if(!$result_write = $mysqli_information->query($sql_write)){
         echo "<p>Connection Problem writing</p>";
