@@ -70,13 +70,13 @@ if(isset($_POST["name_std"])) {
 if(isset($_POST["phd"])){
     if($_POST["phd"] == "true"){
         $sql_write = "UPDATE students SET phd=TRUE WHERE id_std=".$id_std;
-    }else{
-        $sql_write = "UPDATE students SET phd=FALSE WHERE id_std=".$id_std;
     }
-    if(!$result_write = $mysqli_information->query($sql_write)){
-        echo "<p>Connection Problem writing</p>";
-        exit;
-    }
+}else{
+    $sql_write = "UPDATE students SET phd=FALSE WHERE id_std=".$id_std;
+}
+if(!$result_write = $mysqli_information->query($sql_write)){
+    echo "<p>Connection Problem writing</p>";
+    exit;
 }
 
 if(isset($_POST["year_phd"]) && $_POST["year_phd"] != ""){
@@ -91,13 +91,13 @@ if(isset($_POST["year_phd"]) && $_POST["year_phd"] != ""){
 if(isset($_POST["master"])){
     if($_POST["master"] == "true"){
         $sql_write = "UPDATE students SET master=TRUE WHERE id_std=".$id_std;
-    }else{
-        $sql_write = "UPDATE students SET master=FALSE WHERE id_std=".$id_std;
     }
-    if(!$result_write = $mysqli_information->query($sql_write)){
-        echo "<p>Connection Problem writing</p>";
-        exit;
-    }
+}else{
+    $sql_write = "UPDATE students SET master=FALSE WHERE id_std=".$id_std;
+}
+if(!$result_write = $mysqli_information->query($sql_write)){
+    echo "<p>Connection Problem writing</p>";
+    exit;
 }
 
 if(isset($_POST["year_master"]) && $_POST["year_master"] != ""){
@@ -112,13 +112,13 @@ if(isset($_POST["year_master"]) && $_POST["year_master"] != ""){
 if(isset($_POST["grad"])){
     if($_POST["grad"] == "true"){
         $sql_write = "UPDATE students SET grad=TRUE WHERE id_std=".$id_std;
-    }else{
-        $sql_write = "UPDATE students SET grad=FALSE WHERE id_std=".$id_std;
     }
-    if(!$result_write = $mysqli_information->query($sql_write)){
-        echo "<p>Connection Problem writing</p>";
-        exit;
-    }
+}else{
+    $sql_write = "UPDATE students SET grad=FALSE WHERE id_std=".$id_std;
+}
+if(!$result_write = $mysqli_information->query($sql_write)){
+    echo "<p>Connection Problem writing</p>";
+    exit;
 }
 
 if(isset($_POST["year_grad"]) && $_POST["year_grad"] != ""){
