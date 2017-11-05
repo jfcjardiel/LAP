@@ -122,7 +122,9 @@ if(isset($_POST["std_active"])){
         $active = "TRUE";
     }else{
         $active = "FALSE";
-}else{
+    }
+}
+else{
     $active = "FALSE";
 }
 
