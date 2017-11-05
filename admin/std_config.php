@@ -119,7 +119,7 @@ if($master == true){
 //graduation
 if($grad == true){
     echo '<input type="checkbox" name="grad" value="true" checked> Undergraduate Student';
-    echo '<input type="text" name="year_master" placeholder="'.$year_grad.'"><br>';
+    echo '<input type="text" name="year_grad" placeholder="'.$year_grad.'"><br>';
 }else{
     echo '<input type="checkbox" name="grad" value="true"> Undergraduate Student';
     echo '<input type="text" name="year_grad" placeholder="Degree Year"><br>';
