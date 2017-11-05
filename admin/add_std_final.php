@@ -30,7 +30,7 @@ if ($mysqli_information->connect_errno) {
 //******************************************//
 //********** CHANGING PROFESSORS ***********//
 //******************************************//
-/*
+
 //updating name_prof
 if(isset($_POST["name_std"])) {
     if($_POST["name_std"] == ""){
@@ -43,7 +43,7 @@ if(isset($_POST["name_std"])) {
     echo "<p>Problem writing</p>";
     exit;
 }
-
+/*
 //updating PHD
 if(isset($_POST["phd"])){
     if($_POST["phd"] == "true"){
@@ -169,7 +169,7 @@ $std_row = $result->fetch_assoc();
 $id_std = $std_row['id_std'];
 
 //criando o upload  -> o arquivo vai ter o nome do dispositivo na pasta disp_form
-$target_dir_img = "/var/www/html/img/std";
+$target_dir_img = "/var/www/html/img/std/";
 $target_img = $target_dir_img . $id_std . ".jpg";
 
 if($_FILES['std_img']["error"] == 0){
@@ -177,7 +177,6 @@ if($_FILES['std_img']["error"] == 0){
     $img_size = $_FILES['std_img']['size'];
     $img_tmp = $_FILES['std_img']['tmp_name'];
     $img_type = $_FILES['std_img']['type'];
-    $img_extension = strtolower(end(explode('.',$file_name)));
     $moved = move_uploaded_file($img_tmp,$target_img);
     if(!$moved){
         echo "<p> There was an error, image not uploaded";
