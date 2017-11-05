@@ -48,15 +48,15 @@ if(isset($_POST["phd"])){
     }else{
         $phd = "FALSE";
     }
-    if($_REQUEST["year_phd"] == ""){
-        $year_phd= "NULL";
+    if($_POST["year_phd"] == ""){
+        $year_phd = "NULL";
     }else{
         $year_phd = $_POST["year_phd"];
     }
 }
 
 if(isset($_POST["year_phd"])){
-    if($_REQUEST["year_phd"] == ""){
+    if($_POST["year_phd"] == ""){
         $year_phd= "NULL";
     }
 }
@@ -68,15 +68,15 @@ if(isset($_POST["master"])){
     }else{
         $master = "FALSE";
     }
-    if($_REQUEST["year_master"] == ""){
-        $year_master= "NULL";
+    if($_POST["year_master"] == ""){
+        $year_master = "NULL";
     }else{
         $year_master = $_POST["year_master"];
     }
 }
 
 if(isset($_POST["year_master"])){
-    if($_REQUEST["year_master"] == ""){
+    if($_POST["year_master"] == ""){
         $year_master= "NULL";
     }
 }
@@ -88,7 +88,7 @@ if(isset($_POST["grad"])){
     }else{
         $grad = "FALSE";
     }
-    if($_REQUEST["year_grad"] == ""){
+    if($_POST["year_grad"] == ""){
         $year_grad= "NULL";
     }else{
         $year_grad = $_POST["year_grad"];
@@ -96,7 +96,7 @@ if(isset($_POST["grad"])){
 }
 
 if(isset($_POST["year_grad"])){
-    if($_REQUEST["year_grad"] == ""){
+    if($_POST["year_grad"] == ""){
         $year_grad= "NULL";
     }
 }
@@ -119,7 +119,7 @@ if(isset($_POST["about_std"])) {
     }
 }
 
-$sql_write = "INSERT INTO students (id_std, name_std, php, year_phd, master, year_master, grad, year_grad, active, about_std) VALUES (NULL,".$name_std.",".$php.",".$year_php.",".$master.",".$year_master.",".$grad.",".$year_grad.",".$active.",".$about_std.")";
+$sql_write = "INSERT INTO students (id_std, name_std, php, year_phd, master, year_master, grad, year_grad, active, about_std) VALUES (NULL,".$name_std.",".$phd.",".$year_phd.",".$master.",".$year_master.",".$grad.",".$year_grad.",".$active.",".$about_std.")";
 if(!$result_write = $mysqli_information->query($sql_write)){
     echo "<p>Connection Problem writing</p>";
     exit;
