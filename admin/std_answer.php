@@ -74,7 +74,7 @@ if(isset($_POST["phd"])){
     }
 }
 
-if(isset($_POST["year_phd"]) $$ $_POST["year_phd"] != ""){
+if(isset($_POST["year_phd"]) && $_POST["year_phd"] != ""){
     $sql_write = "UPDATE students SET year_phd='". $_POST["year_phd"] ."' WHERE id_std=".$id_std;
     if(!$result_write = $mysqli_information->query($sql_write)){
         echo "<p>Connection Problem writing</p>";
