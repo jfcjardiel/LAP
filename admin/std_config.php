@@ -129,6 +129,8 @@ if($grad == true){
 echo "<p>About the student: </p>";
 echo '<textarea cols="60" rows="10" placeholder="' . $about_std . '" name="about_std"></textarea><br>';
 
+echo '<p>Here is the IMAGE you are going to upload (JUST JPG):</p><input type = "file" name="std_img" id = "std_img"><br><br>';
+
 echo '<button type="submit" name="change_std" id="change_std" value="change_std">Change Information</br></button> </form>';
 
 //we should close the connection
