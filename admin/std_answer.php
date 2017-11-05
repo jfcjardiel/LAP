@@ -9,9 +9,6 @@ sec_session_start();
 <?php if (login_check($mysqli) == true) : ?>
 
 <?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
 //getting 
 $id_std = $_REQUEST["id_std"] + 0;
 
@@ -165,7 +162,7 @@ if(isset($_POST["about_std"])) {
 
 echo "<h1> Upload ok! </h1>";
 
-echo "<a href='edit_professor.php'>GO BACK</a>";
+echo "<a href='edit_students.php'>GO BACK</a>";
 
 //we should close the connection
 $mysqli_information->close();

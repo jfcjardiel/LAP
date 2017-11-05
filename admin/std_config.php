@@ -64,7 +64,7 @@ if ($result->num_rows === 0) {
 $std_row = $result->fetch_assoc();
 $name_std = $std_row['name_std'];
 $phd = $std_row['phd'];
-$year_php = $std_row['year_phd'];
+$year_phd = $std_row['year_phd'];
 $master = $std_row['master'];
 $year_master = $std_row['year_master'];
 $grad = $std_row['grad'];

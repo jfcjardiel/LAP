@@ -9,10 +9,6 @@ sec_session_start();
 <?php if (login_check($mysqli) == true) : ?>
 
 <?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
 //***********************************//
 //******** START CONNECTION *********//
 //***********************************//
@@ -27,9 +23,9 @@ if ($mysqli_information->connect_errno) {
     exit;
 }
 
-//******************************************//
-//********** CHANGING PROFESSORS ***********//
-//******************************************//
+//*********************************************//
+//********** INSERTING INFORMATIONS ***********//
+//*********************************************//
 
 //updating name_prof
 if(isset($_POST["name_std"])) {
