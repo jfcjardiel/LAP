@@ -39,6 +39,9 @@ if(isset($_POST["name_std"])) {
     }else{
         $name_std = $_POST["name_std"];
     }
+}else{
+    echo "<p>Problem writing</p>";
+    exit;
 }
 
 //updating PHD
@@ -53,12 +56,16 @@ if(isset($_POST["phd"])){
     }else{
         $year_phd = $_POST["year_phd"];
     }
+}else{
+    $phd = "FALSE";
 }
 
 if(isset($_POST["year_phd"])){
     if($_POST["year_phd"] == ""){
         $year_phd= "NULL";
     }
+}else{
+    $year_phd = "NULL";
 }
 
 //updating master
@@ -73,12 +80,16 @@ if(isset($_POST["master"])){
     }else{
         $year_master = $_POST["year_master"];
     }
+}else{
+    $master = "FALSE";
 }
 
 if(isset($_POST["year_master"])){
     if($_POST["year_master"] == ""){
         $year_master= "NULL";
     }
+}else{
+    $year_master= "NULL";
 }
 
 //updating grad
@@ -93,12 +104,16 @@ if(isset($_POST["grad"])){
     }else{
         $year_grad = $_POST["year_grad"];
     }
+}else{
+    $grad = "FALSE";
 }
 
 if(isset($_POST["year_grad"])){
     if($_POST["year_grad"] == ""){
         $year_grad= "NULL";
     }
+}else{
+    $year_grad= "NULL";
 }
 
 //getting active
@@ -107,6 +122,8 @@ if(isset($_POST["std_active"])){
         $active = "TRUE";
     }else{
         $active = "FALSE";
+}else{
+    $active = "FALSE";
 }
 
 //getting about_std
@@ -117,6 +134,8 @@ if(isset($_POST["about_std"])) {
     }else{
         $about_std = $_POST["about_std"];
     }
+}else{
+    $about_std = "";
 }
 
 $sql_write = "INSERT INTO students (id_std, name_std, php, year_phd, master, year_master, grad, year_grad, active, about_std) VALUES (NULL,".$name_std.",".$phd.",".$year_phd.",".$master.",".$year_master.",".$grad.",".$year_grad.",".$active.",".$about_std.")";
