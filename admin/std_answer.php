@@ -9,6 +9,11 @@ sec_session_start();
 <?php if (login_check($mysqli) == true) : ?>
 
 <?php
+
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 //getting 
 $id_std = $_REQUEST["id_std"] + 0;
 
