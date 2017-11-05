@@ -30,7 +30,7 @@ if ($mysqli_information->connect_errno) {
 //******************************************//
 //********** CHANGING PROFESSORS ***********//
 //******************************************//
-
+/*
 //updating name_prof
 if(isset($_POST["name_std"])) {
     if($_POST["name_std"] == ""){
