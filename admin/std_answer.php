@@ -52,10 +52,7 @@ if($_FILES['std_img']["error"] == 0){
 
 //updating name_prof
 if(isset($_POST["name_std"])) {
-    if($_POST["name_std"] == ""){
-            echo "<p>Problem writing</p>";
-            exit;
-    }else{
+    if($_POST["name_std"] != "")
         $sql_write = "UPDATE students SET name_std='". $_POST["name_std"] ."' WHERE id_std=".$id_std;
         if(!$result_write = $mysqli_information->query($sql_write)){
             echo "<p>Connection Problem writing</p>";
@@ -148,10 +145,7 @@ if(isset($_POST["std_active"])){
 
 //getting about_std
 if(isset($_POST["about_std"])) {
-    if($_POST["about_std"] == ""){
-            echo "<p>Problem writing</p>";
-            exit;
-    }else{
+    if($_POST["about_std"] != ""){
         $sql_write = "UPDATE students SET about_std='". $_POST["about_std"] ."' WHERE id_std=".$id_std;
         if(!$result_write = $mysqli_information->query($sql_write)){
             echo "<p>Connection Problem writing</p>";
