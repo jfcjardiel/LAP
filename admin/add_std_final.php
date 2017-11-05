@@ -138,18 +138,13 @@ if(isset($_POST["about_std"])) {
     $about_std = "";
 }
 
+/*
 $sql_write = "INSERT INTO students (id_std, name_std, php, year_phd, master, year_master, grad, year_grad, active, about_std) VALUES (NULL,".$name_std.",".$phd.",".$year_phd.",".$master.",".$year_master.",".$grad.",".$year_grad.",".$active.",".$about_std.")";
 if(!$result_write = $mysqli_information->query($sql_write)){
     echo "<p>Connection Problem writing</p>";
     exit;
 }
-
-$sql_write = "";
-if(!$result_write = $mysqli_information->query($sql_write)){
-    echo "<p>Connection Problem writing</p>";
-    exit;
-}
-
+*/
 //**************************************//
 //******** UPLOADING NA FIGURA *********//
 //**************************************//
