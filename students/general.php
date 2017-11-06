@@ -15,7 +15,7 @@ if ($mysqli_information->connect_errno) {
 }
 
 //getting phd results
-$sql = "SELECT * FROM students WHERE phd=TRUE";
+$sql = "SELECT * FROM students WHERE phd=TRUE ORDER BY year_php DESC";
 if (!$result_phd = $mysqli_information->query($sql)) {
     // I do not know what to show yet
     echo "<p>Connection Problem </p>";
@@ -23,7 +23,7 @@ if (!$result_phd = $mysqli_information->query($sql)) {
 }
 
 //getting master results
-$sql = "SELECT * FROM students WHERE master=TRUE";
+$sql = "SELECT * FROM students WHERE master=TRUE ORDER BY year_master DESC";
 if (!$result_master = $mysqli_information->query($sql)) {
     // I do not know what to show yet
     echo "<p>Connection Problem </p>";
@@ -31,7 +31,7 @@ if (!$result_master = $mysqli_information->query($sql)) {
 }
 
 //getting graduation results
-$sql = "SELECT * FROM students WHERE grad=TRUE";
+$sql = "SELECT * FROM students WHERE grad=TRUE ORDER BY year_grad DESC";
 if (!$result_grad = $mysqli_information->query($sql)) {
     // I do not know what to show yet
     echo "<p>Connection Problem </p>";
