@@ -40,7 +40,7 @@ if ($result->num_rows === 0) {
 //pegando o nome do professor
 $std_row = $result->fetch_assoc();
 $name_std = $std_row['name_std'];
-$about_std = $prof_row['about_std'];
+$about_std = $std_row['about_std'];
 
 ?>
 
@@ -84,8 +84,6 @@ $about_std = $prof_row['about_std'];
           <span style="font-size:12.0pt;font-family:&quot;Times New Roman&quot;;mso-fareast-font-family:&quot;Times New Roman&quot;;mso-ansi-language:PT-BR;mso-fareast-language:PT-BR;mso-bidi-language:AR-SA"> <?php echo $about_std; ?></span></p>
   </tr>
 </table>
-
-<p align="justify"><font face="Arial"><br><font SIZE="3" COLOR="#003366"><b>Publicações</b></font></font>:</p>
 
 <table width="844" border="0" cellpadding="0" cellspacing="0">
   <tr>
