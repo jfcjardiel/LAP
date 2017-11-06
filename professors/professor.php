@@ -84,19 +84,16 @@ $about_prof = $prof_row['about_prof'];
       <p align="justify">
         <span class="style15" style="font-family: &quot;Times New Roman&quot;"><?php echo $name_prof; ?></span>
           <span style="font-size:12.0pt;font-family:&quot;Times New Roman&quot;;mso-fareast-font-family:&quot;Times New Roman&quot;;mso-ansi-language:PT-BR;mso-fareast-language:PT-BR;mso-bidi-language:AR-SA"> <?php echo $about_prof; ?></span></p>
-      <p align="center"><font SIZE="3" COLOR="#003366" face="Arial"><b>Curriculum Vitae</b></font>
   </tr>
-
 </table>
-<p align="justify"><font face="Arial"><br>
-<font SIZE="3" COLOR="#003366"><b>Publicações
-na área</b></font></font>:</p>
-<table width="841" height="0" border="0" cellpadding="0" cellspacing="0">
+
+<p align="justify"><font face="Arial"><br><font SIZE="3" COLOR="#003366"><b>Publicações</b></font></font>:</p>
+
+<table width="844" border="0" cellpadding="0" cellspacing="0">
   <tr>
-    <td height="0" valign="top">&nbsp;</td>
     <td height="0" valign="top" class="style14">&nbsp;</td>
-    <td height="0" align="center" valign="top" class="style10">&nbsp;</td>
-    <td height="0" valign="top" class="style17">&nbsp;</td>
+    <td height="0" align="center" valign="top" class="style17">&nbsp;</td>
+    <td height="0" valign="top">&nbsp;</td>
   </tr>
 <?php
 
@@ -120,18 +117,16 @@ if ($num_articles > 0) {
     //Writing the form options
     while ($config_dispositivo = $result->fetch_assoc()) {
         //it is exibitig the line.
-        echo "<tr>
-              <td height='0' valign='top'>&nbsp;</td>
-              <td height='0' valign='top' class='style14'>";
+        echo '<tr><td height="0" valign="top" class="style14">';
         if($art_year != $config_dispositivo['year']){
           echo $config_dispositivo['year'];
           $art_year = $config_dispositivo['year'];
         }else{
           echo "&nbsp;";
         }
-        echo '</td><td height="0" align="center" valign="top" class="style10">['.$num_articles.']</td><td height="0" valign="top" class="style17">';
+        echo '</td><td height="0" align="center" valign="top" class="style17">['.$num_articles.']</td><td height="0" valign="top"><p>';
         echo $config_dispositivo['reference'];
-        echo  '</textarea></td></tr>';
+        echo  '</p></td></tr>';
         $num_articles = $num_articles - 1;
     }
 }
