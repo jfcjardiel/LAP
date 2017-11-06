@@ -58,7 +58,6 @@ if ($result_phd->num_rows === 0) {
         <tbody>';
   while($std_row = $result_phd->fetch_assoc()){
     //taking all students informations
-    $std_row = $result->fetch_assoc();
     $id_std = $std_row["id_std"];
     $name_std = $std_row['name_std'];
     $year_phd = $std_row['year_phd'];
@@ -90,7 +89,6 @@ if ($result_master->num_rows === 0) {
         <tbody>';
   while($std_row = $result_master->fetch_assoc()){
     //taking all students informations
-    $std_row = $result->fetch_assoc();
     $id_std = $std_row["id_std"];
     $name_std = $std_row['name_std'];
     $phd = $std_row['phd'];
@@ -123,7 +121,6 @@ if ($result_grad->num_rows === 0) {
         <tbody>';
   while($std_row = $result_grad->fetch_assoc()){
     //taking all students informations
-    $std_row = $result->fetch_assoc();
     $id_std = $std_row["id_std"];
     $name_std = $std_row['name_std'];
     $phd = $std_row['phd'];
