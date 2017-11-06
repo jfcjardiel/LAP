@@ -113,7 +113,7 @@ if ($result_grad->num_rows === 0) {
   echo '<table class="table table-striped course_table">
         <thead>
           <tr>          
-            <th>PHD STUDENTS</th>
+            <th>GRADUATION STUDENTS</th>
             <th></th>
             <th></th>
           </tr>
