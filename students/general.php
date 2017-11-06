@@ -15,7 +15,7 @@ if ($mysqli_information->connect_errno) {
 }
 
 //getting phd results
-$sql = "SELECT * FROM students WHERE phd=TRUE ORDER BY year_php DESC";
+$sql = "SELECT * FROM students WHERE phd=TRUE ORDER BY year_phd DESC";
 if (!$result_phd = $mysqli_information->query($sql)) {
     // I do not know what to show yet
     echo "<p>Connection Problem </p>";
