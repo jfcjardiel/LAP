@@ -1,10 +1,11 @@
 <?php
 
 //getting professor
-if(isset($_RESQUEST["id_prof"])){
-  $id_prof = $_RESQUEST["id_prof"];
+if(isset($_REQUEST["id_prof"])){
+  $id_prof = $_REQUEST["id_prof"];
 }else{
   echo "<h1> Connection Problem </h1>";
+  exit;
 }
 
 //*******************************//
