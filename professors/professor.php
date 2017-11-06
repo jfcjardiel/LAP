@@ -78,7 +78,7 @@ $about_prof = $prof_row['about_prof'];
 <table border="0" width="77%">
   <tr>
     <td width="23%">
-    <p align="center"><img border="0" src="alexis.jpg" width="170" height="193"></td>
+    <p align="center"><img border="0" src=<?php echo "'"; echo "../img/professor/".$id_prof.".jpg"; echo "'"; ?> width="170" height="193"></td>
     <td width="77%">
       <p align="justify">&nbsp;</p>
       <p align="justify">
@@ -120,7 +120,9 @@ if ($num_articles > 0) {
     //Writing the form options
     while ($config_dispositivo = $result->fetch_assoc()) {
         //it is exibitig the line.
-        echo '<tr><td height="0" valign="top">&nbsp;</td><td height="0" valign="top" class="style14">';
+        echo "<tr>
+              <td height='0' valign='top'>&nbsp;</td>
+              <td height='0' valign='top' class='style14'>";
         if($art_year != $config_dispositivo['year']){
           echo $config_dispositivo['year'];
           $art_year = $config_dispositivo['year'];
