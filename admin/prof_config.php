@@ -164,7 +164,7 @@ if ($num_articles > 1) {
         if($config_dispositivo['art_book']){
             echo 'selected';
         }
-        echo '>Livro</option></select></td><td height="0" valign="top" class="style15"><input type="checkbox" name="art_group' . $num_articles .'" value="True" '
+        echo '>Livro</option></select></td><td height="0" valign="top" class="style15"><input type="checkbox" name="art_group' . $num_articles .'" value="True" ';
         if($config_dispositivo['art_group']){
             echo 'checked';
         }
