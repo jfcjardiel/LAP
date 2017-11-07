@@ -112,21 +112,20 @@ if ($num_articles > 1) {
         }
 
         $art_option='art_option'.$num_articles;
-        echo $_POST[$art_option] == 1;
         if(isset($_POST[$art_option])){
-            if($_POST[$art_option] == "1"){
+            if($_POST[$art_option] == 1){
                 $sql_write = 'UPDATE articles SET art_magazine=TRUE AND art_conference=FALSE AND art_book=FALSE WHERE id_art='.$articles['id_art'];
                 if(!$result_write = $mysqli_information->query($sql_write)){
                     echo "<p>Connection Problem writing</p>";
                     exit;
                 }
-            }else if($_POST[$art_option] == "2"){
+            }else if($_POST[$art_option] == 2){
                 $sql_write = 'UPDATE articles SET art_magazine=FALSE AND art_conference=TRUE AND art_book=FALSE WHERE id_art='.$articles['id_art'];
                 if(!$result_write = $mysqli_information->query($sql_write)){
                     echo "<p>Connection Problem writing</p>";
                     exit;
                 }
-            }else if($_POST[$art_option] == "3"){
+            }else if($_POST[$art_option] == 3){
                 $sql_write = 'UPDATE articles SET art_magazine=FALSE AND art_conference=TRUE AND art_book=FALSE WHERE id_art='.$articles['id_art'];
                 if(!$result_write = $mysqli_information->query($sql_write)){
                     echo "<p>Connection Problem writing</p>";
