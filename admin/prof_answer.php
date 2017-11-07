@@ -126,7 +126,7 @@ if ($num_articles > 1) {
                     exit;
                 }
             }else if($_POST[$art_option] == '3'){
-                $sql_write = 'UPDATE articles SET art_magazine=FALSE, art_conference=TRUE, art_book=FALSE WHERE id_art='.$articles['id_art'];
+                $sql_write = 'UPDATE articles SET art_magazine=FALSE, art_conference=FALSE, art_book=TRUE WHERE id_art='.$articles['id_art'];
                 if(!$result_write = $mysqli_information->query($sql_write)){
                     echo "<p>Connection Problem writing</p>";
                     exit;
