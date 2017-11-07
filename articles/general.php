@@ -160,4 +160,3 @@ if ($num_articles > 0) {
 
 ?>
 </table>
-?>
