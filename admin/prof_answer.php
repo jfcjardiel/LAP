@@ -61,6 +61,7 @@ $art_magazine = "FALSE";
 $art_conference = "FALSE";
 $art_book = "FALSE";
 
+echo $_POST['art_option'];
 if(isset($_POST['art_option'])){
     if($_POST['art_option'] == "1"){
         $art_magazine = "TRUE";
