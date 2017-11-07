@@ -62,7 +62,6 @@ $art_magazine = "FALSE";
 $art_conference = "FALSE";
 $art_book = "FALSE";
 
-echo $_POST[$art_option];
 if(isset($_POST[$art_option])){
     if($_POST[$art_option] == "1"){
         $art_magazine = "TRUE";
@@ -98,6 +97,7 @@ if ($num_articles > 1) {
         $ref_art = 'art'.$num_articles;
 
         $group = 'art_group'.$num_articles;
+        echo $_POST[$art_option];
         if(isset($_POST[$group])){
             $sql_write = 'UPDATE articles SET art_group=TRUE WHERE id_art='.$articles['id_art'];
             if(!$result_write = $mysqli_information->query($sql_write)){
