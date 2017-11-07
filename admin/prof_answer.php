@@ -57,17 +57,18 @@ if(isset($_POST[$group])){
     $art_group = "TRUE";
 }
 
+$art_option='art_option'.$num_articles;
 $art_magazine = "FALSE";
 $art_conference = "FALSE";
 $art_book = "FALSE";
 
-echo $_POST['art_option'];
-if(isset($_POST['art_option'])){
-    if($_POST['art_option'] == "1"){
+echo $_POST[$art_option];
+if(isset($_POST[$art_option])){
+    if($_POST[$art_option] == "1"){
         $art_magazine = "TRUE";
-    }else if($_POST['art_option'] == "2"){
+    }else if($_POST[$art_option] == "2"){
         $art_conference = "TRUE";
-    }else if($_POST['art_option'] == "3"){
+    }else if($_POST[$art_option] == "3"){
         $art_book = "TRUE";
     }
 }
@@ -95,10 +96,45 @@ if ($num_articles > 1) {
     while ($articles = $result->fetch_assoc()){
         $year_art = 'year'.$num_articles;
         $ref_art = 'art'.$num_articles;
-        $art_group = 'group'.$num_articles;
-        $art_magazine = 'magazine'.$num_articles;
-        $art_conference ='conference'.$num_articles;
-        $art_book ='book'.$num_articles;
+
+        $group = 'art_group'.$num_articles;
+        if(isset($_POST[$group])){
+            $sql_write = 'UPDATE articles SET art_group=TRUE WHERE id_art='.$articles['id_art'];
+            if(!$result_write = $mysqli_information->query($sql_write)){
+                echo "<p>Connection Problem writing</p>";
+                exit;
+            }
+        }else{
+            $sql_write = 'UPDATE articles SET art_group=FALSE WHERE id_art='.$articles['id_art'];
+            if(!$result_write = $mysqli_information->query($sql_write)){
+                echo "<p>Connection Problem writing</p>";
+                exit;
+            }
+        }
+
+        $art_option='art_option'.$num_articles;
+
+        if(isset($_POST[$art_option])){
+            if($_POST[$art_option] == "1"){
+                $sql_write = 'UPDATE articles SET art_magazine=TRUE AND art_conference=FALSE AND art_book=FALSE WHERE id_art='.$articles['id_art'];
+                if(!$result_write = $mysqli_information->query($sql_write)){
+                    echo "<p>Connection Problem writing</p>";
+                    exit;
+                }
+            }else if($_POST[$art_option] == "2"){
+                $sql_write = 'UPDATE articles SET art_magazine=FALSE AND art_conference=TRUE AND art_book=FALSE WHERE id_art='.$articles['id_art'];
+                if(!$result_write = $mysqli_information->query($sql_write)){
+                    echo "<p>Connection Problem writing</p>";
+                    exit;
+                }
+            }else if($_POST[$art_option] == "3"){
+                $sql_write = 'UPDATE articles SET art_magazine=FALSE AND art_conference=TRUE AND art_book=FALSE WHERE id_art='.$articles['id_art'];
+                if(!$result_write = $mysqli_information->query($sql_write)){
+                    echo "<p>Connection Problem writing</p>";
+                    exit;
+                }
+            }
+        }
         if(isset($_POST[$year_art])){
             if($_POST[$year_art] != ""){
                 $sql_write = 'UPDATE articles SET year='.$_POST[$year_art].' WHERE id_art='.$articles['id_art'];
