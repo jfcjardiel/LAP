@@ -112,7 +112,7 @@ if ($num_articles > 1) {
         }
 
         $art_option='art_option'.$num_articles;
-        echo $_POST[$art_option];
+        echo $_POST[$art_option] == 1;
         if(isset($_POST[$art_option])){
             if($_POST[$art_option] == "1"){
                 $sql_write = 'UPDATE articles SET art_magazine=TRUE AND art_conference=FALSE AND art_book=FALSE WHERE id_art='.$articles['id_art'];
