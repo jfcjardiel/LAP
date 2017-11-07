@@ -87,7 +87,9 @@ $about_prof = $prof_row['about_prof'];
   </tr>
 </table>
 
-<p align="justify"><font face="Arial"><br><font SIZE="3" COLOR="#003366"><b>Publicações</b></font></font>:</p>
+<p align="justify"><font face="Arial"><br><font SIZE="4" COLOR="#003366"><b>Publicações</b></font></font>:</p>
+
+<p align="justify"><font face="Arial"><br><font SIZE="2" COLOR="#003366"><b>Artigos de Revistas</b></font></font>:</p>
 
 <table width="844" border="0" cellpadding="0" cellspacing="0">
   <tr>
@@ -102,7 +104,109 @@ $about_prof = $prof_row['about_prof'];
 //********************************//
 
 //If there isnt any error, then lets read the sql content
-$sql = "SELECT * FROM articles WHERE id_prof=" . $id_prof . " ORDER BY year DESC";
+$sql = "SELECT * FROM articles WHERE id_prof=" . $id_prof . " WHERE art_magazine=TRUE ORDER BY year DESC";
+if (!$result = $mysqli_information->query($sql)) {
+    // I do not know what to show yet
+    echo "<p>Connection Problem </p>";
+    exit;
+}
+
+//getting the number of articles
+$num_articles = $result->num_rows;
+$art_year = 0;
+
+if ($num_articles > 0) {
+    //Writing the form options
+    while ($config_dispositivo = $result->fetch_assoc()) {
+        //it is exibitig the line.
+        echo '<tr><td height="0" valign="top" class="style14">';
+        if($art_year != $config_dispositivo['year']){
+          echo $config_dispositivo['year'];
+          $art_year = $config_dispositivo['year'];
+        }else{
+          echo "&nbsp;";
+        }
+        echo '</td><td height="0" align="center" valign="top" class="style17">['.$num_articles.']</td><td height="0" valign="top"><p>';
+        echo $config_dispositivo['reference'];
+        echo  '</p></td></tr>';
+        $num_articles = $num_articles - 1;
+    }
+}
+
+?>
+</table>
+
+<p align="justify">&nbsp;</p>
+<p align="justify">&nbsp;</p>
+<p align="justify">&nbsp;</p>
+
+<p align="justify"><font face="Arial"><br><font SIZE="2" COLOR="#003366"><b>Artigos de Conferencias</b></font></font>:</p>
+
+<table width="844" border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td height="0" valign="top" class="style14">&nbsp;</td>
+    <td height="0" align="center" valign="top" class="style17">&nbsp;</td>
+    <td height="0" valign="top">&nbsp;</td>
+  </tr>
+<?php
+
+//********************************//
+//***** READING ARTICLES *********//
+//********************************//
+
+//If there isnt any error, then lets read the sql content
+$sql = "SELECT * FROM articles WHERE id_prof=" . $id_prof . " WHERE art_conference=TRUE ORDER BY year DESC";
+if (!$result = $mysqli_information->query($sql)) {
+    // I do not know what to show yet
+    echo "<p>Connection Problem </p>";
+    exit;
+}
+
+//getting the number of articles
+$num_articles = $result->num_rows;
+$art_year = 0;
+
+if ($num_articles > 0) {
+    //Writing the form options
+    while ($config_dispositivo = $result->fetch_assoc()) {
+        //it is exibitig the line.
+        echo '<tr><td height="0" valign="top" class="style14">';
+        if($art_year != $config_dispositivo['year']){
+          echo $config_dispositivo['year'];
+          $art_year = $config_dispositivo['year'];
+        }else{
+          echo "&nbsp;";
+        }
+        echo '</td><td height="0" align="center" valign="top" class="style17">['.$num_articles.']</td><td height="0" valign="top"><p>';
+        echo $config_dispositivo['reference'];
+        echo  '</p></td></tr>';
+        $num_articles = $num_articles - 1;
+    }
+}
+
+?>
+</table>
+
+<p align="justify">&nbsp;</p>
+<p align="justify">&nbsp;</p>
+<p align="justify">&nbsp;</p>
+
+<p align="justify"><font face="Arial"><br><font SIZE="2" COLOR="#003366"><b>Capitulos de livros</b></font></font>:</p>
+
+<table width="844" border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td height="0" valign="top" class="style14">&nbsp;</td>
+    <td height="0" align="center" valign="top" class="style17">&nbsp;</td>
+    <td height="0" valign="top">&nbsp;</td>
+  </tr>
+<?php
+
+//********************************//
+//***** READING ARTICLES *********//
+//********************************//
+
+//If there isnt any error, then lets read the sql content
+$sql = "SELECT * FROM articles WHERE id_prof=" . $id_prof . " WHERE art_book=TRUE ORDER BY year DESC";
 if (!$result = $mysqli_information->query($sql)) {
     // I do not know what to show yet
     echo "<p>Connection Problem </p>";
