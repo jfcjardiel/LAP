@@ -136,10 +136,6 @@ if ($num_articles > 0) {
 ?>
 </table>
 
-<p align="justify">&nbsp;</p>
-<p align="justify">&nbsp;</p>
-<p align="justify">&nbsp;</p>
-
 <p align="justify"><font face="Arial"><br><font SIZE="2" COLOR="#003366"><b>Artigos de Conferencias</b></font></font>:</p>
 
 <table width="844" border="0" cellpadding="0" cellspacing="0">
@@ -186,10 +182,6 @@ if ($num_articles > 0) {
 
 ?>
 </table>
-
-<p align="justify">&nbsp;</p>
-<p align="justify">&nbsp;</p>
-<p align="justify">&nbsp;</p>
 
 <p align="justify"><font face="Arial"><br><font SIZE="2" COLOR="#003366"><b>Capitulos de livros</b></font></font>:</p>
 
