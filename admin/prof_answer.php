@@ -77,7 +77,7 @@ if(isset($_POST[$art_option])){
 
 if(isset($_POST[$year_art]) && $_POST[$year_art] != ""){
     if(isset($_POST[$ref_art]) && $_POST[$ref_art] != ""){
-        $sql_write = 'INSERT INTO articles (id_art, id_prof, year, reference, art_group, art_magazine, art_conference, art_book) VALUES (NULL,'.$id_prof.','.$_POST[$year_art].',"'.$_POST[$ref_art].'","'.$art_group.'","'.$art_magazine.'","'.$art_conference.'","'.$art_book.'")';
+        $sql_write = 'INSERT INTO articles (id_art, id_prof, year, reference, art_group, art_magazine, art_conference, art_book) VALUES (NULL,'.$id_prof.','.$_POST[$year_art].',"'.$_POST[$ref_art].'",'.$art_group.','.$art_magazine.','.$art_conference.','.$art_book.')';
         if(!$result_write = $mysqli_information->query($sql_write)){
             echo "<p>Connection Problem writing</p>";
             exit;
@@ -113,24 +113,20 @@ if ($num_articles > 1) {
 
         $art_option='art_option'.$num_articles;
         if(isset($_POST[$art_option])){
-            echo "entrou";
             if($_POST[$art_option] == '1'){
-                echo "1";
-                $sql_write = 'UPDATE articles SET art_magazine=TRUE AND art_conference=FALSE AND art_book=FALSE WHERE id_art='.$articles['id_art'];
+                $sql_write = 'UPDATE articles SET art_magazine=TRUE, art_conference=FALSE, art_book=FALSE WHERE id_art='.$articles['id_art'];
                 if(!$result_write = $mysqli_information->query($sql_write)){
                     echo "<p>Connection Problem writing</p>";
                     exit;
                 }
             }else if($_POST[$art_option] == '2'){
-                echo"2";
-                $sql_write = 'UPDATE articles SET art_magazine=FALSE AND art_conference=TRUE AND art_book=FALSE WHERE id_art='.$articles['id_art'];
+                $sql_write = 'UPDATE articles SET art_magazine=FALSE, art_conference=TRUE, art_book=FALSE WHERE id_art='.$articles['id_art'];
                 if(!$result_write = $mysqli_information->query($sql_write)){
                     echo "<p>Connection Problem writing</p>";
                     exit;
                 }
             }else if($_POST[$art_option] == '3'){
-                echo "3";
-                $sql_write = 'UPDATE articles SET art_magazine=FALSE AND art_conference=TRUE AND art_book=FALSE WHERE id_art='.$articles['id_art'];
+                $sql_write = 'UPDATE articles SET art_magazine=FALSE, art_conference=TRUE, art_book=FALSE WHERE id_art='.$articles['id_art'];
                 if(!$result_write = $mysqli_information->query($sql_write)){
                     echo "<p>Connection Problem writing</p>";
                     exit;
