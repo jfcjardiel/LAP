@@ -104,7 +104,7 @@ $about_prof = $prof_row['about_prof'];
 //********************************//
 
 //If there isnt any error, then lets read the sql content
-$sql = "SELECT * FROM articles WHERE id_prof=" . $id_prof . " WHERE art_magazine=TRUE ORDER BY year DESC";
+$sql = "SELECT * FROM articles WHERE id_prof=" . $id_prof . " AND art_magazine=TRUE ORDER BY year DESC";
 if (!$result = $mysqli_information->query($sql)) {
     // I do not know what to show yet
     echo "<p>Connection Problem </p>";
@@ -155,7 +155,7 @@ if ($num_articles > 0) {
 //********************************//
 
 //If there isnt any error, then lets read the sql content
-$sql = "SELECT * FROM articles WHERE id_prof=" . $id_prof . " WHERE art_conference=TRUE ORDER BY year DESC";
+$sql = "SELECT * FROM articles WHERE id_prof=" . $id_prof . " AND art_conference=TRUE ORDER BY year DESC";
 if (!$result = $mysqli_information->query($sql)) {
     // I do not know what to show yet
     echo "<p>Connection Problem </p>";
@@ -206,7 +206,7 @@ if ($num_articles > 0) {
 //********************************//
 
 //If there isnt any error, then lets read the sql content
-$sql = "SELECT * FROM articles WHERE id_prof=" . $id_prof . " WHERE art_book=TRUE ORDER BY year DESC";
+$sql = "SELECT * FROM articles WHERE id_prof=" . $id_prof . " AND art_book=TRUE ORDER BY year DESC";
 if (!$result = $mysqli_information->query($sql)) {
     // I do not know what to show yet
     echo "<p>Connection Problem </p>";
