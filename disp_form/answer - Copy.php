@@ -8,8 +8,7 @@ $id_dispositivo = $_REQUEST["id_dispositivo"] + 0;
 //echo $id_dispositivo;
 
 //get email
-//$email = $_REQUEST["email"];
-$email = time();
+$email = $_REQUEST["email"];
 
 //***********************************//
 //******** START CONNECTION *********//
@@ -106,7 +105,11 @@ fclose($handle);
 //************* ExIBITING RESULT *************//
 //********************************************//
 
-$id_image = $email;
+//Vai mover a imagem gerada e fazer uma imagem unica, ja que o time eh esperado que gere algo unico
+$email_result = explode("@", $email, 2);
+$image_result_mathematica_server = "/var/www/html/disp_form/results/". $email_result[0] . $id_dispositivo . ".jpg" ;
+
+$id_image = time();
 $image_result_server = "/var/www/html/disp_form/results/" . $id_image . ".jpg" ;
 $image_result = "disp_form/results/". $id_image . ".jpg" ;
 
@@ -121,10 +124,37 @@ while(!file_exists($image_result_mathematica_server) && ($aux_time < $time_toler
 
 //caso o tempo de 90segundos tenha ultrapassado...
 if($aux_time < $time_tolerance){
+    $shell_command = "mv -f " . $image_result_mathematica_server . " " . $image_result_server;
+    shell_exec($shell_command);
     echo "<br>";
-    echo '<img alt="Picture not displayed" class="img-responsive" src="'.$image_result.'">';
+    //vamos verificar quantos pixels existem... se for muito grande, vamos encaixar no servidor
+    //if(getimagesize($image_result_server)[0] > 700){
+    //    echo '<img alt="Picture not displayed" class="img-responsive" style="width:100%;height:auto;" src="'.$image_result.'">';
+    //}else{
+        //se nao for grande, nao vamos encaixar no servidor
+        echo '<img alt="Picture not displayed" class="img-responsive" src="'.$image_result.'">';
+    //}
 }else{
     echo '<h2>Sorry, there was a problem with your calculation</h2>';
+    /*$to = $email;
+    $subject = "LAP: Answer";
+    $headers = "From: danielcn@ita.br";
+    $aux_time = 0;
+    while(!file_exists($image_result_mathematica_server) && ($aux_time < 300)){
+        sleep(10);
+        $aux_time = $aux_time + 1;
+    }
+    if($aux_time < 30){
+        $shell_command = "mv -f " . $image_result_mathematica_server . " " . $image_result_server;
+        shell_exec($shell_command);
+        $txt = "Your answer is ready. \nAccess: www.lap.ele.ita.br/".$image_result;
+        $txt = wordwrap($txt,70);
+    }else{
+        $txt = "It didnt work. Sorry.";
+    }
+    mail($to,$subject,$txt,$headers);
+    echo "acabou";
+    */
 }
 
 //Estou fazendo isso porque eu nao consigo eliminar o arquivo
