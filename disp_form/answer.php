@@ -116,7 +116,7 @@ $image_result = "disp_form/results/". $id_image . ".jpg" ;
 //echo $image_result_server;
 //vamos ficar procurando a imagem ate 90s
 $aux_time = 0; //we are going to expect a certain amount of time
-$time_tolerance = 30;
+$time_tolerance = 3000;
 while(!file_exists($image_result_mathematica_server) && ($aux_time < $time_tolerance)){
     sleep(3);
     $aux_time = $aux_time + 1;
@@ -135,8 +135,8 @@ if($aux_time < $time_tolerance){
         echo '<img alt="Picture not displayed" class="img-responsive" src="'.$image_result.'">';
     //}
 }else{
-    echo '<h2>We are going to send by email.</h2>';
-    $to = $email;
+    echo '<h2>Sorry, there was a problem with your calculation</h2>';
+    /*$to = $email;
     $subject = "LAP: Answer";
     $headers = "From: danielcn@ita.br";
     $aux_time = 0;
@@ -154,6 +154,7 @@ if($aux_time < $time_tolerance){
     }
     mail($to,$subject,$txt,$headers);
     echo "acabou";
+    */
 }
 
 //Estou fazendo isso porque eu nao consigo eliminar o arquivo

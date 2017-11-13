@@ -93,7 +93,7 @@
         for(var aux_send = 0; aux_send < form_length; aux_send++){
           url_send_form = url_send_form + "&valor" + aux_send + "=" + document.getElementById(aux_send).value;
         }
-        alert("Your calculation may take a time. Is it take too long, we are going to send the answer by Email.");
+        alert("Your calculation may take a time. Please don't close the window!");
         document.getElementById("answer_form").innerHTML = '<img alt="Picture not displayed" class="img-responsive" src="img/loader.gif">';
         //alert(url_send_form);
         //inicializing the request
