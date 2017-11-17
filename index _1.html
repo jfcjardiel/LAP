@@ -251,7 +251,7 @@
                   xhttp = new XMLHttpRequest();
                   xhttp.onreadystatechange = function() {
                     if (this.readyState == 4 && this.status == 200) {
-                      document.getElementsById("row_students").innerHTML = this.responseText;
+                      document.getElementById("row_students").innerHTML = this.responseText;
                     }
                   };
                   xhttp.open("GET", "students/student_index.php", true);
