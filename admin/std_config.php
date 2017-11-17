@@ -97,6 +97,13 @@ echo "<p> Student Name: </p>";
 //echo $nome_dispositivo;
 echo "<input type='text' name='name_std' placeholder=' ". $name_std ."' maxlength='30'><br>";
 
+if($active == true){
+    echo '<input type="checkbox" name="std_active" value="true" checked> Student Active';
+}else{
+    echo '<input type="checkbox" name="std_active" value="true"> Student Active';
+}
+
+
 echo "<p>Students Degree in LAP:</p>";
 //phd
 if($phd == true){
