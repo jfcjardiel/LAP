@@ -7,7 +7,7 @@ $id = $_REQUEST["id"] + 0;
 //*******************************//
 
 //Starting connection
-$mysqli = new mysqli('localhost', 'root', 'input212', 'input');
+$mysqli = new mysqli('localhost', 'write_from_php', 'escrevendo_dados', 'input');
 
 //If there is any error, then show...
 if ($mysqli->connect_errno) {

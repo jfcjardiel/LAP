@@ -121,7 +121,7 @@
 
 		//putting the header into the file
 		$file_head = 'Needs["DatabaseLink`"];' . "\n";
-		$file_head .= 'conn = OpenSQLConnection[JDBC["MySQL(Connector/J)", "localhost:3306/input"], Username -> "root", Password -> "input212"];' . "\n";
+		$file_head .= 'conn = OpenSQLConnection[JDBC["MySQL(Connector/J)", "localhost:3306/input"], Username -> "write_from_php", Password -> "escrevendo_dados"];' . "\n";
 
 		//now, we are going to guarantee that mathematica is going execute everyy ask
 		$file_head .= '{{variavelLoopEscolhidaPorJardiel}} = SQLExecute[conn, "SELECT COUNT(*) FROM valor_dispositivo_atributos WHERE jaleu=FALSE AND id_dispositivo='. $id .'"];' . "\n";
