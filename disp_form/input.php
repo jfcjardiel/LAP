@@ -80,7 +80,7 @@ echo "<form method='post' attribute='post' id='form_dispositivo' name='form_disp
 
 
 //adding e-mail input form
-echo "<p class='blog_summary'>E-mail<br><input type='text' id='email'></p>";
+//echo "<p class='blog_summary'>E-mail<br><input type='text' id='email'></p>";
 
 //O id eh simplesmente comecado de 0 ate o tamanho da form
 //O name eh o id_config porque sera acessado de outro lugar
