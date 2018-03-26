@@ -133,6 +133,7 @@ if($aux_time < $time_tolerance){
     //    echo '<img alt="Picture not displayed" class="img-responsive" style="width:100%;height:auto;" src="'.$image_result.'">';
     //}else{
         //se nao for grande, nao vamos encaixar no servidor
+    echo "<br>";
         echo '<img alt="Picture not displayed" class="img-responsive" src="'.$image_result.'">';
     //}
 }else{
