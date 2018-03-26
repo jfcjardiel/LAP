@@ -7,7 +7,7 @@
 $id_dispositivo = $_REQUEST["id_dispositivo"] + 0;
 //echo $id_dispositivo;
 
-//get email
+//nao tem e-mail, ele gera algo aleatorio...
 $id_image = time();
 $email = 'exemplo'.$id_image.'@gmail.com';
 
