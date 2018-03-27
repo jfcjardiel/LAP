@@ -1,0 +1,166 @@
+Needs["DatabaseLink`"];
+conn = OpenSQLConnection[JDBC["MySQL(Connector/J)", "localhost:3306/input"], Username -> "root", Password -> "input212"];
+{{variavelLoopEscolhidaPorJardiel}} = SQLExecute[conn, "SELECT COUNT(*) FROM valor_dispositivo_atributos WHERE jaleu=FALSE AND id_dispositivo=6"];
+While[variavelLoopEscolhidaPorJardiel>0,
+Clear[picture];
+{{user}} = SQLExecute[conn, "SELECT SUBSTRING_INDEX(email,'@',1) FROM valor_dispositivo_atributos WHERE jaleu=FALSE AND id_dispositivo=6 ORDER BY id_valor ASC LIMIT 1"];
+{{f}}=SQLExecute[conn, "SELECT valor FROM valor_dispositivo_atributos WHERE id_config=29 AND jaleu=FALSE ORDER BY id_valor ASC LIMIT 1"];
+SQLExecute[conn, "UPDATE valor_dispositivo_atributos SET jaleu=TRUE WHERE id_config=29 AND jaleu=FALSE ORDER BY id_valor ASC LIMIT 1"];
+{{\[Sigma]c}}=SQLExecute[conn, "SELECT valor FROM valor_dispositivo_atributos WHERE id_config=30 AND jaleu=FALSE ORDER BY id_valor ASC LIMIT 1"];
+SQLExecute[conn, "UPDATE valor_dispositivo_atributos SET jaleu=TRUE WHERE id_config=30 AND jaleu=FALSE ORDER BY id_valor ASC LIMIT 1"];
+{{\[Epsilon]r0}}=SQLExecute[conn, "SELECT valor FROM valor_dispositivo_atributos WHERE id_config=31 AND jaleu=FALSE ORDER BY id_valor ASC LIMIT 1"];
+SQLExecute[conn, "UPDATE valor_dispositivo_atributos SET jaleu=TRUE WHERE id_config=31 AND jaleu=FALSE ORDER BY id_valor ASC LIMIT 1"];
+c0 = 3*10^8;
+\[Mu]0 = 4*Pi*10^-7;
+\[Epsilon]0 = 8.85*10^-12;
+\[Eta]0 = Sqrt[\[Mu]0/\[Epsilon]0];
+(*Dados do problema*)
+f = f*10^9;
+\[Omega] = 2*\[Pi]*f;
+k0 = 2*Pi*f/c0;
+\[Lambda]0 = f/c0;
+(*Condutividade do cobre*)
+\[Sigma]c = \[Sigma]c *10^-9;
+(* Comprimento efetivo da fita de alimentacao*)
+Rp = 2.9*10^-3;
+d = Exp[1.5]*Rp;
+(*Altura do meio dieletrico*)
+h = 1.5*10^-3;
+(* b eh a largura da fenda*)
+b = h; 
+(*Comprimento da antena lambda/2*)
+l[\[Epsilon]r_] := c0/(2*f*Sqrt[\[Epsilon]r]);
+(*l eh a largura da antena*)
+a[\[Epsilon]r_]  := 1.3*l[\[Epsilon]r];
+(*Alimentacao*)
+xal = l[\[Epsilon]r0]/4;
+yal = a[\[Epsilon]r0]/2;
+(*Estabelecendo o numero do somatorio*)
+Numero = 10;
+(*Funcao de rede*)
+R2[\[Psi]_] := Cos[\[Psi]/2];
+\[Psi][\[Theta]_, \[Phi]_, \[Epsilon]r_] := 
+  k0*(l[\[Epsilon]r] + b)*Sin[\[Theta]]*Cos[\[Phi]];
+(*Intensidade de irradiacao normalizada*)
+func[\[Theta]_, \[Phi]_, \[Epsilon]r_] := 
+  Abs[Sinc[\[Pi]*a[\[Epsilon]r]*Cos[\[Theta]]/\[Lambda]0]*
+     R2[\[Psi][\[Theta], \[Phi], \[Epsilon]r]]*Sin[\[Theta]]]^2;
+(*Diretividade da antena*)
+f0[\[Epsilon]r_] := 
+  NIntegrate[
+   func[\[Theta], \[Phi], \[Epsilon]r]*Sin[\[Theta]], {\[Phi], 
+    0, \[Pi]}, {\[Theta], 0, \[Pi]}];
+dir[\[Epsilon]r_] := 4*\[Pi]/f0[\[Epsilon]r];
+(*Calculo considerando E0 = 1 *)
+E\[Phi][\[Theta]_, \[Phi]_, r_, \[Epsilon]r_] := -I*k0*a[\[Epsilon]r]*
+   b/\[Pi]*Exp[-I*k0*r]/r*
+   Sinc[\[Pi]*a[\[Epsilon]r]*Cos[\[Theta]]/\[Lambda]0]*
+   R2[\[Psi][\[Theta], \[Phi], \[Epsilon]r]]*Sin[\[Theta]];
+(*Potencia Irradiada considerando E0=1, a partir do vetor de Pyting*)
+
+Prad[\[Epsilon]r_] := 
+  NIntegrate[
+   Abs[k0*a[\[Epsilon]r]*b/\[Pi]*
+       Sinc[\[Pi]*a[\[Epsilon]r]*Cos[\[Theta]]/\[Lambda]0]*
+       R2[\[Psi][\[Theta], \[Phi], \[Epsilon]r]]*Sin[\[Theta]]]^2*
+    Sin[\[Theta]]/(2*\[Eta]0), {\[Theta], 0, \[Pi]}, {\[Phi], 
+    0, \[Pi]}];
+P = Prad[2.55];
+(* Calculando T[m,n] sem o J0 *)
+T[m_, n_, \[Epsilon]r_] := 
+  d*\[Mu]0*Cos[m*\[Pi]*xal/l[\[Epsilon]r]]*
+   Cos[n*\[Pi]*yal/a[\[Epsilon]r]]*
+   Sinc[m*\[Pi]*d/(2*l[\[Epsilon]r])]/(l[\[Epsilon]r]*a[\[Epsilon]r])*
+   If[m == 0, If[n == 0, 1, 4], If[n == 0, 2, 1]];
+(*Calculando numero de onda AO QUADRADO do dieletrico*)
+kd2[\[Epsilon]r_] := \[Omega]^2*\[Epsilon]0*\[Epsilon]r*\[Mu]0;
+(*Numero de onda guiado AO QUADRADO*)
+k2[m_, n_, \[Epsilon]r_] := (m*\[Pi]/l[\[Epsilon]r])^2 + (n*\[Pi]/
+       a[\[Epsilon]r])^2;
+J0 = 1/Sum[
+    I*\[Omega]*T[m, n, 2.55]/(kd2[2.55] - k2[m, n, 2.55]), {m, 0, 
+     Numero}, {n, 0, Numero}];
+Int = NIntegrate[
+   Abs[Sum[I*\[Omega]*J0*T[m, n, 2.55]*Cos[m*\[Pi]*x/l[2.55]]*
+       Cos[n*\[Pi]*y/a[2.55]]/(kd2[2.55] - k2[m, n, 2.55]), {m, 0, 
+       Numero}, {n, 0, Numero}]^2], {x, 0, l[2.55]}, {y, 0, 
+    a[2.55]}, {z, 0, h}];
+Pddie[\[Delta]_] := \[Omega]*\[Epsilon]0*2.55*\[Delta]*Int;
+Rs = Sqrt[\[Omega]*\[Mu]0/(2*\[Sigma]c)];
+Pm = (Rs/(2*\[Mu]0^2))*
+   NIntegrate[
+    Abs[Sum[I*J0*T[m, n, 2.55]*(m*\[Pi]/l[2.55])*
+         Sin[m*\[Pi]*x/l[2.55]]*
+         Cos[n*\[Pi]*y/a[2.55]]/(kd2[2.55] - k2[m, n, 2.55]), {m, 0, 
+         Numero}, {n, 0, Numero}]^2] + 
+     Abs[Sum[I*J0*T[m, n, 2.55]*(n*\[Pi]/a[2.55])*
+         Cos[m*\[Pi]*x/l[2.55]]*
+         Sin[n*\[Pi]*y/a[2.55]]/(kd2[2.55] - k2[m, n, 2.55]), {m, 0, 
+         Numero}, {n, 0, Numero}]^2], {x, 0, l[2.55]}, {y, 0, 
+     a[2.55]}, {z, 0, h}];
+(* Tirando o modulo do campo Etheta*)
+AE\[Theta][\[Theta]_, \[Phi]_, \[Epsilon]r_, m_, n_] := 
+  Abs[2*k0^2*Sin[\[Theta]]*Sin[\[Phi]]*
+    Cos[\[Phi]]*(Cos[m*\[Pi]/2]^2*
+       Sin[k0*l[\[Epsilon]r]*Sin[\[Theta]]*Cos[\[Phi]]/2] + 
+      I*Sin[m*\[Pi]/2]^2*
+       Cos[k0*l[\[Epsilon]r]*Sin[\[Theta]]*Cos[\[Phi]]/2])*(Cos[
+         n*\[Pi]/2]^2*
+       Sin[k0*a[\[Epsilon]r]*Sin[\[Theta]]*Sin[\[Phi]]/2] + 
+      I*Sin[n*\[Pi]/2]^2*
+       Cos[k0*a[\[Epsilon]r]*Sin[\[Theta]]*
+         Sin[\[Phi]]/2])*(1/(k0^2*Sin[\[Theta]]^2*
+          Cos[\[Phi]]^2 + (m*\[Pi]/l[\[Epsilon]r])^2) + 
+      1/(k0^2*Sin[\[Theta]]^2*
+          Sin[\[Phi]]^2 - (n*\[Pi]/a[\[Epsilon]r])^2))];
+(* Tirando o modulo do campo Ephi*)
+AE\[Phi][\[Theta]_, \[Phi]_, \[Epsilon]r_, m_, n_] := 
+  Abs[2*k0^2*Sin[\[Theta]]*Sin[\[Phi]]*
+    Cos[\[Phi]]*(Cos[m*\[Pi]/2]^2*
+       Sin[k0*l[\[Epsilon]r]*Sin[\[Theta]]*Cos[\[Phi]]/2] + 
+      I*Sin[m*\[Pi]/2]^2*
+       Cos[k0*l[\[Epsilon]r]*Sin[\[Theta]]*Cos[\[Phi]]/2])*(Cos[
+         n*\[Pi]/2]^2*
+       Sin[k0*a[\[Epsilon]r]*Sin[\[Theta]]*Sin[\[Phi]]/2] + 
+      I*Sin[n*\[Pi]/2]^2*
+       Cos[k0*a[\[Epsilon]r]*Sin[\[Theta]]*
+         Sin[\[Phi]]/2])*(1/(k0^2*Sin[\[Theta]]^2*
+          Cos[\[Phi]]^2 + (m*\[Pi]/l[\[Epsilon]r])^2) - 
+      1/(k0^2*Sin[\[Theta]]^2*
+          Sin[\[Phi]]^2 - (n*\[Pi]/a[\[Epsilon]r])^2))];
+(*Calculando delta p*)
+\[CapitalDelta]p = Sqrt[2/(\[Omega]*\[Mu]0*\[Sigma]c)];
+I\[Theta][m_, n_, \[Epsilon]r_] := 
+  NIntegrate[
+   AE\[Theta][\[Theta], \[Phi], \[Epsilon]r, m, n]^2*
+    Sin[\[Theta]], {\[Theta], 0, \[Pi]/2}, {\[Phi], 0, \[Pi]/2}];
+I\[Phi][m_, n_, \[Epsilon]r_] := 
+  NIntegrate[
+   AE\[Phi][\[Theta], \[Phi], \[Epsilon]r, m, n]^2*
+    Sin[\[Theta]], {\[Theta], 0, \[Pi]/2}, {\[Phi], 0, \[Pi]/2}];
+(*Calculando delta efetivo*)
+\[Delta]ef[m_, 
+   n_, \[Epsilon]r_, \[Delta]_] := \[Delta] + \[CapitalDelta]p/h + 
+   4*h*(I\[Phi][m, n, \[Epsilon]r] + 
+       I\[Theta][m, n, \[Epsilon]r])/(\[Pi]^2*l[\[Epsilon]r]*
+       a[\[Epsilon]r]*Sqrt[k2[m, n, \[Epsilon]r]*\[Epsilon]r])*
+    If[m == 0, If[n == 0, 1, 4], If[n == 0, 2, 1]];
+(*Calculando a funcao alfa*)
+\[Alpha][m_, n_, \[Epsilon]r_] := 
+  h*\[Mu]0*Cos[m*\[Pi]*xal/l[\[Epsilon]r]]^2*
+   Cos[n*\[Pi]*yal/a[\[Epsilon]r]]^2*
+   Sinc[m*\[Pi]*d/(2*l[\[Epsilon]r])]^2/(l[\[Epsilon]r]*
+      a[\[Epsilon]r]*\[Epsilon]0*\[Epsilon]r)*
+   If[m == 0, If[n == 0, 1, 4], If[n == 0, 2, 1]];
+(*Calculando impedancia de entrada, considerando apenas o modo TM10*)
+
+Zin[\[Delta]_] := 
+  I*\[Omega]*\[Alpha][1, 0, 
+     2.55]/(k2[1, 0, 2.55]*
+       c0^2/2.55 - (1 - 
+        I*\[Delta]ef[1, 0, 2.55, \[Delta]]*\[Omega]^2));
+
+picture  = Plot[10*Log10[dir[\[Epsilon]]], {\[Epsilon], 1, 5}];
+If[ValueQ[picture],Export[StringJoin["/var/www/html/disp_form/results/",user,"6",".jpg"], picture],picture=False];
+{{variavelLoopEscolhidaPorJardiel}} = SQLExecute[conn, "SELECT COUNT(*) FROM valor_dispositivo_atributos WHERE jaleu=FALSE AND id_dispositivo=6"]];
+CloseSQLConnection[conn];
