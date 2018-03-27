@@ -1,5 +1,5 @@
 Needs["DatabaseLink`"];
-conn = OpenSQLConnection[JDBC["MySQL(Connector/J)", "localhost:3306/input"], Username -> "write_from_php", Password -> "escrevendo_dados"];
+conn = OpenSQLConnection[JDBC["MySQL(Connector/J)", "localhost:3306/input"], Username -> "root", Password -> "input212"];
 {{variavelLoopEscolhidaPorJardiel}} = SQLExecute[conn, "SELECT COUNT(*) FROM valor_dispositivo_atributos WHERE jaleu=FALSE AND id_dispositivo=7"];
 While[variavelLoopEscolhidaPorJardiel>0,
 Clear[picture];
@@ -16,6 +16,7 @@ SQLExecute[conn, "UPDATE valor_dispositivo_atributos SET jaleu=TRUE WHERE id_con
 SQLExecute[conn, "UPDATE valor_dispositivo_atributos SET jaleu=TRUE WHERE id_config=36 AND jaleu=FALSE ORDER BY id_valor ASC LIMIT 1"];
 {{reactance}}=SQLExecute[conn, "SELECT valor FROM valor_dispositivo_atributos WHERE id_config=37 AND jaleu=FALSE ORDER BY id_valor ASC LIMIT 1"];
 SQLExecute[conn, "UPDATE valor_dispositivo_atributos SET jaleu=TRUE WHERE id_config=37 AND jaleu=FALSE ORDER BY id_valor ASC LIMIT 1"];
+
 fr = fr*10^9;
 h = h*10^-3;
 ZL = resistence + I*reactance;
@@ -296,10 +297,12 @@ de RA min y calculo de zin mas cercano*)
              	Zm = Zm[[Pos1]];
     	);
   
-  (*------------------------------Programa --------------------------*)\
+  (*------------------------------Programa --------------------------*)
+\
 
   
-  (*-----------------Minimina distancia entre os modos----------------*)\
+  (*-----------------Minimina distancia entre os modos----------------*)
+\
 
   
   Q3 = \[Delta]eff[1, 0];
