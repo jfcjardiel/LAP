@@ -123,13 +123,11 @@ If[0.5*10^9 < fr < 10*10^9 && 0.3*10^-3 < h < 10*10^-3 &&
   I\[Theta][m_?NumericQ, n_?NumericQ] := 
    NIntegrate[
     Abs[E1[\[Theta], \[Phi], m, n]]^2*Sin[\[Theta]], {\[Theta], 0, 
-     Pi/2}, {\[Phi], 0, Pi/2}, 
-    Method -> {Automatic, "SymbolicProcessing" -> 0}];
+     Pi/2}, {\[Phi], 0, Pi/2}, Method -> {Automatic, "SymbolicProcessing" -> 0}];
   I\[Phi][m_?NumericQ, n_?NumericQ] := 
    NIntegrate[
     Abs[E2[\[Theta], \[Phi], m, n]]^2*Sin[\[Theta]], {\[Theta], 0, 
-     Pi/2}, {\[Phi], 0, Pi/2}, 
-    Method -> {Automatic, "SymbolicProcessing" -> 0}];
+     Pi/2}, {\[Phi], 0, Pi/2}, Method -> {Automatic, "SymbolicProcessing" -> 0}];
   
    \[Delta]eff[m_?NumericQ, n_?NumericQ] := 
    tan\[Delta] + Rs/h + (
@@ -394,7 +392,7 @@ nao encuentra a parte real*)
       				  ]
      			  	
      				]; flag = 0;
-    		     ]
+    		     ];
    
    x0 = x0[[Pos1]];
      z0 = z0[[Pos1]];	
