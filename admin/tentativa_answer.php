@@ -154,6 +154,7 @@ $file = fopen($target_file, "r");
 
 while($aux < $num_head){
     echo fgets($file);
+    $aux = $aux + 1;
 }
 
 
