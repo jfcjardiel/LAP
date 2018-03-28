@@ -129,7 +129,7 @@ $target_dir_file = "/var/www/html/disp_form/results/";
 $target_file = $target_dir_file . $id_dispositivo;
 
 //Conseguinto todas as linhas do cabecalho
-$sql = "SELECT COUNT(*) FROM dispositivo WHERE id_dispositivo=" . $id_dispositivo;
+$sql = "SELECT COUNT(*) FROM config_dispositivo_atributos WHERE id_dispositivo=" . $id_dispositivo;
 if (!$result = $mysqli_disp->query($sql)) {
     // I do not know what to show yet
     echo "<p>Connection Problem </p>";
@@ -149,11 +149,11 @@ $num_head = $nome_row['COUNT(*)']+0;
 $aux = 0;
 
 echo $num_head;
+echo $target_file;
 
 /*while($aux < $num_head){
     $file = fopen($target_file, "r");
-    $string = fgets($file);
-    echo $string;
+    echo fgets($file);
 }
 */
 echo "<h1> Upload ok! </h1>";
