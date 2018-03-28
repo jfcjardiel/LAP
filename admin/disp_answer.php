@@ -97,6 +97,80 @@ if(isset($_REQUEST["show"])){
     }
 }
 
+
+//**********************************************************//
+//******** PREPARANDO O DOCUMENTO PARA A A LEITURA *********//
+//**********************************************************//
+
+if($_FILES['upfile']["error"] == 0){
+
+    //criando o upload  -> o arquivo vai ter o nome do dispositivo na pasta disp_form
+    $target_dir = "/var/www/html/disp_form/programs/";
+    $target_file = $target_dir . $id_dispositivo;
+
+    //echo "nome do arquivo: ", $target_file , "\n";
+    $fileType = pathinfo($target_file,PATHINFO_EXTENSION);
+
+    //Conseguinto todas as linhas do cabecalho
+    $sql = "SELECT COUNT(*) FROM config_dispositivo_atributos WHERE id_dispositivo=" . $id_dispositivo;
+    if (!$result = $mysqli_disp->query($sql)) {
+        // I do not know what to show yet
+        echo "<p>Connection Problem </p>";
+        exit;
+    }
+    // If there is no result
+    if ($result->num_rows === 0) {
+        // I do not know what to show yet
+        echo "<p>Connection Problem </p>";
+        exit;
+    }
+
+    //Abrindo o arquivo
+    $nome_row = $result->fetch_assoc();
+    $num_head = 6 + 2*$nome_row['COUNT(*)']; //esse eh sempre o numero de lihas do cabecalho
+    $file = fopen($target_file, "r");
+
+    //o cabecalho sera esse
+    $file_head = '';
+
+    $aux = 0;
+    while($aux < $num_head){
+        $file_head = $file_head . fgets($file) . "\n";
+        $aux = $aux + 1;
+    }
+
+    //This is going to test if picture is set. If it is, then it will generae a picture. If not, it will do nothing
+    $file_foot = "\n" .'If[ValueQ[picture],Export[StringJoin["/var/www/html/disp_form/results/",user,"'. $id_dispositivo .'",".jpg"], picture],picture=False];' . "\n";
+
+    //CLOSING WHILE
+    $file_foot .= '{{variavelLoopEscolhidaPorJardiel' . $id_dispositivo . '}} = SQLExecute[conn, "SELECT COUNT(*) FROM valor_dispositivo_atributos WHERE jaleu=FALSE AND id_dispositivo='. $id_dispositivo .'"]];' . "\n";
+    $file_foot .= 'CloseSQLConnection[conn];';
+
+    //fechando o arquivo
+    fclose($file);
+
+    //**********************************//
+    //********** UPLOAD FILE ***********//
+    //**********************************//
+
+    $errors = array();
+    $file_name = $_FILES['upfile']['name'];
+    $file_size = $_FILES['upfile']['size'];
+    $file_tmp = $_FILES['upfile']['tmp_name'];
+    $file_type = $_FILES['upfile']['type'];
+    $file_extension = strtolower(end(explode('.',$file_name)));
+    $moved = move_uploaded_file($img_tmp,$target_img);
+    if(!$moved){
+        echo "<p> There was an error, file(filename) not uploaded";
+        exit;
+    }
+    echo "File Uploaded \n";
+    //com os dados em maos, basta colocar o arquivo e salvar
+    $file_data = $file_head . file_get_contents($target_file) . $file_foot;
+    file_put_contents($target_file, $file_data);
+    
+}
+
 //**************************************//
 //******** UPLOADING NA FIGURA *********//
 //**************************************//

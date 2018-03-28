@@ -104,6 +104,9 @@ while ($config_dispositivo = $result->fetch_assoc()) {
     $id_input = $id_input + 1;
 }
 
+echo 'Here is the File in .txt you are going to upload:';
+echo '<input type = "file" name="upfile" id = "upfile"><br><br>';
+
 echo '<p>If you want to change the Image or File, please upload here <p>';
 echo '<input type = "file" name="upimg" id = "upimg"><br><br>';
 
