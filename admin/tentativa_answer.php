@@ -145,17 +145,18 @@ if ($result->num_rows === 0) {
 
 //pegando o nome do dispositivo
 $nome_row = $result->fetch_assoc();
-$num_head = $nome_row['COUNT(*)']+0;
+$num_head = 6+ 2*$nome_row['COUNT(*)'];
 $aux = 0;
 
 echo $num_head;
 echo $target_file;
+$file = fopen($target_file, "r");
 
-/*while($aux < $num_head){
-    $file = fopen($target_file, "r");
+while($aux < $num_head){
     echo fgets($file);
 }
-*/
+
+
 echo "<h1> Upload ok! </h1>";
 
 echo "<a href='edit_tools.php'>GO BACK</a>";
