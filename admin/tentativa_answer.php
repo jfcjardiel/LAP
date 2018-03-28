@@ -148,14 +148,19 @@ $nome_row = $result->fetch_assoc();
 $num_head = 6+ 2*$nome_row['COUNT(*)'];
 $aux = 0;
 
-echo $num_head;
-echo $target_file;
 $file = fopen($target_file, "r");
+$string = '';
 
 while($aux < $num_head){
-    echo fgets($file);
+    $string = $string.fgets($file).'\n';
     $aux = $aux + 1;
 }
+
+if(isset($_REQUEST["program_string"])){
+   $string = $string.$_REQUEST["program_string"];
+}
+
+echo $string;
 
 
 echo "<h1> Upload ok! </h1>";
