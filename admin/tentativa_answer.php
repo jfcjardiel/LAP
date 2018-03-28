@@ -152,7 +152,7 @@ $file = fopen($target_file, "r");
 $string = '';
 
 while($aux < $num_head){
-    $string = $string.fgets($file).'\n';
+    $string = $string.fgets($file)."\n";
     $aux = $aux + 1;
 }
 
