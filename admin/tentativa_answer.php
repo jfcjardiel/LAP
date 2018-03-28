@@ -125,7 +125,7 @@ if($_FILES['upimg']["error"] == 0){
 //***************************************//
 
 //criando o upload  -> o arquivo vai ter o nome do dispositivo na pasta disp_form
-$target_dir_file = "/var/www/html/disp_form/results/";
+$target_dir_file = "/var/www/html/disp_form/programs/";
 $target_file = $target_dir_file . $id_dispositivo;
 
 //Conseguinto todas as linhas do cabecalho
