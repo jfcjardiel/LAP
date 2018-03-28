@@ -148,12 +148,14 @@ $nome_row = $result->fetch_assoc();
 $num_head = $nome_row['COUNT(*)']+0;
 $aux = 0;
 
-while($aux < $num_head){
+echo $num_head;
+
+/*while($aux < $num_head){
     $file = fopen($target_file, "r");
     $string = fgets($file);
     echo $string;
 }
-
+*/
 echo "<h1> Upload ok! </h1>";
 
 echo "<a href='edit_tools.php'>GO BACK</a>";
