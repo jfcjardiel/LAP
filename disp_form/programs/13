@@ -1,7 +1,7 @@
 Needs["DatabaseLink`"];
 conn = OpenSQLConnection[JDBC["MySQL(Connector/J)", "localhost:3306/input"], Username -> "write_from_php", Password -> "escrevendo_dados"];
-{{variavelLoopEscolhidaPorJardiel}} = SQLExecute[conn, "SELECT COUNT(*) FROM valor_dispositivo_atributos WHERE jaleu=FALSE AND id_dispositivo=13"];
-While[variavelLoopEscolhidaPorJardiel>0,
+{{variavelLoopEscolhidaPorJardiel13}} = SQLExecute[conn, "SELECT COUNT(*) FROM valor_dispositivo_atributos WHERE jaleu=FALSE AND id_dispositivo=13"];
+While[variavelLoopEscolhidaPorJardiel13>0,
 Clear[picture];
 {{user}} = SQLExecute[conn, "SELECT SUBSTRING_INDEX(email,'@',1) FROM valor_dispositivo_atributos WHERE jaleu=FALSE AND id_dispositivo=13 ORDER BY id_valor ASC LIMIT 1"];
 {{fr}}=SQLExecute[conn, "SELECT valor FROM valor_dispositivo_atributos WHERE id_config=65 AND jaleu=FALSE ORDER BY id_valor ASC LIMIT 1"];
@@ -289,10 +289,12 @@ de RA min y calculo de zin mas cercano*)
              	Zm = Zm[[Pos1]];
     	);
   
-  (*------------------------------Programa --------------------------*)\
+  (*------------------------------Programa --------------------------*)
+\
 
   
-  (*-----------------Minimina distancia entre os modos----------------*)\
+  (*-----------------Minimina distancia entre os modos----------------*)
+\
 
   
   Q3 = \[Delta]eff[1, 0];
@@ -317,7 +319,8 @@ de RA min y calculo de zin mas cercano*)
   z0 = z0[[10]];
   RazaoAxial[a, b, x0, z0];
   
-  (*--------------------Max reatancia------------------------------------------*)\
+  (*--------------------Max reatancia------------------------------------------*)
+\
 
   
   	 Zmax = Floor[Re[Zin1[a, b, f[[Pos]], x0, z0]]];
@@ -491,5 +494,5 @@ de RA min y calculo de zin mas cercano*)
      Dividers -> {{True, True, True}, All}];];
 
 If[ValueQ[picture],Export[StringJoin["/var/www/html/disp_form/results/",user,"13",".jpg"], picture],picture=False];
-{{variavelLoopEscolhidaPorJardiel}} = SQLExecute[conn, "SELECT COUNT(*) FROM valor_dispositivo_atributos WHERE jaleu=FALSE AND id_dispositivo=13"]];
+{{variavelLoopEscolhidaPorJardiel13}} = SQLExecute[conn, "SELECT COUNT(*) FROM valor_dispositivo_atributos WHERE jaleu=FALSE AND id_dispositivo=13"]];
 CloseSQLConnection[conn];

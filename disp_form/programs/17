@@ -1,7 +1,7 @@
 Needs["DatabaseLink`"];
 conn = OpenSQLConnection[JDBC["MySQL(Connector/J)", "localhost:3306/input"], Username -> "write_from_php", Password -> "escrevendo_dados"];
-{{variavelLoopEscolhidaPorJardiel}} = SQLExecute[conn, "SELECT COUNT(*) FROM valor_dispositivo_atributos WHERE jaleu=FALSE AND id_dispositivo=17"];
-While[variavelLoopEscolhidaPorJardiel>0,
+{{variavelLoopEscolhidaPorJardiel17}} = SQLExecute[conn, "SELECT COUNT(*) FROM valor_dispositivo_atributos WHERE jaleu=FALSE AND id_dispositivo=17"];
+While[variavelLoopEscolhidaPorJardiel17>0,
 Clear[picture];
 {{user}} = SQLExecute[conn, "SELECT SUBSTRING_INDEX(email,'@',1) FROM valor_dispositivo_atributos WHERE jaleu=FALSE AND id_dispositivo=17 ORDER BY id_valor ASC LIMIT 1"];
 {{fr}}=SQLExecute[conn, "SELECT valor FROM valor_dispositivo_atributos WHERE id_config=90 AND jaleu=FALSE ORDER BY id_valor ASC LIMIT 1"];
@@ -424,5 +424,5 @@ Characteristics"}}]}, {Plotc, Dados}},
     Background -> {{LightRed}, None}, Spacings -> {1, 1}, 
     Dividers -> {{True, True, True}, All}];];
 If[ValueQ[picture],Export[StringJoin["/var/www/html/disp_form/results/",user,"17",".jpg"], picture],picture=False];
-{{variavelLoopEscolhidaPorJardiel}} = SQLExecute[conn, "SELECT COUNT(*) FROM valor_dispositivo_atributos WHERE jaleu=FALSE AND id_dispositivo=17"]];
+{{variavelLoopEscolhidaPorJardiel17}} = SQLExecute[conn, "SELECT COUNT(*) FROM valor_dispositivo_atributos WHERE jaleu=FALSE AND id_dispositivo=17"]];
 CloseSQLConnection[conn];

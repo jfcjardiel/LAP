@@ -124,7 +124,7 @@
 		$file_head .= 'conn = OpenSQLConnection[JDBC["MySQL(Connector/J)", "localhost:3306/input"], Username -> "write_from_php", Password -> "escrevendo_dados"];' . "\n";
 
 		//now, we are going to guarantee that mathematica is going execute everyy ask
-		$file_head .= '{{variavelLoopEscolhidaPorJardiel}} = SQLExecute[conn, "SELECT COUNT(*) FROM valor_dispositivo_atributos WHERE jaleu=FALSE AND id_dispositivo='. $id .'"];' . "\n";
+		$file_head .= '{{variavelLoopEscolhidaPorJardiel' . $id . '}} = SQLExecute[conn, "SELECT COUNT(*) FROM valor_dispositivo_atributos WHERE jaleu=FALSE AND id_dispositivo='. $id .'"];' . "\n";
 		$file_head .= 'While[variavelLoopEscolhidaPorJardiel>0,' . "\n";
 
 		//clearing picture
@@ -165,7 +165,7 @@
 		$file_foot = "\n" .'If[ValueQ[picture],Export[StringJoin["/var/www/html/disp_form/results/",user,"'. $id .'",".jpg"], picture],picture=False];' . "\n";
 
 		//CLOSING WHILE
-		$file_foot .= '{{variavelLoopEscolhidaPorJardiel}} = SQLExecute[conn, "SELECT COUNT(*) FROM valor_dispositivo_atributos WHERE jaleu=FALSE AND id_dispositivo='. $id .'"]];' . "\n";
+		$file_foot .= '{{variavelLoopEscolhidaPorJardiel' . $id . '}} = SQLExecute[conn, "SELECT COUNT(*) FROM valor_dispositivo_atributos WHERE jaleu=FALSE AND id_dispositivo='. $id .'"]];' . "\n";
 		$file_foot .= 'CloseSQLConnection[conn];';
 
 		//com os dados em maos, basta colocar o arquivo e salvar

@@ -1,7 +1,7 @@
 Needs["DatabaseLink`"];
 conn = OpenSQLConnection[JDBC["MySQL(Connector/J)", "localhost:3306/input"], Username -> "write_from_php", Password -> "escrevendo_dados"];
-{{variavelLoopEscolhidaPorJardiel}} = SQLExecute[conn, "SELECT COUNT(*) FROM valor_dispositivo_atributos WHERE jaleu=FALSE AND id_dispositivo=12"];
-While[variavelLoopEscolhidaPorJardiel>0,
+{{variavelLoopEscolhidaPorJardiel12}} = SQLExecute[conn, "SELECT COUNT(*) FROM valor_dispositivo_atributos WHERE jaleu=FALSE AND id_dispositivo=12"];
+While[variavelLoopEscolhidaPorJardiel12>0,
 Clear[picture];
 {{user}} = SQLExecute[conn, "SELECT SUBSTRING_INDEX(email,'@',1) FROM valor_dispositivo_atributos WHERE jaleu=FALSE AND id_dispositivo=12 ORDER BY id_valor ASC LIMIT 1"];
 {{fr}}=SQLExecute[conn, "SELECT valor FROM valor_dispositivo_atributos WHERE id_config=59 AND jaleu=FALSE ORDER BY id_valor ASC LIMIT 1"];
@@ -298,10 +298,12 @@ de RA min y calculo de zin mas cercano*)
              	Zm = Zm[[Pos1]];
     	);
   
-  (*------------------------------Programa --------------------------*)\
+  (*------------------------------Programa --------------------------*)
+\
 
   
-  (*-----------------Minimina distancia entre os modos----------------*)\
+  (*-----------------Minimina distancia entre os modos----------------*)
+\
 
   
   Q3 = \[Delta]eff[1, 0];
@@ -615,5 +617,5 @@ StyleBox[\"position\",\nFontFamily->\"Comic Sans MS\"]\)"}, {Dados2,
     Dividers -> {{True, True, True}, All}];];
 
 If[ValueQ[picture],Export[StringJoin["/var/www/html/disp_form/results/",user,"12",".jpg"], picture],picture=False];
-{{variavelLoopEscolhidaPorJardiel}} = SQLExecute[conn, "SELECT COUNT(*) FROM valor_dispositivo_atributos WHERE jaleu=FALSE AND id_dispositivo=12"]];
+{{variavelLoopEscolhidaPorJardiel12}} = SQLExecute[conn, "SELECT COUNT(*) FROM valor_dispositivo_atributos WHERE jaleu=FALSE AND id_dispositivo=12"]];
 CloseSQLConnection[conn];
