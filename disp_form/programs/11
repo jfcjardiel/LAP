@@ -1,0 +1,22 @@
+Needs["DatabaseLink`"];
+conn = OpenSQLConnection[JDBC["MySQL(Connector/J)", "localhost:3306/input"], Username -> "write_from_php", Password -> "escrevendo_dados"];
+{{variavelLoopEscolhidaPorJardiel}} = SQLExecute[conn, "SELECT COUNT(*) FROM valor_dispositivo_atributos WHERE jaleu=FALSE AND id_dispositivo=11"];
+While[variavelLoopEscolhidaPorJardiel>0,
+Clear[picture];
+{{user}} = SQLExecute[conn, "SELECT SUBSTRING_INDEX(email,'@',1) FROM valor_dispositivo_atributos WHERE jaleu=FALSE AND id_dispositivo=11 ORDER BY id_valor ASC LIMIT 1"];
+{{fr}}=SQLExecute[conn, "SELECT valor FROM valor_dispositivo_atributos WHERE id_config=53 AND jaleu=FALSE ORDER BY id_valor ASC LIMIT 1"];
+SQLExecute[conn, "UPDATE valor_dispositivo_atributos SET jaleu=TRUE WHERE id_config=53 AND jaleu=FALSE ORDER BY id_valor ASC LIMIT 1"];
+{{h}}=SQLExecute[conn, "SELECT valor FROM valor_dispositivo_atributos WHERE id_config=54 AND jaleu=FALSE ORDER BY id_valor ASC LIMIT 1"];
+SQLExecute[conn, "UPDATE valor_dispositivo_atributos SET jaleu=TRUE WHERE id_config=54 AND jaleu=FALSE ORDER BY id_valor ASC LIMIT 1"];
+{{\[Epsilon]r}}=SQLExecute[conn, "SELECT valor FROM valor_dispositivo_atributos WHERE id_config=55 AND jaleu=FALSE ORDER BY id_valor ASC LIMIT 1"];
+SQLExecute[conn, "UPDATE valor_dispositivo_atributos SET jaleu=TRUE WHERE id_config=55 AND jaleu=FALSE ORDER BY id_valor ASC LIMIT 1"];
+{{tan\[Delta]}}=SQLExecute[conn, "SELECT valor FROM valor_dispositivo_atributos WHERE id_config=56 AND jaleu=FALSE ORDER BY id_valor ASC LIMIT 1"];
+SQLExecute[conn, "UPDATE valor_dispositivo_atributos SET jaleu=TRUE WHERE id_config=56 AND jaleu=FALSE ORDER BY id_valor ASC LIMIT 1"];
+{{ZRe}}=SQLExecute[conn, "SELECT valor FROM valor_dispositivo_atributos WHERE id_config=57 AND jaleu=FALSE ORDER BY id_valor ASC LIMIT 1"];
+SQLExecute[conn, "UPDATE valor_dispositivo_atributos SET jaleu=TRUE WHERE id_config=57 AND jaleu=FALSE ORDER BY id_valor ASC LIMIT 1"];
+{{Zim}}=SQLExecute[conn, "SELECT valor FROM valor_dispositivo_atributos WHERE id_config=58 AND jaleu=FALSE ORDER BY id_valor ASC LIMIT 1"];
+SQLExecute[conn, "UPDATE valor_dispositivo_atributos SET jaleu=TRUE WHERE id_config=58 AND jaleu=FALSE ORDER BY id_valor ASC LIMIT 1"];
+
+If[ValueQ[picture],Export[StringJoin["/var/www/html/disp_form/results/",user,"11",".jpg"], picture],picture=False];
+{{variavelLoopEscolhidaPorJardiel}} = SQLExecute[conn, "SELECT COUNT(*) FROM valor_dispositivo_atributos WHERE jaleu=FALSE AND id_dispositivo=11"]];
+CloseSQLConnection[conn];

@@ -1,0 +1,420 @@
+Needs["DatabaseLink`"];
+conn = OpenSQLConnection[JDBC["MySQL(Connector/J)", "localhost:3306/input"], Username -> "write_from_php", Password -> "escrevendo_dados"];
+{{variavelLoopEscolhidaPorJardiel}} = SQLExecute[conn, "SELECT COUNT(*) FROM valor_dispositivo_atributos WHERE jaleu=FALSE AND id_dispositivo=15"];
+While[variavelLoopEscolhidaPorJardiel>0,
+Clear[picture];
+{{user}} = SQLExecute[conn, "SELECT SUBSTRING_INDEX(email,'@',1) FROM valor_dispositivo_atributos WHERE jaleu=FALSE AND id_dispositivo=15 ORDER BY id_valor ASC LIMIT 1"];
+{{fr}}=SQLExecute[conn, "SELECT valor FROM valor_dispositivo_atributos WHERE id_config=76 AND jaleu=FALSE ORDER BY id_valor ASC LIMIT 1"];
+SQLExecute[conn, "UPDATE valor_dispositivo_atributos SET jaleu=TRUE WHERE id_config=76 AND jaleu=FALSE ORDER BY id_valor ASC LIMIT 1"];
+{{h}}=SQLExecute[conn, "SELECT valor FROM valor_dispositivo_atributos WHERE id_config=77 AND jaleu=FALSE ORDER BY id_valor ASC LIMIT 1"];
+SQLExecute[conn, "UPDATE valor_dispositivo_atributos SET jaleu=TRUE WHERE id_config=77 AND jaleu=FALSE ORDER BY id_valor ASC LIMIT 1"];
+{{\[Epsilon]r}}=SQLExecute[conn, "SELECT valor FROM valor_dispositivo_atributos WHERE id_config=78 AND jaleu=FALSE ORDER BY id_valor ASC LIMIT 1"];
+SQLExecute[conn, "UPDATE valor_dispositivo_atributos SET jaleu=TRUE WHERE id_config=78 AND jaleu=FALSE ORDER BY id_valor ASC LIMIT 1"];
+{{tan\[Delta]}}=SQLExecute[conn, "SELECT valor FROM valor_dispositivo_atributos WHERE id_config=79 AND jaleu=FALSE ORDER BY id_valor ASC LIMIT 1"];
+SQLExecute[conn, "UPDATE valor_dispositivo_atributos SET jaleu=TRUE WHERE id_config=79 AND jaleu=FALSE ORDER BY id_valor ASC LIMIT 1"];
+{{factor}}=SQLExecute[conn, "SELECT valor FROM valor_dispositivo_atributos WHERE id_config=80 AND jaleu=FALSE ORDER BY id_valor ASC LIMIT 1"];
+SQLExecute[conn, "UPDATE valor_dispositivo_atributos SET jaleu=TRUE WHERE id_config=80 AND jaleu=FALSE ORDER BY id_valor ASC LIMIT 1"];
+{{ZRe}}=SQLExecute[conn, "SELECT valor FROM valor_dispositivo_atributos WHERE id_config=81 AND jaleu=FALSE ORDER BY id_valor ASC LIMIT 1"];
+SQLExecute[conn, "UPDATE valor_dispositivo_atributos SET jaleu=TRUE WHERE id_config=81 AND jaleu=FALSE ORDER BY id_valor ASC LIMIT 1"];
+{{Zim}}=SQLExecute[conn, "SELECT valor FROM valor_dispositivo_atributos WHERE id_config=82 AND jaleu=FALSE ORDER BY id_valor ASC LIMIT 1"];
+SQLExecute[conn, "UPDATE valor_dispositivo_atributos SET jaleu=TRUE WHERE id_config=82 AND jaleu=FALSE ORDER BY id_valor ASC LIMIT 1"];
+fr = fr*10^9;
+h = h*10^-3;
+\[Epsilon]r = \[Epsilon]r;
+tan\[Delta] = tan\[Delta];
+ZL = ZRe + I Zim;
+factor = factor;
+
+If[0.5*10^9 < fr < 10*10^9 && 0.3*10^-3 < h < 10*10^-3 && 
+   1 < \[Epsilon]r < 10 && 0.00001 < tan\[Delta] < 0.05 && 
+   10 < Re[ZL] < 700 && -700 < Im[ZL] < 700 && 0.2 < factor < 1.7,
+  
+  
+  
+  (*Condicoes iniciais*)
+  
+  
+  \[CurlyEpsilon]r = \[Epsilon]r;
+  
+  (*constantens que nao mudam*)
+  
+  \[Sigma] = 3.64*10^7;
+  \[Epsilon]0 = 8.854*10^-12;
+  \[Mu]0 = 4 \[Pi]*10^-7;
+  \[Eta]0 = Sqrt[\[Mu]0/\[Epsilon]0];
+  c0 = 1/Sqrt[\[Mu]0 \[Epsilon]0];
+  \[Omega]0 = 2 \[Pi] fr;
+  k0 = \[Omega]0 Sqrt[\[Mu]0 \[Epsilon]0];
+  Rs = Sqrt[2/(\[Omega]0 \[Mu]0 \[Sigma])]; 
+  I0 = 1;
+  Q1 = 0;
+  Q2 = 0;
+  
+  (*Constantes que mudam com a frequencis*)
+  \[Omega][f_] := 2 \[Pi] f;
+  k[f_] := (2 \[Pi] f)/c0;
+  k1[f1_] := (2 \[Pi] f1)/c0;
+  \[Omega]1[f1_] := 2 *Pi*f1;
+  
+  (*Comprimento inicial*)
+  b = c0/(2 fr Sqrt[\[Epsilon]r]);
+  af[b_] := factor*b;
+  
+  a = af[b];
+  
+  (*Posicao de proba inicial*)
+  x0 = a/2;
+  z0 = b/4;
+  
+  (*Tamanhoda fita*)
+  Dx = 1.3*10^-3;
+  Dz = 1.3*10^-3;
+  
+  (*------------Subfuncao principal-------------*)
+  kt[m_, n_] := Sqrt[((m \[Pi])/a)^2 + ((n \[Pi])/b)^2];
+  \[Omega]r[m_, n_] := 
+   2 \[Pi] ((m c0)/(2 a Sqrt[\[Epsilon]r]) + (n c0)/(
+      2 b Sqrt[\[Epsilon]r]));
+  
+  \[Epsilon]x[m_] := If[m == 0, 1, 2];
+  
+  \[Epsilon]z[n_] := If[n == 0, 1, 2];
+  
+  G[m_, n_] := Sinc[(m \[Pi] Dx)/(2 a)] Sinc[(n \[Pi] Dx)/(2 b)];
+  \[Psi]0[m_, n_] := 
+   Sqrt[(\[Epsilon]x[m] \[Epsilon]z[n])/(a b)]
+     Cos[((m \[Pi]) x0)/a] Cos[((n \[Pi]) z0)/b];
+  
+  
+     E1[\[Theta]_, \[Phi]_, m_?NumericQ, n_?NumericQ] := 
+   2 k0^2 Abs[Sin[\[Theta]] Sin[\[Phi]] Cos[\[Phi]]]*
+    						 
+    Abs[Cos[(m \[Pi])/2]^2 Sin[  (k0 a)/2 Sin[\[Theta]] Cos[\[Phi]]] +
+       I Sin[(m \[Pi])/2]^2 Cos[  (k0 a)/2 Sin[\[Theta]] Cos[\[Phi]]]]*
+    						
+    Abs[Cos[(n \[Pi])/2]^2 Sin[  (k0 b)/2 Sin[\[Theta]] Sin[\[Phi]]] +
+       I Sin[(n \[Pi])/2]^2 Cos[ (k0 b)/2 Sin[\[Theta]] Sin[\[Phi]]]]*
+    						
+    Abs[1/(k0^2 Sin[\[Theta]]^2 Cos[\[Phi]]^2 - ((m \[Pi])/a)^2) + 1/(
+      k0^2 Sin[\[Theta]]^2 Sin[\[Phi]]^2 - ((n \[Pi])/b)^2)];
+  
+    E2[\[Theta]_, \[Phi]_, m_?NumericQ, n_?NumericQ] := 
+   2 k0^2 Abs[Sin[\[Theta]] Cos[\[Theta]]]*
+    						 
+    Abs[Cos[(m \[Pi])/2]^2 Sin[  (k0 a)/2 Sin[\[Theta]] Cos[\[Phi]]] +
+       I Sin[(m \[Pi])/2]^2 Cos[  (k0 a)/2 Sin[\[Theta]] Cos[\[Phi]]]]*
+    						
+    Abs[Cos[(n \[Pi])/2]^2 Sin[  (k0 b)/2 Sin[\[Theta]] Sin[\[Phi]]] +
+       I Sin[(n \[Pi])/2]^2 Cos[ (k0 b)/2 Sin[\[Theta]] Sin[\[Phi]]]]*
+    						
+    Abs[Cos[\[Phi]]^2/(
+      k0^2 Sin[\[Theta]]^2 Cos[\[Phi]]^2 - ((m \[Pi])/a)^2) - 
+      Sin[\[Phi]]^2/(
+      k0^2 Sin[\[Theta]]^2 Sin[\[Phi]]^2 - ((n \[Pi])/b)^2)];
+  
+  I\[Theta][m_?NumericQ, n_?NumericQ] := 
+   NIntegrate[
+    Abs[E1[\[Theta], \[Phi], m, n]]^2*Sin[\[Theta]], {\[Theta], 0, 
+     Pi/2}, {\[Phi], 0, Pi/2}, 
+    Method -> {Automatic, "SymbolicProcessing" -> 0}];
+  
+  I\[Phi][m_?NumericQ, n_?NumericQ] := 
+   NIntegrate[
+    Abs[E2[\[Theta], \[Phi], m, n]]^2*Sin[\[Theta]], {\[Theta], 0, 
+     Pi/2}, {\[Phi], 0, Pi/2}, 
+    Method -> {Automatic, "SymbolicProcessing" -> 0}];
+   
+  \[Delta]eff[m_?NumericQ, n_?NumericQ] := 
+   tan\[Delta] + Rs/h + (
+    4 c0 h \[Epsilon]x[m] \[Epsilon]z[
+      n] (I\[Theta][m, n] + I\[Phi][m, n]))/(\[Pi]^2 a b \[Omega]r[m, 
+      n] \[Epsilon]r);
+  
+  (*----Pra \[Phi]=0----Plano xz-----*)
+  
+  E\[Phi]01[\[Theta]_] := 
+   2 k0^2 I *(Sin[  (k0 a)/
+       2 Sin[If[\[Theta] == 0, 0.00001, \[Theta]]]])*(Cos[
+      If[\[Theta] == 0, 0.00001, \[Theta]]]/((k0^2)
+       Sin[If[\[Theta] == 0, 0.00001, \[Theta]]] ));
+  
+  (*----Pra \[Phi]=90---Planoyz-*)
+  
+   E\[Theta]01[\[Theta]_] := 
+   2 k0^2 Sin[
+     If[\[Theta] == 0, 
+      0.01, \[Theta]]] Sin[(Pi/2)*0.99] Cos[(Pi/2)*0.99] (Sin[  (
+       k0 a)/2 Sin[
+        If[\[Theta] == 0, 
+         0.01, \[Theta]]] Cos[(Pi/2)*0.99]])*(I Cos[ (k0 b)/
+        2 Sin[If[\[Theta] == 0, 
+          0.01, \[Theta]]] Sin[(Pi/2)*0.99]])*(1/(
+      k0^2 Sin[
+        If[\[Theta] == 0, 0.01, \[Theta]]]^2 Cos[(Pi/2)*0.99]^2) + 1/(
+      k0^2 Sin[\[Theta]]^2 Sin[(Pi/2)*0.99]^2 - (\[Pi]/b)^2));
+  
+  
+  fb[b_] := c0/(2 b Sqrt[\[Epsilon]r]);
+       fa[a_] := c0/(2  a Sqrt[\[Epsilon]r]);
+  
+  (*----Funcao--Zin----*)
+  
+  Zin[a_, b_, x0_, 
+    z0_] := -I \[Mu]0 h \[Omega][
+     f] ((\[Psi]0[0, 
+        1]^2 G[0, 1]^2)/( \[CurlyEpsilon]r k[f]^2 (1 - I Q1) - 
+       kt[0, 1]^2) + \!\(
+\*UnderoverscriptBox[\(\[Sum]\), \(m = 0\), \(40\)]\(
+\*UnderoverscriptBox[\(\[Sum]\), \(n = 
+          0\), \(40\)]If[\((m == 0 && n == 1)\) || \((m == 1 && 
+            n == 0)\), 0, 
+\*FractionBox[\(
+\*SuperscriptBox[\(\[Psi]0[m, n]\), \(2\)]\ G[m, 
+             n]^2\), \(\[CurlyEpsilon]r\ 
+\*SuperscriptBox[\(k[f]\), \(2\)] - kt[m, n]^2\)]]\)\));
+  
+  (*---------Main------Program-------------------------------*)
+  
+  flag = 0;
+  Pborda = 1*10^-3;
+  Q1 = \[Delta]eff[0, 1];
+  
+  (*----Defining frequency limits-------*)
+  BW = (fr Q1)/Sqrt[2];
+  fmin = fr - 2 BW;
+  fmax = fr + 2 BW;
+  P = BW/200;
+  P = N[(Floor[P, 10000])*10^-9];
+  f = Range[fmin, fmax, P*10^9];
+  (*----------------------------------*)
+  
+  
+  (*Condicoes Iniciais*)
+  step = z0;
+  ZinV = Zin[a, b, x0, z0]; 
+  PosMax = Ordering[Re[ZinV], -1] // Last;
+  dif = 50;
+  dif1 = 50;
+  PosF = Ordering[Abs[f - fr], 1] // Last;
+  
+  While[dif1 > 1,
+   
+           While [step > 1*10^-5,
+    
+    		If[Im[ZinV[[PosMax]]] > Im[ZL],
+     				(*capacitiva*)
+     				      
+     Pos = (Ordering[Abs[Re[ZinV[[PosMax ;;]]] - Re[ZL]], 1] // 
+         Last) + PosMax - 1;(*Zona capacitiva*)
+     				      dif = Abs[Im[ZinV[[Pos]]] - Im[ZL]];
+     				      
+     If[dif < 1 && Abs[Re[ZinV[[Pos]]] - Re[ZL]] < 2, Break[], 0];
+     				      
+                                                
+     If[Abs[Re[ZinV[[Pos]]] - Re[ZL]] < 2 && Im[ZL] > Im[ZinV[[Pos]]],
+      		                             step = step/2;
+      					 z0 = z0 + step;
+      				          ,
+      		                             flag = 1;
+      					 step = step/2;
+      				          z0 = z0 - step;
+      			                  ];
+     			              ,(*inductiva*)
+      			             
+     Pos = Ordering[Abs[Re[ZinV[[;; PosMax]]] - Re[ZL]], 1] // 
+       Last;(*Zona inductiva*)  
+         				dif = Abs[Im[ZinV[[Pos]]] - Im[ZL]];
+     				    
+     If[dif < 1 && Abs[Re[ZinV[[Pos]]] - Re[ZL]] < 2, Break[], 0];
+     				    			   
+     				     
+     If[Abs[Re[ZinV[[Pos]]] - Re[ZL]] < 2 && Im[ZinV[[Pos]]] > Im[ZL],
+      					     
+      					      step = step/2;
+      					      z0 = z0 + step;
+      					          ,
+      					       flag = 1;
+      					       step = step/2;
+      				                z0 = z0 - step;
+      					   
+      		                          ];
+     			];
+    	         
+    		ZinV = Zin[a, b, x0, z0];
+                       PosMax = Ordering[Re[ZinV], -1] // Last;
+    	    ];
+   
+         
+      bant = b;
+      b = c0/(2 (fb[b] + (fr - f[[Pos]])) Sqrt[\[Epsilon]r]);
+      
+      a = af[b];
+      x0 = a/2;
+      Q1 = \[Delta]eff[0, 1];
+      ZinV = Zin[a, b, x0, z0];
+      PosMax = Ordering[Re[ZinV], -1] // Last;
+      dif1 = Abs[Im[ZinV][[PosF]] - Im[ZL]];
+         
+      If[step < 1*10^-7 || dif1 < 1 || z0 < Pborda, Break[], 0];
+       z0 = b/4;   
+       step = z0;
+      ZinV = Zin[a, b, x0, z0];
+      PosMax = Ordering[Re[ZinV], -1] // Last;
+      dif1 = Abs[Im[ZinV][[PosF]] - Im[ZL]];
+      flag = 0;
+   ];
+  
+  
+  Exz\[Phi] = 
+   Table[Abs[E\[Phi]01[\[Theta]]], {\[Theta], -Pi/2, 
+     Pi/2, (Pi*1)/180}];
+  Eyz\[Theta] = 
+   Table[Abs[E\[Theta]01[\[Theta]]], {\[Theta], -Pi/2, 
+     Pi/2, (Pi*1)/180}];
+  
+  Exz\[Phi] = Exz\[Phi]/Max[Exz\[Phi]];
+  Eyz\[Theta] = Eyz\[Theta]/Max[Eyz\[Theta]];
+  
+  Exz\[Phi][[1]] = Exz\[Phi][[1]] + 0.01;
+  Exz\[Phi][[Length[Exz\[Phi]]]] = 
+   Exz\[Phi][[Length[Exz\[Phi]]]] + 0.01;
+  Exz\[Phi] = 20 Log10[Exz\[Phi]];
+  Eyz\[Theta] = 20 Log10[Eyz\[Theta]];
+  
+  Norm1 = Min[Exz\[Phi]];
+  Exz\[Phi] = Exz\[Phi] - Norm1;
+  Eyz\[Theta] = Eyz\[Theta] - Norm1;
+  
+  
+  \[Theta]Table = Table[i, {i, -Pi/2, Pi/2, (Pi*1)/180}] + Pi/2;
+  DataExz\[Phi] = 
+   Table[{\[Theta]Table[[i]], Exz\[Phi][[i]]}, {i, 1, 
+     Length[Exz\[Phi]], 1}];
+  DataEyz\[Theta] = 
+   Table[{\[Theta]Table[[i]], Eyz\[Theta][[i]]}, {i, 1, 
+     Length[Exz\[Phi]], 1}];
+  
+  
+  \[Epsilon]effa = (\[Epsilon]r + 1)/
+    2 + ((\[Epsilon]r - 1) (1 + 10 h/b)^(-(1/2)))/2 ;
+  \[CapitalDelta]La = (
+   h 0.412 ((\[Epsilon]effa + 0.3) (b/h + 0.264)))/((\[Epsilon]effa - 
+      0.258) (b/h + 0.8));
+  \[Epsilon]effb = (\[Epsilon]r + 1)/
+    2 + ((\[Epsilon]r - 1) (1 + 10 h/a)^(-(1/2)))/2 ;
+  \[CapitalDelta]Lb = (
+   h 0.412 ((\[Epsilon]effb + 0.3) (a/h + 0.264)))/((\[Epsilon]effb - 
+      0.258) (a/h + 0.8));
+  
+  breal = (b - 2 \[CapitalDelta]Lb);
+  areal = (breal*factor);
+  x0real = (x0 - \[CapitalDelta]La);
+  z0real = (z0 - \[CapitalDelta]Lb);
+  
+  M = (4 Re[ZinV] Re[ZL])/Abs[ZinV + Conjugate[ZL]]^2;
+  			
+  VSWR = (1 + Sqrt[1 - M])/(1 - Sqrt[1 - M]);
+  			
+  \[CapitalGamma] = 20 Log10[(VSWR - 1)/(VSWR + 1)];
+  
+  PosMin = Ordering[\[CapitalGamma], 1] // Last;
+  				
+  Pos\[CapitalGamma]1 = (Ordering[
+       Abs[\[CapitalGamma][[PosMin ;;]] + 10], 1] // Last) + PosMin - 
+    1;
+  Pos\[CapitalGamma]2 = (Ordering[
+      Abs[\[CapitalGamma][[;; PosMin]] + 10], 1] // Last);
+  BW = Round[(f[[Pos\[CapitalGamma]1]] - 
+       f[[Pos\[CapitalGamma]2]])*10^-6, 0.001];
+  
+  (*---PLot----*)
+  
+  SetOptions[ListPlot, BaseStyle -> FontSize -> 14, 
+   LabelStyle -> Directive[Bold, Black]];
+  SetOptions[ListLinePlot, BaseStyle -> FontSize -> 20, 
+   LabelStyle -> Directive[Bold, Black], PlotStyle -> Red, 
+   Filling -> Axis];
+  SetOptions[ListPolarPlot, BaseStyle -> FontSize -> 17, 
+   LabelStyle -> Directive[Bold, Black], PlotStyle -> Red];
+  
+  
+  Plota = ListPlot[{Re[ZinV], Im[ZinV]},
+    PlotRange -> Full, 
+    PlotStyle -> {Directive[Black], Directive[Red]}, 
+    DataRange -> {fmin*10^-9, fmax*10^-9}, Frame -> True, 
+    FrameLabel -> {"Freq[GHz]", "Zin[\[CapitalOmega]]"}, 
+    GridLines -> Automatic, Joined -> True, ImageSize -> 500, 
+    PlotLegends -> 
+     Placed[LineLegend[{"Re[Zin]", "Im[Zin]"}, 
+       LegendFunction -> "Shadowbox", LegendLayout -> "Column", 
+       LegendMarkerSize -> {{30, 15}}], {0.85, 0.85}]];
+  
+  Plotb = ListPlot[\[CapitalGamma],
+    PlotRange -> Full, PlotStyle -> Red, 
+    DataRange -> {fmax*10^-9, fmin*10^-9}, Frame -> True, 
+    FrameLabel -> {"Freq[GHz]", "|\[CapitalGamma]|[dB]"}, 
+    GridLines -> Automatic, Joined -> True, ImageSize -> 500];
+  
+  Plotc = 
+   ListPolarPlot[{DataExz\[Phi], DataEyz\[Theta]}, Joined -> True, 
+    InterpolationOrder -> 3, 
+    PlotStyle -> {Directive[Dashed, Thick, Red], 
+      Directive[Dashed, Thick, Blue], Black}, 
+    Frame -> {{False, False}, {True, False}}, 
+    FrameTicks -> {{{0, -Norm1/2, -Norm1}, 
+       None}, {{{Norm1, 0}, {Norm1/2, -20}, {0, Norm1}, {-Norm1, 
+         0}, {-Norm1/2, -20}}, None}}, 
+    FrameLabel -> {"  E(dB) Normalized ", "E normalized"}, 
+    PlotRange -> {{-42, 42}, {4, 49}}, PlotRangeClipping -> True, 
+    PolarGridLines -> {Automatic, {10, 20, 30, 37, 40}}, 
+    PolarAxes -> Automatic, 
+    PolarTicks -> {{{Pi/2, 0 Degree}, {Pi/3, 30 \[Degree]}, {Pi/6, 
+        60 \[Degree]}, {0, 
+        90 \[Degree]}, {2 Pi/3, -30 \[Degree]}, {5 Pi/
+          6, -60 \[Degree]}, {Pi, -90 \[Degree]}}, None}, 
+    PlotLegends -> 
+     Placed[LineLegend[{"\!\(\*SubscriptBox[\(E\), \(\[Phi]\)]\) \
+Plane(x,z)", "\!\(\*SubscriptBox[\(E\), \(\[Theta]\)]\) Plane(y,z)"}, 
+       LegendFunction -> "Frame", LegendMargins -> 0, 
+       LegendLayout -> "Row", LegendMarkerSize -> {{30, 15}}], {0.5 , 
+       0.90}], ImageSize -> 500];
+  
+  Dimen = Table[Subscript[m, i, j], {i, 7}, {j, 2}];
+  Dimen[[All, 1]] = {"a", "b", "x0", "y0", "Zin(\[CapitalOmega])", 
+    "|\[CapitalGamma]|", "BW"};
+  Dimen[[All, 2]] = {Round[areal*10^3, 0.01]*"mm", 
+    Round[breal*10^3, 0.01]*"mm", Round[x0real*10^3, 0.01]*"mm", 
+    Round[z0real*10^3, 0.01]*"mm", Round[ZinV[[PosF]], 0.1], 
+    Round[\[CapitalGamma][[PosF]], 0.1]*"dB", BW*"MHz"};
+  Dados = 
+   Grid[Dimen, Frame -> All, 
+    ItemStyle -> 
+     Directive[FontSize -> 20, FontWeight -> "Fat", Black], 
+    Background -> {{LightRed}, None}, Spacings -> {0.5, 0.7}, 
+    Dividers -> {{True, True, True}, All}];
+  
+  
+  picture = 
+   Grid[{{"Input Impedance", "Reflection Coefficient"}, {Plota, 
+      Plotb}, {"Normalized Radiation Pattern", 
+      Grid[{{"Antenna Dimensions &"}, {"Electrical \
+Characteristics"}}]}, {Plotc, Dados}}, 
+    ItemStyle -> Directive[FontSize -> 20, FontWeight -> "Fat", Bold],
+     Frame -> All, Spacings -> {2, 2}];
+  ,
+  Dimen1 = Table[Subscript[m, i, j], {i, 8}, {j, 2}];
+  Dimen1[[All, 1]] = {" ", "fr", "h", "\[Epsilon]r", "tan\[Delta]", 
+    "Re[ZL]", "Im[ZL]", "Factor"};
+  Dimen1[[All, 2]] = {"OUT OF RANGE", "1GHz<fr<10GHz", "0.3mm<h<10mm",
+     "1<\[Epsilon]r<10", "0.00001<tan\[Delta]<0.05", 
+    "10\[CapitalOmega]<Re[ZL]<700\[CapitalOmega]", 
+    "-700\[CapitalOmega]<Im[ZL]<700\[CapitalOmega]", "0.2<Factor<1.7"};
+  picture = 
+   Grid[Dimen1, Frame -> All, 
+    ItemStyle -> 
+     Directive[FontSize -> 20, FontWeight -> "Fat", Italic], 
+    Background -> {{LightRed}, None}, Spacings -> {1, 1}, 
+    Dividers -> {{True, True, True}, All}];];
+If[ValueQ[picture],Export[StringJoin["/var/www/html/disp_form/results/",user,"15",".jpg"], picture],picture=False];
+{{variavelLoopEscolhidaPorJardiel}} = SQLExecute[conn, "SELECT COUNT(*) FROM valor_dispositivo_atributos WHERE jaleu=FALSE AND id_dispositivo=15"]];
+CloseSQLConnection[conn];
