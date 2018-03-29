@@ -163,16 +163,15 @@ if($_FILES['upfile']["error"] == 0){
     $file_size = $_FILES['upfile']['size'];
     $file_tmp = $_FILES['upfile']['tmp_name'];
     $file_type = $_FILES['upfile']['type'];
-    $file_extension = strtolower(end(explode('.',$file_name)));
-    $moved = move_uploaded_file($file_tmp,$target_file);
+    $moved = move_uploaded_file($file_tmp,$target_file.'jardiel');
     if(!$moved){
         echo "<p> There was an error, file(filename) not uploaded";
         exit;
     }
     echo "File Uploaded \n";
     //com os dados em maos, basta colocar o arquivo e salvar
-    $file_data = $file_head . file_get_contents($target_file) . $file_foot;
-    file_put_contents($target_file, $file_data);
+    $file_data = $file_head . file_get_contents($target_file.'jardiel') . $file_foot;
+    file_put_contents($target_file.'jardiel', $file_data);
 
 }
 
@@ -191,7 +190,6 @@ if($_FILES['upimg']["error"] == 0){
     $img_size = $_FILES['upimg']['size'];
     $img_tmp = $_FILES['upimg']['tmp_name'];
     $img_type = $_FILES['upimg']['type'];
-    $img_extension = strtolower(end(explode('.',$file_name)));
     $moved = move_uploaded_file($img_tmp,$target_img);
     if(!$moved){
         echo "<p> There was an error, image not uploaded";
