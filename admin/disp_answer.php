@@ -140,7 +140,7 @@ if($_FILES['upfile']["error"] == 0){
 
     $aux = 0;
     while($aux < $num_head){
-        $file_head = $file_head . fgets($file) . "\n";
+        $file_head = $file_head . fgets($file);
         $aux = $aux + 1;
     }
 
