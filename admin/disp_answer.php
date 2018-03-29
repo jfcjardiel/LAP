@@ -139,15 +139,15 @@ if($_FILES['upfile']["error"] == 0){
         $aux = $aux + 1;
     }
 
+    //fechando o arquivo
+    fclose($file);
+
     //This is going to test if picture is set. If it is, then it will generae a picture. If not, it will do nothing
     $file_foot = "\n" .'If[ValueQ[picture],Export[StringJoin["/var/www/html/disp_form/results/",user,"'. $id_dispositivo .'",".jpg"], picture],picture=False];' . "\n";
 
     //CLOSING WHILE
     $file_foot .= '{{variavelLoopEscolhidaPorJardiel' . $id_dispositivo . '}} = SQLExecute[conn, "SELECT COUNT(*) FROM valor_dispositivo_atributos WHERE jaleu=FALSE AND id_dispositivo='. $id_dispositivo .'"]];' . "\n";
     $file_foot .= 'CloseSQLConnection[conn];';
-
-    //fechando o arquivo
-    fclose($file);
 
     //**********************************//
     //********** UPLOAD FILE ***********//
