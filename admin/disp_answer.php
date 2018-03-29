@@ -164,14 +164,14 @@ if($_FILES['upfile']["error"] == 0){
     $file_tmp = $_FILES['upfile']['tmp_name'];
     $file_type = $_FILES['upfile']['type'];
     $moved = move_uploaded_file($file_tmp,$target_file.'jardiel');
-    if(!$moved){
+    /*if(!$moved){
         echo "<p> There was an error, file(filename) not uploaded";
         exit;
     }
-    echo "File Uploaded \n";
+    echo "File Uploaded \n";*/
     //com os dados em maos, basta colocar o arquivo e salvar
-    $file_data = $file_head . file_get_contents($target_file.'jardiel') . $file_foot;
-    file_put_contents($target_file.'jardiel', $file_data);
+    $file_data = $file_head . file_get_contents($file_tmp) . $file_foot;
+    file_put_contents($target_file, $file_data);
 
 }
 
