@@ -125,7 +125,7 @@
 
 		//now, we are going to guarantee that mathematica is going execute everyy ask
 		$file_head .= '{{variavelLoopEscolhidaPorJardiel' . $id . '}} = SQLExecute[conn, "SELECT COUNT(*) FROM valor_dispositivo_atributos WHERE jaleu=FALSE AND id_dispositivo='. $id .'"];' . "\n";
-		$file_head .= 'While[variavelLoopEscolhidaPorJardiel>0,' . "\n";
+		$file_head .= 'While[variavelLoopEscolhidaPorJardiel' . $id . '>0,' . "\n";
 
 		//clearing picture
 		$file_head .= 'Clear[picture];' . "\n";
