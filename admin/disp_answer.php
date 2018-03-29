@@ -9,6 +9,11 @@ sec_session_start();
 <?php if (login_check($mysqli) == true) : ?>
 
 <?php
+
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 //getting 
 $id_dispositivo = $_REQUEST["id_dispositivo"] + 0;
 //echo $id_dispositivo;
@@ -160,8 +165,6 @@ if($_FILES['upfile']["error"] == 0){
     $file_type = $_FILES['upfile']['type'];
     $file_extension = strtolower(end(explode('.',$file_name)));
     $moved = move_uploaded_file($file_tmp,$target_file);
-    echo $file_tmp;
-    echo $target_file;
     if(!$moved){
         echo "<p> There was an error, file(filename) not uploaded";
         exit;
