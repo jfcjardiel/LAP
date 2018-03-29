@@ -104,8 +104,8 @@ while ($config_dispositivo = $result->fetch_assoc()) {
     $id_input = $id_input + 1;
 }
 
-echo '<p>If you want to change the Image, please upload here: <p>';
-echo '<input type = "file" name="upfile" id = "upfile"><br>';
+echo '<p>If you want to change the code, please upload here: </p><p>NOTE: Dont change the variables name!! <p>';
+echo '<input type = "file" name="upfile" id = "upfile">';
 
 echo '<p>If you want to change the Image, please upload here <p>';
 echo '<input type = "file" name="upimg" id = "upimg"><br><br>';
