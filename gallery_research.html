@@ -5,14 +5,14 @@
     ================================================== -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-     <title>LAP: Laboratório de Antenas e Propagação</title>
+     <title>Laboratory of Antennas and Propagation</title>
 
     <!-- Mobile Specific Metas
     ================================================== -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Favicon -->
-    <link rel="shortcut icon" type="image/icon" href="img/wpf-favicon.png"/>
+    <link rel="shortcut icon" type="image/icon" href="img/logolap2.png"/>
 
     <!-- CSS
     ================================================== -->       
@@ -89,12 +89,14 @@
                   <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">People<span class="caret"</span></a>
                     <ul class="dropdown-menu" role="menu">
-                      <li><a href="students.html">Students</a></li>
                       <li><a href="research_staff.html">Research Staff</a></li>
+					  <li><a href="students.html">Students</a></li>
+					  <li><a href="std_awards.html">Awards</a></li>
                       <li><a href="gallery_people.html">Gallery</a></li>
                     </ul>
                   </li>
-                <li><a href ="microwave_tools.html">Microwave Tools</a></li>                          
+                <li><a href ="microwave_tools.html">Microwave Tools</a></li>
+				<li><a href ="course-archive.html">Education</a></li>				
                 <li><a href="contact.html">Contact</a></li>
               </ul>           
             </div><!--/.nav-collapse -->
@@ -104,10 +106,11 @@
       <!-- END MENU -->    
     </header>
     <!--=========== END HEADER SECTION ================-->
-    
+
+
     <!--=========== BEGIN COURSE BANNER SECTION ================-->
     <section id="imgBanner">
-      <h2>Gallery</h2>
+      <h2>Research Gallery</h2>
     </section>
     <!--=========== END COURSE BANNER SECTION ================-->
     
@@ -117,24 +120,25 @@
         <div class="row">
           <div class="col-lg-12 col-md-12 col-sm-12">
             <div id="gallerySLide" class="gallery_area">
-                <script>
-                  var xhttp;
-                  xhttp = new XMLHttpRequest();
-                  xhttp.onreadystatechange = function() {
-                    if (this.readyState == 4 && this.status == 200) {
-                      document.getElementById("gallerySLide").innerHTML = this.responseText;
-                    }
-                  };
-                  xhttp.open("GET", "gallery/gallery_research.php", true);
-                  xhttp.send();
-                </script>
+			
+			
+                <a href="gallery/gallery_research/13.jpg" title="This is Title">
+                  <img class="gallery_img" src="gallery/gallery_research/13.jpg" alt="img" />
+                <span class="view_btn">View</span>
+                </a>
+                <a href="gallery/gallery_research/10.jpg" title="This is Title2">
+                  <img class="gallery_img" src="gallery/gallery_research/10.jpg" alt="img" />
+                  <span class="view_btn">View</span>
+                </a>
+               				
+				
             </div>
           </div>
         </div>
       </div>
     </section>
     <!--=========== END GALLERY SECTION ================-->
-
+    
     <!--=========== BEGIN FOOTER SECTION ================-->
     <footer id="footer">
       <!-- Start footer top area -->
@@ -144,16 +148,15 @@
             <div class="col-ld-3  col-md-3 col-sm-3">
               <div class="single_footer_widget">
                 <h3>LAP</h3>
-                <p>Laboratory of Antenna e Propagation.</p>
+                <p>Laboratory of Antennas and Propagation</p>
               </div>
             </div>
             <div class="col-ld-3  col-md-3 col-sm-3">
               <div class="single_footer_widget">
                 <h3>Community</h3>
                 <ul class="footer_widget_nav">
-                  <li><a href="#ourTutors">Professors</a></li>
-                  <li><a href="#studentsTestimonial">Students</a></li>
-                  <li><a href="#">Team</a></li>
+                  <li><a href="research_staff.html">Research Staff</a></li>
+                  <li><a href="students.html">Students</a></li>
                 </ul>
               </div>
             </div>
@@ -182,7 +185,7 @@
             </div>
             <div class="col-lg-6 col-md-6 col-sm-6">
               <div class="footer_bootomRight">
-                <p>Designed by <a href="http://wpfreeware.com/" rel="nofollow">Wpfreeware.com</a></p>
+                <p>Designed by LAP</p>
               </div>
             </div>
           </div>
@@ -222,7 +225,6 @@
     Template Design By WpFreeware Team.
     Author URI : http://www.wpfreeware.com/
   ====================================================-->
-
 
   </body>
 </html>

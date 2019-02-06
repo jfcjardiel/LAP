@@ -65,7 +65,7 @@ h1,h2,h3,h4,h5,h6{
 
 h2 {
   color: #313338;  
-  font-size: 30px;
+  font-size: 25px;
   font-weight: 700;
   line-height: 40px;
   margin: 0;
@@ -796,11 +796,11 @@ div[data-dimension] {
 }
 .singTutors_content>span{
   font-size: 13px;
-  color: #fff;
+  color: #000;
   display: inline-block;
   padding: 0 10px;
   margin-bottom: 18px;
-  font-style: italic;
+  font-style: bold;
   font-weight: 400;
   line-height: 20px;
   text-transform: capitalize;
@@ -1194,7 +1194,7 @@ div[data-dimension] {
   display: block;
   margin-bottom: 7px;
   margin-top: 20px;
-  text-transform: uppercase;
+  /*text-transform: uppercase;*/
   padding: 0 15px;
   -webkit-transition: all 0.5s;
   -o-transition: all 0.5s;
@@ -1863,7 +1863,7 @@ div[data-dimension] {
   .error_page_content h1:before {left: -30px;}
   .feed_tabs li a {font-size: 14px;}
   #imgBanner h2 {font-size: 30px;}
-  .blog_title {font-size: 20px;line-height: 30px;}
+  .blog_title {font-size: 25px;line-height: 30px;}
   .gallery_area a {width: 100%;margin-right: 0;margin-left: 0;height: 200px;}
 
 }
