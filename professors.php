@@ -1,3 +1,53 @@
+<?php
+
+//getting professor
+if(isset($_REQUEST["id_prof"])){
+  $id_prof = $_REQUEST["id_prof"];
+}else{
+  echo "<h1> Connection Problem </h1>";
+  exit;
+}
+
+//*******************************//
+//***** READING DATABSE *********//
+//*******************************//
+
+//Starting connection
+$mysqli_information = new mysqli('localhost', 'root', 'input212', 'information');
+
+//If there is any error, then show...
+if ($mysqli_information->connect_errno) {
+    // I do not know what to show yet
+    echo "<p>Connection Problem </p>";
+    exit;
+}
+
+//If there isnt any error, then lets read the sql content
+$sql = "SELECT * FROM professors WHERE id_prof=" . $id_prof;
+if (!$result = $mysqli_information->query($sql)) {
+    // I do not know what to show yet
+    echo "<p>Connection Problem </p>";
+    exit;
+}
+
+// If there is no result (don't apply in this case)
+if ($result->num_rows === 0) {
+    // I do not know what to show yet
+    echo "<p>Connection Problem </p>";
+    exit;
+}
+
+//pegando o nome do professor
+$prof_row = $result->fetch_assoc();
+$name_prof = $prof_row['name_prof'];
+$show_prof = $prof_row['show_professor'];
+$email_prof = $prof_row['email'];
+$about_prof = $prof_row['about_prof'];
+
+?>
+
+
+
 <html>
 <!DOCTYPE html>
 <html lang="en">
@@ -110,7 +160,7 @@
 
     <!--=========== BEGIN COURSE BANNER SECTION ================-->
     <section id="imgBanner">
-      <h2>Research Archive</h2>
+      <h2>Research Staff</h2>
     </section>
     <!--=========== END COURSE BANNER SECTION ================-->
 
@@ -122,18 +172,81 @@
           <!-- start course content -->
           <div class="col-lg-8 col-md-8 col-sm-8">
             <div class="courseArchive_content">              
-             <div class="single_course_content">
-                <script>
-                  var xhttp;
-                  xhttp = new XMLHttpRequest();
-                  xhttp.onreadystatechange = function() {
-                    if (this.readyState == 4 && this.status == 200) {
-                      document.getElementsByClassName("single_course_content")[0].innerHTML = this.responseText;
-                    }
-                  };
-                  xhttp.open("GET", "articles/general.php", true);
-                  xhttp.send();
-                </script>
+				<div class="single_course_content">
+				
+                
+				<!-- Foto, nome e resumo do professor -->
+								<h2 class="titile"> <?php echo $name_prof; ?> </h2>	
+				<table border="0" width="95%">
+					<tr>
+						<td width="25%" valign="top">
+						<p align="center"><img border="0" src=<?php echo "'"; echo "../img/professor/".$id_prof.".jpg"; echo "'"; ?> width="150" height="180"></td>
+						<td width="75%" valign="top">
+						<p align="justify">
+						<span style="font-size:13.0pt;font-family:&quot;Times New Roman&quot;;mso-fareast-font-family:&quot;Times New Roman&quot;;mso-ansi-language:PT-BR;mso-fareast-language:PT-BR;mso-bidi-language:AR-SA"> <?php echo $about_prof; ?> </span></p>
+					</tr>
+				</table>
+				<!-- ------------------------------- -->
+				
+								
+				
+				<!-- Publicações do Professor -->
+
+			<h2> Publications </h2>
+
+			<table class="table table-striped course_table">
+					<thead>
+						<tr>          
+							<th>Magazines</th>
+							<th></th>
+							<th></th>
+						</tr>
+					</thead>
+				<tbody>
+
+			<?php
+				//********************************//
+				//***** READING ARTICLES *********//
+				//********************************//
+
+				//If there isnt any error, then lets read the sql content
+				$sql = "SELECT * FROM articles WHERE id_prof=" . $id_prof . " AND art_magazine=TRUE ORDER BY year DESC";
+				if (!$result = $mysqli_information->query($sql)) {
+					// I do not know what to show yet
+					echo "<p>Connection Problem </p>";
+				exit;
+}
+
+				//getting the number of articles
+				$num_articles = $result->num_rows;
+				$art_year = 0;
+
+				if ($num_articles > 0) {
+				//Writing the form options
+					while ($config_dispositivo = $result->fetch_assoc()) {
+					//it is exibitig the line.
+						echo '<tr><td>';
+						if($art_year != $config_dispositivo['year']){
+							echo $config_dispositivo['year'];
+							$art_year = $config_dispositivo['year'];
+						}
+						echo "</td>";
+						echo '<td>['.$num_articles.']</td><td>';
+						echo $config_dispositivo['reference'];
+						echo  '</td></tr>';
+						$num_articles = $num_articles - 1;
+					}
+				}
+
+			?>
+			</table>
+				
+				
+				
+
+				<!-- ------------------------------- -->
+				
+				
              </div>
             </div>
           </div>
