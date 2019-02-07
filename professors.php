@@ -1,53 +1,3 @@
-<?php
-
-//getting professor
-if(isset($_REQUEST["id_prof"])){
-  $id_prof = $_REQUEST["id_prof"];
-}else{
-  echo "<h1> Connection Problem </h1>";
-  exit;
-}
-
-//*******************************//
-//***** READING DATABSE *********//
-//*******************************//
-
-//Starting connection
-$mysqli_information = new mysqli('localhost', 'root', 'input212', 'information');
-
-//If there is any error, then show...
-if ($mysqli_information->connect_errno) {
-    // I do not know what to show yet
-    echo "<p>Connection Problem </p>";
-    exit;
-}
-
-//If there isnt any error, then lets read the sql content
-$sql = "SELECT * FROM professors WHERE id_prof=" . $id_prof;
-if (!$result = $mysqli_information->query($sql)) {
-    // I do not know what to show yet
-    echo "<p>Connection Problem </p>";
-    exit;
-}
-
-// If there is no result (don't apply in this case)
-if ($result->num_rows === 0) {
-    // I do not know what to show yet
-    echo "<p>Connection Problem </p>";
-    exit;
-}
-
-//pegando o nome do professor
-$prof_row = $result->fetch_assoc();
-$name_prof = $prof_row['name_prof'];
-$show_prof = $prof_row['show_professor'];
-$email_prof = $prof_row['email'];
-$about_prof = $prof_row['about_prof'];
-
-?>
-
-
-
 <html>
 <!DOCTYPE html>
 <html lang="en">
@@ -173,6 +123,58 @@ $about_prof = $prof_row['about_prof'];
           <div class="col-lg-8 col-md-8 col-sm-8">
             <div class="courseArchive_content">              
 				<div class="single_course_content">
+				
+				
+				
+				<?php
+
+//getting professor
+if(isset($_REQUEST["id_prof"])){
+  $id_prof = $_REQUEST["id_prof"];
+}else{
+  echo "<h1> Connection Problem1 </h1>";
+  exit;
+}
+
+//*******************************//
+//***** READING DATABSE *********//
+//*******************************//
+
+//Starting connection
+$mysqli_information = new mysqli('localhost', 'root', 'input212', 'information');
+
+//If there is any error, then show...
+if ($mysqli_information->connect_errno) {
+    // I do not know what to show yet
+    echo "<p>Connection Problem2 </p>";
+    exit;
+}
+
+//If there isnt any error, then lets read the sql content
+$sql = "SELECT * FROM professors WHERE id_prof=" . $id_prof;
+if (!$result = $mysqli_information->query($sql)) {
+    // I do not know what to show yet
+    echo "<p>Connection Problem3 </p>";
+    exit;
+}
+
+// If there is no result (don't apply in this case)
+if ($result->num_rows === 0) {
+    // I do not know what to show yet
+    echo "<p>Connection Problem4 </p>";
+    exit;
+}
+
+//pegando o nome do professor
+$prof_row = $result->fetch_assoc();
+$name_prof = $prof_row['name_prof'];
+$show_prof = $prof_row['show_professor'];
+$email_prof = $prof_row['email'];
+$about_prof = $prof_row['about_prof'];
+
+?>
+
+				
 				
                 
 				<!-- Foto, nome e resumo do professor -->
