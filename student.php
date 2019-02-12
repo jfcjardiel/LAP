@@ -158,7 +158,7 @@ $about_std = $std_row['about_std'];
 
     <!--=========== BEGIN COURSE BANNER SECTION ================-->
     <section id="imgBanner">
-      <h2>Research Staff</h2>
+      <h2>Students</h2>
     </section>
     <!--=========== END COURSE BANNER SECTION ================-->
 
