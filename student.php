@@ -158,7 +158,7 @@ $about_std = $std_row['about_std'];
 
     <!--=========== BEGIN COURSE BANNER SECTION ================-->
     <section id="imgBanner">
-      <h2>Students</h2>
+      <h2>Research Staff</h2>
     </section>
     <!--=========== END COURSE BANNER SECTION ================-->
 
@@ -174,7 +174,7 @@ $about_std = $std_row['about_std'];
 			
 			
 				<!-- Foto, nome e resumo do aluno -->
-				<h2 class="titile"> <?php echo $name_prof; ?> </h2>	
+				<h2 class="titile"> <?php echo $name_std; ?> </h2>	
 				<table border="0" width="95%">
 					<tr>
 						<td width="25%" valign="top">
