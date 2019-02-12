@@ -1,10 +1,10 @@
 <?php
 
 //getting professor
-if(isset($_REQUEST["id_prof"])){
-  $id_prof = $_REQUEST["id_prof"];
+if(isset($_REQUEST["id_std"])){
+  $id_std = $_REQUEST["id_std"];
 }else{
-  echo "<h1> Connection Problem1 </h1>";
+  echo "<h1> Connection Problem </h1>";
   exit;
 }
 
@@ -18,31 +18,29 @@ $mysqli_information = new mysqli('localhost', 'root', 'input212', 'information')
 //If there is any error, then show...
 if ($mysqli_information->connect_errno) {
     // I do not know what to show yet
-    echo "<p>Connection Problem2 </p>";
+    echo "<p>Connection Problem </p>";
     exit;
 }
 
 //If there isnt any error, then lets read the sql content
-$sql = "SELECT * FROM professors WHERE id_prof=" . $id_prof;
+$sql = "SELECT * FROM students WHERE id_std=" . $id_std;
 if (!$result = $mysqli_information->query($sql)) {
     // I do not know what to show yet
-    echo "<p>Connection Problem3 </p>";
+    echo "<p>Connection Problem </p>";
     exit;
 }
 
 // If there is no result (don't apply in this case)
 if ($result->num_rows === 0) {
     // I do not know what to show yet
-    echo "<p>Connection Problem4 </p>";
+    echo "<p>Connection Problem </p>";
     exit;
 }
 
 //pegando o nome do professor
-$prof_row = $result->fetch_assoc();
-$name_prof = $prof_row['name_prof'];
-$show_prof = $prof_row['show_professor'];
-$email_prof = $prof_row['email'];
-$about_prof = $prof_row['about_prof'];
+$std_row = $result->fetch_assoc();
+$name_std = $std_row['name_std'];
+$about_std = $std_row['about_std'];
 
 ?>
 
@@ -175,172 +173,21 @@ $about_prof = $prof_row['about_prof'];
 				<div class="single_course_content">
 			
 			
-				<!-- Foto, nome e resumo do professor -->
-								<h2 class="titile"> <?php echo $name_prof; ?> </h2>	
+				<!-- Foto, nome e resumo do aluno -->
+				<h2 class="titile"> <?php echo $name_prof; ?> </h2>	
 				<table border="0" width="95%">
 					<tr>
 						<td width="25%" valign="top">
-						<p align="center"><img border="0" src=<?php echo "'"; echo "../img/professor/".$id_prof.".jpg"; echo "'"; ?> width="150" height="180"></td>
+						<p align="center"><img border="0" src=<?php echo "'"; echo "../img/std/".$id_std.".jpg"; echo "'"; ?> width="170" height="193"></td>
 						<td width="75%" valign="top">
 						<p align="justify">
-						<span style="font-size:13.0pt;font-family:&quot;Times New Roman&quot;;mso-fareast-font-family:&quot;Times New Roman&quot;;mso-ansi-language:PT-BR;mso-fareast-language:PT-BR;mso-bidi-language:AR-SA"> <?php echo $about_prof; ?> </span></p>
+						<span style="font-size:13.0pt;font-family:&quot;Times New Roman&quot;;mso-fareast-font-family:&quot;Times New Roman&quot;;mso-ansi-language:PT-BR;mso-fareast-language:PT-BR;mso-bidi-language:AR-SA"> <?php echo $about_std; ?> </span></p>
 					</tr>
 				</table>
 				<!-- ------------------------------- -->
 								
-				
-			<!-- Publicações do Professor -->
-
-			<h2> &nbsp </h2>
-			<h2> Publications </h2>
-
-			<table class="table table-striped course_table">
-					<thead>
-						<tr>          
-							<th>Magazines</th>
-							<th></th>
-							<th></th>
-						</tr>
-					</thead>
-				<tbody>
-
-			<?php
-				//********************************//
-				//***** READING ARTICLES *********//
-				//********************************//
-
-				//If there isnt any error, then lets read the sql content
-				$sql = "SELECT * FROM articles WHERE id_prof=" . $id_prof . " AND art_magazine=TRUE ORDER BY year DESC";
-				if (!$result = $mysqli_information->query($sql)) {
-					// I do not know what to show yet
-					echo "<p>Connection Problem </p>";
-				exit;
-}
-
-				//getting the number of articles
-				$num_articles = $result->num_rows;
-				$art_year = 0;
-
-				if ($num_articles > 0) {
-				//Writing the form options
-					while ($config_dispositivo = $result->fetch_assoc()) {
-					//it is exibitig the line.
-						echo '<tr><td>';
-						if($art_year != $config_dispositivo['year']){
-							echo $config_dispositivo['year'];
-							$art_year = $config_dispositivo['year'];
-						}
-						echo "</td>";
-						echo '<td>['.$num_articles.']</td><td>';
-						echo $config_dispositivo['reference'];
-						echo  '</td></tr>';
-						$num_articles = $num_articles - 1;
-					}
-				}
-
-			?>
-			</table>
-				
-				
-			<table class="table table-striped course_table">
-					<thead>
-						<tr>          
-							<th>Books</th>
-							<th></th>
-							<th></th>
-						</tr>
-					</thead>
-				<tbody>
-
-			<?php
-				//********************************//
-				//***** READING ARTICLES *********//
-				//********************************//
-
-				//If there isnt any error, then lets read the sql content
-				$sql = "SELECT * FROM articles WHERE id_prof=" . $id_prof . " AND art_book=TRUE ORDER BY year DESC";
-				if (!$result = $mysqli_information->query($sql)) {
-					// I do not know what to show yet
-					echo "<p>Connection Problem </p>";
-				exit;
-}
-
-				//getting the number of articles
-				$num_articles = $result->num_rows;
-				$art_year = 0;
-
-				if ($num_articles > 0) {
-				//Writing the form options
-					while ($config_dispositivo = $result->fetch_assoc()) {
-					//it is exibitig the line.
-						echo '<tr><td>';
-						if($art_year != $config_dispositivo['year']){
-							echo $config_dispositivo['year'];
-							$art_year = $config_dispositivo['year'];
-						}
-						echo "</td>";
-						echo '<td>['.$num_articles.']</td><td>';
-						echo $config_dispositivo['reference'];
-						echo  '</td></tr>';
-						$num_articles = $num_articles - 1;
-					}
-				}
-
-			?>
-			</table>
-			
-			
-			
-			<table class="table table-striped course_table">
-					<thead>
-						<tr>          
-							<th>Conferences</th>
-							<th></th>
-							<th></th>
-						</tr>
-					</thead>
-				<tbody>
-
-			<?php
-				//********************************//
-				//***** READING ARTICLES *********//
-				//********************************//
-
-				//If there isnt any error, then lets read the sql content
-				$sql = "SELECT * FROM articles WHERE id_prof=" . $id_prof . " AND art_conference=TRUE ORDER BY year DESC";
-				if (!$result = $mysqli_information->query($sql)) {
-					// I do not know what to show yet
-					echo "<p>Connection Problem </p>";
-				exit;
-}
-
-				//getting the number of articles
-				$num_articles = $result->num_rows;
-				$art_year = 0;
-
-				if ($num_articles > 0) {
-				//Writing the form options
-					while ($config_dispositivo = $result->fetch_assoc()) {
-					//it is exibitig the line.
-						echo '<tr><td>';
-						if($art_year != $config_dispositivo['year']){
-							echo $config_dispositivo['year'];
-							$art_year = $config_dispositivo['year'];
-						}
-						echo "</td>";
-						echo '<td>['.$num_articles.']</td><td>';
-						echo $config_dispositivo['reference'];
-						echo  '</td></tr>';
-						$num_articles = $num_articles - 1;
-					}
-				}
-
-			?>
-			</table>	
-		
-			<!-- --------------------------------- -->
-				
-             </div>
+							
+				</div>
             </div>
           </div>
           <!-- End course content -->

@@ -63,7 +63,8 @@ if ($result_phd->num_rows === 0) {
     $year_phd = $std_row['year_phd'];
     $active = $std_row['active'];
     echo '<tr>';
-    echo '<td><a href="students/about.php?id_std='.$id_std.'">'.$name_std.'</td>';
+    // echo '<td><a href="students/about.php?id_std='.$id_std.'">'.$name_std.'</td>';
+	echo '<td><a href="student.php?id_std='.$id_std.'">'.$name_std.'</td>';
     echo '<td>'.$year_phd.'</td>';
     if($active){
       echo '<td>CURRENTLY STUDENT</td>';
@@ -95,7 +96,8 @@ if ($result_master->num_rows === 0) {
     $year_master = $std_row['year_master'];
     $active = $std_row['active'];
     echo '<tr>';
-    echo '<td><a href="students/about.php?id_std='.$id_std.'">'.$name_std.'</td>';
+    // echo '<td><a href="students/about.php?id_std='.$id_std.'">'.$name_std.'</td>';
+	echo '<td><a href="student.php?id_std='.$id_std.'">'.$name_std.'</td>';
     echo '<td>'.$year_master.'</td>';
     if($active && !$phd){
       echo '<td>CURRENTLY STUDENT</td>';
@@ -128,7 +130,8 @@ if ($result_grad->num_rows === 0) {
     $year_grad = $std_row['year_grad'];
     $active = $std_row['active'];
     echo '<tr>';
-    echo '<td><a href="students/about.php?id_std='.$id_std.'">'.$name_std.'</td>';
+    // echo '<td><a href="students/about.php?id_std='.$id_std.'">'.$name_std.'</td>';
+	echo '<td><a href="student.php?id_std='.$id_std.'">'.$name_std.'</td>';
     echo '<td>'.$year_grad.'</td>';
     if($active && !$phd && !$master){
       echo '<td>CURRENTLY STUDENT</td>';
