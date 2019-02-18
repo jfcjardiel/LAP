@@ -175,7 +175,7 @@ $about_prof = $prof_row['about_prof'];
 				<div class="single_course_content">
 			
 			
-				<!-- Foto, nome e resumo do professor 
+				<!-- Foto, nome e resumo do professor -->
 				<h2 class="titile"> <?php echo $name_prof; ?> </h2>	
 				<table border="0" width="95%">
 					<tr>
@@ -186,7 +186,7 @@ $about_prof = $prof_row['about_prof'];
 						<span style="font-size:13.0pt;font-family:&quot;Times New Roman&quot;;mso-fareast-font-family:&quot;Times New Roman&quot;;mso-ansi-language:PT-BR;mso-fareast-language:PT-BR;mso-bidi-language:AR-SA"> <?php echo $about_prof; ?> </span></p>
 					</tr>
 				</table>
-				 -->
+				<!-- ------------------------------- -->
 								
 				
 			<!-- Publicações do Professor -->
