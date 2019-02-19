@@ -175,17 +175,8 @@ $about_prof = $prof_row['about_prof'];
 				<div class="single_course_content">
 			
 			
-				<!-- Foto, nome e resumo do professor -->
-				<h2 class="titile"> <?php echo $name_prof; ?> </h2>	
-				<table border="0" width="95%">
-					<tr>
-						<td width="25%" valign="top">
-						<p align="center"><img border="0" src=<?php echo "'"; echo "../img/professor/".$id_prof.".jpg"; echo "'"; ?> width="150" height="180"></td>
-						<td width="75%" valign="top">
-						<p align="justify">
-						<span style="font-size:13.0pt;font-family:&quot;Times New Roman&quot;;mso-fareast-font-family:&quot;Times New Roman&quot;;mso-ansi-language:PT-BR;mso-fareast-language:PT-BR;mso-bidi-language:AR-SA"> <?php echo $about_prof; ?> </span></p>
-					</tr>
-				</table>
+				<!-- Foto, nome e resumo do professor 
+				
 				<!-- ------------------------------- -->
 								
 				
@@ -406,12 +397,14 @@ $about_prof = $prof_row['about_prof'];
                 </ul>
               </div>
               <!-- End single sidebar -->
-              <!-- start single sidebar
-              <div class="single_sidebar">
+              <!-- start single sidebar -->
+              
+			  <div class="single_sidebar">
                 <h2>ITA <span class="fa fa-angle-double-right"></span></h2>
                 <a class="side_add" href="http://www.ita.br"><img src="img/ita.png" alt="img" height="100%" width="100%"></a>
               </div>
-              <!-- End single sidebar -->
+              
+			  <!-- End single sidebar -->
             </div>
           </div>
           <!-- start course archive sidebar -->
