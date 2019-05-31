@@ -50,7 +50,7 @@ if ($result_phd->num_rows === 0) {
   echo '<table class="table table-striped course_table">
         <thead>
           <tr>          
-            <th>PHD STUDENTS</th>
+            <th>PhD STUDENTS</th>
             <th></th>
             <th></th>
           </tr>
@@ -82,7 +82,7 @@ if ($result_master->num_rows === 0) {
   echo '<table class="table table-striped course_table">
         <thead>
           <tr>          
-            <th>MASTER STUDENTS</th>
+            <th>MASTER`S DEGREE STUDENTS</th>
             <th></th>
             <th></th>
           </tr>
@@ -115,7 +115,7 @@ if ($result_grad->num_rows === 0) {
   echo '<table class="table table-striped course_table">
         <thead>
           <tr>          
-            <th>GRADUATION STUDENTS</th>
+            <th>UNDERGRADUATE STUDENTS</th>
             <th></th>
             <th></th>
           </tr>
